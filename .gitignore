@@ -1,0 +1,12 @@
+# Local credentials and machine-specific environment
+.env
+.env.*
+!.env.example
+
+# Local tooling and temporary files
+.idea/
+.vscode/
+*.log
+*.tmp
+Thumbs.db
+.DS_Store
