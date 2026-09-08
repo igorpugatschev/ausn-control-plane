@@ -1,0 +1,95 @@
+[mcp_servers.socraticode]
+command = "node"
+args = ["-e", "process.env.TMP=process.env.TEMP=require('node:path').resolve('.local/socraticode/tmp'); const p=require('node:child_process').spawn('npx',['-y','socraticode@1.12.0'],{stdio:'inherit',shell:process.platform==='win32'}); p.on('exit',c=>process.exit(c??1));"]
+startup_timeout_sec = 120
+tool_timeout_sec = 600
+
+[mcp_servers.socraticode.env]
+QDRANT_MODE = "external"
+QDRANT_URL = "http://127.0.0.1:17333"
+QDRANT_COLLECTION_PREFIX = "ausn_qa_"
+EMBEDDING_PROVIDER = "ollama"
+EMBEDDING_MODEL = "nomic-embed-text"
+OLLAMA_MODE = "external"
+OLLAMA_URL = "http://127.0.0.1:11434"
+SOCRATICODE_GLOBAL_CONFIG_DIR = "./.local/socraticode/context"
+
+[mcp_servers.atlassian]
+command = "node"
+args = ["--env-file=.env", "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js", "http://192.168.100.108:9871/mcp", "--transport", "http-only", "--silent", "--allow-http"]
+enabled = true
+startup_timeout_sec = 60
+tool_timeout_sec = 120
+
+[mcp_servers.atlassian.env]
+MCP_REMOTE_CONFIG_DIR = ".local/mcp-auth/atlassian"
+
+[mcp_servers.gitlab]
+command = "node"
+args = ["--env-file=.env", "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js", "http://192.168.100.108:3002/mcp", "--transport", "http-only", "--silent", "--allow-http", "--header", "Authorization:${MCP_GITLAB_AUTHORIZATION}"]
+enabled = true
+startup_timeout_sec = 60
+tool_timeout_sec = 120
+
+[mcp_servers.gitlab.env]
+MCP_REMOTE_CONFIG_DIR = ".local/mcp-auth/gitlab"
+
+[mcp_servers.mattermost]
+command = "node"
+args = ["--env-file=.env", "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js", "https://chat.rocketscien.se/plugins/mattermost-ai/mcp-server/mcp", "--transport", "http-only", "--silent", "--header", "Authorization:${MCP_MATTERMOST_AUTHORIZATION}"]
+enabled = true
+startup_timeout_sec = 60
+tool_timeout_sec = 120
+
+[mcp_servers.mattermost.env]
+MCP_REMOTE_CONFIG_DIR = ".local/mcp-auth/mattermost"
+
+[mcp_servers.test_ssh]
+command = "node"
+args = ["--env-file=.env", "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js", "http://192.168.100.108:3111/mcp", "--transport", "http-only", "--silent", "--allow-http", "--header", "Authorization:${MCP_SSH_AUTHORIZATION}"]
+enabled = true
+startup_timeout_sec = 60
+tool_timeout_sec = 120
+
+[mcp_servers.test_ssh.env]
+MCP_REMOTE_CONFIG_DIR = ".local/mcp-auth/test_ssh"
+
+[mcp_servers.test_pgdb]
+command = "node"
+args = ["--env-file=.env", "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js", "http://192.168.100.108:2345/mcp", "--transport", "http-only", "--silent", "--allow-http"]
+enabled = true
+startup_timeout_sec = 60
+tool_timeout_sec = 120
+
+[mcp_servers.test_pgdb.env]
+MCP_REMOTE_CONFIG_DIR = ".local/mcp-auth/test_pgdb"
+
+[mcp_servers.test_graylog]
+command = "node"
+args = ["--env-file=.env", "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js", "https://graylog.rocketscien.se/api/mcp", "--transport", "http-only", "--silent", "--header", "Authorization:${MCP_GRAYLOG_AUTHORIZATION}"]
+enabled = true
+startup_timeout_sec = 60
+tool_timeout_sec = 120
+
+[mcp_servers.test_graylog.env]
+MCP_REMOTE_CONFIG_DIR = ".local/mcp-auth/test_graylog"
+
+[mcp_servers.test_grafana]
+command = "node"
+args = ["--env-file=.env", "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js", "http://192.168.100.108:8030/mcp", "--transport", "http-only", "--silent", "--allow-http"]
+enabled = true
+startup_timeout_sec = 60
+tool_timeout_sec = 120
+
+[mcp_servers.test_grafana.env]
+MCP_REMOTE_CONFIG_DIR = ".local/mcp-auth/test_grafana"
+
+[mcp_servers.playwright]
+command = "node"
+args = ["--env-file=.env", "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js", "http://192.168.100.108:8931/mcp", "--transport", "http-only", "--silent", "--allow-http"]
+enabled = true
+startup_timeout_sec = 60
+tool_timeout_sec = 120
+
+[mcp_servers.playwright.env]
+MCP_REMOTE_CONFIG_DIR = ".local/mcp-auth/playwright"

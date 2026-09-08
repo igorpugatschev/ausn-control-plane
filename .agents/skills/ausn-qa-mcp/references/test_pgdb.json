@@ -1,0 +1,70 @@
+{
+  "server": "test_pgdb",
+  "capturedAt": "2026-09-08T03:04:13.199Z",
+  "serverInfo": {
+    "name": "spring-pgdb-mcp",
+    "version": "1.2.0"
+  },
+  "capabilities": {
+    "logging": {},
+    "tools": {
+      "listChanged": true
+    }
+  },
+  "tools": [
+    {
+      "name": "query",
+      "description": "Execute DQL (SELECT) query on a database server",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "server": {
+            "type": "string",
+            "description": "Server name from config"
+          },
+          "sql": {
+            "type": "string",
+            "description": "SQL SELECT query"
+          }
+        },
+        "required": [
+          "server",
+          "sql"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "list",
+      "description": "List all configured database servers",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "execute",
+      "description": "Execute DML/DDL on a database server",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "server": {
+            "type": "string",
+            "description": "Server name from config"
+          },
+          "sql": {
+            "type": "string",
+            "description": "SQL INSERT/UPDATE/DELETE query"
+          }
+        },
+        "required": [
+          "server",
+          "sql"
+        ],
+        "additionalProperties": false
+      }
+    }
+  ]
+}

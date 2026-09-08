@@ -4,8 +4,13 @@
 !.env.example
 
 # Local tooling and temporary files
+.venv/
+.local/
 .idea/
-.vscode/
+.vscode/*
+!.vscode/mcp.json
+!.vscode/settings.json
+node_modules/
 *.log
 *.tmp
 Thumbs.db

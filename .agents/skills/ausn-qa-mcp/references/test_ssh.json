@@ -1,0 +1,243 @@
+{
+  "server": "test_ssh",
+  "capturedAt": "2026-09-08T03:04:12.436Z",
+  "serverInfo": {
+    "name": "mcp-server",
+    "version": "1.0.0"
+  },
+  "capabilities": {
+    "completions": {},
+    "prompts": {
+      "listChanged": false
+    },
+    "resources": {
+      "subscribe": false,
+      "listChanged": false
+    },
+    "tools": {
+      "listChanged": false
+    }
+  },
+  "tools": [
+    {
+      "name": "upsert_access_token",
+      "description": "Create or update an access token. If `token` UUID is omitted, a new UUID is generated. If `token` exists and `overwrite` is not true, returns an error. On update, only explicitly provided fields are applied (partial update); omitted fields keep their current values. The full token value is returned in the response (visible only here). Requires token-admin role. The current token cannot modify itself.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Token UUID (optional — generates a new UUID if omitted)"
+          },
+          "canEdit": {
+            "type": "boolean",
+            "description": "Whether the token can edit server connections"
+          },
+          "canExecute": {
+            "type": "boolean",
+            "description": "Whether the token can execute commands"
+          },
+          "executeOnly": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Glob patterns of server names the token is allowed to execute on (empty = all)"
+          },
+          "comment": {
+            "type": "string",
+            "description": "Free-form operator note (max 255 chars). Null = leave unchanged; empty string = clear the note."
+          },
+          "isTokenAdmin": {
+            "type": "boolean",
+            "description": "Whether the token can manage other access tokens"
+          },
+          "overwrite": {
+            "type": "boolean",
+            "description": "Overwrite an existing token with the same UUID (default false)"
+          }
+        },
+        "required": [],
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "list_access_tokens",
+      "description": "List all access tokens (token value, canEdit, canExecute, isTokenAdmin, executeOnly, comment, createdAt). Requires token-admin role.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "rename_server_connection",
+      "description": "Rename an existing server connection",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "oldName": {
+            "type": "string",
+            "description": "Current server name"
+          },
+          "newName": {
+            "type": "string",
+            "description": "New server name (must be unique)"
+          }
+        },
+        "required": [
+          "oldName",
+          "newName"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "add_server_connection",
+      "description": "Register a new server connection",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Server name (must be unique)"
+          },
+          "host": {
+            "type": "string",
+            "description": "Hostname or IP address"
+          },
+          "port": {
+            "type": "integer",
+            "description": "SSH port"
+          },
+          "username": {
+            "type": "string",
+            "description": "SSH username"
+          },
+          "password": {
+            "type": "string",
+            "description": "Password for authentication (plain text, stored as base64)"
+          },
+          "privateKey": {
+            "type": "string",
+            "description": "Private key for authentication (OpenSSH format, plain text, not base64)"
+          },
+          "privateKeySecret": {
+            "type": "string",
+            "description": "Passphrase for encrypted private key (optional, plain text, not base64)"
+          },
+          "overwrite": {
+            "type": "boolean",
+            "description": "Overwrite existing server if name already exists (default false)"
+          }
+        },
+        "required": [
+          "name",
+          "host",
+          "username"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "remove_server_connection",
+      "description": "Unregister a server connection",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Server name to remove"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "generate_session_id",
+      "description": "Generate a unique session ID for all `execute` tool calls. Pattern: [a-z0-9]{20}.\nGenerate once and reuse the same known ID for all subsequent execute calls within a conversation.\n",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "execute",
+      "description": "Execute a command on a remote server",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "reasoningAndExpectations": {
+            "type": "string",
+            "description": "Describe briefly: what the command does? + is it destructive? + what are expectations?"
+          },
+          "name": {
+            "type": "string",
+            "description": "Server name"
+          },
+          "command": {
+            "type": "string",
+            "description": "Command to execute"
+          },
+          "sessionId": {
+            "type": "string",
+            "description": "Generate once itself (alphanumeric 10+) and reuse the same value"
+          },
+          "timeoutSeconds": {
+            "type": "integer",
+            "description": "Timeout in seconds (optional, default 30)"
+          }
+        },
+        "required": [
+          "reasoningAndExpectations",
+          "name",
+          "command",
+          "sessionId"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "list_servers",
+      "description": "List all registered server connections (name -> user@host:port)",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "delete_access_token",
+      "description": "Delete an access token by UUID. Requires token-admin role. The current token cannot delete itself.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Token UUID to delete"
+          }
+        },
+        "required": [
+          "token"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+name: ausn-qa-index
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.17.0
+    ports:
+      - "127.0.0.1:17333:6333"
+    volumes:
+      - ./.local/socraticode/qdrant:/qdrant/storage
+    restart: unless-stopped

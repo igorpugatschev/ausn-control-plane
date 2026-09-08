@@ -1,0 +1,425 @@
+{
+  "server": "mattermost",
+  "capturedAt": "2026-09-08T03:04:12.944Z",
+  "serverInfo": {
+    "name": "mattermost-mcp-server",
+    "version": "0.1.0"
+  },
+  "capabilities": {
+    "logging": {},
+    "tools": {
+      "listChanged": true
+    }
+  },
+  "tools": [
+    {
+      "name": "add_user_to_channel",
+      "description": "Add a user to a channel. Parameters: user_id (required), channel_id (required). Returns confirmation message.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "description": "ID of the user to add"
+          },
+          "channel_id": {
+            "type": "string",
+            "description": "ID of the channel to add user to"
+          }
+        },
+        "required": [
+          "user_id",
+          "channel_id"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "create_channel",
+      "description": "Create a new channel in Mattermost. Parameters: name (URL-friendly), display_name (user-visible), type ('O' for public, 'P' for private), team_id (required), purpose (optional), header (optional). Returns created channel details. Example: {\"name\": \"dev-chat\", \"display_name\": \"Development Chat\", \"type\": \"O\", \"team_id\": \"w1jkn9ebkiby7qezqfxk7o5ney\"}",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The channel name (URL-friendly),minLength=1,maxLength=64"
+          },
+          "display_name": {
+            "type": "string",
+            "description": "The channel display name,minLength=1,maxLength=64"
+          },
+          "type": {
+            "type": "string",
+            "description": "Channel type,enum=O,enum=P"
+          },
+          "team_id": {
+            "type": "string",
+            "description": "The team ID where the channel will be created,minLength=26,maxLength=26"
+          },
+          "purpose": {
+            "type": "string",
+            "description": "Optional channel purpose,maxLength=250"
+          },
+          "header": {
+            "type": "string",
+            "description": "Optional channel header,maxLength=1024"
+          }
+        },
+        "required": [
+          "name",
+          "display_name",
+          "type",
+          "team_id",
+          "purpose",
+          "header"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "create_post",
+      "description": "Create a new post in Mattermost. IMPORTANT WORKFLOW: You MUST first call get_channel_info to obtain the channel_id, channel_display_name, and team_display_name. Present this context to the user before posting. Then call this tool with all required parameters. This ensures full transparency about where the message will be posted. Parameters: channel_id (required), message (required), root_id (optional - for replies). Returns created post details including ID and timestamp. Example: {\"channel_id\": \"h5wqm8kxptbztfgzpaxbsqozah\", \"message\": \"Hello team!\"}",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "channel_display_name": {
+            "type": "string",
+            "description": "The display name of the channel (for context verification),minLength=1"
+          },
+          "channel_id": {
+            "type": "string",
+            "description": "The ID of the channel to post in,minLength=26,maxLength=26"
+          },
+          "message": {
+            "type": "string",
+            "description": "The message content,minLength=1"
+          },
+          "root_id": {
+            "type": "string",
+            "description": "Optional root post ID for replies,minLength=26,maxLength=26"
+          },
+          "team_display_name": {
+            "type": "string",
+            "description": "The display name of the team (for context verification),minLength=1"
+          }
+        },
+        "required": [
+          "channel_id",
+          "channel_display_name",
+          "team_display_name",
+          "message"
+        ]
+      }
+    },
+    {
+      "name": "dm",
+      "description": "Send a direct message to a user. Provide username to specify the recipient. If username is omitted, the message is sent to yourself. This is the DEFAULT way to message people — call it multiple times to message multiple people individually. Only use the group_message tool when the user explicitly asks for a group chat. Parameters: message (required), username (optional). Returns confirmation with message ID. Example: {\"message\": \"Hello!\", \"username\": \"john\"}",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "The message content to send,minLength=1"
+          },
+          "username": {
+            "type": "string",
+            "description": "Target username. If omitted the message is sent to yourself."
+          }
+        },
+        "required": [
+          "message"
+        ]
+      }
+    },
+    {
+      "name": "get_channel_info",
+      "description": "Get information about channel(s). Provide channel_id (fastest) or channel_name (matches against both display name and URL name, case-insensitive, supports partial matches). Optional: team_id to limit search scope. If multiple channels match (e.g., 'General' exists in multiple teams), returns ALL matches with team context for disambiguation. Returns channel metadata including ID, names, type, team, purpose, member count, and the requesting user's role in the channel (admin, member, guest, or not_member). Example: {\"channel_name\": \"General\"} or {\"channel_id\": \"h5wqm8kxptbztfgzpaxbsqozah\"}",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "channel_id": {
+            "type": "string",
+            "description": "The exact channel ID (fastest, most reliable method),maxLength=26"
+          },
+          "channel_name": {
+            "type": "string",
+            "description": "Channel name to search for — matches against both display name and URL name (case-insensitive, supports partial matches),maxLength=64"
+          },
+          "team_id": {
+            "type": "string",
+            "description": "Team ID (optional - if provided, searches within specific team; if omitted, searches across all teams),maxLength=26"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_channel_members",
+      "description": "Get members of a channel with pagination support. Parameters: channel_id (required), limit (1-200, default 50), page (0+, default 0). Returns user details for each member including username, email, display name, and join date. Example: {\"channel_id\": \"h5wqm8kxptbztfgzpaxbsqozah\", \"limit\": 25, \"page\": 0}",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "channel_id": {
+            "type": "string",
+            "description": "ID of the channel to get members for,minLength=26,maxLength=26"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Number of members to return (default: 50, max: 200),minimum=1,maximum=200"
+          },
+          "page": {
+            "type": "integer",
+            "description": "Page number for pagination (default: 0),minimum=0"
+          },
+          "exclude_bots": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Exclude bot accounts from results (default: true)"
+          }
+        },
+        "required": [
+          "channel_id"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_team_info",
+      "description": "Get information about a team. Provide team_id (fastest) or team_name (matches against both display name and URL name, case-insensitive, supports partial matches). Returns team metadata including ID, names, type, description, and member count. Example: {\"team_name\": \"Engineering\"} or {\"team_id\": \"w1jkn9ebkiby7qezqfxk7o5ney\"}",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string",
+            "description": "The exact team ID (fastest, most reliable method)"
+          },
+          "team_name": {
+            "type": "string",
+            "description": "Team name to search for — matches against both display name and URL name (case-insensitive, supports partial matches)"
+          }
+        }
+      }
+    },
+    {
+      "name": "get_team_members",
+      "description": "Get members of a team with pagination support. Parameters: team_id (required), limit (1-200, default 50), page (0+, default 0). Returns user details for each member including username, email, display name, and roles. Example: {\"team_id\": \"w1jkn9ebkiby7qezqfxk7o5ney\", \"limit\": 10, \"page\": 0}",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "exclude_bots": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "Exclude bot accounts from results (default: true)"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Number of members to return (default: 50, max: 200),minimum=1,maximum=200"
+          },
+          "page": {
+            "type": "integer",
+            "description": "Page number for pagination (default: 0),minimum=0"
+          },
+          "team_id": {
+            "type": "string",
+            "description": "ID of the team to get members for,minLength=26,maxLength=26"
+          }
+        },
+        "required": [
+          "team_id"
+        ]
+      }
+    },
+    {
+      "name": "get_user_channels",
+      "description": "Get channels the current user is a member of, including DMs and GMs. Parameters: team_id (optional, filter by team), page (default 0), per_page (1-200, default 60). Returns channel details with team info and pagination. Example: {\"team_id\": \"w1jkn9ebkiby7qezqfxk7o5ney\", \"per_page\": 60}",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string",
+            "description": "Optional team ID to filter channels by team,maxLength=26"
+          },
+          "page": {
+            "type": "integer",
+            "description": "Page number for pagination (default: 0),minimum=0"
+          },
+          "per_page": {
+            "type": "integer",
+            "description": "Number of channels per page (default: 60, max: 200),minimum=1,maximum=200"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "group_message",
+      "description": "Send a message to a shared group conversation with 2 or more other users. All participants can see each other's messages. ONLY use this when the user explicitly asks for a group message, group chat, or group conversation. If the user just asks to 'message' or 'send to' multiple people, use the dm tool once per person instead. Parameters: message (required), usernames (at least 2 required). Returns confirmation with message ID. Example: {\"message\": \"Hey team!\", \"usernames\": [\"alice\", \"bob\"]}",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "The message content to send,minLength=1"
+          },
+          "usernames": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "description": "Target usernames (must be at least 2)."
+          }
+        },
+        "required": [
+          "usernames",
+          "message"
+        ]
+      }
+    },
+    {
+      "name": "list_agents",
+      "description": "List all available AI agents (bots). Returns each agent's ID, display name, and username.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "read_channel",
+      "description": "Read recent posts from a Mattermost channel. Parameters: channel_id (required), limit (1-100, default 20), since (ISO 8601 timestamp, optional). Returns post details including author, content, and timestamps. Example: {\"channel_id\": \"h5wqm8kxptbztfgzpaxbsqozah\", \"limit\": 10, \"since\": \"2024-01-01T00:00:00Z\"}",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "channel_id": {
+            "type": "string",
+            "description": "The ID of the channel to read from,minLength=26,maxLength=26"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Number of posts to retrieve (default: 20, max: 100),minimum=1,maximum=100"
+          },
+          "since": {
+            "type": "string",
+            "description": "Only get posts since this timestamp (ISO 8601 format),format=date-time"
+          }
+        },
+        "required": [
+          "channel_id"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "read_file",
+      "description": "Read the text contents of a Mattermost file attachment by its File ID. Large attachments in a conversation are shown to you as metadata (name, type, size, File ID) instead of inline content — call this tool with that File ID to read them. Returns extracted text for documents (PDF, Office) and the raw text for plain-text files. Supports ranged reads via offset and limit to page through large files. Parameters: file_id (required), offset (optional), limit (optional). Example: {\"file_id\": \"8xqzn3pfmtbyfkr9hqbw4hheoa\", \"offset\": 0, \"limit\": 6000}",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "file_id": {
+            "type": "string",
+            "description": "The ID of the file to read; use the File ID shown in the attached-file metadata,minLength=26,maxLength=26"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of characters to return (default 6000, capped at 20000)."
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Character offset to start reading from (default 0). Pass the next offset reported by a previous call to page through a large file."
+          }
+        },
+        "required": [
+          "file_id"
+        ]
+      }
+    },
+    {
+      "name": "read_post",
+      "description": "Read a specific post and its thread from Mattermost. Parameters: post_id (required), include_thread (boolean, default true). Returns post content, author info, and optionally all replies in the thread. Example: {\"post_id\": \"8xqzn3pfmtbyfkr9hqbw4hheoa\", \"include_thread\": true}",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "include_thread": {
+            "type": "boolean",
+            "description": "Whether to include the entire thread (default: true)"
+          },
+          "post_id": {
+            "type": "string",
+            "description": "The ID of the post to read,minLength=26,maxLength=26"
+          }
+        },
+        "required": [
+          "post_id"
+        ]
+      }
+    },
+    {
+      "name": "search_posts",
+      "description": "Search for posts in Mattermost using both semantic (AI-powered) and keyword search. Semantic search finds posts by meaning and does not require exact term matches. Keyword search treats the query as a literal AND match — every whitespace-separated token must appear in the same post — so prefer short, focused queries (1-2 key terms) over long multi-word phrases. Parameters: query (required), team_id (optional), channel_id (optional). semantic_limit/semantic_offset control semantic results (default: 10). keyword_limit/keyword_offset control keyword results (default: 10). You can make separate calls with different queries optimized for each search type (e.g., a natural language query for semantic and specific keywords for keyword search). To find posts mentioning a specific person, query their username only (e.g. `john.smith`); at-mentions in posts use the username, never the display name. Do not combine username and display name (e.g. `john.smith John Smith`) in a single query — that requires all of those tokens to co-occur and will miss most posts. Returns matching posts with content, author, channel, and relevance score for semantic results. Results show individual matching posts — to see the full conversation around a result, use read_channel with the channel_id.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "The search query,minLength=1,maxLength=4000"
+          },
+          "team_id": {
+            "type": "string",
+            "description": "Optional team ID to limit search scope,minLength=26,maxLength=26"
+          },
+          "channel_id": {
+            "type": "string",
+            "description": "Optional channel ID to limit search to a specific channel,minLength=26,maxLength=26"
+          },
+          "semantic_limit": {
+            "type": "integer",
+            "description": "Max results from semantic search (default 10; max 50),minimum=1,maximum=50"
+          },
+          "semantic_offset": {
+            "type": "integer",
+            "description": "Offset for semantic search pagination,minimum=0"
+          },
+          "keyword_limit": {
+            "type": "integer",
+            "description": "Max results from keyword search (default 10; max 100),minimum=1,maximum=100"
+          },
+          "keyword_offset": {
+            "type": "integer",
+            "description": "Offset for keyword search pagination,minimum=0"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "search_users",
+      "description": "Search for existing users by username, email, or name. Parameters: term (required search text), limit (1-100, default 20). Returns user details including username, email, display name, and position for matching users. Example: {\"term\": \"john\", \"limit\": 5}",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "term": {
+            "type": "string",
+            "description": "Search term (username, email, first name, or last name),minLength=1,maxLength=64"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of results to return (default: 20, max: 100),minimum=1,maximum=100"
+          }
+        },
+        "required": [
+          "term"
+        ],
+        "additionalProperties": false
+      }
+    }
+  ]
+}

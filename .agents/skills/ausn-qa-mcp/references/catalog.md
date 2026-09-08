@@ -1,0 +1,450 @@
+# Каталог MCP АУСН
+
+Снимок получен 2026-09-08 непосредственно через initialize и tools/list с обработкой nextCursor. Это объявленные возможности, а не доказательство прав на каждую операцию. Бизнес-операции при сборе каталога не выполнялись. Telegram исключён пользователем.
+
+Всего 397 уникальных пар сервер/инструмент. GitLab: 104 инструмента при подключении, 216 после раскрытия всех категорий через discover_tools в отдельной сессии. В рабочей сессии нужную категорию может потребоваться активировать повторно.
+
+JSON-файлы содержат исходные description, inputSchema, outputSchema и annotations, когда сервер их предоставляет; также serverInfo и объявленные capabilities. Отсутствие annotation не означает read-only. Наличие инструмента не означает разрешения применять его в задаче.
+
+## atlassian (35)
+
+[Полные контракты](atlassian.json)
+
+- `jira_get_issue`
+- `jira_search`
+- `jira_search_fields`
+- `jira_get_field_options`
+- `jira_get_project_issues`
+- `jira_get_transitions`
+- `jira_create_issue`
+- `jira_batch_create_issues`
+- `jira_batch_get_changelogs`
+- `jira_update_issue`
+- `jira_assign_issue`
+- `jira_delete_issue`
+- `jira_move_issue`
+- `jira_add_comment`
+- `jira_edit_comment`
+- `jira_transition_issue`
+- `confluence_search`
+- `confluence_get_page`
+- `confluence_get_page_children`
+- `confluence_get_space_page_tree`
+- `confluence_get_comments`
+- `confluence_create_page`
+- `confluence_update_page`
+- `confluence_update_page_section`
+- `confluence_delete_page`
+- `confluence_move_page`
+- `confluence_add_comment`
+- `confluence_reply_to_comment`
+- `confluence_get_inline_comments`
+- `confluence_add_inline_comment`
+- `confluence_get_page_history`
+- `confluence_get_page_diff`
+- `confluence_get_page_restrictions`
+- `confluence_set_page_restrictions`
+- `confluence_copy_page`
+
+## gitlab (216)
+
+[Полные контракты](gitlab.json)
+
+- `merge_merge_request`
+- `approve_merge_request`
+- `unapprove_merge_request`
+- `get_merge_request_approval_state`
+- `get_merge_request_conflicts`
+- `list_merge_request_pipelines`
+- `create_or_update_file`
+- `search_repositories`
+- `create_repository`
+- `get_file_contents`
+- `push_files`
+- `create_merge_request`
+- `fork_repository`
+- `create_branch`
+- `get_branch`
+- `list_branches`
+- `delete_branch`
+- `list_protected_branches`
+- `get_protected_branch`
+- `protect_branch`
+- `unprotect_branch`
+- `update_default_branch`
+- `get_merge_request`
+- `get_merge_request_diffs`
+- `list_merge_request_changed_files`
+- `list_merge_request_diffs`
+- `get_merge_request_file_diff`
+- `list_merge_request_versions`
+- `get_merge_request_version`
+- `get_branch_diffs`
+- `update_merge_request`
+- `create_merge_request_thread`
+- `resolve_merge_request_thread`
+- `mr_discussions`
+- `delete_merge_request_discussion_note`
+- `update_merge_request_discussion_note`
+- `create_merge_request_discussion_note`
+- `create_merge_request_note`
+- `delete_merge_request_note`
+- `get_merge_request_note`
+- `get_merge_request_notes`
+- `update_merge_request_note`
+- `get_draft_note`
+- `list_draft_notes`
+- `create_draft_note`
+- `update_draft_note`
+- `delete_draft_note`
+- `publish_draft_note`
+- `bulk_publish_draft_notes`
+- `list_merge_request_emoji_reactions`
+- `list_merge_request_note_emoji_reactions`
+- `create_merge_request_emoji_reaction`
+- `delete_merge_request_emoji_reaction`
+- `create_merge_request_note_emoji_reaction`
+- `delete_merge_request_note_emoji_reaction`
+- `list_namespaces`
+- `get_namespace`
+- `verify_namespace`
+- `get_project`
+- `list_projects`
+- `update_project`
+- `list_project_members`
+- `list_group_members`
+- `list_group_projects`
+- `get_repository_tree`
+- `list_pipelines`
+- `get_pipeline`
+- `list_deployments`
+- `get_deployment`
+- `list_environments`
+- `get_environment`
+- `list_pipeline_jobs`
+- `list_pipeline_trigger_jobs`
+- `get_pipeline_job`
+- `get_pipeline_job_output`
+- `create_pipeline`
+- `retry_pipeline`
+- `cancel_pipeline`
+- `play_pipeline_job`
+- `retry_pipeline_job`
+- `cancel_pipeline_job`
+- `list_job_artifacts`
+- `download_job_artifacts`
+- `get_job_artifact_file`
+- `list_merge_requests`
+- `get_users`
+- `get_user`
+- `whoami`
+- `list_commits`
+- `get_commit`
+- `get_commit_diff`
+- `get_file_blame`
+- `list_commit_statuses`
+- `create_commit_status`
+- `list_group_iterations`
+- `upload_markdown`
+- `download_attachment`
+- `health_check`
+- `list_events`
+- `get_project_events`
+- `search_code`
+- `search_project_code`
+- `search_group_code`
+- `discover_tools`
+- `create_issue`
+- `create_note`
+- `update_issue_note`
+- `create_issue_note`
+- `list_issue_emoji_reactions`
+- `list_issue_note_emoji_reactions`
+- `create_issue_emoji_reaction`
+- `delete_issue_emoji_reaction`
+- `create_issue_note_emoji_reaction`
+- `delete_issue_note_emoji_reaction`
+- `list_issues`
+- `my_issues`
+- `get_issue`
+- `update_issue`
+- `update_issue_description_patch`
+- `delete_issue`
+- `list_todos`
+- `mark_todo_done`
+- `mark_all_todos_done`
+- `list_issue_links`
+- `list_issue_discussions`
+- `get_issue_link`
+- `create_issue_link`
+- `delete_issue_link`
+- `list_labels`
+- `get_label`
+- `create_label`
+- `update_label`
+- `delete_label`
+- `validate_ci_lint`
+- `validate_project_ci_lint`
+- `list_ci_catalog_resources`
+- `get_ci_catalog_resource`
+- `create_group`
+- `list_milestones`
+- `get_milestone`
+- `create_milestone`
+- `edit_milestone`
+- `delete_milestone`
+- `get_milestone_issue`
+- `get_milestone_merge_requests`
+- `promote_milestone`
+- `get_milestone_burndown_events`
+- `list_group_milestones`
+- `get_group_milestone`
+- `create_group_milestone`
+- `edit_group_milestone`
+- `delete_group_milestone`
+- `get_group_milestone_issue`
+- `get_group_milestone_merge_requests`
+- `get_group_milestone_burndown_events`
+- `list_wiki_pages`
+- `get_wiki_page`
+- `create_wiki_page`
+- `update_wiki_page`
+- `delete_wiki_page`
+- `list_group_wiki_pages`
+- `get_group_wiki_page`
+- `create_group_wiki_page`
+- `update_group_wiki_page`
+- `delete_group_wiki_page`
+- `list_releases`
+- `get_release`
+- `create_release`
+- `update_release`
+- `delete_release`
+- `create_release_evidence`
+- `download_release_asset`
+- `list_tags`
+- `get_tag`
+- `create_tag`
+- `delete_tag`
+- `get_tag_signature`
+- `get_work_item`
+- `list_work_items`
+- `create_work_item`
+- `update_work_item`
+- `convert_work_item_type`
+- `list_work_item_statuses`
+- `list_custom_field_definitions`
+- `move_work_item`
+- `list_work_item_notes`
+- `create_work_item_note`
+- `list_work_item_emoji_reactions`
+- `list_work_item_note_emoji_reactions`
+- `create_work_item_emoji_reaction`
+- `delete_work_item_emoji_reaction`
+- `create_work_item_note_emoji_reaction`
+- `delete_work_item_note_emoji_reaction`
+- `get_timeline_events`
+- `create_timeline_event`
+- `list_webhooks`
+- `list_webhook_events`
+- `get_webhook_event`
+- `list_project_variables`
+- `get_project_variable`
+- `create_project_variable`
+- `update_project_variable`
+- `delete_project_variable`
+- `list_group_variables`
+- `get_group_variable`
+- `create_group_variable`
+- `update_group_variable`
+- `delete_group_variable`
+- `get_dependency_proxy_settings`
+- `update_dependency_proxy_settings`
+- `list_dependency_proxy_blobs`
+- `purge_dependency_proxy_cache`
+- `list_project_vulnerabilities`
+- `get_vulnerability`
+- `dismiss_vulnerability`
+- `confirm_vulnerability`
+
+## mattermost (16)
+
+[Полные контракты](mattermost.json)
+
+- `add_user_to_channel`
+- `create_channel`
+- `create_post`
+- `dm`
+- `get_channel_info`
+- `get_channel_members`
+- `get_team_info`
+- `get_team_members`
+- `get_user_channels`
+- `group_message`
+- `list_agents`
+- `read_channel`
+- `read_file`
+- `read_post`
+- `search_posts`
+- `search_users`
+
+## playwright (56)
+
+[Полные контракты](playwright.json)
+
+- `browser_close`
+- `browser_resize`
+- `browser_console_messages`
+- `browser_cookie_list`
+- `browser_cookie_get`
+- `browser_cookie_set`
+- `browser_cookie_delete`
+- `browser_cookie_clear`
+- `browser_handle_dialog`
+- `browser_evaluate`
+- `browser_file_upload`
+- `browser_drop`
+- `browser_find`
+- `browser_fill_form`
+- `browser_press_key`
+- `browser_type`
+- `browser_mouse_move_xy`
+- `browser_mouse_click_xy`
+- `browser_mouse_drag_xy`
+- `browser_mouse_down`
+- `browser_mouse_up`
+- `browser_mouse_wheel`
+- `browser_navigate`
+- `browser_navigate_back`
+- `browser_network_requests`
+- `browser_network_request`
+- `browser_network_state_set`
+- `browser_route`
+- `browser_route_list`
+- `browser_unroute`
+- `browser_run_code_unsafe`
+- `browser_take_screenshot`
+- `browser_snapshot`
+- `browser_click`
+- `browser_drag`
+- `browser_hover`
+- `browser_select_option`
+- `browser_generate_locator`
+- `browser_storage_state`
+- `browser_set_storage_state`
+- `browser_tabs`
+- `browser_verify_element_visible`
+- `browser_verify_text_visible`
+- `browser_verify_list_visible`
+- `browser_verify_value`
+- `browser_wait_for`
+- `browser_localstorage_list`
+- `browser_localstorage_get`
+- `browser_localstorage_set`
+- `browser_localstorage_delete`
+- `browser_localstorage_clear`
+- `browser_sessionstorage_list`
+- `browser_sessionstorage_get`
+- `browser_sessionstorage_set`
+- `browser_sessionstorage_delete`
+- `browser_sessionstorage_clear`
+
+## socraticode (25)
+
+[Полные контракты](socraticode.json)
+
+- `codebase_index`
+- `codebase_update`
+- `codebase_remove`
+- `codebase_stop`
+- `codebase_watch`
+- `codebase_search`
+- `codebase_status`
+- `codebase_graph_build`
+- `codebase_graph_query`
+- `codebase_graph_stats`
+- `codebase_graph_circular`
+- `codebase_graph_visualize`
+- `codebase_graph_remove`
+- `codebase_graph_status`
+- `codebase_impact`
+- `codebase_flow`
+- `codebase_symbol`
+- `codebase_symbols`
+- `codebase_context`
+- `codebase_context_search`
+- `codebase_context_index`
+- `codebase_context_remove`
+- `codebase_health`
+- `codebase_list_projects`
+- `codebase_about`
+
+## test_grafana (25)
+
+[Полные контракты](test_grafana.json)
+
+- `check_datasources_health`
+- `generate_deeplink`
+- `get_annotation_tags`
+- `get_annotations`
+- `get_assertions`
+- `get_dashboard_by_uid`
+- `get_dashboard_panel_queries`
+- `get_dashboard_property`
+- `get_dashboard_summary`
+- `get_datasource`
+- `get_plugin`
+- `get_snapshot`
+- `grafana_api_request`
+- `list_datasources`
+- `list_prometheus_label_names`
+- `list_prometheus_label_values`
+- `list_prometheus_metric_metadata`
+- `list_prometheus_metric_names`
+- `list_provisioning_repositories`
+- `list_snapshots`
+- `query_prometheus`
+- `query_prometheus_histogram`
+- `search_plugin_information`
+- `suggest_loki_alloy_label_config`
+- `validate_provisioning_file`
+
+## test_graylog (12)
+
+[Полные контракты](test_graylog.json)
+
+- `get_current_time`
+- `list_streams`
+- `list_inputs`
+- `list_indices`
+- `list_index_sets`
+- `search_messages`
+- `aggregate_messages`
+- `list_fields`
+- `get_system_status`
+- `get_formatted_system_status`
+- `list_resource`
+- `describe_resource`
+
+## test_pgdb (3)
+
+[Полные контракты](test_pgdb.json)
+
+- `query`
+- `list`
+- `execute`
+
+## test_ssh (9)
+
+[Полные контракты](test_ssh.json)
+
+- `upsert_access_token`
+- `list_access_tokens`
+- `rename_server_connection`
+- `add_server_connection`
+- `remove_server_connection`
+- `generate_session_id`
+- `execute`
+- `list_servers`
+- `delete_access_token`
+

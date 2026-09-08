@@ -1,0 +1,324 @@
+{
+  "server": "test_graylog",
+  "capturedAt": "2026-09-08T03:04:12.830Z",
+  "serverInfo": {
+    "name": "Graylog",
+    "version": "7.1.8+c7d1072"
+  },
+  "capabilities": {
+    "prompts": {
+      "listChanged": false
+    },
+    "resources": {
+      "subscribe": false,
+      "listChanged": false
+    },
+    "tools": {
+      "listChanged": false
+    }
+  },
+  "tools": [
+    {
+      "name": "get_current_time",
+      "title": "Get current time",
+      "description": "Return the current time from the Graylog server in ISO‑8601 UTC format.",
+      "inputSchema": {
+        "type": "object",
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      }
+    },
+    {
+      "name": "list_streams",
+      "title": "List all Graylog Streams",
+      "description": "List all available streams in the Graylog instance.",
+      "inputSchema": {
+        "type": "object",
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      }
+    },
+    {
+      "name": "list_inputs",
+      "title": "List Graylog Inputs",
+      "description": "List all configured Graylog inputs. Returns detailed information about each input including type (syslog, GELF, etc.), current state (running/stopped),\nconfiguration parameters, and throughput statistics. Use this to monitor input health, troubleshoot data ingestion issues, or understand what types of\nlogs are being collected. No parameters required.\n",
+      "inputSchema": {
+        "type": "object",
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      }
+    },
+    {
+      "name": "list_indices",
+      "title": "List Graylog Indices",
+      "description": "List all Graylog indices from the cluster. Returns comprehensive index information including status (open/closed),\ndocument counts, storage size, and health metrics. Use this to understand data distribution, identify problematic indices,\nor before performing queries to understand available data sources. No parameters required.\n",
+      "inputSchema": {
+        "type": "object",
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      }
+    },
+    {
+      "name": "list_index_sets",
+      "title": "List Graylog Index Sets",
+      "description": "List all Graylog index sets. Returns comprehensive information about index set configurations including rotation policies (time/size based),\nretention settings (how long data is kept), index prefix patterns, and current state. Use this to understand data lifecycle management,\ntroubleshoot retention issues, or plan storage capacity. Essential for understanding how your log data is organized and managed over time.\nNo parameters required. Returns index set details.\n",
+      "inputSchema": {
+        "type": "object",
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      }
+    },
+    {
+      "name": "search_messages",
+      "title": "Search for messages based on a query",
+      "description": "Execute Lucene search queries against Graylog log messages.\nYou can scope the search to streams (by passing their IDs) or stream categories, which are used by Illuminate to group streams.\nIt's more efficient to scope by streams.\nThis call supports pagination through offset and limit, but avoid deep pagination as that becomes expensive.\nPass the timerange as a parameter, never put it into the query itself.\nList the fields you are interested in, as the default fields are \"source\" and \"timestamp\" only, which aren't overly useful by themselves.\nThe query string supports Lucene query language, but be careful about leading wildcards, Graylog might not have them enabled.\n",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "fields": {
+            "description": "The list of fields to return for this search. Field names can vary per stream and over time. Defaults to \"source\" and \"timestamp\".",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "limit": {
+            "type": "integer",
+            "description": "The amount of messages to return, together with offset this can be used for pagination",
+            "minimum": 0
+          },
+          "offset": {
+            "type": "integer",
+            "description": "For pagination purposes, start the list at this offset, skipping the messages before",
+            "minimum": 0
+          },
+          "query": {
+            "type": "string",
+            "description": "The Lucene query string to search messages with"
+          },
+          "range_seconds": {
+            "type": "integer",
+            "description": "The number of seconds to look back, the search window is always up to now, with this many seconds into the past.",
+            "exclusiveMinimum": 0
+          },
+          "stream_categories": {
+            "description": "A set of stream categories to search in",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "streams": {
+            "description": "A set of stream IDs to search in",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      }
+    },
+    {
+      "name": "aggregate_messages",
+      "title": "Aggregate/group by field values of messages based on a query",
+      "description": "Execute Lucene search queries against Graylog log messages and calculate aggregations on based on field values and metrics\nYou can scope the search to streams (by passing their IDs) or stream categories, which are used by Illuminate to group streams.\nIt's more efficient to scope by streams.\nPass the timerange as a parameter, never put it into the query itself.\nYou need to provide at least one grouping, a field name and limit, as well as one metric to calculate for the group by buckets.\nFor example, to count the top 10 number of messages per source, you can send {\"groupings\": [{\"field\":\"source\", \"limit\": 10}], \"metrics\": {\"function\":\"count\"}}\nThe query string supports Lucene query language, but be careful about leading wildcards, Graylog might not have them enabled.\n",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "groupings": {
+            "description": "The list of group by clauses to apply, each grouping consists of a field name and a limit of the maximum number of groups to create. You have to specify at least one grouping.",
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "limit": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "ranges": {
+                  "type": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "from": {
+                        "type": [
+                          "number",
+                          "null"
+                        ]
+                      },
+                      "to": {
+                        "type": [
+                          "number",
+                          "null"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "scaling": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "timeunit": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          },
+          "metrics": {
+            "description": "The list of metrics to calculate for each series of groupings. By default it calculates the count of matching messages, but you can also pass a function like avg, min, max, card, sum, percentage, percentile, stddev, sumofsquares, variance, latest, count.",
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "configuration": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "percentile": {
+                          "type": "number"
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "strategy": {
+                          "type": "string",
+                          "enum": [
+                            "COUNT",
+                            "SUM"
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                },
+                "field": {
+                  "type": "string"
+                },
+                "function": {
+                  "type": "string"
+                },
+                "sort": {
+                  "type": "string",
+                  "enum": [
+                    "Ascending",
+                    "Descending"
+                  ]
+                }
+              }
+            }
+          },
+          "query": {
+            "type": "string",
+            "description": "The Lucene query string to search messages with"
+          },
+          "range_seconds": {
+            "type": "integer",
+            "description": "The number of seconds to look back, the search window is always up to now, with this many seconds into the past.",
+            "exclusiveMinimum": 0
+          },
+          "stream_categories": {
+            "description": "A set of stream categories to search in",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "streams": {
+            "description": "A set of stream IDs to search in",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      }
+    },
+    {
+      "name": "list_fields",
+      "title": "List available fields",
+      "description": "Retrieve the available field names and metadata about them, for example their datatype and capabilities.\nField names must be used to properly create search queries and request specific fields from tools like\nsearch_messages and aggregate_messages.\nFields can have different meanings in different streams (and also per source), so that needs to be taken into account.\nThis tool can be scoped to streams to cut down on the noise.\nFields can have various properties, such as \"enumerable\" which means you can aggregate on them, they can be \"numeric\",\nmaking them suitable to use in aggregation metrics, or \"full-text-search\", which means their content is tokenized\n",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "streams": {
+            "description": "A set of stream IDs to get the fields for. Leave this empty to retrieve fields for all accessible streams (can be large).",
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      }
+    },
+    {
+      "name": "get_system_status",
+      "title": "Get Graylog System Information",
+      "description": "Returns system information about the Graylog installation, including\ncluster ID, installed version, hostname, timezone, and operating system.\n",
+      "inputSchema": {
+        "type": "object",
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      }
+    },
+    {
+      "name": "get_formatted_system_status",
+      "title": "Get Graylog System Information",
+      "description": "Returns Markdown containing system information about the Graylog installation, including\ncluster ID, installed version, hostname, timezone, and operating system.\n",
+      "inputSchema": {
+        "type": "object",
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      }
+    },
+    {
+      "name": "list_resource",
+      "title": "List Graylog Resources",
+      "description": "List all Resources available in Graylog for one resource type out of the following: {stream,dashboard,event_definition}.\nReturns: A list of tuples with both the GRN and name of each resource.\n",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "resource_type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "resource_type"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      }
+    },
+    {
+      "name": "describe_resource",
+      "title": "Describe a specific Graylog resource with a given GRN",
+      "description": "A brief description of the Graylog resource.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "grn": {
+            "type": "string"
+          }
+        },
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      }
+    }
+  ]
+}

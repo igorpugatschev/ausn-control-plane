@@ -1,0 +1,167 @@
+{
+  "servers": {
+    "socraticode": {
+      "command": "node",
+      "args": [
+        "-e",
+        "process.env.TMP=process.env.TEMP=require('node:path').resolve('.local/socraticode/tmp'); const p=require('node:child_process').spawn('npx',['-y','socraticode@1.12.0'],{stdio:'inherit',shell:process.platform==='win32'}); p.on('exit',c=>process.exit(c??1));"
+      ],
+      "env": {
+        "QDRANT_MODE": "external",
+        "QDRANT_URL": "http://127.0.0.1:17333",
+        "QDRANT_COLLECTION_PREFIX": "ausn_qa_",
+        "EMBEDDING_PROVIDER": "ollama",
+        "EMBEDDING_MODEL": "nomic-embed-text",
+        "OLLAMA_MODE": "external",
+        "OLLAMA_URL": "http://127.0.0.1:11434",
+        "TMP": "./.local/socraticode/tmp",
+        "TEMP": "./.local/socraticode/tmp",
+        "SOCRATICODE_GLOBAL_CONFIG_DIR": "./.local/socraticode/context"
+      },
+      "type": "stdio",
+      "cwd": "${workspaceFolder}"
+    },
+    "atlassian": {
+      "command": "node",
+      "args": [
+        "--env-file=.env",
+        "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js",
+        "http://192.168.100.108:9871/mcp",
+        "--transport",
+        "http-only",
+        "--silent",
+        "--allow-http"
+      ],
+      "env": {
+        "MCP_REMOTE_CONFIG_DIR": ".local/mcp-auth/atlassian"
+      },
+      "type": "stdio",
+      "cwd": "${workspaceFolder}"
+    },
+    "gitlab": {
+      "command": "node",
+      "args": [
+        "--env-file=.env",
+        "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js",
+        "http://192.168.100.108:3002/mcp",
+        "--transport",
+        "http-only",
+        "--silent",
+        "--allow-http",
+        "--header",
+        "Authorization:${MCP_GITLAB_AUTHORIZATION}"
+      ],
+      "env": {
+        "MCP_REMOTE_CONFIG_DIR": ".local/mcp-auth/gitlab"
+      },
+      "type": "stdio",
+      "cwd": "${workspaceFolder}"
+    },
+    "mattermost": {
+      "command": "node",
+      "args": [
+        "--env-file=.env",
+        "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js",
+        "https://chat.rocketscien.se/plugins/mattermost-ai/mcp-server/mcp",
+        "--transport",
+        "http-only",
+        "--silent",
+        "--header",
+        "Authorization:${MCP_MATTERMOST_AUTHORIZATION}"
+      ],
+      "env": {
+        "MCP_REMOTE_CONFIG_DIR": ".local/mcp-auth/mattermost"
+      },
+      "type": "stdio",
+      "cwd": "${workspaceFolder}"
+    },
+    "test_ssh": {
+      "command": "node",
+      "args": [
+        "--env-file=.env",
+        "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js",
+        "http://192.168.100.108:3111/mcp",
+        "--transport",
+        "http-only",
+        "--silent",
+        "--allow-http",
+        "--header",
+        "Authorization:${MCP_SSH_AUTHORIZATION}"
+      ],
+      "env": {
+        "MCP_REMOTE_CONFIG_DIR": ".local/mcp-auth/test_ssh"
+      },
+      "type": "stdio",
+      "cwd": "${workspaceFolder}"
+    },
+    "test_pgdb": {
+      "command": "node",
+      "args": [
+        "--env-file=.env",
+        "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js",
+        "http://192.168.100.108:2345/mcp",
+        "--transport",
+        "http-only",
+        "--silent",
+        "--allow-http"
+      ],
+      "env": {
+        "MCP_REMOTE_CONFIG_DIR": ".local/mcp-auth/test_pgdb"
+      },
+      "type": "stdio",
+      "cwd": "${workspaceFolder}"
+    },
+    "test_graylog": {
+      "command": "node",
+      "args": [
+        "--env-file=.env",
+        "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js",
+        "https://graylog.rocketscien.se/api/mcp",
+        "--transport",
+        "http-only",
+        "--silent",
+        "--header",
+        "Authorization:${MCP_GRAYLOG_AUTHORIZATION}"
+      ],
+      "env": {
+        "MCP_REMOTE_CONFIG_DIR": ".local/mcp-auth/test_graylog"
+      },
+      "type": "stdio",
+      "cwd": "${workspaceFolder}"
+    },
+    "test_grafana": {
+      "command": "node",
+      "args": [
+        "--env-file=.env",
+        "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js",
+        "http://192.168.100.108:8030/mcp",
+        "--transport",
+        "http-only",
+        "--silent",
+        "--allow-http"
+      ],
+      "env": {
+        "MCP_REMOTE_CONFIG_DIR": ".local/mcp-auth/test_grafana"
+      },
+      "type": "stdio",
+      "cwd": "${workspaceFolder}"
+    },
+    "playwright": {
+      "command": "node",
+      "args": [
+        "--env-file=.env",
+        "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js",
+        "http://192.168.100.108:8931/mcp",
+        "--transport",
+        "http-only",
+        "--silent",
+        "--allow-http"
+      ],
+      "env": {
+        "MCP_REMOTE_CONFIG_DIR": ".local/mcp-auth/playwright"
+      },
+      "type": "stdio",
+      "cwd": "${workspaceFolder}"
+    }
+  }
+}
