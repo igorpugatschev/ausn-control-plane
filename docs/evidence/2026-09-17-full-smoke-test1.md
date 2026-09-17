@@ -147,4 +147,31 @@ POST (в рамках разрешённого мутирующего smoke).
 - Остаточные данные исследования (заявки для 731943412869, созданные 17.09): 58541c98 и d816dbe8
   (PROCESSING, отмена в очереди), a84a897e, 756e6385, 5124cec6 (ERROR). DML/удаление не выполнялись.
 
+## Админ-аутентификация: найдено и исправлено (обновление F2/F5)
+
+Источник: Confluence «ausn-test1 — всегда актуальный trunk (develop)» (pageId 195790883) + пробы.
+
+Наблюдения:
+
+- Указанный на странице Keycloak `192.168.100.105:8888` **недоступен**; рабочий Keycloak —
+  `192.168.100.104:8888`, на нём живут **два realm**: `ausn-test-realm` (документированный)
+  и `ausn-test-gpb` (реально используемый admin-backend).
+- Документированные креды (`ausn-test-user`/`test`, realm `ausn-test-realm`) дают **401**.
+- Рабочий вход в админку: `POST http://192.168.100.105:8883/api/v1/admin/auth/login`
+  с `{"login":"test","password":"test"}` → **200** и `accessToken` вида `Internal <jwt>`.
+- Admin-API принимает этот токен **без префикса `Bearer`** (сырой строкой): заголовок
+  `Authorization: <accessToken>` → 200; варианты `Bearer <…>` и «голый JWT» → 401.
+
+Исправление в каркасе:
+
+- `_normalize_bearer_token` больше не добавляет `Bearer` к токенам, у которых уже есть схема-префикс
+  (`Internal <jwt>`); «голые» JWT по-прежнему получают `Bearer`. Добавлен юнит-тест.
+- Локальный `.env`: `ADMIN_AUTH_URL=…/api/v1/admin/auth/login`, `ADMIN_BASE_URL=http://192.168.100.105:8883`,
+  `ADMIN_AUTH_USERNAME/PASSWORD` (в документ не переносятся).
+
+Результат: admin-набор перестал пропускаться целиком и теперь даёт реальные результаты —
+`tests/api/test_admin_bank_rights.py` + `test_admin_panel.py`: **12 passed, 6 skipped, 23 failed**.
+Список падений (в т.ч. `TestAuthErrors`, `TestPagination`) — предмет отдельного триажа;
+классификация не выполнена, дефектами продукта пока не объявлялись.
+
 
