@@ -45,4 +45,16 @@ no permissive 500, no secrets в Postman-окружениях.
 
 - **P1. Восстановить quality gate** — ✅ выполнено 2026-09-17, коммиты `b396313`…`12145da`, pipeline 2856901564 success.
 - **P2. Контекст-дрейф** — ✅ выполнено 2026-09-17, коммит `a4fbd55`.
-- **P3. Гигиена зависимостей** — не начато: убрать/обосновать fastapi+uvicorn, свести HTTP-стек к httpx.
+- **P3. Гигиена зависимостей** — ✅ выполнено 2026-09-17, коммит `d3639d3`.
+
+## Текущее состояние (2026-09-17, после QA loop)
+
+- Quality gate: **11/11** локально, CI на `main` зелёный.
+- Добавлены наборы: `tests/api/test_akbars_pwa_payment.py` (17 проверок), `tests/api/test_akbars_web_payment.py` (7),
+  admin-наборы приведены к рабочим (было 23 падения → 1 `xfail`, привязанный к дефекту).
+- Дефекты: PKAUSN-2055 (accrual: 500 вместо 404), PKAUSN-2056 (пустой `message` в 400),
+  PKAUSN-2057 (admin-backend: неизвестный маршрут → 500 вместо 404).
+- Ledgers: `docs/reports/qa-loop-akbars-pwa-payment-2026-09-17.md`,
+  `docs/reports/qa-loop-admin-basic-auth-2026-09-17.md`.
+- Открыто: приёмка после фиксов 2056/2057 (снять `xfail`); UI-сценарий ПП требует подготовленных
+  данных; наблюдение по `refreshToken` при BASE-логине.
