@@ -2,6 +2,7 @@
 .env
 .env.*
 !.env.example
+/ENVIRONMENT.md
 
 # Local tooling and temporary files
 .venv/
