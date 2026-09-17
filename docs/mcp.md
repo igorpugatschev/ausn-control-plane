@@ -4,6 +4,7 @@
 
 - `.codex/config.toml` — Codex Desktop, CLI и расширение Codex в VS Code.
 - `.vscode/mcp.json` — MCP-клиент VS Code.
+- `.opencode/opencode.jsonc` — opencode; серверы запускаются как `local` через тот же `mcp-remote`, потому что remote-серверы opencode не читают `.env`.
 - `.mcp.json` — другие совместимые клиенты.
 
 Включены SocratiCode, Atlassian, GitLab, Mattermost, SSH, PostgreSQL, Graylog,
