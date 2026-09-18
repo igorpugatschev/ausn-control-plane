@@ -125,6 +125,7 @@ provenance/traceability требований. Не выводи expected behavio
 - OpenAPI, Confluence, БД, код или стенд противоречат друг другу;
 - нужно читать sensitive-данные шире минимального фильтра;
 - требуется external-write в чужие системы: GitLab, Jira, Confluence, Mattermost;
+  публикации в Jira/Confluence/Mattermost делает пользователь по подготовленному тексту;
 - меняются общие fixtures, clients, фабрики, pytest-конфиг, маркеры или parallel-run поведение;
 - предлагается удалить тест или ослабить assertion;
 - scope выходит за выбранный режим loop.
