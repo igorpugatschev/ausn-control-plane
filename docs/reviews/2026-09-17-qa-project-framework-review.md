@@ -35,7 +35,7 @@ no permissive 500, no secrets в Postman-окружениях.
    Плюс двойной HTTP-стек (`requests` + `httpx`) — проверить фактическое использование.
 3. **Док-дрейф.** README v2.3.0 описывает другой `.gitlab-ci.yml` и структуру `tests/`
    (без `unit/`/`static/`). `AGENTS.md` репозитория указывает на устаревший
-   `C:\Users\igorp\CodexCLI` вместо `ausn-control-plane`.
+Устаревший управляющий проект заменён на `ausn-control-plane`.
 4. **Легаси-дефолты.** `.env.example` ссылается на прежний контур `192.168.20.18`
    (известное ограничение из docs/ausn-context/test-automation-assets.md).
 5. S106 (hardcoded-password-func-arg) в тестах — при фиксе проследить, чтобы реальные
