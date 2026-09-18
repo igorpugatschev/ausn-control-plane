@@ -26,7 +26,7 @@ Scope:
 - Разрешённая запись: только ../ausn/ausn-qa-project
 - Перед изменениями QA-кода создать ветку задачи от актуального main
 - Продуктовые репозитории и ../ausn/ausn-ai — только read-only
-- External-write, push, Jira/GitLab comments запрещены без отдельного approval
+- External-write в чужие системы (MR, Jira/GitLab comments) требует отдельного approval; commit и push в свои QA-репозитории — штатно
 
 Definition of Done:
 1. Выполнен MCP/SocratiCode preflight.

@@ -17,7 +17,7 @@ provenance/traceability требований. Не выводи expected behavio
 | Что | Где |
 |---|---|
 | Управляющий репозиторий (правила, навыки, MCP, отчёты) | `ausn-control-plane` (корень) — запись разрешена |
-| **Продукт: фреймворк и автотесты** | `../ausn/ausn-qa-project` — запись разрешена (commit/push — с approval) |
+| **Продукт: фреймворк и автотесты** | `../ausn/ausn-qa-project` — запись разрешена (commit и push сразу) |
 | Источники контракта ПК АУСН | GitLab-группа `rcktsci/projects/ausn`, локально `../ausn/ausn-ai` — **только чтение** |
 | Стенды, БД, логи, метрики | MCP `test_ssh`, `test_pgdb`, `test_graylog`, `test_grafana` (см. `docs/mcp.md`, `docs/ausn-context/runtime-access.md`) |
 | Требования и решения команды | MCP `atlassian`, `mattermost` |
@@ -74,7 +74,7 @@ provenance/traceability требований. Не выводи expected behavio
    Недоступное зафиксируй с fallback.
 3. Определи режим loop (см. таблицу ниже).
 4. Перед изменениями QA-кода создай ветку задачи в `../ausn/ausn-qa-project` от актуального `main`;
-   commit/push — только с отдельного approval пользователя.
+   commit и push выполняются сразу после проверок.
 5. Создай или обнови единый ledger по `references/loop-ledger-schema.md`.
 6. Проведи проверки, классифицируй падения, исправь только `test_bug`/`test_data_issue`/`flaky`,
    затем retest и обновление ledger.
@@ -124,7 +124,7 @@ provenance/traceability требований. Не выводи expected behavio
 - нет подтверждённого источника контракта;
 - OpenAPI, Confluence, БД, код или стенд противоречат друг другу;
 - нужно читать sensitive-данные шире минимального фильтра;
-- требуется external-write: GitLab, Jira, Confluence, Mattermost или push;
+- требуется external-write в чужие системы: GitLab, Jira, Confluence, Mattermost;
 - меняются общие fixtures, clients, фабрики, pytest-конфиг, маркеры или parallel-run поведение;
 - предлагается удалить тест или ослабить assertion;
 - scope выходит за выбранный режим loop.

@@ -22,7 +22,7 @@ description: Запустить QA-TASK-FLOW (contract-first QA loop) по за�
   (навык `ausn-qa-methodology`); выбор MCP-инструментов и границы действий — по навыку `ausn-qa-mcp`.
 - QA-код менять только в `../ausn/ausn-qa-project`.
 - Продуктовые репозитории ПК АУСН использовать только для актуализации источников и read-only анализа.
-- External-write, push, Jira/GitLab comments выполнять только после отдельного approval.
+- External-write в чужие системы (MR, Jira/GitLab comments) выполняется только после отдельного approval; commit и push в свои QA-репозитории — штатно.
 - Если источник контракта отсутствует или конфликтует, остановиться со статусом
   `BLOCKED` или `DONE_WITH_CONCERNS`.
 

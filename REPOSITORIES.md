@@ -6,7 +6,7 @@
 |---|---|---|
 | `.` — `ausn-control-plane` | _remote не зафиксирован_ | управляющий репозиторий QA: правила, навыки, MCP, методология, отчёты; сам фреймворк не содержит |
 | `../ausn/ausn-ai` | `https://gitlab.com/rcktsci/projects/ausn/ausn-ai.git` | документационный контекст проекта; для QA только чтение, обновление через `git pull --ff-only` |
-| `../ausn/ausn-qa-project` | `https://gitlab.com/rcktsci/projects/ausn/integrator/ausn-qa-project.git` | **продукт работы control plane** — фреймворк и автотесты ПК АУСН («ausn-autotests»); запись разрешена, commit/push — с approval |
+| `../ausn/ausn-qa-project` | `https://gitlab.com/rcktsci/projects/ausn/integrator/ausn-qa-project.git` | **продукт работы control plane** — фреймворк и автотесты ПК АУСН («ausn-autotests»); запись разрешена, commit и push выполняются сразу |
 
 ## Локальные клоны продуктовых сервисов (только чтение)
 

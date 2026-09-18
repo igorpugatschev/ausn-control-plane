@@ -77,7 +77,7 @@
 
 ## Правила внешней записи
 
-- GitLab: PR/MR, comments, labels, assignments, pipeline actions и push требуют approval. Перед публикацией показать краткую суть изменения и риски.
+- GitLab: PR/MR, comments, labels, assignments, pipeline actions и push в чужие репозитории требуют approval; push в свои QA-репозитории — штатная операция. Перед публикацией проверить, что в тексте нет секретов и ссылок на sensitive-данные.
 - Jira/Confluence: создание/изменение issue, комментариев, статусов, страниц и вложений требует approval. В комментариях не публиковать raw sensitive logs.
 - Mattermost/Telegram: любые сообщения требуют approval и предварительной санитизации.
 - Postman: изменения коллекций вторичны относительно pytest и требуют связи с изменёнными тестами.
