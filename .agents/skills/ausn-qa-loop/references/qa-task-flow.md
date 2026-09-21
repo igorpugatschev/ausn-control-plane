@@ -24,7 +24,7 @@ user stories → план → реализация → проверки → rete
 ## Сквозной цикл
 
 0. **Актуализация:** обновить продуктовые источники (read-only, `git pull --ff-only`) и локальный
-   `../ausn/ausn-ai`; актуализировать индексы SocratiCode; дождаться индексации и остановить watcher.
+   `../ausn/ausn-ai`; актуализировать индексы SocratiCode (watcher остаётся включённым — штатный режим).
 1. **Старт loop:** включить `ausn-qa-loop` в режиме `single-feature` для устойчивого функционала.
 2. **Ветка задачи:** перед изменениями QA-кода создать ветку в `../ausn/ausn-qa-project` от свежего `main`.
 3. **Анализ:** Jira/Confluence-контекст, изменения в GitLab, SocratiCode preflight, поиск источника контракта.
@@ -34,7 +34,7 @@ user stories → план → реализация → проверки → rete
 7. **Проверки и triage:** ruff/mypy/collect/targeted pytest; падения классифицировать до исправлений.
 8. **Fix и retest:** исправлять только QA-код/данные/flaky; затем повторно проверить затронутые user stories.
 
-10. **Index:** актуализировать индекс SocratiCode для QA-проекта, остановить watcher.
+10. **Index:** актуализировать индекс SocratiCode для QA-проекта (watcher включён постоянно).
 11. **Журнал времени:** краткий отчёт по каждой задаче.
 
 Подробности по индексации — `docs/socraticode.md`; порядок веток и push — `git-flow.md`;
@@ -66,7 +66,7 @@ git -C ../ausn/<service> pull --ff-only
   или обзор по многим файлам. Клон кладётся рядом: `../ausn/<service>`.
 
 Если сервис ещё не склонирован, клонировать его в `../ausn/<service>`, проиндексировать
-(`codebase_index`/`codebase_update` с этим `projectPath`) и после работы остановить watcher.
+(`codebase_index`/`codebase_update` с этим `projectPath`); watcher остаётся включённым.
 Локальные изменения и расхождения веток не сбрасывать; порядок и роли репозиториев — `REPOSITORIES.md`.
 
 ### 0.2 Preflight доступности
@@ -93,7 +93,7 @@ codebase_update(projectPath="<path>")
 codebase_status(projectPath="<path>")     # повторять до 100%
 # если индекс отсутствует:
 codebase_index(projectPath="<path>")
-codebase_watch(projectPath="<path>", action="stop")
+# watcher включается автоматически и остаётся активным (штатный режим)
 ```
 
 Проекты индексируются независимо: `ausn-control-plane` и `../ausn/ausn-ai`. Перед индексацией
@@ -204,7 +204,7 @@ codebase_watch(projectPath="<path>", action="stop")
 
 ```markdown
 <Functional scope>: изучена контрактная база (Jira при наличии — только provenance), актуализированы
-источники ПК АУСН, обновлены индексы SocratiCode, watcher-ы остановлены, выполнен QA loop по
+источники ПК АУСН, обновлены индексы SocratiCode (watcher включён штатно), выполнен QA loop по
 <feature/API/Kafka flow>, проверено существующее покрытие, реализованы/обновлены тесты <кратко>,
 выполнены проверки <команды кратко>. Итог: DONE/DONE_WITH_CONCERNS/BLOCKED, риски: <если есть>.
 ```
@@ -218,13 +218,12 @@ codebase_watch(projectPath="<path>", action="stop")
 
 4. Запустить релевантные проверки после merge.
 5. Удалить ветку задачи после успешного merge.
-6. Актуализировать индекс SocratiCode для QA-проекта и остановить watcher:
+6. Актуализировать индекс SocratiCode для QA-проекта (watcher остаётся включённым):
 
 ```text
 codebase_status(projectPath="<абсолютный путь к ../ausn/ausn-qa-project>")
 codebase_update(projectPath="<абсолютный путь к ../ausn/ausn-qa-project>")
 codebase_status(projectPath="<абсолютный путь к ../ausn/ausn-qa-project>")
-codebase_watch(projectPath="<абсолютный путь к ../ausn/ausn-qa-project>", action="stop")
 ```
 
 ---
@@ -234,7 +233,7 @@ codebase_watch(projectPath="<абсолютный путь к ../ausn/ausn-qa-pr
 ```
 [ ] Jira-задача изучена (описание, changelog, комментарии) — как provenance
 [ ] Источники ПК АУСН актуализированы или ограничение зафиксировано
-[ ] Индексы SocratiCode проверены/обновлены, watcher остановлен или ограничение зафиксировано
+[ ] Индексы SocratiCode проверены/обновлены, watcher включён (штатный режим) или ограничение зафиксировано
 [ ] QA loop запущен в выбранном режиме
 [ ] Ветка задачи создана до изменений QA-кода
 [ ] Loop ledger создан или обновлён
@@ -247,7 +246,7 @@ codebase_watch(projectPath="<абсолютный путь к ../ausn/ausn-qa-pr
 [ ] Post-fix retest затронутых user stories выполнен
 [ ] Ledger содержит финальные статусы и defect classification
 [ ] Merge в main выполнен или ограничение зафиксировано
-[ ] Индекс QA-проекта актуализирован, watcher остановлен или ограничение зафиксировано
+[ ] Индекс QA-проекта актуализирован, watcher включён (штатный режим) или ограничение зафиксировано
 [ ] Краткий отчёт для журнала учёта времени подготовлен
 ```
 
