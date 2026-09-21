@@ -49,6 +49,11 @@
   проверяется локально до стенда). Переписаны и зелёные: `SPECIAL_MARKUP_EXPENSES_REFUND` (8/8),
   `DIVIDENDS_INCOMING_4_19_2`. Ограничение: позитив не должен попадать под правила с меньшим `priority`;
   для перекрывающихся правил (generic `SIMPLE_*`, `DEFAULT_RULE`) нужен поиск с возмущением полей — следующий шаг.
+- Первый батч переписывания: для 38 авто-выводимых правил сгенерированы кейсы, прогнаны на test1 —
+  **35 правил заменены зелёными кейсами (232 passed)**; для 3 правил
+  (`ACQUIRING_INCOMING_4_4_1_FNS`, `INCOMING_VAT_SPLIT_4_1_2`, `OUTGOING_RETURN_OF_INCOME_4_5_1`)
+  генерация откачена к прежним кейсам, требуется ручной разбор. Ещё 66 правил требуют ручного спека
+  (серверные хелперы `ruleExpressionFacade`, сложные перекрытия, отсутствие вывода из условия).
 
 ## 3. Ключевые технические решения
 
@@ -154,9 +159,11 @@
 ## 8. Следующие шаги
 
 1. **Слой categorizer — продолжить актуализацию** (контракт — БД `test1-categorizer.public.rules`):
-   - продолжить переписывание слоя categorizer от контракта БД батчами (пилот выполнен: 2 правила);
-     по мере замены удалять наследие — старые фикстуры/тесты, генераторы `extract_test_data.py`,
-     `convert_categorizer_fixtures.py`, `generate_categorizer_pytest_tests.py` и categorizer-Postman;
+   - продолжить переписывание слоя categorizer от контракта БД: ручные спеки для 66 правил
+     (в первую очередь с `ruleExpressionFacade`) и разбор 3 правил, где сгенерированный позитив
+     не подтверждён стендом; после замены — удалить наследие (старые фикстуры/тесты, генераторы
+     `extract_test_data.py`, `convert_categorizer_fixtures.py`, `generate_categorizer_pytest_tests.py`
+     и categorizer-Postman);
    - мигрировать или снять устаревшие каталоги `TAXES_FEES_DEDUCTIBLE_4_8_1` (в БД `..._4_8_2`)
      и `SPECIAL_MARKUP_EXPENSE_REFUND_PLUS_R` (в БД `SPECIAL_MARKUP_EXPENSES_REFUND`) — сейчас в явном
      allowlist теста; снятие дубликатов требует подтверждения (деструктивная операция);
