@@ -54,6 +54,13 @@
   (`ACQUIRING_INCOMING_4_4_1_FNS`, `INCOMING_VAT_SPLIT_4_1_2`, `OUTGOING_RETURN_OF_INCOME_4_5_1`)
   генерация откачена к прежним кейсам, требуется ручной разбор. Ещё 66 правил требуют ручного спека
   (серверные хелперы `ruleExpressionFacade`, сложные перекрытия, отсутствие вывода из условия).
+- Расширение извлечения требований (вложенные вызовы `toLowerCase().contains`, простое равенство КБК,
+  OR-списки КБК, срезы `substringAnyIgnoreCase`, `creatorStatus != '02'`) подняло автогенерацию до
+  **66 правил**; по итогам прогона на test1 **62 правила заменены зелёными кейсами (~396 кейсов)**,
+  4 отката (`ACQUIRING_INCOMING_4_4_1_FNS`, `INCOMING_VAT_SPLIT_4_1_2`,
+  `OUTGOING_RETURN_OF_INCOME_4_5_1`, `NOT_TAX_BASE_TAX_PAYMENT_4_8_2_4`).
+  Для правил с серверными хелперами (`SPECIAL_MARKUP_PARTIAL_*`, `SPECIAL_MARKUP_BASE_PLUS_B_OUTGOING`)
+  реализована поддержка ручных спеков `artifacts/categorizer-case-specs/<RULE>.json`.
 
 ## 3. Ключевые технические решения
 
