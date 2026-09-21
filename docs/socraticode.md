@@ -1,7 +1,13 @@
 # Индексация SocratiCode
 
-Версия: 1.12.0. Конфигурация MCP хранится в `.mcp.json`; запускать сервер из корня control plane.
+Версия: 1.14.0. Конфигурация MCP хранится в `.mcp.json`; запускать сервер из корня control plane.
 Клиенты без поддержки `.mcp.json` должны импортировать блок `socraticode` в свою конфигурацию MCP.
+
+Интеграция с OpenCode — только через MCP: первоисточник (репозиторий `giancarloerra/SocratiCode`,
+README, раздел OpenCode) не предоставляет opencode-плагин (нет `.opencode-plugin`; плагины/скиллы
+есть только для Claude Code, Codex, Cursor, VS Code и Gemini CLI). Пин версии синхронизирован во всех
+местах подключения: `.opencode/opencode.jsonc`, `.mcp.json`, `.vscode/mcp.json`, `.codex/config.toml`,
+`docs/socraticode.md`, `.agents/skills/ausn-qa-mcp/references/socraticode.json`.
 
 Требуются Node.js >= 18, Docker и локальная Ollama с моделью `nomic-embed-text`.
 Запуск хранилища из корня проекта: `docker compose -f compose.socraticode.yaml up -d`.
