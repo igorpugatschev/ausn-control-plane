@@ -60,7 +60,12 @@
   4 отката (`ACQUIRING_INCOMING_4_4_1_FNS`, `INCOMING_VAT_SPLIT_4_1_2`,
   `OUTGOING_RETURN_OF_INCOME_4_5_1`, `NOT_TAX_BASE_TAX_PAYMENT_4_8_2_4`).
   Для правил с серверными хелперами (`SPECIAL_MARKUP_PARTIAL_*`, `SPECIAL_MARKUP_BASE_PLUS_B_OUTGOING`)
-  реализована поддержка ручных спеков `artifacts/categorizer-case-specs/<RULE>.json`.
+  реализована поддержка ручных спеков `artifacts/categorizer-case-specs/<RULE>.json` (5 спеков написаны
+  по семантике `RuleExpressionFacadeTest.kt`, 24 кейса — зелёные).
+- Дальнейшее расширение извлечения (префиксы счетов внутри `or`-групп, подбор альтернатив назначения,
+  литералы `true`/`false`) подняло автогенерацию до **86 правил**; батч подтвердил на test1
+  **81 правило (~540 кейсов)**, 5 откатов (`ACQUIRING_INCOMING_4_4_1_FNS`, `INCOMING_VAT_SPLIT_4_1_2`,
+  `NOT_TAX_BASE_TAX_PAYMENT_4_8_2_4`, `OUTGOING_RETURN_OF_INCOME_4_5_1`, `SBP_INCOMING_4_2_2`).
 
 ## 3. Ключевые технические решения
 
