@@ -32,6 +32,11 @@
   решение разработчика зафиксировано, получено end-to-end наблюдение ветки non-UNDEFINED, ledger и
   отчёты обновлены в `ausn-qa-project`.
 - Реализован и сгенерирован codemap для `control-plane` и `qa-project`.
+- Унифицировано дерево categorizer-fixtures: каноническим объявлено `ausn-qa-project/data/categorizer`
+  (валидный JSON, гейт, скрипты-генераторы, общий загрузчик), второе дерево `tests/data/categorizer`
+  удалено, 9 уникальных фикстур и правило `SBP_PROCESSING_REWARD_OUTGOING_4_7_1_GPB` перенесены,
+  344 ссылки в 110 файлах переведены на единый `src/config/paths.CATEGORIZER_FIXTURES_DIR`,
+  добавлен guard-тест против повторного дублирования.
 
 ## 3. Ключевые технические решения
 
@@ -70,6 +75,15 @@
 
 Продукт (`ausn-qa-project`):
 
+- `src/config/paths.py` (новый) — единая точка истины для путей к данным: `DATA_DIR`,
+  `CATEGORIZER_FIXTURES_DIR`, `KAFKA_TOPICS_DIR`.
+- 110 файлов (`tests/kafka/categorizer/*`, `tests/kafka/conftest.py`,
+  `tests/static/test_categorizer_json_fixtures.py`, скрипты) — ссылки на фикстуры переведены
+  на `CATEGORIZER_FIXTURES_DIR` вместо локальных вычислений `Path(__file__)`.
+- `tests/static/test_categorizer_json_fixtures.py` — добавлен guard-тест
+  `test_categorizer_fixtures_have_single_canonical_tree` (нет второго дерева и прямых ссылок).
+- `data/categorizer/` — перенесены 9 уникальных фикстур и каталог правила
+  `SBP_PROCESSING_REWARD_OUTGOING_4_7_1_GPB`; `tests/data/categorizer/` (1092 файла) удалён.
 - `tests/integration/test_permission_refresh_queue_advance.py`,
   `tests/db/test_permission_refresh_order.py` — проверки PKAUSN-2046.
 - `docs/reports/qa-loop-permission-refresh-order-2026-09-18.md` — ledger и результат.
@@ -78,20 +92,26 @@
 
 ## 5. Проверки и тесты
 
-- `ausn-qa-project`: `pytest --collect-only -q` — **2094 теста** собираются без ошибок.
-- Гейты кодировки/секретов: `tests/unit/test_check_text_encoding.py` +
-  `tests/static/test_no_tracked_secrets.py` — **25 passed**.
+- `ausn-qa-project`: `pytest --collect-only -q` — **2095 тестов** собираются без ошибок.
+- Полный локальный гейт `python scripts/tools/audit_gate.py --full` — **11/11 passed**, в том числе
+  `ruff check`, `ruff format --check`, `mypy src tests` (231 файл, без замечаний), проверка кодировки,
+  docstrings, целевые сканы и `pytest tests/unit tests/static` — **280 passed**.
+- Точечный прогон категоризатора `test_not_tax_base_tax_payment_4_8_2_8.py` — 7 passed / 3 failed:
+  падения `json_invalid` из-за битых фикстур устранены; оставшиеся 3 — negative-кейсы, где правило
+  срабатывает вопреки ожиданию (семантика, см. раздел 6).
 - PKAUSN-2046: регрессия по затронутым сценариям пройдена (8/8) на момент закрытия; результат и
   наблюдение зафиксированы в ledger.
 - Codemap: `generate.py --all` выполняется без ошибок; `generate.py --all --check` — exit 0
-  (карты актуальны; в `codemap.lock` зафиксированы коммиты генерации).
+  (карты актуальны; `qa-project`: 20 primary, 2166 файлов).
 - Кодировка всех новых и изменённых файлов: UTF-8 без BOM, LF (кроме `ausn-qa-project/AGENTS.md`,
   где BOM был в файле изначально и сохранён).
 
 ## 6. Известные проблемы и риски
 
-- **Два дерева categorizer-fixtures:** существуют и `data/` (~1107 файлов), и `tests/data/`
-  (~1110). Назначение не подтверждено — возможно дублирование. Не удалять без проверки.
+- **Negative-кейсы categorizer требуют проверки:** в правиле `NOT_TAX_BASE_TAX_PAYMENT_4_8_2_8`
+  кейсы N2/N4/N5 ожидают, что правило не сработает, но categorizer его применяет
+  (`ruleName=NOT_TAX_BASE_TAX_PAYMENT_4_8_2_8`, `status=INIT`). Битые фикстуры это маскировали.
+  Нужно сверить условие правила и ожидания fixtures (кандидат в дефект или в правку фикстуры).
 - **Блокировка context-индекса:** во время переиндексации артефактов (~минуты) `codebase_context_search`
   возвращает «Another process holds the context lock». Нужно подождать и повторить.
 - **Индексация крупных сервисов** идёт десятки минут (эмбеддинги локально на Ollama) — выполнять партиями.
@@ -114,11 +134,12 @@
 | Полнотекстовый поиск по коду через GitLab MCP | На инстансе нет advanced/exact search (`403`/`400`) | Клонировать сервис и искать через SocratiCode |
 | Пути прежнего проекта (`C:\AUSN\`, `...\PycharmProjects\ausn-qa-project`) | Не существуют на этой машине | `C:\rocketscience\ausn-control-plane` и `C:\rocketscience\ausn\*` |
 | Проверка codemap по коммиту target-репозитория | Даёт вечный «stale» при коммите самой карты | `--check` сравнивает хеш модели и число файлов |
+| Хранение categorizer-фикстур в двух деревьях (`data/` и `tests/data/`) | Дубль разошёлся: 39 фикстур стали невалидным JSON, 6 разошлись по ожиданиям, наборы правил различались; тесты «выбирали» дерево глубиной пути | Единственное каноническое дерево `data/categorizer`, общий `src/config/paths.py` и guard-тест против второго дерева |
 
 ## 8. Следующие шаги
 
-1. **Fixtures:** подтвердить источник истины между `data/` и `tests/data/`; при подтверждённом
-   дублировании — согласовать удаление устаревшего дерева (деструктивная операция, требует approval).
+1. **Categorizer negative-кейсы:** проверить по контракту правило `NOT_TAX_BASE_TAX_PAYMENT_4_8_2_8`
+   (кейсы N2/N4/N5 срабатывают вопреки ожиданию) — оформить дефект или привести фикстуры к контракту.
 2. **SocratiCode:** обновить `references/socraticode.json` под `1.14.0` и проверить набор инструментов.
 3. **Codemap:** при значимом изменении структуры — `generate.py --all`, затем `--check`; при
    необходимости добавить модели для остальных сервисов в `tools/codemap/model/`.

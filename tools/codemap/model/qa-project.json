@@ -70,19 +70,19 @@
     },
     {
       "id": "tests-data",
-      "title": "tests/data (fixtures)",
+      "title": "tests/data (остаток)",
       "kind": "fixtures",
       "role": "primary",
       "paths": ["tests/data"],
-      "note": "Активный набор fixtures: categorizer-наборы (B/N/P/S/G/REF), Kafka-топики, SQL, шаблоны."
+      "note": "Kafka-топики (намеренное зеркало data/kafka_topics, эквивалентность закреплена тестом), SQL и справочные JSON. Категоризаторные фикстуры перенесены в data/."
     },
     {
-      "id": "data-legacy",
-      "title": "data (параллельная ветка fixtures)",
+      "id": "data",
+      "title": "data (канонические fixtures)",
       "kind": "fixtures",
       "role": "primary",
       "paths": ["data"],
-      "note": "Второе дерево categorizer-fixtures в корне. Сверить дублирование с tests/data при передаче проекта."
+      "note": "Единственное каноническое дерево фикстур categorizer (105 правил) и kafka_topics; путь задаёт src/config/paths.CATEGORIZER_FIXTURES_DIR."
     },
     {
       "id": "src",
@@ -90,7 +90,7 @@
       "kind": "code",
       "role": "primary",
       "paths": ["src"],
-      "note": "api/database/kafka клиенты, settings, Pydantic-модели, шаги auth/data_prep, product_regression_gate, utils."
+      "note": "api/database/kafka клиенты, settings, Pydantic-модели, шаги auth/data_prep, product_regression_gate, utils; пути к фикстурам — src/config/paths.py."
     },
     {
       "id": "scripts",
@@ -204,8 +204,8 @@
     {"from": "tests-kafka", "to": "src", "label": "kafka-клиент и модели"},
     {"from": "tests-db", "to": "src", "label": "database-клиент"},
     {"from": "tests-integration", "to": "src", "label": "product_regression_gate"},
-    {"from": "tests-kafka", "to": "tests-data", "label": "fixtures правил"},
-    {"from": "tests-static", "to": "tests-data", "label": "валидация fixtures"},
+    {"from": "tests-kafka", "to": "data", "label": "fixtures правил"},
+    {"from": "tests-static", "to": "data", "label": "валидация fixtures и guard единственного дерева"},
     {"from": "tests-characterization", "to": "tests-api", "label": "снапшоты ответов"},
     {"from": "scripts", "to": "tests-data", "label": "генерация fixtures"},
     {"from": "scripts", "to": "postman", "label": "генерация коллекций"},
@@ -214,6 +214,6 @@
     {"from": "tests-db", "to": "schemas", "label": "проверка схемы"},
     {"from": "quality", "to": "tests-unit", "label": "гейты в CI"},
     {"from": "docs-rules", "to": "tests-kafka", "label": "правила категоризации"},
-    {"from": "data-legacy", "to": "tests-data", "label": "возможное дублирование"}
+    {"from": "tests-data", "to": "data", "label": "зеркало kafka_topics"}
   ]
 }
