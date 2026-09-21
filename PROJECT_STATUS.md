@@ -37,6 +37,10 @@
   удалено, 9 уникальных фикстур и правило `SBP_PROCESSING_REWARD_OUTGOING_4_7_1_GPB` перенесены,
   344 ссылки в 110 файлах переведены на единый `src/config/paths.CATEGORIZER_FIXTURES_DIR`,
   добавлен guard-тест против повторного дублирования.
+- Запущена актуализация слоя categorizer: снапшот правил из БД (`artifacts/categorizer-rules-from-db.json`,
+  генератор `scripts/tools/dump_categorizer_rules.py`) и conformance-тест
+  `tests/static/test_categorizer_rules_conformance.py`; по итогам сверки исправлены типы и коды
+  разметки в 54 фикстурах (тип `int` → `str`, коды приведены к БД).
 
 ## 3. Ключевые технические решения
 
@@ -138,8 +142,16 @@
 
 ## 8. Следующие шаги
 
-1. **Categorizer negative-кейсы:** проверить по контракту правило `NOT_TAX_BASE_TAX_PAYMENT_4_8_2_8`
-   (кейсы N2/N4/N5 срабатывают вопреки ожиданию) — оформить дефект или привести фикстуры к контракту.
+1. **Слой categorizer — продолжить актуализацию** (контракт — БД `test1-categorizer.public.rules`):
+   - добавить фикстуры и тест для непокрытого правила `BANK_REJECTED_PAYMENT_REFUND_INCOMING_4_5_2` (PKAUSN-1974);
+   - мигрировать или снять устаревшие каталоги `TAXES_FEES_DEDUCTIBLE_4_8_1` (в БД `..._4_8_2`)
+     и `SPECIAL_MARKUP_EXPENSE_REFUND_PLUS_R` (в БД `SPECIAL_MARKUP_EXPENSES_REFUND`) — сейчас в явном
+     allowlist теста; снятие дубликатов требует подтверждения (деструктивная операция);
+   - сверить с контрактом правила, изменённые разработчиками с 25.08.2026: PKAUSN-2052
+     `ACQUIRING_INCOMING_4_4_1_FNS`, 2036 `EXCESS_PAYMENT_REFUND_4_14_3_3`, 2014 `CASH_DEPOSIT_4_9_2`,
+     2026 `ENS_PAYMENT`, 1974 `BANK_REJECTED_..._4_5_2`, 1970 `SELF_PAYOUT`;
+   - legacy-набор выключенного правила `ACQUIRING_INCOMING_4_4_1` (22 фикстуры с кодом `1`) — решить:
+     обновить под текущую разметку или вывести из обращения.
 2. **SocratiCode:** обновить `references/socraticode.json` под `1.14.0` и проверить набор инструментов.
 3. **Codemap:** при значимом изменении структуры — `generate.py --all`, затем `--check`; при
    необходимости добавить модели для остальных сервисов в `tools/codemap/model/`.
