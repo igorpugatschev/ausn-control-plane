@@ -26,6 +26,7 @@ Read-only относится к источникам (код и документ
 ## Обязательные правила
 
 - Мы работаем в роли QA.
+- **Высший приоритет:** работа с файлами связанных проектов (сам control plane и все репозитории в `../ausn`, кроме `ausn-qa-project`) ведётся только через SocratiCode по навыку `ausn-socraticode` — поиск, symbol, flow, graph, impact; dot-контент (навыки, субагенты, команды) — через `codebase_context_search`. Прямой обход ФС для связанных проектов не применяется; исключение — `ausn-qa-project` и неиндексированные проекты.
 - Все изменения коммитить и пушить сразу: незакоммиченные и незапушенные правки теряются при потере рабочей копии. Коммит — по завершении логического шага, сообщение описывает суть; **push выполняется сразу после коммита, отдельное разрешение на него не требуется** (решение пользователя 2026-09-18, подтверждено повторно). Отдельный approval нужен только для внешних записей в чужие системы (MR, Jira/Confluence/Mattermost-комментарии) и деструктивных операций.
 - Внешние публикации (Jira, Confluence, Mattermost, письма) выполняет пользователь: агент готовит готовый текст для вставки и не публикует его сам. Комментарии через MCP уходят от служебной учётки Rocket.AI и для QA-отчётности не используются (решение пользователя 2026-09-18).
 - Не изменять исходники, конфигурацию и историю репозиториев разработчиков.
@@ -58,7 +59,7 @@ Read-only относится к источникам (код и документ
 - `docs/ausn-context/` — проверяемый снимок контекста ПК АУСН перед тестированием; вход — [README](docs/ausn-context/README.md), свежесть сверять по [реестру источников](docs/ausn-context/evidence-register.md).
 - `docs/qa-methodology/` — методологическая база QA/SDET; вход — [README](docs/qa-methodology/README.md).
 - `docs/mcp.md`, `docs/socraticode.md` — подключение корпоративных MCP и настройка индексации SocratiCode.
-- `.agents/skills/` — проектные навыки AI: `ausn-qa-loop` (contract-first QA loop и ежедневный QA-TASK-FLOW), `ausn-qa-mcp` (выбор и границы MCP-инструментов), `ausn-qa-methodology` (тест-дизайн и доказательства), `ausn-qa-agents` (роли, маршрутизация, безопасность, метрики и тестовые данные агентного QA), `ausn-source-driven-development`, `ausn-api-contract-testing`, `ausn-context-engineering`, `ausn-categorizer-lifecycle` и `ausn-postman-sync`.
+- `.agents/skills/` — проектные навыки AI: `ausn-qa-loop` (contract-first QA loop и ежедневный QA-TASK-FLOW), `ausn-socraticode` (работа с индексированными проектами через SocratiCode), `ausn-qa-mcp` (выбор и границы MCP-инструментов), `ausn-qa-methodology` (тест-дизайн и доказательства), `ausn-qa-agents` (роли, маршрутизация, безопасность, метрики и тестовые данные агентного QA), `ausn-source-driven-development`, `ausn-api-contract-testing`, `ausn-context-engineering`, `ausn-categorizer-lifecycle` и `ausn-postman-sync`.
 - `.opencode/command/qa-task.md` — команда `/qa-task` для запуска ежедневного QA-TASK-FLOW по задаче или функционалу.
 - `.opencode/agent/` — субагенты QA/SDET: `contract-research-agent`, `test-design-agent`, `test-implementation-agent`, `review-agent`, `ci-triage-agent`, `test-maintenance-agent` и `docs-agent`; маршрут и правила — в навыке `ausn-qa-agents`.
 - `tools/mcp-runtime/` — локальный `mcp-remote` (зафиксирован 0.8.4), прокси для корпоративных MCP.

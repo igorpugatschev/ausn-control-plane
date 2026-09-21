@@ -16,7 +16,7 @@ description: >-
 | Требования, критерии приёмки, статус задачи | atlassian | jira_get_issue, confluence_get_page, confluence_search |
 | Код, MR, версия на стенде, CI | gitlab | get_project, get_merge_request_diffs, list_deployments, list_pipelines |
 | Решения команды, история обсуждений | mattermost | search_posts, read_post |
-| Семантический поиск и влияние изменений | socraticode | codebase_status, codebase_search, codebase_impact |
+| Семантический поиск и работа с индексированными проектами | socraticode | навык `ausn-socraticode` |
 | Состояние данных | test_pgdb | list, затем query |
 | Логи и причины ошибки | test_graylog | get_current_time, list_streams, search_messages |
 | Метрики и здоровье сервисов | test_grafana | list_datasources, query_prometheus, check_datasources_health |
