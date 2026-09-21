@@ -82,10 +82,11 @@
   (104 файла) и их runner; генератор Postman-коллекций исключает пути `tests/kafka/categorizer`
   (слой Postman — API/HTTP и Kafka-топики). `postman/README.md` и `scripts/README.md` приведены в соответствие.
 - Подготовлен отчёт для аналитика по `DEFAULT_RULE`
-  (`ausn-qa-project/docs/reports/default-rule-reachability-2026-09-21.md`): правило сопоставляется на каждом
-  сообщении (`condition=true`), но не выбирается, так как `SIMPLE_INCOMING`/`SIMPLE_OUTGOING` (priority=10)
-  перекрывают его при любом направлении; сообщения с отсутствующим/неизвестным направлением до применения
-  правил не доходят. Факт закреплён статическим тестом `test_categorizer_default_rule_reachability.py`;
+  ([docs/reports/default-rule-reachability-2026-09-21.md](docs/reports/default-rule-reachability-2026-09-21.md)):
+  правило сопоставляется на каждом сообщении (`condition=true`), но не выбирается, так как
+  `SIMPLE_INCOMING`/`SIMPLE_OUTGOING` (priority=10) перекрывают его при любом направлении; сообщения
+  с отсутствующим/неизвестным направлением до применения правил не доходят. Факт закреплён статическим
+  тестом `tests/static/test_categorizer_default_rule_reachability.py` (в `ausn-qa-project`);
   решение о судьбе правила — за аналитиком.
 
 ## 3. Ключевые технические решения
