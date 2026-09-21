@@ -66,6 +66,7 @@ Read-only относится к источникам (код и документ
 
 - `REPOSITORIES.md` — сопоставление локальных папок и GitLab-репозиториев проекта АУСН.
 - `TEAM_MEMBERS.md` — команда проекта.
+- `PROJECT_STATUS.md` — передаточный статус этапа: цели, решения, проверки, риски и следующие шаги.
 - `ENVIRONMENT-manual.md`, `ENVIRONMENT-example.md` — инструкция и шаблон для локального `ENVIRONMENT.md`; сам `ENVIRONMENT.md` (машинно-специфичный, в Git не входит) подключён через `instructions` в `.opencode/opencode.jsonc` и попадает в системный промпт.
 - `docs/ausn-context/` — проверяемый снимок контекста ПК АУСН перед тестированием; вход — [README](docs/ausn-context/README.md), свежесть сверять по [реестру источников](docs/ausn-context/evidence-register.md).
 - `docs/qa-methodology/` — методологическая база QA/SDET; вход — [README](docs/qa-methodology/README.md).
@@ -75,6 +76,7 @@ Read-only относится к источникам (код и документ
 - `.opencode/agent/` — субагенты QA/SDET: `contract-research-agent`, `test-design-agent`, `test-implementation-agent`, `review-agent`, `ci-triage-agent`, `test-maintenance-agent` и `docs-agent`; маршрут и правила — в навыке `ausn-qa-agents`.
 - `tools/mcp-runtime/` — локальный `mcp-remote` (зафиксирован 0.8.4), прокси для корпоративных MCP.
 - `compose.socraticode.yaml` — локальный Qdrant на `127.0.0.1:17333`; данные в `.local/socraticode/qdrant`.
+- `tools/codemap/` — генератор карт репозиториев (`generate.py`) и курируемые модели (`model/<name>.json`); выпускает `<repo>/docs/codemap/{codemap.html,codemap.json,codemap.lock}`.
 - `.env`, `.venv/`, `.local/`, `tmp/` — локальные артефакты, в Git не входят.
 
 ## Настройка после клонирования
@@ -96,6 +98,13 @@ Read-only относится к источникам (код и документ
 - Перед индексацией обновить чистую рабочую копию репозитория через `git pull --ff-only`; локальные изменения не сбрасывать. Эмбеддинги считаются локально, поэтому индексация крупного сервиса идёт десятки минут — выполнять партиями с контролем `codebase_status`. Watcher работает постоянно (штатный режим SocratiCode) и держит индекс свежим: останавливать его не нужно, правки автоиндексируются.
 - Правило выбора инструментов: работу с файлами индексированных проектов (`ausn-core`, `ausn-ai`, `ausn-control-plane`, `ausn-qa-project` и остальные в `../ausn`) вести через инструменты SocratiCode (семантический поиск, symbol, flow, graph, impact); если проект не индексирован — прямая работа с файловой системой.
 - Dot-каталоги (`.agents`, `.opencode`) обычный индекс пропускает, поэтому навыки, субагенты и команды подключены как context artifacts (`.socraticodecontextartifacts.json`) и ищутся только через `codebase_context_search` (гибрид semantic+BM25), а не `codebase_search`. Для markdown граф зависимостей (`codebase_graph_*`) пуст — это норма, а не дефект.
+
+## Codemap
+
+- Карта репозитория лежит в самом репозитории — `<repo>/docs/codemap/`; генератор и модели — здесь, в `tools/codemap/`.
+- Модель курируется вручную и описывает не более 20 primary-узлов; генератор валидирует пути, считает файлы и фиксирует коммит target-репозитория в `codemap.lock`.
+- Регенерация: `.\.venv\Scripts\python.exe tools\codemap\generate.py --all`; проверка актуальности — тот же вызов с `--check` (ненулевой код при устаревшем lock). Обновлять карту вместе со значимым изменением структуры репозитория.
+- Охват сейчас: `control-plane` и `qa-project`. Расширяется добавлением модели в `tools/codemap/model/`.
 
 ## Репозитории контекста
 

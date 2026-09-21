@@ -1,0 +1,235 @@
+{
+  "name": "control-plane",
+  "title": "AUSN QA Control Plane",
+  "summary": "Управляющий репозиторий QA-команды АУСН: правила, навыки, субагенты, MCP-конфигурация, методология и ретроспективы. Приложения и сборки нет; продукт работы — ausn-qa-project.",
+  "target": ".",
+  "generated_at": "2026-09-21T10:20:54+00:00",
+  "target_commit": "2c03f2c",
+  "target_branch": "main",
+  "target_dirty": true,
+  "primary_count": 12,
+  "primary_limit": 20,
+  "total_files": 99,
+  "nodes": [
+    {
+      "id": "agents",
+      "title": "AGENTS.md",
+      "kind": "policy",
+      "role": "primary",
+      "paths": [
+        "AGENTS.md"
+      ],
+      "note": "Корневые правила: модель владения, обязательные правила, работа с кодом, индексация SocratiCode, структура.",
+      "files": 1
+    },
+    {
+      "id": "environment",
+      "title": "Окружение машины",
+      "kind": "config",
+      "role": "primary",
+      "paths": [
+        "ENVIRONMENT.md",
+        "ENVIRONMENT-manual.md",
+        "ENVIRONMENT-example.md"
+      ],
+      "note": "ENVIRONMENT.md машинно-специфичен и в Git не входит; manual и example — переносимая инструкция и шаблон.",
+      "files": 3
+    },
+    {
+      "id": "skills",
+      "title": "Навыки (.agents/skills)",
+      "kind": "skills",
+      "role": "primary",
+      "paths": [
+        ".agents/skills"
+      ],
+      "note": "11 навыков: ausn-qa-loop, ausn-socraticode (высший приоритет), ausn-qa-mcp, ausn-qa-agents, ausn-qa-methodology, ausn-api-contract-testing, ausn-categorizer-lifecycle, ausn-source-driven-development, ausn-context-engineering, ausn-postman-sync, karpathy-guidelines.",
+      "files": 37
+    },
+    {
+      "id": "agents-layer",
+      "title": "Субагенты и команды (.opencode)",
+      "kind": "agents",
+      "role": "primary",
+      "paths": [
+        ".opencode"
+      ],
+      "note": "7 субагентов QA/SDET, команды /qa-task, /lint, /test, конфиг opencode.jsonc.",
+      "files": 14
+    },
+    {
+      "id": "ausn-context",
+      "title": "Снимок контекста АУСН",
+      "kind": "docs",
+      "role": "primary",
+      "paths": [
+        "docs/ausn-context"
+      ],
+      "note": "Проверяемый снимок контекста ПК АУСН перед тестированием; вход — README, свежесть — по реестру источников.",
+      "files": 14
+    },
+    {
+      "id": "qa-methodology",
+      "title": "Методология QA/SDET",
+      "kind": "docs",
+      "role": "primary",
+      "paths": [
+        "docs/qa-methodology"
+      ],
+      "note": "База тест-дизайна, рисков, исследовательского тестирования и автоматизации.",
+      "files": 9
+    },
+    {
+      "id": "mcp-docs",
+      "title": "MCP и индексация",
+      "kind": "docs",
+      "role": "primary",
+      "paths": [
+        "docs/mcp.md",
+        "docs/socraticode.md"
+      ],
+      "note": "Подключение корпоративных MCP и настройка индексации SocratiCode.",
+      "files": 2
+    },
+    {
+      "id": "mcp-configs",
+      "title": "MCP-конфигурация (4 файла)",
+      "kind": "config",
+      "role": "primary",
+      "paths": [
+        ".mcp.json",
+        ".codex",
+        ".vscode",
+        ".opencode/opencode.jsonc"
+      ],
+      "note": "Один набор серверов описан в четырёх файлах; при изменении сервера обновлять все.",
+      "files": 5
+    },
+    {
+      "id": "artifacts-config",
+      "title": "Context artifacts",
+      "kind": "config",
+      "role": "primary",
+      "paths": [
+        ".socraticodecontextartifacts.json"
+      ],
+      "note": "Подключает dot-контент (skills, subagents, commands) к индексу SocratiCode; обычный индекс dot-каталоги пропускает.",
+      "files": 1
+    },
+    {
+      "id": "socraticode-runtime",
+      "title": "Локальный Qdrant и MCP-прокси",
+      "kind": "infra",
+      "role": "primary",
+      "paths": [
+        "compose.socraticode.yaml",
+        "tools/mcp-runtime"
+      ],
+      "note": "Qdrant 127.0.0.1:17333 (данные в .local/socraticode/qdrant) и зафиксированный mcp-remote 0.8.4.",
+      "files": 3
+    },
+    {
+      "id": "codemap",
+      "title": "Генератор codemap",
+      "kind": "tooling",
+      "role": "primary",
+      "paths": [
+        "tools/codemap"
+      ],
+      "note": "Курируемые модели и генератор карт репозиториев; выпускает codemap.json/html/lock в <repo>/docs/codemap.",
+      "files": 3
+    },
+    {
+      "id": "retrospectives",
+      "title": "Ретроспективы",
+      "kind": "docs",
+      "role": "primary",
+      "paths": [
+        "docs/retrospectives.md"
+      ],
+      "note": "Негативные сценарии сессий и их решения.",
+      "files": 1
+    },
+    {
+      "id": "evidence",
+      "title": "Доказательства и ревью",
+      "kind": "docs",
+      "role": "secondary",
+      "paths": [
+        "docs/evidence",
+        "docs/reviews"
+      ],
+      "note": "Артефакты доказательной базы и отчёты ревью.",
+      "files": 3
+    },
+    {
+      "id": "registry",
+      "title": "Реестры проекта",
+      "kind": "docs",
+      "role": "secondary",
+      "paths": [
+        "REPOSITORIES.md",
+        "TEAM_MEMBERS.md",
+        "README.md"
+      ],
+      "note": "Сопоставление локальных папок и GitLab-репозиториев, состав команды, вход в проект.",
+      "files": 3
+    },
+    {
+      "id": "skip-local",
+      "title": "Локальные артефакты (вне Git)",
+      "kind": "local",
+      "role": "secondary",
+      "paths": [
+        ".venv",
+        ".local",
+        "tmp"
+      ],
+      "note": "Python-окружение, кэш авторизации MCP, состояние Qdrant, временные файлы. Не переносятся.",
+      "files": null
+    }
+  ],
+  "edges": [
+    {
+      "from": "agents",
+      "to": "skills",
+      "label": "обязательные навыки"
+    },
+    {
+      "from": "agents",
+      "to": "mcp-configs",
+      "label": "набор MCP-серверов"
+    },
+    {
+      "from": "skills",
+      "to": "artifacts-config",
+      "label": "индексация dot-контента"
+    },
+    {
+      "from": "artifacts-config",
+      "to": "socraticode-runtime",
+      "label": "хранение индекса"
+    },
+    {
+      "from": "environment",
+      "to": "socraticode-runtime",
+      "label": "локальные адреса и пути"
+    },
+    {
+      "from": "agents",
+      "to": "ausn-context",
+      "label": "снимок контекста"
+    },
+    {
+      "from": "agents",
+      "to": "qa-methodology",
+      "label": "тест-дизайн"
+    },
+    {
+      "from": "codemap",
+      "to": "registry",
+      "label": "охват репозиториев"
+    }
+  ],
+  "_model_sha256": "5fd437f6bd71c8b8f1bed4ca6dd2744cf5d55bdab3e0a6d6fa74c420d764f9d2"
+}

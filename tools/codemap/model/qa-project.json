@@ -1,0 +1,219 @@
+{
+  "name": "qa-project",
+  "title": "AUSN QA Project",
+  "target": "../ausn/ausn-qa-project",
+  "summary": "Продукт QA-команды АУСН: pytest-фреймворк, контрактные API/Kafka/DB тесты, fixtures, Postman-коллекции, тест-кейсы и отчёты. Записываемый и индексируемый репозиторий; commit и push выполняются сразу.",
+  "nodes": [
+    {
+      "id": "tests-api",
+      "title": "tests/api",
+      "kind": "tests",
+      "role": "primary",
+      "paths": ["tests/api"],
+      "note": "Контрактные REST-тесты Core/Front/admin и UC-сценарии (UC-01..UC-25)."
+    },
+    {
+      "id": "tests-kafka",
+      "title": "tests/kafka",
+      "kind": "tests",
+      "role": "primary",
+      "paths": ["tests/kafka"],
+      "note": "Kafka-тесты и categorizer-правила (вложенный пакет с десятками правил 4.x)."
+    },
+    {
+      "id": "tests-characterization",
+      "title": "tests/characterization",
+      "kind": "tests",
+      "role": "primary",
+      "paths": ["tests/characterization"],
+      "note": "Характеризационные снапшоты ответов (в т.ч. серии ERROR_401 без токена)."
+    },
+    {
+      "id": "tests-db",
+      "title": "tests/db",
+      "kind": "tests",
+      "role": "primary",
+      "paths": ["tests/db"],
+      "note": "Проверки состояния БД: персистентность отчётов, retry-состояния, порядок очереди."
+    },
+    {
+      "id": "tests-integration",
+      "title": "tests/integration",
+      "kind": "tests",
+      "role": "primary",
+      "paths": ["tests/integration"],
+      "note": "End-to-end проверки на стенде: ресинхронизация, фактуры, ККТ, порядок permission-refresh."
+    },
+    {
+      "id": "tests-tooling",
+      "title": "tests/tooling",
+      "kind": "tests",
+      "role": "primary",
+      "paths": ["tests/tooling"],
+      "note": "tooling-controller: bind-partner, force-registration-status."
+    },
+    {
+      "id": "tests-unit",
+      "title": "tests/unit",
+      "kind": "tests",
+      "role": "primary",
+      "paths": ["tests/unit"],
+      "note": "Юнит-проверки клиентов, моделей, генераторов и статических gates (encoding, secrets, docstrings, contracts)."
+    },
+    {
+      "id": "tests-static",
+      "title": "tests/static",
+      "kind": "tests",
+      "role": "primary",
+      "paths": ["tests/static"],
+      "note": "Статические проверки fixtures categorizer и отсутствия закоммиченных секретов."
+    },
+    {
+      "id": "tests-data",
+      "title": "tests/data (fixtures)",
+      "kind": "fixtures",
+      "role": "primary",
+      "paths": ["tests/data"],
+      "note": "Активный набор fixtures: categorizer-наборы (B/N/P/S/G/REF), Kafka-топики, SQL, шаблоны."
+    },
+    {
+      "id": "data-legacy",
+      "title": "data (параллельная ветка fixtures)",
+      "kind": "fixtures",
+      "role": "primary",
+      "paths": ["data"],
+      "note": "Второе дерево categorizer-fixtures в корне. Сверить дублирование с tests/data при передаче проекта."
+    },
+    {
+      "id": "src",
+      "title": "src (клиенты, модели, шаги)",
+      "kind": "code",
+      "role": "primary",
+      "paths": ["src"],
+      "note": "api/database/kafka клиенты, settings, Pydantic-модели, шаги auth/data_prep, product_regression_gate, utils."
+    },
+    {
+      "id": "scripts",
+      "title": "scripts",
+      "kind": "tooling",
+      "role": "primary",
+      "paths": ["scripts"],
+      "note": "Генераторы тестов и коллекций, извлечение/конвертация fixtures, runners, проверки кодировки, Graylog-дашборд."
+    },
+    {
+      "id": "postman",
+      "title": "postman",
+      "kind": "tooling",
+      "role": "primary",
+      "paths": ["postman"],
+      "note": "Коллекции (REST, Kafka, tooling), runners, единое environment; синхронизируются с pytest-тестами."
+    },
+    {
+      "id": "docs-test-cases",
+      "title": "docs/test-cases",
+      "kind": "docs",
+      "role": "primary",
+      "paths": ["docs/test-cases"],
+      "note": "Тест-кейсы по UC и функционалу."
+    },
+    {
+      "id": "docs-rules",
+      "title": "docs/categorize-rules",
+      "kind": "docs",
+      "role": "primary",
+      "paths": ["docs/categorize-rules"],
+      "note": "Описание правил категоризации и их соответствия fixtures."
+    },
+    {
+      "id": "docs-wiki",
+      "title": "docs wiki-разделы",
+      "kind": "docs",
+      "role": "primary",
+      "paths": [
+        "docs/use-cases-wiki",
+        "docs/categorizer-wiki",
+        "docs/tooling-wiki",
+        "docs/kkt-test-cases",
+        "docs/kafka-test-cases",
+        "docs/tooling-test-cases"
+      ],
+      "note": "Контекст по UC, categorizer, tooling, ККТ и Kafka-топикам."
+    },
+    {
+      "id": "docs-reports",
+      "title": "docs/reports",
+      "kind": "docs",
+      "role": "primary",
+      "paths": ["docs/reports"],
+      "note": "Отчёты QA-loop и ledger по задачам (например PKAUSN-2046)."
+    },
+    {
+      "id": "schemas",
+      "title": "Схемы БД",
+      "kind": "docs",
+      "role": "primary",
+      "paths": ["artifacts", "core-db-schema.txt", "categorizer-db-schema.txt", "front-module-db-schema.txt"],
+      "note": "Снимки схем Core, categorizer, front-module, dbo-integration."
+    },
+    {
+      "id": "quality",
+      "title": "CI и качество кода",
+      "kind": "config",
+      "role": "primary",
+      "paths": ["pyproject.toml", "pytest.ini", "ruff.toml", "mypy.ini", ".gitlab-ci.yml", ".githooks", "requirements.txt"],
+      "note": "Конфигурация pytest/ruff/mypy, CI-пайплайн, git-hooks, зависимости."
+    },
+    {
+      "id": "qa-policy",
+      "title": "Правила репозитория",
+      "kind": "policy",
+      "role": "primary",
+      "paths": ["AGENTS.md", "README.md", ".env.example"],
+      "note": "Локальные правила фреймворка, вход в проект, образец окружения."
+    },
+    {
+      "id": "docs-misc",
+      "title": "Прочие корневые документы docs",
+      "kind": "docs",
+      "role": "secondary",
+      "paths": [
+        "docs/ER_DIAGRAM.md",
+        "docs/categorizer-architecture.md",
+        "docs/admin-panel-endpoints.md",
+        "docs/test-data-inn.md",
+        "docs/gitlab-repos-report.md",
+        "docs/pkausn-done-analysis.md",
+        "docs/pkausn-done-analysis-full-report.md",
+        "docs/categorizer-adversarial-review.md",
+        "docs/graylog_dashboard_config.json",
+        "docs/bug-reports"
+      ],
+      "note": "Архитектура categorizer, ER-диаграмма, админ-эндпоинты, анализ PKAUSN, bug-reports."
+    },
+    {
+      "id": "process",
+      "title": "Процессные артефакты",
+      "kind": "docs",
+      "role": "secondary",
+      "paths": ["docs/superpowers", ".superpowers"],
+      "note": "Отчёты SDD-циклов и рабочие задания."
+    }
+  ],
+  "edges": [
+    {"from": "tests-api", "to": "src", "label": "клиенты и модели"},
+    {"from": "tests-kafka", "to": "src", "label": "kafka-клиент и модели"},
+    {"from": "tests-db", "to": "src", "label": "database-клиент"},
+    {"from": "tests-integration", "to": "src", "label": "product_regression_gate"},
+    {"from": "tests-kafka", "to": "tests-data", "label": "fixtures правил"},
+    {"from": "tests-static", "to": "tests-data", "label": "валидация fixtures"},
+    {"from": "tests-characterization", "to": "tests-api", "label": "снапшоты ответов"},
+    {"from": "scripts", "to": "tests-data", "label": "генерация fixtures"},
+    {"from": "scripts", "to": "postman", "label": "генерация коллекций"},
+    {"from": "postman", "to": "docs-test-cases", "label": "ручные проверки"},
+    {"from": "tests-api", "to": "docs-wiki", "label": "UC-контекст"},
+    {"from": "tests-db", "to": "schemas", "label": "проверка схемы"},
+    {"from": "quality", "to": "tests-unit", "label": "гейты в CI"},
+    {"from": "docs-rules", "to": "tests-kafka", "label": "правила категоризации"},
+    {"from": "data-legacy", "to": "tests-data", "label": "возможное дублирование"}
+  ]
+}
