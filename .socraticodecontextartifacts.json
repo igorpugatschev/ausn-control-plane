@@ -1,0 +1,19 @@
+{
+  "artifacts": [
+    {
+      "name": "skills",
+      "path": ".agents/skills",
+      "description": "Проектные навыки AI (SKILL.md и references): ausn-qa-loop, ausn-qa-mcp, ausn-qa-methodology, ausn-qa-agents, ausn-source-driven-development, ausn-api-contract-testing, ausn-context-engineering, ausn-categorizer-lifecycle, ausn-postman-sync."
+    },
+    {
+      "name": "subagents",
+      "path": ".opencode/agent",
+      "description": "Субагенты QA/SDET (.opencode/agent): contract-research-agent, test-design-agent, test-implementation-agent, review-agent, ci-triage-agent, test-maintenance-agent, docs-agent."
+    },
+    {
+      "name": "commands",
+      "path": ".opencode/command",
+      "description": "Команды opencode (.opencode/command): qa-task (ежедневный QA-TASK-FLOW), lint, test."
+    }
+  ]
+}
