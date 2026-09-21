@@ -17,10 +17,11 @@ README, раздел OpenCode) не предоставляет opencode-плаг
 `codebase_index`:
 
 - `ausn-control-plane` — корень control plane.
-- Все локальные репозитории в `../ausn` **кроме** `ausn-qa-project` (продукт QA — работа напрямую
-  с ФС). Это исходники тестируемого приложения и стендовое окружение: `ausn-ai`, `ausn-core`,
-  `ausn-api`, `ausn-front-gateway`, `ausn-frontend`, `ausn-admin-backend`, `ausn-admin-dashboard`,
-  `dbo-emulator`, `test-stands`.
+- Все локальные репозитории в `../ausn`, включая `ausn-qa-project`: исходники тестируемого приложения
+  и стендовое окружение (`ausn-ai`, `ausn-core`, `ausn-api`, `ausn-front-gateway`, `ausn-frontend`,
+  `ausn-admin-backend`, `ausn-admin-dashboard`, `dbo-emulator`, `test-stands`) и наш продукт
+  `ausn-qa-project` (тесты, fixtures, сценарии — индексируется для ревью и поиска по тестам).
+  Индексация не делает `ausn-qa-project` read-only: он остаётся записываемым, правки автоиндексируются watcher'ом.
 
 Индексация нужна для семантического поиска, анализа влияния и поиска по содержимому кода, которых
 не даёт GitLab MCP (на инстансе не включён advanced/exact code search).
