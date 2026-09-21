@@ -40,7 +40,9 @@
 - Запущена актуализация слоя categorizer: снапшот правил из БД (`artifacts/categorizer-rules-from-db.json`,
   генератор `scripts/tools/dump_categorizer_rules.py`) и conformance-тест
   `tests/static/test_categorizer_rules_conformance.py`; по итогам сверки исправлены типы и коды
-  разметки в 54 фикстурах (тип `int` → `str`, коды приведены к БД).
+  разметки в 54 фикстурах (тип `int` → `str`, коды приведены к БД). Добавлено покрытие ранее непокрытого
+  правила `BANK_REJECTED_PAYMENT_REFUND_INCOMING_4_5_2` (18 фикстур из кейсов разработчика PKAUSN-1974 + тест);
+  позитивные кейсы — `xfail(strict=True)`, так как правило не применяется на test1 (см. раздел 6).
 
 ## 3. Ключевые технические решения
 
@@ -112,6 +114,11 @@
 
 ## 6. Известные проблемы и риски
 
+- **Правило `BANK_REJECTED_PAYMENT_REFUND_INCOMING_4_5_2` не применяется на test1** (проверено 21.09.2026):
+  правило есть в БД (`enabled`, `priority=5`, создано 02.09), есть тест разработчика
+  `Rule452BankRejectedPaymentRefundIncomingTest`, контейнер `ausn-categorizer:develop` собран 21.09, но
+  categorizer не включает правило в `matchedRules` и побеждает `SIMPLE_INCOMING` (`priority=10`);
+  негативные 13/13 проходят, позитивные 5 — `xfail(strict=True)`. Нужно подтверждение разработчика.
 - **Negative-кейсы categorizer требуют проверки:** в правиле `NOT_TAX_BASE_TAX_PAYMENT_4_8_2_8`
   кейсы N2/N4/N5 ожидают, что правило не сработает, но categorizer его применяет
   (`ruleName=NOT_TAX_BASE_TAX_PAYMENT_4_8_2_8`, `status=INIT`). Битые фикстуры это маскировали.
@@ -143,7 +150,8 @@
 ## 8. Следующие шаги
 
 1. **Слой categorizer — продолжить актуализацию** (контракт — БД `test1-categorizer.public.rules`):
-   - добавить фикстуры и тест для непокрытого правила `BANK_REJECTED_PAYMENT_REFUND_INCOMING_4_5_2` (PKAUSN-1974);
+   - подтвердить у разработчика причину неприменения правила `BANK_REJECTED_PAYMENT_REFUND_INCOMING_4_5_2`
+     на test1 (маркер `xfail(strict=True)` снимется автоматически после фикса);
    - мигрировать или снять устаревшие каталоги `TAXES_FEES_DEDUCTIBLE_4_8_1` (в БД `..._4_8_2`)
      и `SPECIAL_MARKUP_EXPENSE_REFUND_PLUS_R` (в БД `SPECIAL_MARKUP_EXPENSES_REFUND`) — сейчас в явном
      allowlist теста; снятие дубликатов требует подтверждения (деструктивная операция);
