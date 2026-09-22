@@ -1,21 +1,21 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-22T05:09:42+00:00",
-  "target_commit": "974c53d",
+  "generated_at": "2026-09-22T05:19:51+00:00",
+  "target_commit": "50beac2",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
     "docs": 78,
-    "edges": 260,
+    "edges": 261,
     "broken": 0,
     "unresolved": 17,
     "unreachable": 13,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 98,
+    "code-path": 99,
     "mention-skill": 65,
     "mention-agent": 40,
     "mention-command": 7,
@@ -254,7 +254,7 @@
       "id": "AGENTS.md",
       "kind": "doc",
       "in": 2,
-      "out": 29
+      "out": 30
     },
     {
       "id": "docs/ausn-context/current-state.md",
@@ -1310,6 +1310,12 @@
     },
     {
       "from": "AGENTS.md",
+      "to": "qa-project:docs/archive/README.md",
+      "kind": "code-path",
+      "line": 114
+    },
+    {
+      "from": "AGENTS.md",
       "to": ".agents/skills/ausn-api-contract-testing/SKILL.md",
       "kind": "mention-skill",
       "line": 0
@@ -2177,7 +2183,7 @@
   "hubs": [
     {
       "id": "AGENTS.md",
-      "degree": 31
+      "degree": 32
     },
     {
       "id": "PROJECT_STATUS.md",

@@ -110,34 +110,38 @@
     },
     {
       "id": "docs-test-cases",
-      "title": "docs/test-cases",
+      "title": "docs/archive/test-cases",
       "kind": "docs",
-      "role": "primary",
-      "paths": ["docs/test-cases"],
-      "note": "Тест-кейсы по UC и функционалу."
+      "role": "secondary",
+      "paths": [
+        "docs/archive/test-cases"
+      ],
+      "note": "Тест-кейсы по UC прежнего этапа; перенесены в архив 2026-09-22 (ссылались на удалённый Postman-набор)."
     },
     {
       "id": "docs-rules",
-      "title": "docs/categorize-rules",
+      "title": "docs/archive/categorize-rules",
       "kind": "docs",
-      "role": "primary",
-      "paths": ["docs/categorize-rules"],
-      "note": "Описание правил категоризации и их соответствия fixtures."
+      "role": "secondary",
+      "paths": [
+        "docs/archive/categorize-rules"
+      ],
+      "note": "Описания правил категоризации прежнего этапа; перенесены в архив 2026-09-22 (слой переписан от контракта БД)."
     },
     {
       "id": "docs-wiki",
-      "title": "docs wiki-разделы",
+      "title": "docs wiki-разделы (архив)",
       "kind": "docs",
-      "role": "primary",
+      "role": "secondary",
       "paths": [
-        "docs/use-cases-wiki",
-        "docs/categorizer-wiki",
-        "docs/tooling-wiki",
-        "docs/kkt-test-cases",
-        "docs/kafka-test-cases",
-        "docs/tooling-test-cases"
+        "docs/archive/use-cases-wiki",
+        "docs/archive/categorizer-wiki",
+        "docs/archive/tooling-wiki",
+        "docs/archive/kkt-test-cases",
+        "docs/archive/kafka-test-cases",
+        "docs/archive/tooling-test-cases"
       ],
-      "note": "Контекст по UC, categorizer, tooling, ККТ и Kafka-топикам."
+      "note": "Перенесены в docs/archive 2026-09-22: легаси прежнего этапа (UC, categorizer, tooling, ККТ, Kafka). Актуальные источники — tests/, data/, docs/reports/."
     },
     {
       "id": "docs-reports",
@@ -195,8 +199,8 @@
       "title": "Процессные артефакты",
       "kind": "docs",
       "role": "secondary",
-      "paths": ["docs/superpowers", ".superpowers"],
-      "note": "Отчёты SDD-циклов и рабочие задания."
+      "paths": ["docs/archive/superpowers", ".superpowers"],
+      "note": "Отчёты SDD-циклов и рабочие задания; plans/specs июля 2026 перенесены в docs/archive."
     }
   ],
   "edges": [

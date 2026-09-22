@@ -30,7 +30,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 MODEL_DIR = ROOT / "tools" / "codemap" / "model"
-SKIP_DIRS = {".git", "__pycache__", ".venv", "node_modules", ".mypy_cache", ".pytest_cache", ".ruff_cache", "tmp", ".local"}
+SKIP_DIRS = {".git", "__pycache__", ".venv", "node_modules", ".mypy_cache", ".pytest_cache", ".ruff_cache", "tmp", ".local", "archive", ".superpowers", ".reports"}
 MAX_PRIMARY = 20
 
 
@@ -290,7 +290,7 @@ def doc_edges(target, path, files, dirs, named, warnings, others):
             if "://" in raw or raw.startswith(("mailto:", "#")) or _is_external(raw):
                 continue
             clean = raw.split("#", 1)[0]
-            if not clean:
+            if not clean or "*" in clean:
                 continue
             label, resolved, is_dir = _locate_any(target, path, clean, others)
             if resolved is None:

@@ -181,9 +181,13 @@
 - **Стенды:** integration/db тесты требуют VPN/доступа к стендам и БД; без них часть проверок не запускается.
 - **Остаточные хвосты:** не удалён бэкап `.local/socraticode/qdrant.backup-20260921` (ждёт approval);
   снимок MCP-контрактов SocratiCode (`references/socraticode.json`) не обновлён под 1.14.0.
-- **Долг документации qa-project (найден `--docs`):** 271 битая ссылка и 251 неразрешённый путь в легаси-доках —
-  ссылки на удалённый `postman/AUSN_Full_Test_Suite.postman_collection.json` (183), на `docs/categorize-rules/*`
-  (файлы удалены) и т.п. Требуется решение: почистить/архивировать легаси-доки, чтобы `--docs --check` был зелёным.
+- **Долг документации qa-project — закрыт (2026-09-22):** 9 легаси-каталогов (test-cases, categorize-rules,
+  kafka/kkt/tooling-test-cases, categorizer/tooling/use-cases-wiki, superpowers; ~500 файлов) перенесены в
+  `docs/archive/` (исключён из графа, обратимо, с `docs/archive/README.md`), живые ссылки починены
+  (`postman/collections/*/README.md`, `scripts/kafka/*`, `data/` и `tests/data/kafka_topics/README.md`, README,
+  отчётные доки), модель codemap qa-project приведена к архиву. Итог: `--docs` — **0 битых** в обоих репозиториях.
+  Остались 14 warning-путей (удалённые артефакты и внешние репозитории: `dbo-emulator/`, `apps/…`, `.reports/…`,
+  `scripts/*.cmd`) и 67 документов без входящих рёбер — это информационные списки, не падения.
 - **Qdrant (инцидент 2026-09-22):** битый shard коллекции `ausn_qa_codebase_a19a01c1c406` ронял Qdrant в
   crash-loop; коллекции индекса `qa-project` перенесены в `.local/socraticode/qdrant.broken-20260922/`,
   идёт переиндексация. При рецидиве — точечный карантин коллекций проекта, а не пересоздание всего индекса.
@@ -220,9 +224,8 @@
    - legacy-набор выключенного правила `ACQUIRING_INCOMING_4_4_1` (22 фикстуры с кодом `1`) — решить:
      обновить под текущую разметку или вывести из обращения.
 2. **SocratiCode:** обновить `references/socraticode.json` под `1.14.0` и проверить набор инструментов.
-3. **Документация:** закрыть долг `qa-project`, найденный `codemap --docs` (271 битая ссылка, 251 неразрешённый
-   путь — легаси-доки Postman и `docs/categorize-rules`), затем включить `--docs --all --check` в регулярную
-   проверку наравне с `--all --check`; удалить устаревшие документы только по согласованию (деструктивно).
+3. **Документация:** долг `qa-project` закрыт (архив + починка ссылок). Держать `--docs --all --check` зелёным
+   в том же цикле, что и `--all --check`; новые легаси-документы переносить в `docs/archive/`, а не удалять.
 3. **Codemap:** при значимом изменении структуры — `generate.py --all`, затем `--check`; при
    необходимости добавить модели для остальных сервисов в `tools/codemap/model/`.
 4. **QA-loop:** продолжать по новым задачам командой `/qa-task <PKAUSN-XXXX | функционал>`.
