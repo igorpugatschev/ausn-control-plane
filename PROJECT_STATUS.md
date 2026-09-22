@@ -179,8 +179,10 @@
 - **Консоль Windows (cp866)** искажает не-ASCII в выводе команд; на содержимое файлов не влияет —
   проверять файлы, а не вывод. PowerShell 5.1 ломает многострочный `python -c`.
 - **Стенды:** integration/db тесты требуют VPN/доступа к стендам и БД; без них часть проверок не запускается.
-- **Остаточные хвосты:** не удалён бэкап `.local/socraticode/qdrant.backup-20260921` (ждёт approval);
-  снимок MCP-контрактов SocratiCode (`references/socraticode.json`) не обновлён под 1.14.0.
+- **Остаточные хвосты:** бэкап `.local/socraticode/qdrant.backup-20260921` удалён 2026-09-22 по approve
+  (освобождено 2,6 ГБ); остаётся карантин битых коллекций `.local/socraticode/qdrant.broken-20260922`
+  (1,46 ГБ) — удалять только по отдельному согласованию; снимок MCP-контрактов SocratiCode
+  (`references/socraticode.json`) не обновлён под 1.14.0.
 - **Долг документации qa-project — закрыт (2026-09-22):** 9 легаси-каталогов (test-cases, categorize-rules,
   kafka/kkt/tooling-test-cases, categorizer/tooling/use-cases-wiki, superpowers; ~500 файлов) перенесены в
   `docs/archive/` (исключён из графа, обратимо, с `docs/archive/README.md`), живые ссылки починены

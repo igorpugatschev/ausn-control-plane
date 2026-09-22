@@ -1,10 +1,10 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-22T05:20:35+00:00",
-  "target_commit": "3ff1f06",
+  "generated_at": "2026-09-22T05:22:39+00:00",
+  "target_commit": "4cc63b8",
   "target_branch": "main",
-  "target_dirty": false,
+  "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
     "docs": 78,
@@ -1984,13 +1984,13 @@
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:docs/archive/README.md",
       "kind": "code-path",
-      "line": 186
+      "line": 188
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/data/kafka_topics/README.md",
       "kind": "code-path",
-      "line": 187
+      "line": 189
     },
     {
       "from": "PROJECT_STATUS.md",
@@ -2160,13 +2160,13 @@
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/socraticode.json",
-      "line": 183,
+      "line": 185,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/socraticode.json",
-      "line": 226,
+      "line": 228,
       "severity": "warning"
     }
   ],
