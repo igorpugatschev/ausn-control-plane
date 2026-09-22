@@ -1,21 +1,21 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-22T10:10:09+00:00",
-  "target_commit": "9076976",
+  "generated_at": "2026-09-22T10:27:58+00:00",
+  "target_commit": "9fdfe4d",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
     "docs": 80,
-    "edges": 269,
+    "edges": 271,
     "broken": 0,
     "unresolved": 21,
     "unreachable": 15,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 107,
+    "code-path": 109,
     "mention-skill": 65,
     "mention-agent": 40,
     "mention-command": 7,
@@ -428,7 +428,7 @@
       "id": "docs/retrospectives.md",
       "kind": "doc",
       "in": 3,
-      "out": 11
+      "out": 12
     },
     {
       "id": "docs/reviews/2026-09-17-qa-project-framework-review.md",
@@ -482,7 +482,7 @@
       "id": "PROJECT_STATUS.md",
       "kind": "doc",
       "in": 0,
-      "out": 32
+      "out": 33
     },
     {
       "id": "README.md",
@@ -1724,6 +1724,12 @@
     },
     {
       "from": "docs/retrospectives.md",
+      "to": "qa-project:tests/static/test_operation_messages_are_system_valid.py",
+      "kind": "code-path",
+      "line": 221
+    },
+    {
+      "from": "docs/retrospectives.md",
       "to": ".agents/skills/ausn-qa-loop/SKILL.md",
       "kind": "mention-skill",
       "line": 0
@@ -1946,99 +1952,105 @@
     },
     {
       "from": "PROJECT_STATUS.md",
+      "to": "qa-project:tests/static/test_operation_messages_are_system_valid.py",
+      "kind": "code-path",
+      "line": 119
+    },
+    {
+      "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/ausn-socraticode/SKILL.md",
       "kind": "code-path",
-      "line": 149
+      "line": 154
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/karpathy-guidelines/SKILL.md",
       "kind": "code-path",
-      "line": 150
+      "line": 155
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/socraticode.md",
       "kind": "code-path",
-      "line": 154
+      "line": 159
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/retrospectives.md",
       "kind": "code-path",
-      "line": 154
+      "line": 159
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/ausn-context/qa-source-assessment.md",
       "kind": "code-path",
-      "line": 154
+      "line": 159
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/generate.py",
       "kind": "code-path",
-      "line": 156
+      "line": 161
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/model/control-plane.json",
       "kind": "code-path",
-      "line": 156
+      "line": 161
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/model/qa-project.json",
       "kind": "code-path",
-      "line": 157
+      "line": 162
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:src/config/paths.py",
       "kind": "code-path",
-      "line": 162
+      "line": 167
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/kafka/conftest.py",
       "kind": "code-path",
-      "line": 164
+      "line": 169
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/static/test_categorizer_json_fixtures.py",
       "kind": "code-path",
-      "line": 165
+      "line": 170
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/integration/test_permission_refresh_queue_advance.py",
       "kind": "code-path",
-      "line": 171
+      "line": 176
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/db/test_permission_refresh_order.py",
       "kind": "code-path",
-      "line": 172
+      "line": 177
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:docs/reports/qa-loop-permission-refresh-order-2026-09-18.md",
       "kind": "code-path",
-      "line": 173
+      "line": 178
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:docs/archive/README.md",
       "kind": "code-path",
-      "line": 214
+      "line": 219
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/data/kafka_topics/README.md",
       "kind": "code-path",
-      "line": 215
+      "line": 220
     },
     {
       "from": "PROJECT_STATUS.md",
@@ -2220,31 +2232,31 @@
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/qa-task-flow.md",
-      "line": 151,
+      "line": 156,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/loop-quality-gates.md",
-      "line": 152,
+      "line": 157,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "ausn-qa-project/AGENTS.md",
-      "line": 190,
+      "line": 195,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/socraticode.json",
-      "line": 211,
+      "line": 216,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/socraticode.json",
-      "line": 254,
+      "line": 259,
       "severity": "warning"
     }
   ],
@@ -2268,11 +2280,11 @@
   "warnings": [],
   "hubs": [
     {
-      "id": "AGENTS.md",
-      "degree": 32
+      "id": "PROJECT_STATUS.md",
+      "degree": 33
     },
     {
-      "id": "PROJECT_STATUS.md",
+      "id": "AGENTS.md",
       "degree": 32
     },
     {
@@ -2292,12 +2304,12 @@
       "degree": 17
     },
     {
-      "id": "docs/socraticode.md",
+      "id": "docs/retrospectives.md",
       "degree": 15
     },
     {
-      "id": "docs/retrospectives.md",
-      "degree": 14
+      "id": "docs/socraticode.md",
+      "degree": 15
     },
     {
       "id": "docs/ausn-context/qa-source-assessment.md",

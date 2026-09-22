@@ -19,13 +19,13 @@ pre { background: #1b1e24; border: 1px solid #2a2f37; border-radius: 10px;
 </head>
 <body>
 <h1>docgraph: control-plane</h1>
-<p class="meta-line">ветка <code>main</code> · коммит <code>9076976</code> (рабочая копия изменена) ·
-документов 80 · рёбер 269 · <span class="bad">битых 0</span> ·
+<p class="meta-line">ветка <code>main</code> · коммит <code>9fdfe4d</code> (рабочая копия изменена) ·
+документов 80 · рёбер 271 · <span class="bad">битых 0</span> ·
 неразрешённых путей 21 · недостижимых 15 ·
-warnings 0 · сгенерировано 2026-09-22T10:10:09+00:00</p>
+warnings 0 · сгенерировано 2026-09-22T10:27:58+00:00</p>
 <h2>Связи по типам</h2>
 <ul>
-<li>code-path — 107</li>
+<li>code-path — 109</li>
 <li>link — 50</li>
 <li>mention-agent — 40</li>
 <li>mention-command — 7</li>
@@ -53,11 +53,11 @@ warnings 0 · сгенерировано 2026-09-22T10:10:09+00:00</p>
 <li><code>PROJECT_STATUS.md</code>:103 → <code>ausn-qa-project/docs/reports/qa-loop-acquiring-third-party-bank-format-2026-09-22.md</code></li>
 <li><code>PROJECT_STATUS.md</code>:112 → <code>ausn-qa-project/docs/reports/qa-loop-ui-authorization-2026-09-22.md</code></li>
 <li><code>PROJECT_STATUS.md</code>:116 → <code>ausn-qa-project/docs/reports/qa-loop-ui-account-sections-2026-09-22.md</code></li>
-<li><code>PROJECT_STATUS.md</code>:151 → <code>references/qa-task-flow.md</code></li>
-<li><code>PROJECT_STATUS.md</code>:152 → <code>references/loop-quality-gates.md</code></li>
-<li><code>PROJECT_STATUS.md</code>:190 → <code>ausn-qa-project/AGENTS.md</code></li>
-<li><code>PROJECT_STATUS.md</code>:211 → <code>references/socraticode.json</code></li>
-<li><code>PROJECT_STATUS.md</code>:254 → <code>references/socraticode.json</code></li>
+<li><code>PROJECT_STATUS.md</code>:156 → <code>references/qa-task-flow.md</code></li>
+<li><code>PROJECT_STATUS.md</code>:157 → <code>references/loop-quality-gates.md</code></li>
+<li><code>PROJECT_STATUS.md</code>:195 → <code>ausn-qa-project/AGENTS.md</code></li>
+<li><code>PROJECT_STATUS.md</code>:216 → <code>references/socraticode.json</code></li>
+<li><code>PROJECT_STATUS.md</code>:259 → <code>references/socraticode.json</code></li>
 </ul>
 <h2>Warnings</h2>
 <ul>
@@ -83,14 +83,14 @@ warnings 0 · сгенерировано 2026-09-22T10:10:09+00:00</p>
 </ul>
 <h2>Хабы (входящие+исходящие)</h2>
 <ul>
+<li><code>PROJECT_STATUS.md</code> — 33</li>
 <li><code>AGENTS.md</code> — 32</li>
-<li><code>PROJECT_STATUS.md</code> — 32</li>
 <li><code>.agents/skills/ausn-qa-agents/SKILL.md</code> — 26</li>
 <li><code>.agents/skills/ausn-qa-loop/SKILL.md</code> — 26</li>
 <li><code>.agents/skills/ausn-qa-methodology/SKILL.md</code> — 18</li>
 <li><code>.agents/skills/ausn-qa-mcp/SKILL.md</code> — 17</li>
+<li><code>docs/retrospectives.md</code> — 15</li>
 <li><code>docs/socraticode.md</code> — 15</li>
-<li><code>docs/retrospectives.md</code> — 14</li>
 <li><code>docs/ausn-context/qa-source-assessment.md</code> — 13</li>
 <li><code>docs/qa-methodology/README.md</code> — 13</li>
 <li><code>.opencode/command/qa-task.md</code> — 12</li>
@@ -171,6 +171,7 @@ warnings 0 · сгенерировано 2026-09-22T10:10:09+00:00</p>
   "docs/retrospectives.md" -->|code-path| "qa-project:tests/conftest.py"
   "docs/retrospectives.md" -->|code-path| "qa-project:artifacts/categorizer-rules-from-db.json"
   "docs/retrospectives.md" -->|code-path| "docs/codemap/docgraph.html"
+  "docs/retrospectives.md" -->|code-path| "qa-project:tests/static/test_operation_messages_are_system_valid.py"
   "docs/reviews/2026-09-17-qa-project-framework-review.md" -->|code-path| "qa-project:tests/api/test_akbars_pwa_payment.py"
   "docs/reviews/2026-09-17-qa-project-framework-review.md" -->|code-path| "qa-project:tests/api/test_akbars_web_payment.py"
   "docs/reviews/2026-09-17-qa-project-framework-review.md" -->|code-path| "qa-project:docs/reports/qa-loop-akbars-pwa-payment-2026-09-17.md"
@@ -192,6 +193,7 @@ warnings 0 · сгенерировано 2026-09-22T10:10:09+00:00</p>
   "PROJECT_STATUS.md" -->|code-path| "qa-project:tests/kafka/categorizer/test_acquiring_third_party_registry_format.py"
   "PROJECT_STATUS.md" -->|code-path| "qa-project:src/clients/ui_harness.py"
   "PROJECT_STATUS.md" -->|code-path| "qa-project:tests/ui/test_account_sections.py"
+  "PROJECT_STATUS.md" -->|code-path| "qa-project:tests/static/test_operation_messages_are_system_valid.py"
   "PROJECT_STATUS.md" -->|code-path| ".agents/skills/ausn-socraticode/SKILL.md"
   "PROJECT_STATUS.md" -->|code-path| ".agents/skills/karpathy-guidelines/SKILL.md"
   "PROJECT_STATUS.md" -->|code-path| "docs/socraticode.md"
@@ -218,8 +220,6 @@ warnings 0 · сгенерировано 2026-09-22T10:10:09+00:00</p>
   ".agents/skills/ausn-qa-mcp/references/catalog.md" -->|link| ".agents/skills/ausn-qa-mcp/references/test_pgdb.json"
   ".agents/skills/ausn-qa-mcp/references/catalog.md" -->|link| ".agents/skills/ausn-qa-mcp/references/test_ssh.json"
   ".agents/skills/ausn-qa-mcp/SKILL.md" -->|link| ".agents/skills/ausn-qa-mcp/references/catalog.md"
-  ".agents/skills/ausn-qa-mcp/SKILL.md" -->|link| ".agents/skills/ausn-qa-mcp/references/workflows.md"
-  ".agents/skills/ausn-qa-mcp/SKILL.md" -->|link| ".agents/skills/ausn-qa-mcp/references/project-context.md"
-  ".agents/skills/ausn-qa-methodology/SKILL.md" -->|link| "docs/qa-methodology/README.md"</pre>
+  ".agents/skills/ausn-qa-mcp/SKILL.md" -->|link| ".agents/skills/ausn-qa-mcp/references/workflows.md"</pre>
 </body>
 </html>

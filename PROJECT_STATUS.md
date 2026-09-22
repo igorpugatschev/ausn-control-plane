@@ -111,9 +111,14 @@
   Восстановлен генератор НП через эмулятор ФНС (`scripts/new_taxpayers/`, код банка 2860; запуск через офисный прокси
   `10.3.219.1:3128` со стенда). Ledger: `ausn-qa-project/docs/reports/qa-loop-ui-authorization-2026-09-22.md`.
 - **UI-разделы ЛК (`ausn-test1`, харнесс Агророса):** покрыты операции, начисления, сотрудники, оповещения,
-  настройки (`tests/ui/test_account_sections.py`, 5 проверок маршрутов, API и пустых состояний);
-  итог набора UI: `pytest tests/ui -q` → 32 passed, 2 skipped, `audit_gate --full` → 11/11.
+  настройки (`tests/ui/test_account_sections.py`, 5 проверок маршрутов, API и данных); итог набора UI:
+  `pytest tests/ui -q` → 34 passed, 1 skipped, `audit_gate --full` → 11/11.
   Ledger: `ausn-qa-project/docs/reports/qa-loop-ui-account-sections-2026-09-22.md`.
+- **Сквозная валидность тестовых операций:** по итогам разбора инцидента с данными (500 на `/operation/recent`,
+  «Ошибка получения операций» из-за `chargeDate` вместо `drawDate` и битой кириллицы) введён статический гейт
+  `tests/static/test_operation_messages_are_system_valid.py` (направление ↔ поле даты, целостность текста),
+  генератор фикстур пишет дату по направлению, 308 фикстур категоризатора мигрированы; лишние операции
+  (1470 + 43) удалены со стенда по согласованию. Ретро 57–58.
 - **Граф связей документации (`codemap --docs`):** markdown в SocratiCode не графуется (ast-grep видит
   только import/require/export), поэтому добавлен режим `--docs`: рёбра из markdown-ссылок, путей в тексте
   и упоминаний навыков/агентов/команд, кросс-репозиторные цели — с префиксом (`qa-project:<path>`).
