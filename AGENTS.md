@@ -71,6 +71,9 @@ Read-only относится к источникам (код и документ
 - `docs/ausn-context/` — проверяемый снимок контекста ПК АУСН перед тестированием; вход — [README](docs/ausn-context/README.md), свежесть сверять по [реестру источников](docs/ausn-context/evidence-register.md).
 - `docs/qa-methodology/` — методологическая база QA/SDET; вход — [README](docs/qa-methodology/README.md).
 - `docs/reports/` — отчёты и разборы для передачи (например, вопросы к аналитику по контракту).
+- `docs/user-prompts/` — готовые промты запуска: `daily-flow.md` (ежедневный QA-TASK-FLOW),
+  `pre-release-prompt.md` (аудит покрытия Done-задач релиза), `start-regression-flow.md`
+  (предрелизный прогон регрессии). Источник истины — навык `ausn-qa-loop`; при расхождении править его.
 - `docs/mcp.md`, `docs/socraticode.md` — подключение корпоративных MCP и настройка индексации SocratiCode.
 - `.agents/skills/` — проектные навыки AI: `ausn-qa-loop` (contract-first QA loop и ежедневный QA-TASK-FLOW), `ausn-socraticode` (работа с индексированными проектами через SocratiCode), `ausn-qa-mcp` (выбор и границы MCP-инструментов), `ausn-qa-methodology` (тест-дизайн и доказательства), `ausn-qa-agents` (роли, маршрутизация, безопасность, метрики и тестовые данные агентного QA), `ausn-source-driven-development`, `ausn-api-contract-testing`, `ausn-context-engineering`, `ausn-categorizer-lifecycle`, `ausn-postman-sync` и `karpathy-guidelines` (правила работы с кодом).
 - `.opencode/command/qa-task.md` — команда `/qa-task` для запуска ежедневного QA-TASK-FLOW по задаче или функционалу.
