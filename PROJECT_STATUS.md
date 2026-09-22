@@ -101,6 +101,13 @@
   значит, возврата не было») это ожидаемое поведение; тест ужесточён до проверки точного набора разметок.
   `audit_gate --full` → 11/11. Итог: **DONE**. Ledger:
   `ausn-qa-project/docs/reports/qa-loop-acquiring-third-party-bank-format-2026-09-22.md`.
+- **UI-авторизация (Коробка, iframe-харнесс Агророса `:8001`):** разобран контракт (Confluence 181503531/161811592/195789196,
+  код `ausn-front-module`: ролевая матрица `AuthenticationExtractor`, `JwtClientDataFilter` → 400, `AuthorizationController`),
+  собраны 8 проб на стенде. Добавлен UI-набор: Playwright, маркер `ui`, `src/clients/ui_harness.py`, `tests/ui/` —
+  6 P0-проверок (НП на АУСН → `/dashboard`, клиент банка → `/about` + `stage=START`, 401 без креденшелов, пустой ИНН → 401,
+  роль-гейтинг `accrual/balance` 403/200) — `pytest tests/ui -q` → 6 passed, `audit_gate --full` → 11/11.
+  Восстановлен генератор НП через эмулятор ФНС (`scripts/new_taxpayers/`, код банка 2860; запуск через офисный прокси
+  `10.3.219.1:3128` со стенда). Ledger: `ausn-qa-project/docs/reports/qa-loop-ui-authorization-2026-09-22.md`.
 - **Граф связей документации (`codemap --docs`):** markdown в SocratiCode не графуется (ast-grep видит
   только import/require/export), поэтому добавлен режим `--docs`: рёбра из markdown-ссылок, путей в тексте
   и упоминаний навыков/агентов/команд, кросс-репозиторные цели — с префиксом (`qa-project:<path>`).
