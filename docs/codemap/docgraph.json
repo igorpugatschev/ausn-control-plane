@@ -1,8 +1,8 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-22T07:29:44+00:00",
-  "target_commit": "edea126",
+  "generated_at": "2026-09-22T08:10:15+00:00",
+  "target_commit": "ab9ac8b",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
