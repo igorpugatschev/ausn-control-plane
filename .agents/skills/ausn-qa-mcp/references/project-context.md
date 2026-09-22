@@ -1,7 +1,7 @@
 # Контекст АУСН и источники
 
-Источники: `../ausn/ausn-ai/AGENTS.md`, `REPOSITORIES.md`, `ENVIRONMENT.manual.md`,
-`.opencode/opencode.jsonc`, `.opencode/skills/ausn-graylog/SKILL.md` относительно control plane.
+Источники: `../ausn/ausn-ai/AGENTS.md`, `REPOSITORIES.md`, `ENVIRONMENT-manual.md`,
+`.opencode/opencode.jsonc`, `.agents/skills/ausn-qa-mcp/references/test_graylog.json` относительно control plane.
 Прочитаны 2026-09-08. Следующие значения — ориентиры, перед реальным тестом проверить актуальность.
 Инструкции разработчиков о создании ENVIRONMENT.md внутри ausn-ai не применять к нашей QA-копии:
 собственные артефакты размещаются в control plane.

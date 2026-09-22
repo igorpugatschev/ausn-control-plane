@@ -10,7 +10,7 @@
 
 Этот документ фиксирует специализацию QA/SDET-агентов, чтобы каждая задача проходила воспроизводимый путь: исследование контракта, дизайн проверки, реализация, разбор результатов, сопровождение и ревью.
 
-Подход опирается на локальные правила `AGENTS.md`, QA-потоки из `references/qa-flow.md` и стандарты из `references/`. Внешние основания:
+Подход опирается на локальные правила `AGENTS.md`, QA-потоки из `../../ausn-qa-loop/references/qa-task-flow.md` и стандарты из `references/`. Внешние основания:
 
 - GitHub Copilot cloud agent docs: агент исследует репозиторий, строит план, меняет код в ветке, запускает проверки и отдает результат на review.
 - OpenAI Codex docs и Codex security docs: агентная работа должна учитывать sandbox, permissions, MCP, audit, hooks и управление рисками.
@@ -306,7 +306,7 @@ Evidence:
 - Git diff.
 - Отчеты предыдущих ролей.
 - Результаты проверок.
-- Локальные правила `AGENTS.md`, `references/qa-flow.md`, skills.
+- Локальные правила `AGENTS.md`, `../../ausn-qa-loop/references/qa-task-flow.md`, skills.
 
 ### Разрешенные источники, MCP и tools
 

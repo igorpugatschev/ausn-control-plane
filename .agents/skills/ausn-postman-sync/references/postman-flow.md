@@ -43,7 +43,7 @@ postman/
 └── runners/                      # Скрипты запуска Newman
 ```
 
-**Важно:** `environments/AUSN_Full_Test_Environment.postman_environment.json` — единственный файл окружения для ВСЕХ коллекций. Все URL, токены, INN определены там.
+**Важно:** `postman/environments/AUSN_Full_Test_Environment.postman_environment.json` — единственный файл окружения для ВСЕХ коллекций. Все URL, токены, INN определены там.
 
 ---
 
@@ -136,7 +136,7 @@ beginDate/endDate    → {{beginDate}}/{{endDate}}
 
 ### 4. Environment файл
 
-**Критично:** При изменении IP, URL, токенов в `.env` — обновить `environments/AUSN_Full_Test_Environment.postman_environment.json`.
+**Критично:** При изменении IP, URL, токенов в `.env` — обновить `postman/environments/AUSN_Full_Test_Environment.postman_environment.json`.
 
 **Формат переменных:**
 ```json

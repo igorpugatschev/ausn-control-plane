@@ -11,7 +11,8 @@ description: Запустить QA-TASK-FLOW (contract-first QA loop) по за�
    дождись завершения индексации. Watcher — постоянный штатный режим, останавливать его не нужно.
 1. Запроси у atlassian полную информацию по Jira (`jira_get_issue`: описание, changelog, комментарии,
    связанные ссылки). Jira — только provenance контракта, не структура тестов.
-2. Выполни QA-TASK-FLOW по каждой задаче отдельно (навык `ausn-qa-loop`, `references/qa-task-flow.md`).
+2. Выполни QA-TASK-FLOW по каждой задаче отдельно (навык `ausn-qa-loop`,
+   `.agents/skills/ausn-qa-loop/references/qa-task-flow.md`).
 3. Предоставь краткий отчёт для журнала учёта времени по каждой выполненной задаче отдельно.
 
 Ограничения:
