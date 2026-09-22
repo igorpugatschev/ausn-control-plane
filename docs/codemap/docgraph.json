@@ -1,21 +1,21 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-22T10:27:58+00:00",
-  "target_commit": "9fdfe4d",
+  "generated_at": "2026-09-22T11:12:40+00:00",
+  "target_commit": "9e514a7",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
-    "docs": 80,
-    "edges": 271,
+    "docs": 81,
+    "edges": 275,
     "broken": 0,
     "unresolved": 21,
-    "unreachable": 15,
+    "unreachable": 16,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 109,
+    "code-path": 113,
     "mention-skill": 65,
     "mention-agent": 40,
     "mention-command": 7,
@@ -419,6 +419,12 @@
       "out": 1
     },
     {
+      "id": "docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md",
+      "kind": "doc",
+      "in": 0,
+      "out": 3
+    },
+    {
       "id": "docs/reports/default-rule-reachability-2026-09-21.md",
       "kind": "doc",
       "in": 1,
@@ -428,7 +434,7 @@
       "id": "docs/retrospectives.md",
       "kind": "doc",
       "in": 3,
-      "out": 12
+      "out": 13
     },
     {
       "id": "docs/reviews/2026-09-17-qa-project-framework-review.md",
@@ -1669,6 +1675,24 @@
       "line": 4
     },
     {
+      "from": "docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md",
+      "to": "qa-project:artifacts/categorizer-rules-from-db.json",
+      "kind": "code-path",
+      "line": 6
+    },
+    {
+      "from": "docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md",
+      "to": "qa-project:scripts/tools/categorizer_condition.py",
+      "kind": "code-path",
+      "line": 7
+    },
+    {
+      "from": "docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md",
+      "to": "qa-project:scripts/tools/analyze_rule_expectations.py",
+      "kind": "code-path",
+      "line": 7
+    },
+    {
       "from": "docs/reports/default-rule-reachability-2026-09-21.md",
       "to": "qa-project:artifacts/categorizer-rules-from-db.json",
       "kind": "code-path",
@@ -1727,6 +1751,12 @@
       "to": "qa-project:tests/static/test_operation_messages_are_system_valid.py",
       "kind": "code-path",
       "line": 221
+    },
+    {
+      "from": "docs/retrospectives.md",
+      "to": "qa-project:scripts/tools/analyze_rule_expectations.py",
+      "kind": "code-path",
+      "line": 223
     },
     {
       "from": "docs/retrospectives.md",
@@ -2270,6 +2300,7 @@
     "docs/evidence/2026-09-17-full-smoke-test1.md",
     "docs/reports/analyst-questions-categorizer-numeric-2026-09-22.md",
     "docs/reports/categorizer-numeric-logic-2026-09-22.md",
+    "docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md",
     "docs/reviews/2026-09-17-qa-project-framework-review.md",
     "docs/user-prompts/daily-flow.md",
     "docs/user-prompts/pre-release-prompt.md",
@@ -2305,7 +2336,7 @@
     },
     {
       "id": "docs/retrospectives.md",
-      "degree": 15
+      "degree": 16
     },
     {
       "id": "docs/socraticode.md",
