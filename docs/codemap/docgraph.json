@@ -1,21 +1,21 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-22T05:37:58+00:00",
-  "target_commit": "fa81906",
+  "generated_at": "2026-09-22T06:30:06+00:00",
+  "target_commit": "b1cdcc9",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
-    "docs": 78,
-    "edges": 266,
+    "docs": 79,
+    "edges": 267,
     "broken": 0,
     "unresolved": 18,
-    "unreachable": 13,
+    "unreachable": 14,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 104,
+    "code-path": 105,
     "mention-skill": 65,
     "mention-agent": 40,
     "mention-command": 7,
@@ -405,6 +405,12 @@
       "kind": "doc",
       "in": 2,
       "out": 0
+    },
+    {
+      "id": "docs/reports/categorizer-numeric-logic-2026-09-22.md",
+      "kind": "doc",
+      "in": 0,
+      "out": 1
     },
     {
       "id": "docs/reports/default-rule-reachability-2026-09-21.md",
@@ -1651,6 +1657,12 @@
       "line": 3
     },
     {
+      "from": "docs/reports/categorizer-numeric-logic-2026-09-22.md",
+      "to": "qa-project:artifacts/categorizer-rules-from-db.json",
+      "kind": "code-path",
+      "line": 4
+    },
+    {
       "from": "docs/reports/default-rule-reachability-2026-09-21.md",
       "to": "qa-project:artifacts/categorizer-rules-from-db.json",
       "kind": "code-path",
@@ -2208,6 +2220,7 @@
     "docs/ausn-context/testing-scope.md",
     "docs/ausn-context/ui-entrypoint.md",
     "docs/evidence/2026-09-17-full-smoke-test1.md",
+    "docs/reports/categorizer-numeric-logic-2026-09-22.md",
     "docs/reviews/2026-09-17-qa-project-framework-review.md",
     "docs/user-prompts/daily-flow.md",
     "docs/user-prompts/pre-release-prompt.md",
