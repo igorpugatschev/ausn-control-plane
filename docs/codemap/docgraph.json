@@ -1,21 +1,21 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-22T05:19:51+00:00",
-  "target_commit": "50beac2",
+  "generated_at": "2026-09-22T05:20:35+00:00",
+  "target_commit": "3ff1f06",
   "target_branch": "main",
-  "target_dirty": true,
+  "target_dirty": false,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
     "docs": 78,
-    "edges": 261,
+    "edges": 263,
     "broken": 0,
-    "unresolved": 17,
+    "unresolved": 16,
     "unreachable": 13,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 99,
+    "code-path": 101,
     "mention-skill": 65,
     "mention-agent": 40,
     "mention-command": 7,
@@ -470,7 +470,7 @@
       "id": "PROJECT_STATUS.md",
       "kind": "doc",
       "in": 0,
-      "out": 27
+      "out": 29
     },
     {
       "id": "README.md",
@@ -1982,6 +1982,18 @@
     },
     {
       "from": "PROJECT_STATUS.md",
+      "to": "qa-project:docs/archive/README.md",
+      "kind": "code-path",
+      "line": 186
+    },
+    {
+      "from": "PROJECT_STATUS.md",
+      "to": "qa-project:tests/data/kafka_topics/README.md",
+      "kind": "code-path",
+      "line": 187
+    },
+    {
+      "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/ausn-qa-loop/SKILL.md",
       "kind": "mention-skill",
       "line": 0
@@ -2153,14 +2165,8 @@
     },
     {
       "from": "PROJECT_STATUS.md",
-      "target": "postman/AUSN_Full_Test_Suite.postman_collection.json",
-      "line": 185,
-      "severity": "warning"
-    },
-    {
-      "from": "PROJECT_STATUS.md",
       "target": "references/socraticode.json",
-      "line": 222,
+      "line": 226,
       "severity": "warning"
     }
   ],
@@ -2187,7 +2193,7 @@
     },
     {
       "id": "PROJECT_STATUS.md",
-      "degree": 27
+      "degree": 29
     },
     {
       "id": ".agents/skills/ausn-qa-agents/SKILL.md",
