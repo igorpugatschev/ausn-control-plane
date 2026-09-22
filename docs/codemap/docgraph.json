@@ -1,8 +1,8 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-22T06:52:10+00:00",
-  "target_commit": "cc94c19",
+  "generated_at": "2026-09-22T07:29:44+00:00",
+  "target_commit": "edea126",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
@@ -1936,97 +1936,97 @@
       "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/ausn-socraticode/SKILL.md",
       "kind": "code-path",
-      "line": 135
+      "line": 136
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/karpathy-guidelines/SKILL.md",
       "kind": "code-path",
-      "line": 136
+      "line": 137
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/socraticode.md",
       "kind": "code-path",
-      "line": 140
+      "line": 141
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/retrospectives.md",
       "kind": "code-path",
-      "line": 140
+      "line": 141
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/ausn-context/qa-source-assessment.md",
       "kind": "code-path",
-      "line": 140
+      "line": 141
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/generate.py",
       "kind": "code-path",
-      "line": 142
+      "line": 143
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/model/control-plane.json",
       "kind": "code-path",
-      "line": 142
+      "line": 143
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/model/qa-project.json",
       "kind": "code-path",
-      "line": 143
+      "line": 144
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:src/config/paths.py",
       "kind": "code-path",
-      "line": 148
+      "line": 149
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/kafka/conftest.py",
       "kind": "code-path",
-      "line": 150
+      "line": 151
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/static/test_categorizer_json_fixtures.py",
       "kind": "code-path",
-      "line": 151
+      "line": 152
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/integration/test_permission_refresh_queue_advance.py",
       "kind": "code-path",
-      "line": 157
+      "line": 158
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/db/test_permission_refresh_order.py",
       "kind": "code-path",
-      "line": 158
+      "line": 159
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:docs/reports/qa-loop-permission-refresh-order-2026-09-18.md",
       "kind": "code-path",
-      "line": 159
+      "line": 160
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:docs/archive/README.md",
       "kind": "code-path",
-      "line": 200
+      "line": 201
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/data/kafka_topics/README.md",
       "kind": "code-path",
-      "line": 201
+      "line": 202
     },
     {
       "from": "PROJECT_STATUS.md",
@@ -2190,37 +2190,37 @@
     {
       "from": "PROJECT_STATUS.md",
       "target": "ausn-qa-project/docs/reports/qa-loop-acquiring-third-party-bank-format-2026-09-22.md",
-      "line": 102,
+      "line": 103,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/qa-task-flow.md",
-      "line": 137,
-      "severity": "warning"
-    },
-    {
-      "from": "PROJECT_STATUS.md",
-      "target": "references/loop-quality-gates.md",
       "line": 138,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
+      "target": "references/loop-quality-gates.md",
+      "line": 139,
+      "severity": "warning"
+    },
+    {
+      "from": "PROJECT_STATUS.md",
       "target": "ausn-qa-project/AGENTS.md",
-      "line": 176,
+      "line": 177,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/socraticode.json",
-      "line": 197,
+      "line": 198,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/socraticode.json",
-      "line": 240,
+      "line": 241,
       "severity": "warning"
     }
   ],
