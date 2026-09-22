@@ -1,21 +1,21 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-22T05:22:39+00:00",
-  "target_commit": "4cc63b8",
+  "generated_at": "2026-09-22T05:36:06+00:00",
+  "target_commit": "de937c7",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
     "docs": 78,
-    "edges": 263,
+    "edges": 265,
     "broken": 0,
-    "unresolved": 16,
+    "unresolved": 17,
     "unreachable": 13,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 101,
+    "code-path": 103,
     "mention-skill": 65,
     "mention-agent": 40,
     "mention-command": 7,
@@ -416,7 +416,7 @@
       "id": "docs/retrospectives.md",
       "kind": "doc",
       "in": 3,
-      "out": 9
+      "out": 11
     },
     {
       "id": "docs/reviews/2026-09-17-qa-project-framework-review.md",
@@ -1694,6 +1694,18 @@
     },
     {
       "from": "docs/retrospectives.md",
+      "to": "qa-project:artifacts/categorizer-rules-from-db.json",
+      "kind": "code-path",
+      "line": 197
+    },
+    {
+      "from": "docs/retrospectives.md",
+      "to": "docs/codemap/docgraph.html",
+      "kind": "code-path",
+      "line": 198
+    },
+    {
+      "from": "docs/retrospectives.md",
       "to": ".agents/skills/ausn-qa-loop/SKILL.md",
       "kind": "mention-skill",
       "line": 0
@@ -2110,6 +2122,12 @@
       "severity": "warning"
     },
     {
+      "from": "docs/retrospectives.md",
+      "target": "tmp/fix_links.py",
+      "line": 199,
+      "severity": "warning"
+    },
+    {
       "from": "docs/user-prompts/daily-flow.md",
       "target": "references/loop-goal-prompts.md",
       "line": 5,
@@ -2216,6 +2234,10 @@
       "degree": 15
     },
     {
+      "id": "docs/retrospectives.md",
+      "degree": 14
+    },
+    {
       "id": "docs/ausn-context/qa-source-assessment.md",
       "degree": 13
     },
@@ -2225,10 +2247,6 @@
     },
     {
       "id": ".opencode/command/qa-task.md",
-      "degree": 12
-    },
-    {
-      "id": "docs/retrospectives.md",
       "degree": 12
     },
     {

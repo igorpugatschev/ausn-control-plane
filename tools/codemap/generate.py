@@ -536,7 +536,7 @@ pre {{ background: #1b1e24; border: 1px solid #2a2f37; border-radius: 10px;
 документов {docs} · рёбер {edges} · <span class="bad">битых {broken_count}</span> ·
 неразрешённых путей {unresolved_count} · недостижимых {unreachable_count} ·
 warnings {warnings_count} · сгенерировано {generated}</p>
-<h2>Рёбра по типам</h2>
+<h2>Связи по типам</h2>
 <ul>
 {kinds}
 </ul>
