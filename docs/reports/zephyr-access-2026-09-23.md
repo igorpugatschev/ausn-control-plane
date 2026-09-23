@@ -37,6 +37,21 @@
 Артефакты: `ausn-qa-project/data/zephyr/testcases.json` (нормализованный JSON) и
 `ausn-qa-project/docs/reports/zephyr-testcases.md` (сводка по папкам, кейсы наших направлений, полный список).
 
+## Запись в Zephyr Scale (по отдельному согласованию)
+
+Запись во внешнюю систему выполнялась с явного разрешения пользователя. Проверенные контракты:
+
+| Операция | Эндпоинт | Особенности |
+|---|---|---|
+| Папка | `POST /rest/atm/1.0/folder` | `name` начинается с `/`, `type: "TEST_CASE"` (иначе 400); вложенный путь создаётся одной операцией; **кейс нельзя создать в несуществующей папке** (400 «The value … was not found for field folder») |
+| Тест-кейс | `POST /rest/atm/1.0/testcase` | `priority` — **строка** (`"High"`), не объект (иначе 500 «Can not deserialize instance of java.lang.String out of START_OBJECT»); шаги — `testScript.steps[]` с `description`/`expectedResult`; `owner` — ключ Jira (`JIRAUSER…`) |
+| Тест-ран | `POST /rest/atm/1.0/testrun` | Поля: `name`, `items[]` с `{testCaseKey, status}`; `testCases` — неверное имя поля (500 «Unrecognized field»); статусы `Pass`/`Fail`/`Blocked`; удаление — `DELETE /rest/atm/1.0/testrun/{key}` (204) |
+| Automation API | `/rest/atm/1.0/automation/execution` | **404** на этом сервере — использовать тест-раны |
+
+Результат: 108 кейсов `PKAUSN-T232…T340` в `/autotests/*` (владелец `JIRAUSER10906`, метка `autotest`)
+и 19 тест-ранов `PKAUSN-C36…C54`; реестры и отчёты — в `ausn-qa-project`
+(`data/zephyr/import/{imported,executions}.json`, `docs/reports/zephyr-*.md`).
+
 ## Трассировка с нашими проверками
 
 | Zephyr | Наши проверки (ledger) |
