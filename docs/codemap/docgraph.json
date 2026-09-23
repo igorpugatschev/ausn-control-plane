@@ -1,14 +1,14 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-23T11:42:45+00:00",
-  "target_commit": "275693a",
+  "generated_at": "2026-09-23T12:51:50+00:00",
+  "target_commit": "5e914e7",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
     "docs": 84,
-    "edges": 292,
+    "edges": 293,
     "broken": 0,
     "unresolved": 26,
     "unreachable": 19,
@@ -19,7 +19,7 @@
     "mention-skill": 76,
     "mention-agent": 40,
     "mention-command": 7,
-    "link": 52
+    "link": 53
   },
   "nodes": [
     {
@@ -379,7 +379,7 @@
     {
       "id": "docs/qa-methodology/README.md",
       "kind": "doc",
-      "in": 4,
+      "in": 5,
       "out": 16
     },
     {
@@ -452,7 +452,7 @@
       "id": "docs/retrospectives.md",
       "kind": "doc",
       "in": 4,
-      "out": 14
+      "out": 15
     },
     {
       "id": "docs/reviews/2026-09-17-qa-project-framework-review.md",
@@ -1826,57 +1826,63 @@
     },
     {
       "from": "docs/retrospectives.md",
+      "to": "docs/qa-methodology/README.md",
+      "kind": "link",
+      "line": 5
+    },
+    {
+      "from": "docs/retrospectives.md",
       "to": ".opencode/opencode.jsonc",
       "kind": "code-path",
-      "line": 7
+      "line": 8
     },
     {
       "from": "docs/retrospectives.md",
       "to": "docs/socraticode.md",
       "kind": "code-path",
-      "line": 98
+      "line": 115
     },
     {
       "from": "docs/retrospectives.md",
       "to": "qa-project:scripts/tools/categorizer_casegen.py",
       "kind": "code-path",
-      "line": 164
+      "line": 178
     },
     {
       "from": "docs/retrospectives.md",
       "to": "qa-project:tests/conftest.py",
       "kind": "code-path",
-      "line": 186
+      "line": 202
     },
     {
       "from": "docs/retrospectives.md",
       "to": "qa-project:artifacts/categorizer-rules-from-db.json",
       "kind": "code-path",
-      "line": 197
+      "line": 214
     },
     {
       "from": "docs/retrospectives.md",
       "to": "docs/codemap/docgraph.html",
       "kind": "code-path",
-      "line": 198
+      "line": 215
     },
     {
       "from": "docs/retrospectives.md",
       "to": "qa-project:tests/static/test_operation_messages_are_system_valid.py",
       "kind": "code-path",
-      "line": 221
+      "line": 240
     },
     {
       "from": "docs/retrospectives.md",
       "to": "qa-project:scripts/tools/analyze_rule_expectations.py",
       "kind": "code-path",
-      "line": 223
+      "line": 242
     },
     {
       "from": "docs/retrospectives.md",
       "to": "qa-project:scripts/tools/zephyr_export.py",
       "kind": "code-path",
-      "line": 238
+      "line": 257
     },
     {
       "from": "docs/retrospectives.md",
@@ -2340,25 +2346,25 @@
     {
       "from": "docs/retrospectives.md",
       "target": "references/qa-task-flow.md",
-      "line": 187,
+      "line": 203,
       "severity": "warning"
     },
     {
       "from": "docs/retrospectives.md",
       "target": "references/qa-flow.md",
-      "line": 187,
+      "line": 203,
       "severity": "warning"
     },
     {
       "from": "docs/retrospectives.md",
       "target": ".opencode/skills/ausn-graylog/SKILL.md",
-      "line": 187,
+      "line": 203,
       "severity": "warning"
     },
     {
       "from": "docs/retrospectives.md",
       "target": "tmp/fix_links.py",
-      "line": 199,
+      "line": 216,
       "severity": "warning"
     },
     {
@@ -2481,7 +2487,7 @@
     },
     {
       "id": "docs/qa-methodology/README.md",
-      "degree": 20
+      "degree": 21
     },
     {
       "id": ".agents/skills/ausn-qa-methodology/SKILL.md",
@@ -2489,7 +2495,7 @@
     },
     {
       "id": "docs/retrospectives.md",
-      "degree": 18
+      "degree": 19
     },
     {
       "id": ".agents/skills/ausn-qa-mcp/SKILL.md",
