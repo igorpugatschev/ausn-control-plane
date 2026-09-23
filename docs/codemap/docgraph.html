@@ -19,13 +19,13 @@ pre { background: #1b1e24; border: 1px solid #2a2f37; border-radius: 10px;
 </head>
 <body>
 <h1>docgraph: control-plane</h1>
-<p class="meta-line">ветка <code>main</code> · коммит <code>d1021f8</code> (рабочая копия изменена) ·
-документов 82 · рёбер 275 · <span class="bad">битых 0</span> ·
-неразрешённых путей 22 · недостижимых 17 ·
-warnings 0 · сгенерировано 2026-09-23T07:01:37+00:00</p>
+<p class="meta-line">ветка <code>main</code> · коммит <code>14d3a12</code> (рабочая копия изменена) ·
+документов 82 · рёбер 277 · <span class="bad">битых 0</span> ·
+неразрешённых путей 23 · недостижимых 17 ·
+warnings 0 · сгенерировано 2026-09-23T07:37:17+00:00</p>
 <h2>Связи по типам</h2>
 <ul>
-<li>code-path — 113</li>
+<li>code-path — 115</li>
 <li>link — 50</li>
 <li>mention-agent — 40</li>
 <li>mention-command — 7</li>
@@ -41,7 +41,8 @@ warnings 0 · сгенерировано 2026-09-23T07:01:37+00:00</p>
 <li><code>docs/ausn-context/qa-source-assessment.md</code>:25 → <code>references/postman-flow.md</code></li>
 <li><code>docs/ausn-context/qa-source-assessment.md</code>:26 → <code>references/agent-roles.md</code></li>
 <li><code>docs/reports/analyst-questions-categorizer-numeric-2026-09-22.md</code>:5 → <code>ausn-control-plane/docs/reports/categorizer-numeric-logic-2026-09-22.md</code></li>
-<li><code>docs/reports/bug-notification-mark-as-read-2026-09-23.md</code>:5 → <code>ausn-qa-project/docs/reports/qa-loop-ui-account-sections-2026-09-22.md</code></li>
+<li><code>docs/reports/ui-truth-notifications-kkt-2026-09-23.md</code>:19 → <code>qa-project/docs/archive/use-cases-wiki/5-use-case.md</code></li>
+<li><code>docs/reports/ui-truth-notifications-kkt-2026-09-23.md</code>:21 → <code>ausn-qa-project/tests/ui/test_notifications_status_flow.py</code></li>
 <li><code>docs/retrospectives.md</code>:187 → <code>references/qa-task-flow.md</code></li>
 <li><code>docs/retrospectives.md</code>:187 → <code>references/qa-flow.md</code></li>
 <li><code>docs/retrospectives.md</code>:187 → <code>.opencode/skills/ausn-graylog/SKILL.md</code></li>
@@ -74,9 +75,9 @@ warnings 0 · сгенерировано 2026-09-23T07:01:37+00:00</p>
 <li><code>docs/ausn-context/ui-entrypoint.md</code></li>
 <li><code>docs/evidence/2026-09-17-full-smoke-test1.md</code></li>
 <li><code>docs/reports/analyst-questions-categorizer-numeric-2026-09-22.md</code></li>
-<li><code>docs/reports/bug-notification-mark-as-read-2026-09-23.md</code></li>
 <li><code>docs/reports/categorizer-numeric-logic-2026-09-22.md</code></li>
 <li><code>docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md</code></li>
+<li><code>docs/reports/ui-truth-notifications-kkt-2026-09-23.md</code></li>
 <li><code>docs/reviews/2026-09-17-qa-project-framework-review.md</code></li>
 <li><code>docs/user-prompts/daily-flow.md</code></li>
 <li><code>docs/user-prompts/pre-release-prompt.md</code></li>
@@ -152,7 +153,7 @@ warnings 0 · сгенерировано 2026-09-23T07:01:37+00:00</p>
   "AGENTS.md" -->|code-path| ".opencode/command/qa-task.md"
   "AGENTS.md" -->|code-path| ".codex/config.toml"
   "AGENTS.md" -->|code-path| ".vscode/mcp.json"
-  "AGENTS.md" -->|code-path| "qa-project:docs/archive/README.md"
+  "AGENTS.md" -->|code-path| "docs/archive/README.md"
   "docs/ausn-context/qa-source-assessment.md" -->|code-path| ".opencode/command/lint.md"
   "docs/ausn-context/qa-source-assessment.md" -->|code-path| ".opencode/command/test.md"
   "docs/ausn-context/qa-source-assessment.md" -->|code-path| "docs/qa-methodology/evidence.md"
@@ -171,6 +172,8 @@ warnings 0 · сгенерировано 2026-09-23T07:01:37+00:00</p>
   "docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md" -->|code-path| "qa-project:scripts/tools/analyze_rule_expectations.py"
   "docs/reports/default-rule-reachability-2026-09-21.md" -->|code-path| "qa-project:artifacts/categorizer-rules-from-db.json"
   "docs/reports/default-rule-reachability-2026-09-21.md" -->|code-path| "qa-project:artifacts/categorizer-case-specs/DEFAULT_RULE.json"
+  "docs/reports/ui-truth-notifications-kkt-2026-09-23.md" -->|code-path| "qa-project:tests/ui/test_kkt_detalization.py"
+  "docs/reports/ui-truth-notifications-kkt-2026-09-23.md" -->|code-path| "docs/archive/bug-notification-mark-as-read-2026-09-23-retracted.md"
   "docs/retrospectives.md" -->|code-path| ".opencode/opencode.jsonc"
   "docs/retrospectives.md" -->|code-path| "docs/socraticode.md"
   "docs/retrospectives.md" -->|code-path| "qa-project:scripts/tools/categorizer_casegen.py"
@@ -215,14 +218,12 @@ warnings 0 · сгенерировано 2026-09-23T07:01:37+00:00</p>
   "PROJECT_STATUS.md" -->|code-path| "qa-project:tests/integration/test_permission_refresh_queue_advance.py"
   "PROJECT_STATUS.md" -->|code-path| "qa-project:tests/db/test_permission_refresh_order.py"
   "PROJECT_STATUS.md" -->|code-path| "qa-project:docs/reports/qa-loop-permission-refresh-order-2026-09-18.md"
-  "PROJECT_STATUS.md" -->|code-path| "qa-project:docs/archive/README.md"
+  "PROJECT_STATUS.md" -->|code-path| "docs/archive/README.md"
   "PROJECT_STATUS.md" -->|code-path| "qa-project:tests/data/kafka_topics/README.md"
   ".agents/skills/ausn-qa-mcp/references/catalog.md" -->|link| ".agents/skills/ausn-qa-mcp/references/atlassian.json"
   ".agents/skills/ausn-qa-mcp/references/catalog.md" -->|link| ".agents/skills/ausn-qa-mcp/references/gitlab.json"
   ".agents/skills/ausn-qa-mcp/references/catalog.md" -->|link| ".agents/skills/ausn-qa-mcp/references/mattermost.json"
   ".agents/skills/ausn-qa-mcp/references/catalog.md" -->|link| ".agents/skills/ausn-qa-mcp/references/playwright.json"
-  ".agents/skills/ausn-qa-mcp/references/catalog.md" -->|link| ".agents/skills/ausn-qa-mcp/references/socraticode.json"
-  ".agents/skills/ausn-qa-mcp/references/catalog.md" -->|link| ".agents/skills/ausn-qa-mcp/references/test_grafana.json"
-  ".agents/skills/ausn-qa-mcp/references/catalog.md" -->|link| ".agents/skills/ausn-qa-mcp/references/test_graylog.json"</pre>
+  ".agents/skills/ausn-qa-mcp/references/catalog.md" -->|link| ".agents/skills/ausn-qa-mcp/references/socraticode.json"</pre>
 </body>
 </html>

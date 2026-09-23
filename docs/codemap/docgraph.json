@@ -1,21 +1,21 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-23T07:01:37+00:00",
-  "target_commit": "d1021f8",
+  "generated_at": "2026-09-23T07:37:17+00:00",
+  "target_commit": "14d3a12",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
     "docs": 82,
-    "edges": 275,
+    "edges": 277,
     "broken": 0,
-    "unresolved": 22,
+    "unresolved": 23,
     "unreachable": 17,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 113,
+    "code-path": 115,
     "mention-skill": 65,
     "mention-agent": 40,
     "mention-command": 7,
@@ -413,12 +413,6 @@
       "out": 0
     },
     {
-      "id": "docs/reports/bug-notification-mark-as-read-2026-09-23.md",
-      "kind": "doc",
-      "in": 0,
-      "out": 0
-    },
-    {
       "id": "docs/reports/categorizer-numeric-logic-2026-09-22.md",
       "kind": "doc",
       "in": 0,
@@ -434,6 +428,12 @@
       "id": "docs/reports/default-rule-reachability-2026-09-21.md",
       "kind": "doc",
       "in": 1,
+      "out": 2
+    },
+    {
+      "id": "docs/reports/ui-truth-notifications-kkt-2026-09-23.md",
+      "kind": "doc",
+      "in": 0,
       "out": 2
     },
     {
@@ -1334,7 +1334,7 @@
     },
     {
       "from": "AGENTS.md",
-      "to": "qa-project:docs/archive/README.md",
+      "to": "docs/archive/README.md",
       "kind": "code-path",
       "line": 114
     },
@@ -1711,6 +1711,18 @@
       "line": 73
     },
     {
+      "from": "docs/reports/ui-truth-notifications-kkt-2026-09-23.md",
+      "to": "qa-project:tests/ui/test_kkt_detalization.py",
+      "kind": "code-path",
+      "line": 37
+    },
+    {
+      "from": "docs/reports/ui-truth-notifications-kkt-2026-09-23.md",
+      "to": "docs/archive/bug-notification-mark-as-read-2026-09-23-retracted.md",
+      "kind": "code-path",
+      "line": 44
+    },
+    {
       "from": "docs/retrospectives.md",
       "to": "AGENTS.md",
       "kind": "link",
@@ -2078,7 +2090,7 @@
     },
     {
       "from": "PROJECT_STATUS.md",
-      "to": "qa-project:docs/archive/README.md",
+      "to": "docs/archive/README.md",
       "kind": "code-path",
       "line": 219
     },
@@ -2194,9 +2206,15 @@
       "severity": "warning"
     },
     {
-      "from": "docs/reports/bug-notification-mark-as-read-2026-09-23.md",
-      "target": "ausn-qa-project/docs/reports/qa-loop-ui-account-sections-2026-09-22.md",
-      "line": 5,
+      "from": "docs/reports/ui-truth-notifications-kkt-2026-09-23.md",
+      "target": "qa-project/docs/archive/use-cases-wiki/5-use-case.md",
+      "line": 19,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/reports/ui-truth-notifications-kkt-2026-09-23.md",
+      "target": "ausn-qa-project/tests/ui/test_notifications_status_flow.py",
+      "line": 21,
       "severity": "warning"
     },
     {
@@ -2311,9 +2329,9 @@
     "docs/ausn-context/ui-entrypoint.md",
     "docs/evidence/2026-09-17-full-smoke-test1.md",
     "docs/reports/analyst-questions-categorizer-numeric-2026-09-22.md",
-    "docs/reports/bug-notification-mark-as-read-2026-09-23.md",
     "docs/reports/categorizer-numeric-logic-2026-09-22.md",
     "docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md",
+    "docs/reports/ui-truth-notifications-kkt-2026-09-23.md",
     "docs/reviews/2026-09-17-qa-project-framework-review.md",
     "docs/user-prompts/daily-flow.md",
     "docs/user-prompts/pre-release-prompt.md",
