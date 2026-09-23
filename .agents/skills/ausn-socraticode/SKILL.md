@@ -26,7 +26,8 @@ description: >-
 
 - `ausn-control-plane` — корень control plane.
 - Все репозитории в `../ausn`, включая `ausn-qa-project`: `ausn-core`, `ausn-api`,
-  `ausn-front-gateway`, `ausn-frontend`, `ausn-admin-backend`, `ausn-admin-dashboard`,
+  `ausn-front-gateway`, `ausn-frontend`, `ausn-front-module`, `ausn-front-module-api`,
+  `ausn-kafka-contracts`, `ausn-admin-backend`, `ausn-admin-dashboard`,
   `ausn-ai`, `dbo-emulator`, `test-stands`, `ausn-qa-project`.
 - `ausn-qa-project` — наш продукт (тесты, fixtures, сценарии). Он **записываемый** и при этом
   **индексирован**: искать тесты/сценарии через SocratiCode, а править — обычной записью;

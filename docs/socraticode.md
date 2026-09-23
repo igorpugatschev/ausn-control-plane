@@ -19,7 +19,8 @@ README, раздел OpenCode) не предоставляет opencode-плаг
 - `ausn-control-plane` — корень control plane.
 - Все локальные репозитории в `../ausn`, включая `ausn-qa-project`: исходники тестируемого приложения
   и стендовое окружение (`ausn-ai`, `ausn-core`, `ausn-api`, `ausn-front-gateway`, `ausn-frontend`,
-  `ausn-admin-backend`, `ausn-admin-dashboard`, `dbo-emulator`, `test-stands`) и наш продукт
+  `ausn-front-module`, `ausn-front-module-api`, `ausn-kafka-contracts`, `ausn-admin-backend`,
+  `ausn-admin-dashboard`, `dbo-emulator`, `test-stands`) и наш продукт
   `ausn-qa-project` (тесты, fixtures, сценарии — индексируется для ревью и поиска по тестам).
   Индексация не делает `ausn-qa-project` read-only: он остаётся записываемым, правки автоиндексируются watcher'ом.
 

@@ -10,22 +10,31 @@
 
 ## Локальные клоны продуктовых сервисов (только чтение)
 
-Продуктовые сервисы при необходимости клонируются рядом с control plane:
+Продуктовые сервисы клонируются рядом с control plane; актуальный состав — в `ENVIRONMENT.md`.
 
-```text
-../ausn/<service>        # например ../ausn/ausn-front-module, ../ausn/ausn-core, ../ausn/ausn-categorizer
-```
+| Локальная папка | GitLab URL | Роль |
+|---|---|---|
+| `../ausn/ausn-core` | `backend/ausn-core` | доменные процессы и интеграция с ФНС |
+| `../ausn/ausn-front-module` | `backend/ausn-front-module` | BFF кабинета: REST кабинета, Kafka-потребители/продюсеры |
+| `../ausn/ausn-front-module-api` | `backend/libs/ausn-front-module-api` | DTO REST кабинета (источник expected behavior API) |
+| `../ausn/ausn-kafka-contracts` | `backend/libs/ausn-kafka-contracts` | схемы Kafka-сообщений и типы обёрток |
+| `../ausn/ausn-frontend` | `frontend/ausn-frontend` | общее ядро UI (маршруты, API-клиенты, формы) |
+| `../ausn/ausn-front-gateway` | `backend/ausn-front-gateway` | профильные адаптеры банков/ДБО |
+| `../ausn/ausn-api` | `ausn-api` | контракты API-first |
+| `../ausn/ausn-admin-backend`, `../ausn/ausn-admin-dashboard` | `backend/ausn-admin-backend`, `frontend/ausn-admin-dashboard` | админ-контур |
+| `../ausn/dbo-emulator`, `../ausn/test-stands` | `integrator/front-module/dbo-emulator`, `test-stands` | эмуляторы и описание стендов |
 
 Правила:
 
 - только чтение: `git pull --ff-only` для актуализации; правки, коммиты и force-push запрещены;
 - для семантического поиска и анализа влияния сервис индексируется в SocratiCode отдельно
-  (с передачей соответствующего `projectPath`), после работы watcher останавливается;
+  (с передачей соответствующего `projectPath`); watcher остаётся включённым (штатный режим) и держит индекс свежим;
 - локальный корень клонов фиксируется в `ENVIRONMENT.md` (машинно-специфичный, в Git не входит),
   в переносимых настройках используются относительные пути.
 
-GitLab MCP остаётся первичным источником контракта и точной ревизии; клоны нужны там, где требуется
-поиск по содержимому кода, семантический поиск или анализ влияния (см. навык `ausn-qa-loop`).
+GitLab MCP остаётся первичным источником контракта и точной ревизии (файл по `ref`, диффы, коммиты);
+клоны нужны там, где требуется поиск по содержимому кода, семантический поиск или анализ влияния
+(см. навык `ausn-qa-loop`).
 
 ## Состав стенда test1 и нужные репозитории
 

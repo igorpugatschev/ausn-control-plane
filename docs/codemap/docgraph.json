@@ -1,17 +1,17 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-23T05:53:35+00:00",
-  "target_commit": "c64434d",
+  "generated_at": "2026-09-23T07:01:37+00:00",
+  "target_commit": "d1021f8",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
-    "docs": 81,
+    "docs": 82,
     "edges": 275,
     "broken": 0,
-    "unresolved": 21,
-    "unreachable": 16,
+    "unresolved": 22,
+    "unreachable": 17,
     "warnings": 0
   },
   "kinds": {
@@ -408,6 +408,12 @@
     },
     {
       "id": "docs/reports/analyst-questions-categorizer-numeric-2026-09-22.md",
+      "kind": "doc",
+      "in": 0,
+      "out": 0
+    },
+    {
+      "id": "docs/reports/bug-notification-mark-as-read-2026-09-23.md",
       "kind": "doc",
       "in": 0,
       "out": 0
@@ -1084,19 +1090,19 @@
       "from": ".agents/skills/ausn-socraticode/SKILL.md",
       "to": "docs/socraticode.md",
       "kind": "code-path",
-      "line": 95
+      "line": 96
     },
     {
       "from": ".agents/skills/ausn-socraticode/SKILL.md",
       "to": "docs/retrospectives.md",
       "kind": "code-path",
-      "line": 105
+      "line": 106
     },
     {
       "from": ".agents/skills/ausn-socraticode/SKILL.md",
       "to": ".agents/skills/ausn-qa-mcp/references/socraticode.json",
       "kind": "code-path",
-      "line": 117
+      "line": 118
     },
     {
       "from": ".agents/skills/ausn-socraticode/SKILL.md",
@@ -2152,7 +2158,7 @@
       "from": "REPOSITORIES.md",
       "to": "docs/ausn-context/system-map.md",
       "kind": "link",
-      "line": 34
+      "line": 43
     },
     {
       "from": "REPOSITORIES.md",
@@ -2184,6 +2190,12 @@
     {
       "from": "docs/reports/analyst-questions-categorizer-numeric-2026-09-22.md",
       "target": "ausn-control-plane/docs/reports/categorizer-numeric-logic-2026-09-22.md",
+      "line": 5,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/reports/bug-notification-mark-as-read-2026-09-23.md",
+      "target": "ausn-qa-project/docs/reports/qa-loop-ui-account-sections-2026-09-22.md",
       "line": 5,
       "severity": "warning"
     },
@@ -2299,6 +2311,7 @@
     "docs/ausn-context/ui-entrypoint.md",
     "docs/evidence/2026-09-17-full-smoke-test1.md",
     "docs/reports/analyst-questions-categorizer-numeric-2026-09-22.md",
+    "docs/reports/bug-notification-mark-as-read-2026-09-23.md",
     "docs/reports/categorizer-numeric-logic-2026-09-22.md",
     "docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md",
     "docs/reviews/2026-09-17-qa-project-framework-review.md",
