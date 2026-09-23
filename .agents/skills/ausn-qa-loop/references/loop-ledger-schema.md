@@ -31,6 +31,7 @@ raw payload, SQL/лог-выгрузки.
 | `user_story` | Пользовательская история или системный сценарий |
 | `expected_behavior` | Проверяемое ожидание по контракту |
 | `oracle` | Что именно делает наблюдение вердиктом (для ключевых строк обязателен) |
+| `rule_source` | Происхождение правила проверки: `method:<файл>#<раздел>` (из `docs/qa-methodology/`) или `practice:<ретро-N\|ledger-файл>` (из практики). Обязательно для `P0`/`P1` |
 | `scenario_type` | `positive`, `negative`, `boundary`, `permissions`, `idempotency`, `async`, `regression` |
 | `test_priority` | `P0`–`P2` по рискам (`docs/ausn-context/qa-entry-context.md`), не по «полноте покрытия» |
 | `test_data` | Как создаются, находятся и очищаются данные |
@@ -60,15 +61,16 @@ raw payload, SQL/лог-выгрузки.
 ## Минимальный пример
 
 ```markdown
-| id | scope | feature | source | source_confidence | user_story | expected_behavior | oracle | scenario_type | test_priority | test_data | current_coverage | status | defect_class | fix | verification | risk | owner_next_step |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| QL-001 | admin_bank_rights / GET /api/v1/admin/taxpayers/{inn}/processes/bank-rights | Bank rights | OpenAPI front-module + Jira: https://jira.rocketscien.se/browse/PKAUSN-XXXX | primary | Как администратор, я вижу процессы bank-rights | Ответ 200 валидируется моделью, обязательные поля присутствуют | Модель ответа и обязательные поля, а не только status 200 | positive | P1 | синтетический ИНН из .env, данные не мутируются | partial | DESIGNED | none | - | `pytest -m "admin_api and smoke" -v` | нужны admin-права на стенде | agent |
+| id | scope | feature | source | source_confidence | user_story | expected_behavior | oracle | rule_source | scenario_type | test_priority | test_data | current_coverage | status | defect_class | fix | verification | risk | owner_next_step |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| QL-001 | admin_bank_rights / GET /api/v1/admin/taxpayers/{inn}/processes/bank-rights | Bank rights | OpenAPI front-module + Jira: https://jira.rocketscien.se/browse/PKAUSN-XXXX | primary | Как администратор, я вижу процессы bank-rights | Ответ 200 валидируется моделью, обязательные поля присутствуют | Модель ответа и обязательные поля, а не только status 200 | method:system-testing.md#API | positive | P1 | синтетический ИНН из .env, данные не мутируются | partial | DESIGNED | none | - | `pytest -m "admin_api and smoke" -v` | нужны admin-права на стенде | agent |
 ```
 
 ## Правила заполнения
 
 - Не оставляй пустой `source` для строк, идущих в реализацию.
 - Ключевые строки (`P0`/`P1`) обязаны иметь `oracle`: без него непонятно, что доказывает проверка.
+- Ключевые строки (`P0`/`P1`) обязаны иметь `rule_source`: правило из книг указывается как `method:` с конкретным разделом, правило из практики — как `practice:` со ссылкой на урок или ledger. Не подгонять фрагмент базы под правило, которого в ней нет.
 - Приоритет определяется рисками из `docs/ausn-context/qa-entry-context.md`, а не стремлением к «полноте».
 - Номер задачи не должен становиться `scope`, `feature`, ID сценария или критерием запуска.
 - Нет источника → `source_confidence=missing`, `status=BLOCKED`, финальный тест не писать.

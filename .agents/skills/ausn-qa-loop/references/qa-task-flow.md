@@ -120,7 +120,8 @@ codebase_index(projectPath="<path>")
    продуктовых сервисов (если проект проиндексирован).
 4. **Существующие тесты:** поиск по функциональному имени и endpoint в `../ausn/ausn-qa-project/tests`.
 5. **Ledger:** заполнить contract-секцию: `source`, `source_confidence`, `expected_behavior`, `oracle`,
-   `test_priority`, `current_coverage`, `status` (`DISCOVERED` → `CONTRACT_FOUND`).
+   `rule_source` (`method:<раздел базы>` или `practice:<ретро-N>`), `test_priority`, `current_coverage`,
+   `status` (`DISCOVERED` → `CONTRACT_FOUND`).
 
 Если источник отсутствует или конфликтует — финальный тест не писать до human review.
 
@@ -256,6 +257,7 @@ codebase_status(projectPath="<абсолютный путь к ../ausn/ausn-qa-p
 [ ] Тесты выполнены, падения классифицированы
 [ ] Post-fix retest затронутых user stories выполнен
 [ ] Ledger содержит финальные статусы и defect classification
+[ ] Колонка rule_source заполнена для P0/P1 (method:<раздел базы> | practice:<ретро-N>)
 [ ] Merge в main выполнен или ограничение зафиксировано
 [ ] Тест-кейс(ы) созданы/догружены в Zephyr Scale, привязаны к проверенной задаче Jira (панель «Покрытие тестирования»), результат прогона зафиксирован тест-раном
 [ ] Индекс QA-проекта актуализирован, watcher включён (штатный режим) или ограничение зафиксировано

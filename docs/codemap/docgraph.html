@@ -19,17 +19,17 @@ pre { background: #1b1e24; border: 1px solid #2a2f37; border-radius: 10px;
 </head>
 <body>
 <h1>docgraph: control-plane</h1>
-<p class="meta-line">ветка <code>main</code> · коммит <code>e2a2929</code> (рабочая копия изменена) ·
-документов 83 · рёбер 278 · <span class="bad">битых 0</span> ·
-неразрешённых путей 26 · недостижимых 18 ·
-warnings 0 · сгенерировано 2026-09-23T11:32:27+00:00</p>
+<p class="meta-line">ветка <code>main</code> · коммит <code>275693a</code> (рабочая копия изменена) ·
+документов 84 · рёбер 292 · <span class="bad">битых 0</span> ·
+неразрешённых путей 26 · недостижимых 19 ·
+warnings 0 · сгенерировано 2026-09-23T11:42:45+00:00</p>
 <h2>Связи по типам</h2>
 <ul>
-<li>code-path — 116</li>
-<li>link — 50</li>
+<li>code-path — 117</li>
+<li>link — 52</li>
 <li>mention-agent — 40</li>
 <li>mention-command — 7</li>
-<li>mention-skill — 65</li>
+<li>mention-skill — 76</li>
 </ul>
 <h2>Битые ссылки</h2>
 <ul>
@@ -80,6 +80,7 @@ warnings 0 · сгенерировано 2026-09-23T11:32:27+00:00</p>
 <li><code>docs/reports/analyst-questions-categorizer-numeric-2026-09-22.md</code></li>
 <li><code>docs/reports/categorizer-numeric-logic-2026-09-22.md</code></li>
 <li><code>docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md</code></li>
+<li><code>docs/reports/methodology-usage-audit-2026-09-23.md</code></li>
 <li><code>docs/reports/ui-truth-notifications-kkt-2026-09-23.md</code></li>
 <li><code>docs/reports/zephyr-access-2026-09-23.md</code></li>
 <li><code>docs/reviews/2026-09-17-qa-project-framework-review.md</code></li>
@@ -93,14 +94,14 @@ warnings 0 · сгенерировано 2026-09-23T11:32:27+00:00</p>
 <ul>
 <li><code>PROJECT_STATUS.md</code> — 33</li>
 <li><code>AGENTS.md</code> — 32</li>
-<li><code>.agents/skills/ausn-qa-agents/SKILL.md</code> — 26</li>
-<li><code>.agents/skills/ausn-qa-loop/SKILL.md</code> — 26</li>
-<li><code>.agents/skills/ausn-qa-methodology/SKILL.md</code> — 18</li>
+<li><code>.agents/skills/ausn-qa-loop/SKILL.md</code> — 29</li>
+<li><code>.agents/skills/ausn-qa-agents/SKILL.md</code> — 28</li>
+<li><code>docs/qa-methodology/README.md</code> — 20</li>
+<li><code>.agents/skills/ausn-qa-methodology/SKILL.md</code> — 19</li>
+<li><code>docs/retrospectives.md</code> — 18</li>
 <li><code>.agents/skills/ausn-qa-mcp/SKILL.md</code> — 17</li>
-<li><code>docs/retrospectives.md</code> — 17</li>
 <li><code>docs/socraticode.md</code> — 15</li>
 <li><code>docs/ausn-context/qa-source-assessment.md</code> — 13</li>
-<li><code>docs/qa-methodology/README.md</code> — 13</li>
 <li><code>.opencode/command/qa-task.md</code> — 12</li>
 <li><code>.agents/skills/ausn-qa-agents/references/agent-roles.md</code> — 11</li>
 <li><code>.agents/skills/ausn-socraticode/SKILL.md</code> — 11</li>
@@ -176,6 +177,7 @@ warnings 0 · сгенерировано 2026-09-23T11:32:27+00:00</p>
   "docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md" -->|code-path| "qa-project:scripts/tools/analyze_rule_expectations.py"
   "docs/reports/default-rule-reachability-2026-09-21.md" -->|code-path| "qa-project:artifacts/categorizer-rules-from-db.json"
   "docs/reports/default-rule-reachability-2026-09-21.md" -->|code-path| "qa-project:artifacts/categorizer-case-specs/DEFAULT_RULE.json"
+  "docs/reports/methodology-usage-audit-2026-09-23.md" -->|code-path| "qa-project:docs/auto-tests/README.md"
   "docs/reports/ui-truth-notifications-kkt-2026-09-23.md" -->|code-path| "qa-project:tests/ui/test_kkt_detalization.py"
   "docs/reports/ui-truth-notifications-kkt-2026-09-23.md" -->|code-path| "docs/archive/bug-notification-mark-as-read-2026-09-23-retracted.md"
   "docs/retrospectives.md" -->|code-path| ".opencode/opencode.jsonc"
@@ -225,9 +227,8 @@ warnings 0 · сгенерировано 2026-09-23T11:32:27+00:00</p>
   "PROJECT_STATUS.md" -->|code-path| "qa-project:docs/reports/qa-loop-permission-refresh-order-2026-09-18.md"
   "PROJECT_STATUS.md" -->|code-path| "docs/archive/README.md"
   "PROJECT_STATUS.md" -->|code-path| "qa-project:tests/data/kafka_topics/README.md"
+  ".agents/skills/ausn-qa-loop/SKILL.md" -->|link| "docs/qa-methodology/README.md"
   ".agents/skills/ausn-qa-mcp/references/catalog.md" -->|link| ".agents/skills/ausn-qa-mcp/references/atlassian.json"
-  ".agents/skills/ausn-qa-mcp/references/catalog.md" -->|link| ".agents/skills/ausn-qa-mcp/references/gitlab.json"
-  ".agents/skills/ausn-qa-mcp/references/catalog.md" -->|link| ".agents/skills/ausn-qa-mcp/references/mattermost.json"
-  ".agents/skills/ausn-qa-mcp/references/catalog.md" -->|link| ".agents/skills/ausn-qa-mcp/references/playwright.json"</pre>
+  ".agents/skills/ausn-qa-mcp/references/catalog.md" -->|link| ".agents/skills/ausn-qa-mcp/references/gitlab.json"</pre>
 </body>
 </html>
