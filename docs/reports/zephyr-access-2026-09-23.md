@@ -46,7 +46,14 @@
 | Папка | `POST /rest/atm/1.0/folder` | `name` начинается с `/`, `type: "TEST_CASE"` (иначе 400); вложенный путь создаётся одной операцией; **кейс нельзя создать в несуществующей папке** (400 «The value … was not found for field folder») |
 | Тест-кейс | `POST /rest/atm/1.0/testcase` | `priority` — **строка** (`"High"`), не объект (иначе 500 «Can not deserialize instance of java.lang.String out of START_OBJECT»); шаги — `testScript.steps[]` с `description`/`expectedResult`; `owner` — ключ Jira (`JIRAUSER…`) |
 | Тест-ран | `POST /rest/atm/1.0/testrun` | Поля: `name`, `items[]` с `{testCaseKey, status}`; `testCases` — неверное имя поля (500 «Unrecognized field»); статусы `Pass`/`Fail`/`Blocked`; удаление — `DELETE /rest/atm/1.0/testrun/{key}` (204) |
+| Обновление кейса | `PUT /rest/atm/1.0/testcase/{key}` | Полное тело (как при создании) обновляет название, папку и шаги; шаги не теряются; перенос между папками выполняется тем же запросом |
 | Automation API | `/rest/atm/1.0/automation/execution` | **404** на этом сервере — использовать тест-раны |
+
+Именование кейсов (требование пользователя — читаемость для бизнеса):
+`[AUTO] <Раздел>: <краткий смысл проверки>`, разделы по-русски
+(`Авторизация в ЛК`, `Личный кабинет`, `Операции`, `Детализация ККТ`, `Оповещения`,
+`Категоризатор`, `Заявки на АУСН`, `АкБарс PWA`, `Права банка (порядок обновления)`,
+`Фактура (…)`, `Админка (…)`, `Реестр стороннего банка`).
 
 Результат: 108 кейсов `PKAUSN-T232…T340` в `/autotests/*` (владелец `JIRAUSER10906`, метка `autotest`)
 и 19 тест-ранов `PKAUSN-C36…C54`; реестры и отчёты — в `ausn-qa-project`
