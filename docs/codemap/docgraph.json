@@ -1,21 +1,21 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-23T07:37:17+00:00",
-  "target_commit": "14d3a12",
+  "generated_at": "2026-09-23T08:06:58+00:00",
+  "target_commit": "c7fa58a",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
-    "docs": 82,
-    "edges": 277,
+    "docs": 83,
+    "edges": 278,
     "broken": 0,
-    "unresolved": 23,
-    "unreachable": 17,
+    "unresolved": 26,
+    "unreachable": 18,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 115,
+    "code-path": 116,
     "mention-skill": 65,
     "mention-agent": 40,
     "mention-command": 7,
@@ -437,10 +437,16 @@
       "out": 2
     },
     {
+      "id": "docs/reports/zephyr-access-2026-09-23.md",
+      "kind": "doc",
+      "in": 0,
+      "out": 0
+    },
+    {
       "id": "docs/retrospectives.md",
       "kind": "doc",
       "in": 3,
-      "out": 13
+      "out": 14
     },
     {
       "id": "docs/reviews/2026-09-17-qa-project-framework-review.md",
@@ -1778,6 +1784,12 @@
     },
     {
       "from": "docs/retrospectives.md",
+      "to": "qa-project:scripts/tools/zephyr_export.py",
+      "kind": "code-path",
+      "line": 238
+    },
+    {
+      "from": "docs/retrospectives.md",
       "to": ".agents/skills/ausn-qa-loop/SKILL.md",
       "kind": "mention-skill",
       "line": 0
@@ -2218,6 +2230,24 @@
       "severity": "warning"
     },
     {
+      "from": "docs/reports/zephyr-access-2026-09-23.md",
+      "target": "ausn-qa-project/scripts/tools/zephyr_export.py",
+      "line": 24,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/reports/zephyr-access-2026-09-23.md",
+      "target": "ausn-qa-project/data/zephyr/testcases.json",
+      "line": 37,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/reports/zephyr-access-2026-09-23.md",
+      "target": "ausn-qa-project/docs/reports/zephyr-testcases.md",
+      "line": 38,
+      "severity": "warning"
+    },
+    {
       "from": "docs/retrospectives.md",
       "target": "references/qa-task-flow.md",
       "line": 187,
@@ -2332,6 +2362,7 @@
     "docs/reports/categorizer-numeric-logic-2026-09-22.md",
     "docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md",
     "docs/reports/ui-truth-notifications-kkt-2026-09-23.md",
+    "docs/reports/zephyr-access-2026-09-23.md",
     "docs/reviews/2026-09-17-qa-project-framework-review.md",
     "docs/user-prompts/daily-flow.md",
     "docs/user-prompts/pre-release-prompt.md",
@@ -2367,7 +2398,7 @@
     },
     {
       "id": "docs/retrospectives.md",
-      "degree": 16
+      "degree": 17
     },
     {
       "id": "docs/socraticode.md",
