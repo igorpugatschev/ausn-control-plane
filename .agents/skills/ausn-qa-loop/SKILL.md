@@ -78,7 +78,31 @@ provenance/traceability требований. Не выводи expected behavio
 5. Создай или обнови единый ledger по `references/loop-ledger-schema.md`.
 6. Проведи проверки, классифицируй падения, исправь только `test_bug`/`test_data_issue`/`flaky`,
    затем retest и обновление ledger.
-7. Заверши статусом `DONE`, `DONE_WITH_CONCERNS` или `BLOCKED` с источниками, проверками и остаточными рисками.
+7. **Zephyr Scale (обязательно после приёмки):** пересобери пакет кейсов, догрузи недостающие,
+   привяжи их к проверенной задаче Jira и зафиксируй результат прогона (см. «Синхронизация с Zephyr Scale»).
+8. Заверши статусом `DONE`, `DONE_WITH_CONCERNS` или `BLOCKED` с источниками, проверками и остаточными рисками.
+
+## Синхронизация с Zephyr Scale (после приёмки задачи)
+
+Штатные действия агента (согласовано; отдельного approval не требуют, в отличие от комментариев
+в Jira/Confluence/Mattermost, которые делает пользователь). Выполнять в конце каждого loop'а,
+когда задача принята:
+
+```powershell
+# 1. пакет кейсов из ledger'ов (CSV/XLSX + реестр папок и имён)
+.\.venv\Scripts\python.exe -m scripts.tools.zephyr_import_pack --project PKAUSN
+# 2. создать недостающие кейсы в Zephyr (идемпотентно, реестр imported.json)
+.\.venv\Scripts\python.exe -m scripts.tools.zephyr_import
+# 3. привязать кейсы к проверенной задаче Jira (панель «Покрытие тестирования»)
+.\.venv\Scripts\python.exe -m scripts.tools.zephyr_link_cases --since <YYYY-MM-DD> [--exclude PKAUSN-<предшественник>]
+# 4. зафиксировать результаты прогона тест-ранами
+.\.venv\Scripts\python.exe -m scripts.tools.zephyr_automation --date <YYYY-MM-DD>
+```
+
+Артефакты: `ausn-qa-project/data/zephyr/import/{autotests-ql.csv,imported.json,trace_links.json,executions.json}`,
+отчёты `ausn-qa-project/docs/reports/zephyr-{testcases,autotests-imported,issue-links,automation-executions}.md`.
+Названия кейсов — читаемые: `[AUTO] <Раздел>: <краткий смысл>`; связь с ledger'ом хранится в реестре
+(`<ledger>.md#QL-<id>`), в задаче Jira кейс виден в панели «Покрытие тестирования».
 
 ## Режимы
 

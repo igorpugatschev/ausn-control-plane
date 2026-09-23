@@ -211,11 +211,22 @@ codebase_index(projectPath="<path>")
 
 ---
 
-## ФАЗА 6: Merge и index
+## ФАЗА 6: Merge, Zephyr и index
 
 1. Проверить, что задача выполнялась в отдельной ветке от свежего `main`; `git status` чист по лишним файлам.
 2. Commit и push — после успешных проверок; сообщение описывает функционал.
+3. **Zephyr Scale после приёмки задачи (обязательно):** пакет кейсов из ledger'ов → недостающие кейсы
+   в Zephyr → привязка к проверенной задаче Jira (панель «Покрытие тестирования») → фиксация результатов прогона:
 
+```powershell
+.\.venv\Scripts\python.exe -m scripts.tools.zephyr_import_pack --project PKAUSN
+.\.venv\Scripts\python.exe -m scripts.tools.zephyr_import
+.\.venv\Scripts\python.exe -m scripts.tools.zephyr_link_cases --since <YYYY-MM-DD> [--exclude PKAUSN-<предшественник>]
+.\.venv\Scripts\python.exe -m scripts.tools.zephyr_automation --date <YYYY-MM-DD>
+```
+
+   Эти записи в Zephyr Scale — штатная часть QA-флоу (approval не требуют); комментарии и публикации
+   в Jira/Confluence/Mattermost по-прежнему выполняет пользователь.
 4. Запустить релевантные проверки после merge.
 5. Удалить ветку задачи после успешного merge.
 6. Актуализировать индекс SocratiCode для QA-проекта (watcher остаётся включённым):
@@ -246,6 +257,7 @@ codebase_status(projectPath="<абсолютный путь к ../ausn/ausn-qa-p
 [ ] Post-fix retest затронутых user stories выполнен
 [ ] Ledger содержит финальные статусы и defect classification
 [ ] Merge в main выполнен или ограничение зафиксировано
+[ ] Тест-кейс(ы) созданы/догружены в Zephyr Scale, привязаны к проверенной задаче Jira (панель «Покрытие тестирования»), результат прогона зафиксирован тест-раном
 [ ] Индекс QA-проекта актуализирован, watcher включён (штатный режим) или ограничение зафиксировано
 [ ] Краткий отчёт для журнала учёта времени подготовлен
 ```

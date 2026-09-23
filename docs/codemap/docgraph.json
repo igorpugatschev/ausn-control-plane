@@ -1,8 +1,8 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-23T10:43:42+00:00",
-  "target_commit": "6025488",
+  "generated_at": "2026-09-23T11:13:14+00:00",
+  "target_commit": "0adc21d",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
@@ -886,7 +886,7 @@
       "from": ".agents/skills/ausn-qa-loop/SKILL.md",
       "to": ".agents/skills/ausn-qa-loop/references/loop-goal-prompts.md",
       "kind": "code-path",
-      "line": 143
+      "line": 167
     },
     {
       "from": ".agents/skills/ausn-qa-loop/SKILL.md",
@@ -1282,67 +1282,67 @@
       "from": "AGENTS.md",
       "to": "docs/retrospectives.md",
       "kind": "link",
-      "line": 56
+      "line": 57
     },
     {
       "from": "AGENTS.md",
       "to": ".opencode/opencode.jsonc",
       "kind": "code-path",
-      "line": 70
+      "line": 71
     },
     {
       "from": "AGENTS.md",
       "to": "docs/ausn-context/README.md",
       "kind": "link",
-      "line": 71
+      "line": 72
     },
     {
       "from": "AGENTS.md",
       "to": "docs/ausn-context/evidence-register.md",
       "kind": "link",
-      "line": 71
+      "line": 72
     },
     {
       "from": "AGENTS.md",
       "to": "docs/qa-methodology/README.md",
       "kind": "link",
-      "line": 72
+      "line": 73
     },
     {
       "from": "AGENTS.md",
       "to": "docs/mcp.md",
       "kind": "code-path",
-      "line": 77
+      "line": 78
     },
     {
       "from": "AGENTS.md",
       "to": "docs/socraticode.md",
       "kind": "code-path",
-      "line": 77
+      "line": 78
     },
     {
       "from": "AGENTS.md",
       "to": ".opencode/command/qa-task.md",
       "kind": "code-path",
-      "line": 79
+      "line": 80
     },
     {
       "from": "AGENTS.md",
       "to": ".codex/config.toml",
       "kind": "code-path",
-      "line": 95
+      "line": 96
     },
     {
       "from": "AGENTS.md",
       "to": ".vscode/mcp.json",
       "kind": "code-path",
-      "line": 95
+      "line": 96
     },
     {
       "from": "AGENTS.md",
       "to": "docs/archive/README.md",
       "kind": "code-path",
-      "line": 114
+      "line": 115
     },
     {
       "from": "AGENTS.md",
