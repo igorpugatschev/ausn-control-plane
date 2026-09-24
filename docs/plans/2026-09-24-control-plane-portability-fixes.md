@@ -386,6 +386,13 @@ def test_normalize_reads_opencode_environment_key() -> None:
     assert normalize("srv", spec)["env_names"] == ["MCP_REMOTE_CONFIG_DIR"]
 
 
+def test_normalize_flattens_command_array() -> None:
+    spec = {"type": "local", "command": ["node", "--env-file=.env", "proxy.js"]}
+    result = normalize("srv", spec)
+    assert result["command"] == "node"
+    assert result["args"] == ["--env-file=.env", "proxy.js"]
+
+
 def test_normalize_remote_with_headers_lists_names_only() -> None:
     spec = {"type": "remote", "url": "https://mcp.example/mcp",
             "headers": {"Authorization": "Bearer secret"}}
@@ -467,10 +474,16 @@ def normalize(name: str, spec: dict[str, Any]) -> dict[str, Any]:
     transport = spec.get("type") or spec.get("transport") or "local"
     if transport == "stdio":
         transport = "local"
+    command = spec.get("command")
+    args = list(spec.get("args") or [])
+    if isinstance(command, list):
+        # opencode записывает всю командную строку массивом в command; приводим к command + args
+        command, extra = (command[0], list(command[1:])) if command else (None, [])
+        args = extra + args
     return {
         "transport": transport,
-        "command": spec.get("command"),
-        "args": list(spec.get("args") or []),
+        "command": command,
+        "args": args,
         "url": spec.get("url"),
         "env_names": sorted(env),
         "header_names": sorted(headers),

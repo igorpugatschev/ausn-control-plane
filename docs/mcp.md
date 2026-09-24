@@ -8,7 +8,8 @@
 - `.mcp.json` — другие совместимые клиенты.
 
 Включены SocratiCode, Atlassian, GitLab, Mattermost, SSH, PostgreSQL, Graylog,
-Grafana и Playwright. Telegram необязателен и не подключён.
+Grafana и Playwright. Telegram необязателен и не подключён. Источник истины — сами конфиги;
+расхождения проверяет гейт `tools/checks/mcp_parity.py`.
 
 Корпоративные MCP запускаются через локальный `mcp-remote` версии 0.8.4.
 Node.js читает корневой `.env` через `--env-file`; вручную экспортировать переменные

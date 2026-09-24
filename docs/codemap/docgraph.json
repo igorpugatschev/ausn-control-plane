@@ -1,21 +1,21 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-24T03:32:09+00:00",
-  "target_commit": "c53042a",
+  "generated_at": "2026-09-24T04:09:46+00:00",
+  "target_commit": "c422573",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
     "docs": 86,
-    "edges": 313,
+    "edges": 318,
     "broken": 0,
-    "unresolved": 37,
+    "unresolved": 28,
     "unreachable": 21,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 126,
+    "code-path": 131,
     "mention-skill": 78,
     "mention-agent": 40,
     "mention-command": 7,
@@ -357,13 +357,13 @@
       "id": "docs/mcp.md",
       "kind": "doc",
       "in": 6,
-      "out": 4
+      "out": 5
     },
     {
       "id": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
       "kind": "doc",
       "in": 0,
-      "out": 18
+      "out": 22
     },
     {
       "id": "docs/qa-methodology/automation.md",
@@ -1367,7 +1367,7 @@
       "from": "AGENTS.md",
       "to": "docs/archive/README.md",
       "kind": "code-path",
-      "line": 117
+      "line": 118
     },
     {
       "from": "AGENTS.md",
@@ -1635,9 +1635,15 @@
     },
     {
       "from": "docs/mcp.md",
+      "to": "tools/checks/mcp_parity.py",
+      "kind": "code-path",
+      "line": 12
+    },
+    {
+      "from": "docs/mcp.md",
       "to": "docs/socraticode.md",
       "kind": "code-path",
-      "line": 22
+      "line": 23
     },
     {
       "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
@@ -1734,6 +1740,30 @@
       "to": "docs/codemap/codemap.json",
       "kind": "code-path",
       "line": 307
+    },
+    {
+      "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
+      "to": "tools/checks/__init__.py",
+      "kind": "code-path",
+      "line": 326
+    },
+    {
+      "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
+      "to": "tools/checks/mcp_parity.py",
+      "kind": "code-path",
+      "line": 327
+    },
+    {
+      "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
+      "to": "tools/checks/tests/__init__.py",
+      "kind": "code-path",
+      "line": 328
+    },
+    {
+      "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
+      "to": "tools/checks/tests/test_mcp_parity.py",
+      "kind": "code-path",
+      "line": 329
     },
     {
       "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
@@ -2442,68 +2472,14 @@
     },
     {
       "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
-      "target": "tools/checks/__init__.py",
-      "line": 326,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
-      "target": "tools/checks/mcp_parity.py",
-      "line": 327,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
-      "target": "tools/checks/tests/__init__.py",
-      "line": 328,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
-      "target": "tools/checks/tests/test_mcp_parity.py",
-      "line": 329,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
-      "target": "tools/checks/__init__.py",
-      "line": 346,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
-      "target": "tools/checks/tests/__init__.py",
-      "line": 346,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
-      "target": "tools/checks/tests/test_mcp_parity.py",
-      "line": 347,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
-      "target": "tools/checks/mcp_parity.py",
-      "line": 417,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
       "target": "docs/reports/external-review-portability-2026-09-24.md",
-      "line": 591,
+      "line": 604,
       "severity": "warning"
     },
     {
       "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
       "target": ".venv/.local/tmp/ENVIRONMENT.md",
-      "line": 612,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
-      "target": "tools/checks/mcp_parity.py",
-      "line": 660,
+      "line": 625,
       "severity": "warning"
     },
     {
@@ -2687,6 +2663,10 @@
       "degree": 28
     },
     {
+      "id": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
+      "degree": 22
+    },
+    {
       "id": "docs/qa-methodology/README.md",
       "degree": 22
     },
@@ -2697,10 +2677,6 @@
     {
       "id": "docs/retrospectives.md",
       "degree": 19
-    },
-    {
-      "id": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
-      "degree": 18
     },
     {
       "id": ".agents/skills/ausn-qa-mcp/SKILL.md",
