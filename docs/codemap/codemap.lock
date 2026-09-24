@@ -1,9 +1,9 @@
 {
   "name": "control-plane",
-  "model_sha256": "5fd437f6bd71c8b8f1bed4ca6dd2744cf5d55bdab3e0a6d6fa74c420d764f9d2",
-  "target_commit": "df5e1f9",
+  "model_sha256": "ba38bdbf99173e57afe68e53c3c4e41741d6ea47dc2e0cdb49107cddf376cfd0",
+  "target_commit": "c53042a",
   "target_branch": "main",
   "target_dirty": true,
-  "generated_at": "2026-09-24T02:36:47+00:00",
-  "total_files": 99
+  "generated_at": "2026-09-24T03:02:09+00:00",
+  "total_files": 102
 }

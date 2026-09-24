@@ -3,13 +3,13 @@
   "title": "AUSN QA Control Plane",
   "summary": "Управляющий репозиторий QA-команды АУСН: правила, навыки, субагенты, MCP-конфигурация, методология и ретроспективы. Приложения и сборки нет; продукт работы — ausn-qa-project.",
   "target": ".",
-  "generated_at": "2026-09-24T02:36:47+00:00",
-  "target_commit": "df5e1f9",
+  "generated_at": "2026-09-24T03:02:09+00:00",
+  "target_commit": "c53042a",
   "target_branch": "main",
   "target_dirty": true,
   "primary_count": 12,
   "primary_limit": 20,
-  "total_files": 99,
+  "total_files": 102,
   "nodes": [
     {
       "id": "agents",
@@ -28,12 +28,11 @@
       "kind": "config",
       "role": "primary",
       "paths": [
-        "ENVIRONMENT.md",
         "ENVIRONMENT-manual.md",
         "ENVIRONMENT-example.md"
       ],
       "note": "ENVIRONMENT.md машинно-специфичен и в Git не входит; manual и example — переносимая инструкция и шаблон.",
-      "files": 3
+      "files": 2
     },
     {
       "id": "skills",
@@ -137,7 +136,7 @@
         "tools/codemap"
       ],
       "note": "Курируемые модели и генератор карт репозиториев; выпускает codemap.json/html/lock в <repo>/docs/codemap.",
-      "files": 3
+      "files": 7
     },
     {
       "id": "retrospectives",
@@ -231,5 +230,6 @@
       "label": "охват репозиториев"
     }
   ],
-  "_model_sha256": "5fd437f6bd71c8b8f1bed4ca6dd2744cf5d55bdab3e0a6d6fa74c420d764f9d2"
+  "gaps": [],
+  "_model_sha256": "ba38bdbf99173e57afe68e53c3c4e41741d6ea47dc2e0cdb49107cddf376cfd0"
 }

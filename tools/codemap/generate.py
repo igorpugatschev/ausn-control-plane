@@ -34,15 +34,6 @@ SKIP_DIRS = {".git", "__pycache__", ".venv", "node_modules", ".mypy_cache", ".py
 MAX_PRIMARY = 20
 
 
-def load_model(name):
-    path = MODEL_DIR / f"{name}.json"
-    if not path.is_file():
-        raise SystemExit(f"Модель не найдена: {path}")
-    data = json.loads(path.read_text(encoding="utf-8"))
-    data["_model_file"] = path
-    data["_model_sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
-    return data
-
 
 def git(target, *args):
     try:
@@ -68,14 +59,59 @@ def count_files(base, rel):
     return total
 
 
-def build(name):
-    model = load_model(name)
+def parse_node_paths(target, node):
+    """Проверить пути узла: вернуть (ошибки, типизированные пробелы).
+
+    Обязательный путь при отсутствии — ошибка (генерация падает).
+    Опциональный путь (optional_paths), опциональный узел (optional) и внешний
+    репозиторий (external) при отсутствии — пробел (gaps), генерация продолжается.
+    """
+    errors = []
+    gaps = []
+    optional_paths = set(node.get("optional_paths", []))
+    node_optional = bool(node.get("optional", False))
+    node_external = bool(node.get("external", False))
+    for rel in node.get("paths", []):
+        if (target / rel).exists():
+            continue
+        if rel in optional_paths:
+            gaps.append({"node": node["id"], "path": rel, "kind": "optional_runtime_missing"})
+        elif node_external:
+            gaps.append({"node": node["id"], "path": rel, "kind": "external_repo_missing"})
+        elif node_optional:
+            gaps.append({"node": node["id"], "path": rel, "kind": "optional_runtime_missing"})
+        else:
+            errors.append(f"{node['id']}: путь не найден: {rel}")
+    return errors, gaps
+
+
+def load_model(name, model_path=None):
+    if model_path is not None:
+        path = Path(model_path)
+        if not path.is_file():
+            raise SystemExit(f"Модель не найдена: {path}")
+        data = json.loads(path.read_text(encoding="utf-8"))
+        data["_model_file"] = path
+        data["_model_sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
+        return data
+    path = MODEL_DIR / f"{name}.json"
+    if not path.is_file():
+        raise SystemExit(f"Модель не найдена: {path}")
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data["_model_file"] = path
+    data["_model_sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
+    return data
+
+
+def build(name, model_path=None):
+    model = load_model(name, model_path)
     target = (ROOT / model["target"]).resolve()
     if not target.is_dir():
         raise SystemExit(f"Целевой репозиторий не найден: {target}")
 
     nodes = []
     errors = []
+    gaps = []
     for node in model["nodes"]:
         entry = {
             "id": node["id"],
@@ -86,15 +122,14 @@ def build(name):
             "note": node.get("note", ""),
             "files": 0 if node.get("count", True) else None,
         }
+        node_errors, node_gaps = parse_node_paths(target, node)
+        errors.extend(node_errors)
+        gaps.extend(node_gaps)
         if entry["files"] is None:
-            for rel in entry["paths"]:
-                if not (target / rel).exists():
-                    errors.append(f"{entry['id']}: путь не найден: {rel}")
             nodes.append(entry)
             continue
         for rel in entry["paths"]:
             if not (target / rel).exists():
-                errors.append(f"{entry['id']}: путь не найден: {rel}")
                 continue
             entry["files"] += count_files(target, rel)
         nodes.append(entry)
@@ -128,6 +163,7 @@ def build(name):
         "total_files": sum(n["files"] for n in nodes if n["files"] is not None),
         "nodes": nodes,
         "edges": edges,
+        "gaps": gaps,
     }
     return model, target, doc
 

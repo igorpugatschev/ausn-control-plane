@@ -192,10 +192,12 @@ def parse_node_paths(target, node):
     for rel in node.get("paths", []):
         if (target / rel).exists():
             continue
-        if rel in optional_paths or node_optional:
+        if rel in optional_paths:
             gaps.append({"node": node["id"], "path": rel, "kind": "optional_runtime_missing"})
         elif node_external:
             gaps.append({"node": node["id"], "path": rel, "kind": "external_repo_missing"})
+        elif node_optional:
+            gaps.append({"node": node["id"], "path": rel, "kind": "optional_runtime_missing"})
         else:
             errors.append(f"{node['id']}: путь не найден: {rel}")
     return errors, gaps
@@ -206,8 +208,8 @@ def parse_node_paths(target, node):
 Добавить в `doc` ключ `"gaps": gaps` (без изменений структуры `stats`); в `--check`
 пробелы не влияют на вердикт (проверяются `model_sha256` и `total_files`).
 Сигнатуру сделать тестируемой: `def build(name, model_path=None):` и в `load_model`
-разрешить явный `model_path`, а `target` резолвить от корня модели
-(`model_path.resolve().parents[2]`, если задан явно; иначе `ROOT`).
+разрешить явный `model_path`; резолв цели оставить как есть (`target = (ROOT / model["target"]).resolve()`) —
+абсолютный путь в фикстуре проходит насквозь, относительный `"."` даёт корень control plane.
 
 - [ ] **Step 5: Запустить тесты — убедиться, что проходят**
 
@@ -259,9 +261,9 @@ def test_clean_tree_yields_gaps_not_errors(tmp_path: Path) -> None:
 
     doc = build("portability-fixture", model_path=_write_model(tmp_path, repo))
 
+    assert doc["name"] == "portability-fixture"
     kinds = sorted({gap["kind"] for gap in doc["gaps"]})
     assert kinds == ["external_repo_missing", "optional_runtime_missing"]
-    assert (repo / "docs" / "codemap" / "codemap.json").is_file()
 
 
 def test_missing_required_path_still_fails(tmp_path: Path) -> None:

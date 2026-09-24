@@ -17,7 +17,8 @@
       "title": "Окружение машины",
       "kind": "config",
       "role": "primary",
-      "paths": ["ENVIRONMENT.md", "ENVIRONMENT-manual.md", "ENVIRONMENT-example.md"],
+      "paths": ["ENVIRONMENT-manual.md", "ENVIRONMENT-example.md"],
+      "optional_paths": ["ENVIRONMENT.md"],
       "note": "ENVIRONMENT.md машинно-специфичен и в Git не входит; manual и example — переносимая инструкция и шаблон."
     },
     {
@@ -122,6 +123,7 @@
       "kind": "local",
       "role": "secondary",
       "count": false,
+      "optional": true,
       "paths": [".venv", ".local", "tmp"],
       "note": "Python-окружение, кэш авторизации MCP, состояние Qdrant, временные файлы. Не переносятся."
     }
