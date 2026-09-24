@@ -19,14 +19,14 @@ pre { background: #1b1e24; border: 1px solid #2a2f37; border-radius: 10px;
 </head>
 <body>
 <h1>docgraph: control-plane</h1>
-<p class="meta-line">ветка <code>main</code> · коммит <code>c422573</code> (рабочая копия изменена) ·
-документов 86 · рёбер 318 · <span class="bad">битых 0</span> ·
-неразрешённых путей 28 · недостижимых 21 ·
-warnings 0 · сгенерировано 2026-09-24T04:09:46+00:00</p>
+<p class="meta-line">ветка <code>main</code> · коммит <code>31a4cd5</code> (рабочая копия изменена) ·
+документов 87 · рёбер 326 · <span class="bad">битых 0</span> ·
+неразрешённых путей 26 · недостижимых 21 ·
+warnings 0 · сгенерировано 2026-09-24T04:23:21+00:00</p>
 <h2>Связи по типам</h2>
 <ul>
-<li>code-path — 131</li>
-<li>link — 60</li>
+<li>code-path — 138</li>
+<li>link — 61</li>
 <li>link-dir — 2</li>
 <li>mention-agent — 40</li>
 <li>mention-command — 7</li>
@@ -41,8 +41,6 @@ warnings 0 · сгенерировано 2026-09-24T04:09:46+00:00</p>
 <li><code>docs/ausn-context/qa-source-assessment.md</code>:24 → <code>references/categorizer-lifecycle.md</code></li>
 <li><code>docs/ausn-context/qa-source-assessment.md</code>:25 → <code>references/postman-flow.md</code></li>
 <li><code>docs/ausn-context/qa-source-assessment.md</code>:26 → <code>references/agent-roles.md</code></li>
-<li><code>docs/plans/2026-09-24-control-plane-portability-fixes.md</code>:604 → <code>docs/reports/external-review-portability-2026-09-24.md</code></li>
-<li><code>docs/plans/2026-09-24-control-plane-portability-fixes.md</code>:625 → <code>.venv/.local/tmp/ENVIRONMENT.md</code></li>
 <li><code>docs/reports/analyst-questions-categorizer-numeric-2026-09-22.md</code>:5 → <code>ausn-control-plane/docs/reports/categorizer-numeric-logic-2026-09-22.md</code></li>
 <li><code>docs/reports/ui-truth-notifications-kkt-2026-09-23.md</code>:19 → <code>qa-project/docs/archive/use-cases-wiki/5-use-case.md</code></li>
 <li><code>docs/reports/ui-truth-notifications-kkt-2026-09-23.md</code>:21 → <code>ausn-qa-project/tests/ui/test_notifications_status_flow.py</code></li>
@@ -65,7 +63,7 @@ warnings 0 · сгенерировано 2026-09-24T04:09:46+00:00</p>
 <li><code>PROJECT_STATUS.md</code>:157 → <code>references/loop-quality-gates.md</code></li>
 <li><code>PROJECT_STATUS.md</code>:195 → <code>ausn-qa-project/AGENTS.md</code></li>
 <li><code>PROJECT_STATUS.md</code>:216 → <code>references/socraticode.json</code></li>
-<li><code>PROJECT_STATUS.md</code>:259 → <code>references/socraticode.json</code></li>
+<li><code>PROJECT_STATUS.md</code>:260 → <code>references/socraticode.json</code></li>
 </ul>
 <h2>Warnings</h2>
 <ul>
@@ -97,11 +95,11 @@ warnings 0 · сгенерировано 2026-09-24T04:09:46+00:00</p>
 </ul>
 <h2>Хабы (входящие+исходящие)</h2>
 <ul>
+<li><code>PROJECT_STATUS.md</code> — 35</li>
 <li><code>AGENTS.md</code> — 33</li>
-<li><code>PROJECT_STATUS.md</code> — 33</li>
 <li><code>.agents/skills/ausn-qa-loop/SKILL.md</code> — 31</li>
 <li><code>.agents/skills/ausn-qa-agents/SKILL.md</code> — 28</li>
-<li><code>docs/plans/2026-09-24-control-plane-portability-fixes.md</code> — 22</li>
+<li><code>docs/plans/2026-09-24-control-plane-portability-fixes.md</code> — 23</li>
 <li><code>docs/qa-methodology/README.md</code> — 22</li>
 <li><code>.agents/skills/ausn-qa-methodology/SKILL.md</code> — 19</li>
 <li><code>docs/retrospectives.md</code> — 19</li>
@@ -190,12 +188,18 @@ warnings 0 · сгенерировано 2026-09-24T04:09:46+00:00</p>
   "docs/plans/2026-09-24-control-plane-portability-fixes.md" -->|code-path| "tools/checks/tests/__init__.py"
   "docs/plans/2026-09-24-control-plane-portability-fixes.md" -->|code-path| "tools/checks/tests/test_mcp_parity.py"
   "docs/plans/2026-09-24-control-plane-portability-fixes.md" -->|code-path| "docs/mcp.md"
+  "docs/plans/2026-09-24-control-plane-portability-fixes.md" -->|code-path| "docs/reports/external-review-portability-2026-09-24.md"
   "docs/reports/categorizer-numeric-logic-2026-09-22.md" -->|code-path| "qa-project:artifacts/categorizer-rules-from-db.json"
   "docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md" -->|code-path| "qa-project:artifacts/categorizer-rules-from-db.json"
   "docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md" -->|code-path| "qa-project:scripts/tools/categorizer_condition.py"
   "docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md" -->|code-path| "qa-project:scripts/tools/analyze_rule_expectations.py"
   "docs/reports/default-rule-reachability-2026-09-21.md" -->|code-path| "qa-project:artifacts/categorizer-rules-from-db.json"
   "docs/reports/default-rule-reachability-2026-09-21.md" -->|code-path| "qa-project:artifacts/categorizer-case-specs/DEFAULT_RULE.json"
+  "docs/reports/external-review-portability-2026-09-24.md" -->|code-path| "tools/codemap/generate.py"
+  "docs/reports/external-review-portability-2026-09-24.md" -->|code-path| "tools/checks/mcp_parity.py"
+  "docs/reports/external-review-portability-2026-09-24.md" -->|code-path| ".vscode/mcp.json"
+  "docs/reports/external-review-portability-2026-09-24.md" -->|code-path| ".opencode/opencode.jsonc"
+  "docs/reports/external-review-portability-2026-09-24.md" -->|code-path| ".codex/config.toml"
   "docs/reports/methodology-usage-audit-2026-09-23.md" -->|code-path| "qa-project:docs/auto-tests/README.md"
   "docs/reports/ui-truth-notifications-kkt-2026-09-23.md" -->|code-path| "qa-project:tests/ui/test_kkt_detalization.py"
   "docs/reports/ui-truth-notifications-kkt-2026-09-23.md" -->|code-path| "docs/archive/bug-notification-mark-as-read-2026-09-23-retracted.md"
@@ -228,12 +232,6 @@ warnings 0 · сгенерировано 2026-09-24T04:09:46+00:00</p>
   "PROJECT_STATUS.md" -->|code-path| "qa-project:tests/static/test_categorizer_default_rule_reachability.py"
   "PROJECT_STATUS.md" -->|code-path| "qa-project:tests/kafka/categorizer/test_acquiring_third_party_registry_format.py"
   "PROJECT_STATUS.md" -->|code-path| "qa-project:src/clients/ui_harness.py"
-  "PROJECT_STATUS.md" -->|code-path| "qa-project:tests/ui/test_account_sections.py"
-  "PROJECT_STATUS.md" -->|code-path| "qa-project:tests/static/test_operation_messages_are_system_valid.py"
-  "PROJECT_STATUS.md" -->|code-path| ".agents/skills/ausn-socraticode/SKILL.md"
-  "PROJECT_STATUS.md" -->|code-path| ".agents/skills/karpathy-guidelines/SKILL.md"
-  "PROJECT_STATUS.md" -->|code-path| "docs/socraticode.md"
-  "PROJECT_STATUS.md" -->|code-path| "docs/retrospectives.md"
-  "PROJECT_STATUS.md" -->|code-path| "docs/ausn-context/qa-source-assessment.md"</pre>
+  "PROJECT_STATUS.md" -->|code-path| "qa-project:tests/ui/test_account_sections.py"</pre>
 </body>
 </html>

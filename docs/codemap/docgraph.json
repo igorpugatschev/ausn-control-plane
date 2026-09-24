@@ -1,25 +1,25 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-24T04:09:46+00:00",
-  "target_commit": "c422573",
+  "generated_at": "2026-09-24T04:23:21+00:00",
+  "target_commit": "31a4cd5",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
-    "docs": 86,
-    "edges": 318,
+    "docs": 87,
+    "edges": 326,
     "broken": 0,
-    "unresolved": 28,
+    "unresolved": 26,
     "unreachable": 21,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 131,
+    "code-path": 138,
     "mention-skill": 78,
     "mention-agent": 40,
     "mention-command": 7,
-    "link": 60,
+    "link": 61,
     "link-dir": 2
   },
   "nodes": [
@@ -363,7 +363,7 @@
       "id": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
       "kind": "doc",
       "in": 0,
-      "out": 22
+      "out": 23
     },
     {
       "id": "docs/qa-methodology/automation.md",
@@ -436,6 +436,12 @@
       "kind": "doc",
       "in": 1,
       "out": 2
+    },
+    {
+      "id": "docs/reports/external-review-portability-2026-09-24.md",
+      "kind": "doc",
+      "in": 2,
+      "out": 5
     },
     {
       "id": "docs/reports/methodology-usage-audit-2026-09-23.md",
@@ -519,7 +525,7 @@
       "id": "PROJECT_STATUS.md",
       "kind": "doc",
       "in": 0,
-      "out": 33
+      "out": 35
     },
     {
       "id": "README.md",
@@ -1773,6 +1779,12 @@
     },
     {
       "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
+      "to": "docs/reports/external-review-portability-2026-09-24.md",
+      "kind": "code-path",
+      "line": 604
+    },
+    {
+      "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
       "to": ".agents/skills/ausn-qa-loop/SKILL.md",
       "kind": "mention-skill",
       "line": 0
@@ -1914,6 +1926,36 @@
       "to": "qa-project:artifacts/categorizer-case-specs/DEFAULT_RULE.json",
       "kind": "code-path",
       "line": 73
+    },
+    {
+      "from": "docs/reports/external-review-portability-2026-09-24.md",
+      "to": "tools/codemap/generate.py",
+      "kind": "code-path",
+      "line": 12
+    },
+    {
+      "from": "docs/reports/external-review-portability-2026-09-24.md",
+      "to": "tools/checks/mcp_parity.py",
+      "kind": "code-path",
+      "line": 13
+    },
+    {
+      "from": "docs/reports/external-review-portability-2026-09-24.md",
+      "to": ".vscode/mcp.json",
+      "kind": "code-path",
+      "line": 18
+    },
+    {
+      "from": "docs/reports/external-review-portability-2026-09-24.md",
+      "to": ".opencode/opencode.jsonc",
+      "kind": "code-path",
+      "line": 18
+    },
+    {
+      "from": "docs/reports/external-review-portability-2026-09-24.md",
+      "to": ".codex/config.toml",
+      "kind": "code-path",
+      "line": 18
     },
     {
       "from": "docs/reports/methodology-usage-audit-2026-09-23.md",
@@ -2361,6 +2403,18 @@
     },
     {
       "from": "PROJECT_STATUS.md",
+      "to": "docs/reports/external-review-portability-2026-09-24.md",
+      "kind": "link",
+      "line": 227
+    },
+    {
+      "from": "PROJECT_STATUS.md",
+      "to": ".codex/config.toml",
+      "kind": "code-path",
+      "line": 227
+    },
+    {
+      "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/ausn-qa-loop/SKILL.md",
       "kind": "mention-skill",
       "line": 0
@@ -2468,18 +2522,6 @@
       "from": "docs/ausn-context/qa-source-assessment.md",
       "target": "references/agent-roles.md",
       "line": 26,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
-      "target": "docs/reports/external-review-portability-2026-09-24.md",
-      "line": 604,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
-      "target": ".venv/.local/tmp/ENVIRONMENT.md",
-      "line": 625,
       "severity": "warning"
     },
     {
@@ -2617,7 +2659,7 @@
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/socraticode.json",
-      "line": 259,
+      "line": 260,
       "severity": "warning"
     }
   ],
@@ -2647,11 +2689,11 @@
   "warnings": [],
   "hubs": [
     {
-      "id": "AGENTS.md",
-      "degree": 33
+      "id": "PROJECT_STATUS.md",
+      "degree": 35
     },
     {
-      "id": "PROJECT_STATUS.md",
+      "id": "AGENTS.md",
       "degree": 33
     },
     {
@@ -2664,7 +2706,7 @@
     },
     {
       "id": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
-      "degree": 22
+      "degree": 23
     },
     {
       "id": "docs/qa-methodology/README.md",
