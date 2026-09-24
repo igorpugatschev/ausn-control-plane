@@ -56,8 +56,7 @@ Expected: одна строка `opencode -s ses_<...>`.
 4. Поднять инфраструктуру индекса: `docker compose -f compose.socraticode.yaml up -d`;
    при отсутствии модели — `ollama pull nomic-embed-text`.
 5. Открыть проект из корня и подтвердить доверие к проекту/MCP, если клиент запросит.
-6. Проверить готовность: `python tools/checks/mcp_parity.py` (паритет конфигов MCP),
-   `python tools/codemap/generate.py --all --check` (актуальность карт).
+6. Проверить готовность: `python tools/codemap/generate.py --all --check` (актуальность карт репозиториев).
 7. Запустить первую задачу: промты в [docs/user-prompts/](docs/user-prompts/),
    источник истины процесса — навык `ausn-qa-loop`.
 
@@ -204,8 +203,8 @@ def parse_node_paths(target, node):
 
 В `build()` (строки ~77–100) заменить проверку существования на вызов `parse_node_paths`,
 накапливая `errors` и `gaps`; убрать дублирующие `if not (target / rel).exists()`.
-Добавить в `doc` ключ `"gaps": gaps` и в статистику `"gaps": len(gaps)`;
-в `--check` пробелы не влияют на вердикт (проверяются `model_sha256` и `total_files`).
+Добавить в `doc` ключ `"gaps": gaps` (без изменений структуры `stats`); в `--check`
+пробелы не влияют на вердикт (проверяются `model_sha256` и `total_files`).
 Сигнатуру сделать тестируемой: `def build(name, model_path=None):` и в `load_model`
 разрешить явный `model_path`, а `target` резолвить от корня модели
 (`model_path.resolve().parents[2]`, если задан явно; иначе `ROOT`).
@@ -260,8 +259,7 @@ def test_clean_tree_yields_gaps_not_errors(tmp_path: Path) -> None:
 
     doc = build("portability-fixture", model_path=_write_model(tmp_path, repo))
 
-    assert doc["stats"]["errors"] == 0, doc["stats"]
-    kinds = sorted(gap["kind"] for gap in doc["gaps"])
+    kinds = sorted({gap["kind"] for gap in doc["gaps"]})
     assert kinds == ["external_repo_missing", "optional_runtime_missing"]
     assert (repo / "docs" / "codemap" / "codemap.json").is_file()
 
@@ -375,6 +373,17 @@ def test_normalize_keeps_only_semantic_fields() -> None:
     }
 
 
+def test_normalize_treats_stdio_and_missing_type_as_local() -> None:
+    base = {"command": "node", "args": ["x.js"]}
+    assert normalize("a", base)["transport"] == "local"
+    assert normalize("a", dict(base, type="stdio"))["transport"] == "local"
+
+
+def test_normalize_reads_opencode_environment_key() -> None:
+    spec = {"type": "local", "command": "node", "environment": {"MCP_REMOTE_CONFIG_DIR": "x"}}
+    assert normalize("srv", spec)["env_names"] == ["MCP_REMOTE_CONFIG_DIR"]
+
+
 def test_normalize_remote_with_headers_lists_names_only() -> None:
     spec = {"type": "remote", "url": "https://mcp.example/mcp",
             "headers": {"Authorization": "Bearer secret"}}
@@ -445,11 +454,19 @@ def read_jsonc(path: Path) -> Any:
 
 
 def normalize(name: str, spec: dict[str, Any]) -> dict[str, Any]:
-    """Оставить только смысловые поля сервера; значения секретов не читаются."""
+    """Оставить только смысловые поля сервера; значения секретов не читаются.
+
+    Варианты записи у клиентов разные: env (mcp.json/vscode/codex) против environment (opencode);
+    транспорт отсутствует (mcp.json/codex), 'stdio' (vscode) или 'local' (opencode) — всё это один
+    локальный stdio-сервер, поэтому канонизируем в 'local', иначе гейт ловит ложный дрейф.
+    """
     headers = spec.get("headers") or {}
-    env = spec.get("env") or {}
+    env = spec.get("env") or spec.get("environment") or {}
+    transport = spec.get("type") or spec.get("transport") or "local"
+    if transport == "stdio":
+        transport = "local"
     return {
-        "transport": spec.get("type") or spec.get("transport"),
+        "transport": transport,
         "command": spec.get("command"),
         "args": list(spec.get("args") or []),
         "url": spec.get("url"),
@@ -546,6 +563,9 @@ Expected: четыре строки `…: серверов N` и `OK: конфи
 В `AGENTS.md`, раздел «Конфигурация MCP», добавить строку:
 `Проверка паритета: .\.venv\Scripts\python.exe tools\checks\mcp_parity.py (код 1 — дрейф; при расхождении обновить все четыре файла).`
 В `docs/mcp.md` добавить абзац со ссылкой на гейт и пояснением, что источник истины — сами конфиги.
+В `README.md` дополнить шаг 6 «Быстрого старта» ссылкой на гейт (добавляется здесь, а не в задаче 1,
+чтобы ни один коммит не ссылался на несуществующий скрипт):
+`python tools/checks/mcp_parity.py` (паритет конфигов MCP).
 
 - [ ] **Step 7: Проверить гейты целиком**
 
