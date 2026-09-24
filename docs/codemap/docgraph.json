@@ -1,17 +1,17 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-24T01:45:06+00:00",
-  "target_commit": "b47d80d",
+  "generated_at": "2026-09-24T01:48:00+00:00",
+  "target_commit": "8615191",
   "target_branch": "main",
-  "target_dirty": true,
+  "target_dirty": false,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
-    "docs": 84,
+    "docs": 85,
     "edges": 293,
     "broken": 0,
     "unresolved": 26,
-    "unreachable": 19,
+    "unreachable": 20,
     "warnings": 0
   },
   "kinds": {
@@ -498,6 +498,12 @@
     },
     {
       "id": "ENVIRONMENT.md",
+      "kind": "doc",
+      "in": 0,
+      "out": 0
+    },
+    {
+      "id": "OPENCODE_PORTABILITY_OPTIMIZATION_PROMPT.md",
       "kind": "doc",
       "in": 0,
       "out": 0
@@ -2465,6 +2471,7 @@
     "docs/user-prompts/pre-release-prompt.md",
     "docs/user-prompts/start-regression-flow.md",
     "ENVIRONMENT.md",
+    "OPENCODE_PORTABILITY_OPTIMIZATION_PROMPT.md",
     "PROJECT_STATUS.md"
   ],
   "warnings": [],
