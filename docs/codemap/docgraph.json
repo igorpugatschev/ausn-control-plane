@@ -1,8 +1,8 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-24T04:30:00+00:00",
-  "target_commit": "303569d",
+  "generated_at": "2026-09-24T04:38:58+00:00",
+  "target_commit": "efaac9f",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
@@ -2453,37 +2453,37 @@
       "from": "README.md",
       "to": "docs/user-prompts/",
       "kind": "link-dir",
-      "line": 13
+      "line": 14
     },
     {
       "from": "README.md",
       "to": "docs/qa-methodology/README.md",
       "kind": "link",
-      "line": 17
+      "line": 18
     },
     {
       "from": "README.md",
       "to": "docs/mcp.md",
       "kind": "link",
-      "line": 18
+      "line": 19
     },
     {
       "from": "README.md",
       "to": "docs/socraticode.md",
       "kind": "link",
-      "line": 19
+      "line": 20
     },
     {
       "from": "README.md",
       "to": "REPOSITORIES.md",
       "kind": "link",
-      "line": 21
+      "line": 22
     },
     {
       "from": "README.md",
       "to": "TEAM_MEMBERS.md",
       "kind": "link",
-      "line": 21
+      "line": 22
     },
     {
       "from": "README.md",

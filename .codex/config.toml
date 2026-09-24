@@ -14,6 +14,8 @@ OLLAMA_MODE = "external"
 OLLAMA_URL = "http://127.0.0.1:11434"
 SOCRATICODE_GLOBAL_CONFIG_DIR = "./.local/socraticode/context"
 
+TEMP = "./.local/socraticode/tmp"
+TMP = "./.local/socraticode/tmp"
 [mcp_servers.atlassian]
 command = "node"
 args = ["--env-file=.env", "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js", "http://192.168.100.108:9871/mcp", "--transport", "http-only", "--silent", "--allow-http"]

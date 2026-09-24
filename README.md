@@ -5,7 +5,8 @@
 ## Быстрый старт (чистый клон)
 
 1. Прочитать [AGENTS.md](AGENTS.md) — правила, модель владения, стек и ограничения.
-2. Создать локальное окружение по [ENVIRONMENT-manual.md](ENVIRONMENT-manual.md); заполнить `.env` в корне (в Git не входит) по разрешённому каналу.
+2. Создать локальное окружение по [ENVIRONMENT-manual.md](ENVIRONMENT-manual.md); скопировать `.env.example` → `.env`
+   и заполнить личные токены GitLab/GitHub (в шаблоне их нет), остальные значения уже в шаблоне.
 3. Установить runtime MCP: `npm ci --prefix tools/mcp-runtime` (Node.js 22+).
 4. Поднять инфраструктуру индекса: `docker compose -f compose.socraticode.yaml up -d`; при отсутствии модели — `ollama pull nomic-embed-text`.
 5. Открыть проект из корня и подтвердить доверие к проекту/MCP, если клиент запросит.
