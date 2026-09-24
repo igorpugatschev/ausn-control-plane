@@ -1,8 +1,8 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-23T13:04:01+00:00",
-  "target_commit": "a909384",
+  "generated_at": "2026-09-24T01:45:06+00:00",
+  "target_commit": "b47d80d",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
@@ -898,7 +898,7 @@
       "from": ".agents/skills/ausn-qa-loop/SKILL.md",
       "to": ".agents/skills/ausn-qa-loop/references/loop-goal-prompts.md",
       "kind": "code-path",
-      "line": 171
+      "line": 175
     },
     {
       "from": ".agents/skills/ausn-qa-loop/SKILL.md",

@@ -94,7 +94,7 @@ provenance/traceability требований. Не выводи expected behavio
 
 ```powershell
 # 1. пакет кейсов из ledger'ов (CSV/XLSX + реестр папок и имён)
-.\.venv\Scripts\python.exe -m scripts.tools.zephyr_import_pack --project PKAUSN
+.\.venv\Scripts\python.exe -m scripts.tools.zephyr_import_pack
 # 2. создать недостающие кейсы в Zephyr (идемпотентно, реестр imported.json)
 .\.venv\Scripts\python.exe -m scripts.tools.zephyr_import
 # 3. привязать кейсы к проверенной задаче Jira (панель «Покрытие тестирования»)
@@ -107,6 +107,10 @@ provenance/traceability требований. Не выводи expected behavio
 отчёты `ausn-qa-project/docs/reports/zephyr-{testcases,autotests-imported,issue-links,automation-executions}.md`.
 Названия кейсов — читаемые: `[AUTO] <Раздел>: <краткий смысл>`; связь с ledger'ом хранится в реестре
 (`<ledger>.md#QL-<id>`), в задаче Jira кейс виден в панели «Покрытие тестирования».
+
+Трассируемость обязательна для каждой принятой задачи: нет кейса в Zephyr — догрузить и привязать.
+Это касается и задач, чьё покрытие подтверждено продуктовым тестом разработчика: кейс создаётся, а в его
+описании указывается, что evidence — продуктовый тест (решение пользователя 2026-09-23).
 
 ## Режимы
 

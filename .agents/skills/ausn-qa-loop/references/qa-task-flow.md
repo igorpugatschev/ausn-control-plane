@@ -220,7 +220,7 @@ codebase_index(projectPath="<path>")
    в Zephyr → привязка к проверенной задаче Jira (панель «Покрытие тестирования») → фиксация результатов прогона:
 
 ```powershell
-.\.venv\Scripts\python.exe -m scripts.tools.zephyr_import_pack --project PKAUSN
+.\.venv\Scripts\python.exe -m scripts.tools.zephyr_import_pack
 .\.venv\Scripts\python.exe -m scripts.tools.zephyr_import
 .\.venv\Scripts\python.exe -m scripts.tools.zephyr_link_cases --since <YYYY-MM-DD> [--exclude PKAUSN-<предшественник>]
 .\.venv\Scripts\python.exe -m scripts.tools.zephyr_automation --date <YYYY-MM-DD>
@@ -228,6 +228,8 @@ codebase_index(projectPath="<path>")
 
    Эти записи в Zephyr Scale — штатная часть QA-флоу (approval не требуют); комментарии и публикации
    в Jira/Confluence/Mattermost по-прежнему выполняет пользователь.
+   Если у принятой задачи кейса нет — догрузить и привязать; это касается и задач, покрытых продуктовым
+   тестом разработчика (в описании кейса указать, что evidence — продуктовый тест).
 4. Запустить релевантные проверки после merge.
 5. Удалить ветку задачи после успешного merge.
 6. Актуализировать индекс SocratiCode для QA-проекта (watcher остаётся включённым):
