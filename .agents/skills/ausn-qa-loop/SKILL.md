@@ -118,6 +118,29 @@ provenance/traceability требований. Не выводи expected behavio
 `scripts.tools.zephyr_link_audit` (показывает связи, где ключ задачи не в шапке ledger'а-источника;
 `--remove --apply` снимает их через Zephyr REST).
 
+### Регресс тест-планом (слои пирамиды)
+
+План в Zephyr Scale **состоит из прогонов**: кейс попадает в план через прогон (`testPlanKey`), состав
+читается как `traceLinks[].testRun`. Слои заданы в `data/zephyr/import/layers.json`:
+`Contract → API → DB/Tooling → Integration → UI/E2E`; `Non-automated` — процессные/инфраструктурные
+и ручные визуальные проверки (без автоматизации). Unit-тесты продукта — CI разработчиков (evidence),
+в прогоны QA не входят.
+
+```powershell
+# план + прогоны Smoke (priority High) и Full; реестр и отчёт
+.\.venv\Scripts\python.exe -m scripts.tools.zephyr_plan --layer-runs --plan PKAUSN-P4
+.\.venv\Scripts\python.exe -m scripts.tools.zephyr_plan --layer-runs --plan PKAUSN-P4 --smoke
+# только один слой или пересоздание слоя после исправления статуса кейса
+.\.venv\Scripts\python.exe -m scripts.tools.zephyr_plan --layer-runs --layer API --plan PKAUSN-P4
+.\.venv\Scripts\python.exe -m scripts.tools.zephyr_plan --layer-runs --refresh --layer API --plan PKAUSN-P4
+```
+
+Повторный `--layer-runs` создаёт **дельта-прогон** только с новыми кейсами слоя, поэтому план
+расширяется без дублей; `--refresh --layer X` удаляет записанные прогоны слоя и создаёт заново.
+Отчёт `docs/reports/zephyr-regression-plan.md` считает вердикт по **критериям выхода**: для регресса
+`Fail = 0`; каждый `Blocked` имеет причину (нет автоматизации / среда / ожидание джоб). Планы в этой
+версии Zephyr не переименовываются и не удаляются через API — статус, цель и удаление черновиков в UI.
+
 ## Режимы
 
 | Режим | Когда использовать | Граница |
