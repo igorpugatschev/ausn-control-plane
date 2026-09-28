@@ -1,8 +1,8 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-28T05:20:20+00:00",
-  "target_commit": "7f725a3",
+  "generated_at": "2026-09-28T05:33:04+00:00",
+  "target_commit": "3ae6361",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
@@ -1829,31 +1829,31 @@
       "from": "docs/presentations/README.md",
       "to": "qa-project:data/zephyr/import/trace_links.json",
       "kind": "code-path",
-      "line": 33
+      "line": 61
     },
     {
       "from": "docs/presentations/README.md",
       "to": "qa-project:data/zephyr/import/layer_runs.json",
       "kind": "code-path",
-      "line": 34
+      "line": 62
     },
     {
       "from": "docs/presentations/README.md",
       "to": "qa-project:data/zephyr/import/smoke_gate.json",
       "kind": "code-path",
-      "line": 36
+      "line": 64
     },
     {
       "from": "docs/presentations/README.md",
       "to": "qa-project:data/releases/inventory.json",
       "kind": "code-path",
-      "line": 37
+      "line": 65
     },
     {
       "from": "docs/presentations/README.md",
       "to": "docs/retrospectives.md",
       "kind": "code-path",
-      "line": 38
+      "line": 66
     },
     {
       "from": "docs/qa-methodology/README.md",
@@ -2599,7 +2599,7 @@
     {
       "from": "docs/presentations/README.md",
       "target": "ausn-qa-project/data/zephyr/import/imported.json",
-      "line": 32,
+      "line": 60,
       "severity": "warning"
     },
     {
