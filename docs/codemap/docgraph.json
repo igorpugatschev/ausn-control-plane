@@ -1,21 +1,21 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-28T07:22:54+00:00",
-  "target_commit": "6f3b137",
+  "generated_at": "2026-09-28T07:36:16+00:00",
+  "target_commit": "c84ce40",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
-    "docs": 88,
-    "edges": 337,
+    "docs": 89,
+    "edges": 338,
     "broken": 0,
-    "unresolved": 27,
-    "unreachable": 22,
+    "unresolved": 32,
+    "unreachable": 23,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 149,
+    "code-path": 150,
     "mention-skill": 78,
     "mention-agent": 40,
     "mention-command": 7,
@@ -308,7 +308,7 @@
     {
       "id": "docs/ausn-context/system-map.md",
       "kind": "doc",
-      "in": 3,
+      "in": 4,
       "out": 0
     },
     {
@@ -364,6 +364,12 @@
       "kind": "doc",
       "in": 0,
       "out": 23
+    },
+    {
+      "id": "docs/plans/system-codemap-design.md",
+      "kind": "doc",
+      "in": 0,
+      "out": 1
     },
     {
       "id": "docs/presentations/README.md",
@@ -1826,6 +1832,12 @@
       "line": 0
     },
     {
+      "from": "docs/plans/system-codemap-design.md",
+      "to": "docs/ausn-context/system-map.md",
+      "kind": "code-path",
+      "line": 103
+    },
+    {
       "from": "docs/presentations/README.md",
       "to": "qa-project:data/zephyr/import/trace_links.json",
       "kind": "code-path",
@@ -2597,6 +2609,36 @@
       "severity": "warning"
     },
     {
+      "from": "docs/plans/system-codemap-design.md",
+      "target": "ausn-qa-project/docs/codemap/system.json",
+      "line": 46,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/system-codemap-design.md",
+      "target": "ausn-qa-project/docs/codemap/system.html",
+      "line": 47,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/system-codemap-design.md",
+      "target": "ausn-qa-project/docs/reports/system-codemap.md",
+      "line": 50,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/system-codemap-design.md",
+      "target": "ausn-control-plane/tools/codemap/model/system.json",
+      "line": 51,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/system-codemap-design.md",
+      "target": "tools/codemap/model/system.json",
+      "line": 101,
+      "severity": "warning"
+    },
+    {
       "from": "docs/presentations/README.md",
       "target": "ausn-qa-project/data/zephyr/import/imported.json",
       "line": 75,
@@ -2750,6 +2792,7 @@
     "docs/ausn-context/ui-entrypoint.md",
     "docs/evidence/2026-09-17-full-smoke-test1.md",
     "docs/plans/2026-09-24-control-plane-portability-fixes.md",
+    "docs/plans/system-codemap-design.md",
     "docs/presentations/README.md",
     "docs/reports/analyst-questions-categorizer-numeric-2026-09-22.md",
     "docs/reports/categorizer-numeric-logic-2026-09-22.md",
