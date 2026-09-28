@@ -1,21 +1,21 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-28T04:55:59+00:00",
-  "target_commit": "cba67bc",
+  "generated_at": "2026-09-28T05:20:20+00:00",
+  "target_commit": "7f725a3",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
-    "docs": 87,
-    "edges": 332,
+    "docs": 88,
+    "edges": 337,
     "broken": 0,
-    "unresolved": 26,
-    "unreachable": 21,
+    "unresolved": 27,
+    "unreachable": 22,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 144,
+    "code-path": 149,
     "mention-skill": 78,
     "mention-agent": 40,
     "mention-command": 7,
@@ -366,6 +366,12 @@
       "out": 23
     },
     {
+      "id": "docs/presentations/README.md",
+      "kind": "doc",
+      "in": 0,
+      "out": 5
+    },
+    {
       "id": "docs/qa-methodology/automation.md",
       "kind": "doc",
       "in": 2,
@@ -464,7 +470,7 @@
     {
       "id": "docs/retrospectives.md",
       "kind": "doc",
-      "in": 4,
+      "in": 5,
       "out": 16
     },
     {
@@ -1820,6 +1826,36 @@
       "line": 0
     },
     {
+      "from": "docs/presentations/README.md",
+      "to": "qa-project:data/zephyr/import/trace_links.json",
+      "kind": "code-path",
+      "line": 33
+    },
+    {
+      "from": "docs/presentations/README.md",
+      "to": "qa-project:data/zephyr/import/layer_runs.json",
+      "kind": "code-path",
+      "line": 34
+    },
+    {
+      "from": "docs/presentations/README.md",
+      "to": "qa-project:data/zephyr/import/smoke_gate.json",
+      "kind": "code-path",
+      "line": 36
+    },
+    {
+      "from": "docs/presentations/README.md",
+      "to": "qa-project:data/releases/inventory.json",
+      "kind": "code-path",
+      "line": 37
+    },
+    {
+      "from": "docs/presentations/README.md",
+      "to": "docs/retrospectives.md",
+      "kind": "code-path",
+      "line": 38
+    },
+    {
       "from": "docs/qa-methodology/README.md",
       "to": "docs/qa-methodology/foundations.md",
       "kind": "link",
@@ -2561,6 +2597,12 @@
       "severity": "warning"
     },
     {
+      "from": "docs/presentations/README.md",
+      "target": "ausn-qa-project/data/zephyr/import/imported.json",
+      "line": 32,
+      "severity": "warning"
+    },
+    {
       "from": "docs/reports/analyst-questions-categorizer-numeric-2026-09-22.md",
       "target": "ausn-control-plane/docs/reports/categorizer-numeric-logic-2026-09-22.md",
       "line": 5,
@@ -2708,6 +2750,7 @@
     "docs/ausn-context/ui-entrypoint.md",
     "docs/evidence/2026-09-17-full-smoke-test1.md",
     "docs/plans/2026-09-24-control-plane-portability-fixes.md",
+    "docs/presentations/README.md",
     "docs/reports/analyst-questions-categorizer-numeric-2026-09-22.md",
     "docs/reports/categorizer-numeric-logic-2026-09-22.md",
     "docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md",
@@ -2750,7 +2793,7 @@
     },
     {
       "id": "docs/retrospectives.md",
-      "degree": 20
+      "degree": 21
     },
     {
       "id": ".agents/skills/ausn-qa-methodology/SKILL.md",
