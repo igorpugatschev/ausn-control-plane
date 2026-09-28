@@ -403,13 +403,13 @@ groups.forEach(([head, servers, why, accent], index) => {
     fontFace: FONT, fontSize: 12, color: MUTED, lineSpacing: 16,
   });
 });
-card(s8, M + 4.12, 4.05, 3.85, 2.05, { fill: INK, line: INK });
+card(s8, M + 8.24, 4.05, 3.85, 2.05, { fill: INK, line: INK });
 s8.addText("Правило безопасности", {
-  x: M + 4.42, y: 4.28, w: 3.25, h: 0.34, margin: 0,
+  x: M + 8.54, y: 4.28, w: 3.25, h: 0.34, margin: 0,
   fontFace: FONT, fontSize: 14, bold: true, color: "FFFFFF",
 });
 s8.addText("Доступ — не разрешение менять данные: любые записи только в рамках текущей QA-задачи; секреты хранятся локально.", {
-  x: M + 4.42, y: 4.68, w: 3.25, h: 1.2, margin: 0,
+  x: M + 8.54, y: 4.68, w: 3.25, h: 1.2, margin: 0,
   fontFace: FONT, fontSize: 12, color: PANEL_TEXT, lineSpacing: 16,
 });
 pageNumber(s8, 8);
@@ -500,23 +500,24 @@ const s11 = pres.addSlide();
 light(s11);
 slideTitle(s11, "Роли ИИ: конвейер с обязательной проверкой", "Каждый шаг делает отдельная роль; результат проходит независимое ревью");
 const stages = [
-  ["Исследование", "источник контракта"],
-  ["Дизайн", "сценарии и данные"],
-  ["Реализация", "тесты и прогон"],
-  ["Ревью", "независимая проверка"],
+  ["Исследование", "источник контракта", CARD, LINE, INK],
+  ["Дизайн", "сценарии и данные", CARD, LINE, INK],
+  ["Реализация", "тесты и прогон", CARD, LINE, INK],
+  ["Ревью", "независимая проверка", BRAND_SOFT, BRAND_LINE, BRAND_DARK],
+  ["Готово", "commit и push", OK, OK, "FFFFFF"],
 ];
-stages.forEach(([head, sub], index) => {
-  const x = M + index * 3.15;
-  nodeBox(s11, x, 2.2, 2.75, 1.5, head, sub, { fill: index === 3 ? BRAND_SOFT : CARD, line: index === 3 ? BRAND_LINE : LINE, fontSize: 14, subSize: 11 });
+stages.forEach(([head, sub, fill, line, color], index) => {
+  const x = M + index * 2.48;
+  nodeBox(s11, x, 2.2, 2.2, 1.5, head, sub, {
+    fill, line, color, fontSize: 14, subSize: 10.5, subColor: color === "FFFFFF" ? "E6F6EC" : MUTED,
+  });
   if (index < stages.length - 1) {
-    arrow(s11, x + 2.79, 2.95, x + 3.11, 2.95, { width: 1.5 });
+    hline(s11, x + 2.2, x + 2.48, 2.95, { width: 1.5 });
   }
 });
-nodeBox(s11, 10.9, 2.2, 1.83, 1.5, "Готово", "commit и push", { fill: OK, line: OK, color: "FFFFFF", fontSize: 14, subColor: "E6F6EC", subSize: 11 });
-hline(s11, 9.75, 10.85, 2.95, { width: 1.5 });
-hline(s11, 3.2, 9.3, 4.35, { color: WARN, width: 1.5, dash: true, beginArrow: true, endArrow: false });
+hline(s11, 5.6, 10.2, 4.35, { color: WARN, width: 1.5, dash: true, beginArrow: true, endArrow: false });
 s11.addText("возврат на доработку: замечания ревью должны быть сняты", {
-  x: 3.2, y: 4.42, w: 6.1, h: 0.3, margin: 0,
+  x: 5.6, y: 4.42, w: 4.6, h: 0.3, margin: 0,
   fontFace: FONT, fontSize: 11, color: MUTED, align: "center",
 });
 card(s11, M, 5.05, 12.13, 1.55);
@@ -649,7 +650,7 @@ const cx = 4.3;
 pyramid.forEach(([head, sub, width], index) => {
   const y = 6.0 - index * 0.83;
   const x = cx - width / 2;
-  const fill = index === 0 ? "EAF2FF" : index === 1 ? "DCE9FF" : index === 2 ? "CBE0FF" : index === 3 ? "B9D6FF" : BRAND;
+  const fill = index === 0 ? "E1EDFF" : index === 1 ? "CFE2FF" : index === 2 ? "BBD6FF" : index === 3 ? "A6C9FF" : BRAND;
   card(s14, x, y, width, 0.72, { fill, line: index === 4 ? BRAND : BRAND_LINE, flat: true });
   s14.addText(`${head}  —  ${sub}`, {
     x: x + 0.2, y, w: width - 0.4, h: 0.72, margin: 0,
