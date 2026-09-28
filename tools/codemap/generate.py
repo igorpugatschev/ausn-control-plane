@@ -320,8 +320,15 @@ def doc_edges(target, path, files, dirs, named, warnings, others):
             node += "/"
         add(node, f"{base_kind}-dir" if is_dir else base_kind, line)
 
+    in_fence = False
     for number, line in enumerate(text.splitlines(), 1):
-        for match in LINK_RE.finditer(line):
+        if line.lstrip().startswith(("```", "~~~")):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+        plain = CODE_RE.sub(lambda match: " " * len(match.group(0)), line)
+        for match in LINK_RE.finditer(plain):
             raw = match.group(1).strip()
             if "://" in raw or raw.startswith(("mailto:", "#")) or _is_external(raw):
                 continue
