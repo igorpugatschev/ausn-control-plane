@@ -143,8 +143,8 @@ provenance/traceability требований. Не выводи expected behavio
 Управление планом: **статус обязателен** — план, созданный без статуса, в списке UI не отображается,
 поэтому создавать только через `--ensure "<имя>" --status Approved`; сменить статус/имя существующего —
 `--set-status` / `--rename` (с `--plan`), удалить — `--delete PKAUSN-P<номер>`. Быстрый red/green-чек —
-`python -m scripts.tools.smoke_gate` (маркеры `smoke`, вердикт GREEN/RED в `docs/reports/smoke-gate.md`);
-порядок проверок — в `ausn-qa-project/docs/reports/regression-process.md`.
+`python -m scripts.tools.smoke_gate` (маркеры `smoke`, вердикт GREEN/RED в
+`docs/reports/smoke-gate.md`); порядок проверок — в `docs/reports/regression-process.md`.
 
 ## Режимы
 

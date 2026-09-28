@@ -2,8 +2,8 @@
   "name": "control-plane",
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "docs": 87,
-  "edges": 326,
+  "edges": 332,
   "broken": 0,
-  "target_commit": "f509969",
-  "generated_at": "2026-09-24T05:03:38+00:00"
+  "target_commit": "cba67bc",
+  "generated_at": "2026-09-28T04:55:59+00:00"
 }

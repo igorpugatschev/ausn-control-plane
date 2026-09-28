@@ -1,21 +1,21 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-24T05:03:38+00:00",
-  "target_commit": "f509969",
+  "generated_at": "2026-09-28T04:55:59+00:00",
+  "target_commit": "cba67bc",
   "target_branch": "main",
-  "target_dirty": false,
+  "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
     "docs": 87,
-    "edges": 326,
+    "edges": 332,
     "broken": 0,
     "unresolved": 26,
     "unreachable": 21,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 138,
+    "code-path": 144,
     "mention-skill": 78,
     "mention-agent": 40,
     "mention-command": 7,
@@ -141,7 +141,7 @@
       "id": ".agents/skills/ausn-qa-loop/SKILL.md",
       "kind": "doc",
       "in": 19,
-      "out": 12
+      "out": 16
     },
     {
       "id": ".agents/skills/ausn-qa-mcp/references/catalog.md",
@@ -255,7 +255,7 @@
       "id": "AGENTS.md",
       "kind": "doc",
       "in": 3,
-      "out": 30
+      "out": 31
     },
     {
       "id": "docs/ausn-context/current-state.md",
@@ -465,7 +465,7 @@
       "id": "docs/retrospectives.md",
       "kind": "doc",
       "in": 4,
-      "out": 15
+      "out": 16
     },
     {
       "id": "docs/reviews/2026-09-17-qa-project-framework-review.md",
@@ -915,9 +915,33 @@
     },
     {
       "from": ".agents/skills/ausn-qa-loop/SKILL.md",
+      "to": "qa-project:data/zephyr/import/layers.json",
+      "kind": "code-path",
+      "line": 124
+    },
+    {
+      "from": ".agents/skills/ausn-qa-loop/SKILL.md",
+      "to": "qa-project:docs/reports/zephyr-regression-plan.md",
+      "kind": "code-path",
+      "line": 140
+    },
+    {
+      "from": ".agents/skills/ausn-qa-loop/SKILL.md",
+      "to": "qa-project:docs/reports/smoke-gate.md",
+      "kind": "code-path",
+      "line": 147
+    },
+    {
+      "from": ".agents/skills/ausn-qa-loop/SKILL.md",
+      "to": "qa-project:docs/reports/regression-process.md",
+      "kind": "code-path",
+      "line": 147
+    },
+    {
+      "from": ".agents/skills/ausn-qa-loop/SKILL.md",
       "to": ".agents/skills/ausn-qa-loop/references/loop-goal-prompts.md",
       "kind": "code-path",
-      "line": 175
+      "line": 209
     },
     {
       "from": ".agents/skills/ausn-qa-loop/SKILL.md",
@@ -1311,69 +1335,75 @@
     },
     {
       "from": "AGENTS.md",
-      "to": "docs/retrospectives.md",
-      "kind": "link",
-      "line": 57
+      "to": "qa-project:data/zephyr/import/layers.json",
+      "kind": "code-path",
+      "line": 31
     },
     {
       "from": "AGENTS.md",
-      "to": "docs/qa-methodology/README.md",
+      "to": "docs/retrospectives.md",
       "kind": "link",
       "line": 59
     },
     {
       "from": "AGENTS.md",
+      "to": "docs/qa-methodology/README.md",
+      "kind": "link",
+      "line": 61
+    },
+    {
+      "from": "AGENTS.md",
       "to": ".opencode/opencode.jsonc",
       "kind": "code-path",
-      "line": 73
+      "line": 75
     },
     {
       "from": "AGENTS.md",
       "to": "docs/ausn-context/README.md",
       "kind": "link",
-      "line": 74
+      "line": 76
     },
     {
       "from": "AGENTS.md",
       "to": "docs/ausn-context/evidence-register.md",
       "kind": "link",
-      "line": 74
+      "line": 76
     },
     {
       "from": "AGENTS.md",
       "to": "docs/mcp.md",
       "kind": "code-path",
-      "line": 80
+      "line": 82
     },
     {
       "from": "AGENTS.md",
       "to": "docs/socraticode.md",
       "kind": "code-path",
-      "line": 80
+      "line": 82
     },
     {
       "from": "AGENTS.md",
       "to": ".opencode/command/qa-task.md",
       "kind": "code-path",
-      "line": 82
+      "line": 84
     },
     {
       "from": "AGENTS.md",
       "to": ".codex/config.toml",
       "kind": "code-path",
-      "line": 98
+      "line": 100
     },
     {
       "from": "AGENTS.md",
       "to": ".vscode/mcp.json",
       "kind": "code-path",
-      "line": 98
+      "line": 100
     },
     {
       "from": "AGENTS.md",
       "to": "docs/archive/README.md",
       "kind": "code-path",
-      "line": 118
+      "line": 120
     },
     {
       "from": "AGENTS.md",
@@ -2079,6 +2109,12 @@
     },
     {
       "from": "docs/retrospectives.md",
+      "to": "qa-project:tests/kafka/conftest.py",
+      "kind": "code-path",
+      "line": 296
+    },
+    {
+      "from": "docs/retrospectives.md",
       "to": ".agents/skills/ausn-qa-loop/SKILL.md",
       "kind": "mention-skill",
       "line": 0
@@ -2689,16 +2725,16 @@
   "warnings": [],
   "hubs": [
     {
+      "id": ".agents/skills/ausn-qa-loop/SKILL.md",
+      "degree": 35
+    },
+    {
       "id": "PROJECT_STATUS.md",
       "degree": 35
     },
     {
       "id": "AGENTS.md",
-      "degree": 33
-    },
-    {
-      "id": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "degree": 31
+      "degree": 34
     },
     {
       "id": ".agents/skills/ausn-qa-agents/SKILL.md",
@@ -2713,11 +2749,11 @@
       "degree": 22
     },
     {
-      "id": ".agents/skills/ausn-qa-methodology/SKILL.md",
-      "degree": 19
+      "id": "docs/retrospectives.md",
+      "degree": 20
     },
     {
-      "id": "docs/retrospectives.md",
+      "id": ".agents/skills/ausn-qa-methodology/SKILL.md",
       "degree": 19
     },
     {
