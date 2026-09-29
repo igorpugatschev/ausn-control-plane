@@ -24,6 +24,7 @@ class Service:
     db: str | None = None
     deploy: list[dict] = field(default_factory=list)
     note: str = ""
+    not_runtime: bool = False
 
 
 @dataclass
@@ -54,6 +55,7 @@ def load_system_model(path: Path) -> SystemModel:
             db=item.get("db"),
             deploy=list(item.get("deploy", [])),
             note=item.get("note", ""),
+            not_runtime=bool(item.get("not_runtime", False)),
         )
         for item in raw.get("services", [])
     ]

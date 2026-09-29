@@ -682,7 +682,14 @@ def run_system(do_check, allow_stale, target_override=None, root_override=None):
     root = Path(root_override).resolve() if root_override else (ROOT / model.repos_root).resolve()
     document = build_system_graph(model, root)
     lock_path = target / "docs" / "codemap" / "system.lock"
-    repos = {node["id"]: node["commit"] for node in document["nodes"] if node["kind"] == "service"}
+    # Коммиты отслеживаем только у рантайм-сервисов: наш продукт (`not_runtime`) меняется
+    # при каждой выгрузке артефакта и создал бы самоссылку в гейте.
+    runtime_ids = {service.id for service in model.services if not service.not_runtime}
+    repos = {
+        node["id"]: node["commit"]
+        for node in document["nodes"]
+        if node["kind"] == "service" and node["id"] in runtime_ids
+    }
     new_lock = {"model_hash": model_hash(SYSTEM_MODEL), "repos": repos, "stats": document["stats"]}
 
     if do_check:
