@@ -10,6 +10,7 @@ from tools.codemap.system_model import SystemModel
 
 SKIP_DIRS = {
     ".git",
+    ".local",
     "build",
     "node_modules",
     "dist",

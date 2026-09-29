@@ -19,13 +19,14 @@ BUILD_FILES = ("build.gradle.kts", "build.gradle", "settings.gradle.kts", "setti
 CONFIG_RE = re.compile(r"^(application|bootstrap)(-[A-Za-z0-9._-]+)?\.(ya?ml|properties)$")
 SKIP_DIRS = {
     ".git",
+    ".local",
     "build",
     "node_modules",
     "dist",
     ".gradle",
     "__pycache__",
-    # артефакты и документация не являются кодом системы; каталоги исключены,
-    # чтобы генерация не влияла на саму себя (system.html и вендор лежат в docs/)
+    # артефакты, документация и локальные выгрузки не являются кодом системы; каталоги исключены,
+    # чтобы генерация не влияла на саму себя (system.html, вендор и parts лежат внутри репозитория)
     "docs",
     "vendor",
     "artifacts",
