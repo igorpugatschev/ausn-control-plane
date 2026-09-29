@@ -670,6 +670,7 @@ def run_system(do_check, allow_stale, target_override=None, root_override=None, 
     `root_override` — каталог сервисов, `parts` — собрать код-уровень, `base_url` — адрес Qdrant.
     """
     from tools.codemap.system_edges import contract_topics
+    from tools.codemap.system_delta import compute_delta, delta_summary, previous_document
     from tools.codemap.system_graph import build_system_graph, model_hash, render_report, write_system_outputs
     from tools.codemap.system_model import load_system_model
     from tools.codemap.system_parts import DEFAULT_BASE_URL, service_repo_paths, write_parts
@@ -726,7 +727,10 @@ def run_system(do_check, allow_stale, target_override=None, root_override=None, 
         collected = sum(1 for item in parts_summary.values() if not item.get("missing"))
         print(f"system: код-части собраны для {collected} из {len(parts_summary)} сервисов")
 
-    report = render_report(document, contracts, map_text, parts_summary)
+    ignore_ids = {service.id for service in model.services if service.not_runtime}
+    delta = compute_delta(previous_document(target), document, ignore_ids)
+    print(f"system: изменения — {delta_summary(delta)}")
+    report = render_report(document, contracts, map_text, parts_summary, delta)
 
     vendor_source = MODEL_DIR.parent / "vendor" / "cytoscape.min.js"
     vendor_target = target / "docs" / "codemap" / "vendor"

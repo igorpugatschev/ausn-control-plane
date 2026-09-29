@@ -8,6 +8,7 @@ import re
 from pathlib import Path
 
 from tools.codemap.system_collect import collect_facts
+from tools.codemap.system_delta import render_delta_section
 from tools.codemap.system_edges import (
     auth_edges,
     consumed_topics,
@@ -125,7 +126,13 @@ def divergence_report(document: dict, system_map_text: str) -> list[str]:
     )
 
 
-def render_report(document: dict, contracts: set[str], system_map_text: str, parts_summary: dict | None = None) -> str:
+def render_report(
+    document: dict,
+    contracts: set[str],
+    system_map_text: str,
+    parts_summary: dict | None = None,
+    delta: dict | None = None,
+) -> str:
     """Отчёт: сводка, неразрешённые рёбра, несоответствия топиков, сверка с картой системы."""
     code_topics = {edge["label"] for edge in document["edges"] if edge["type"] == "kafka" and edge["label"]}
     missing = sorted(code_topics - contracts) if contracts else []
@@ -141,6 +148,10 @@ def render_report(document: dict, contracts: set[str], system_map_text: str, par
         "",
         "Артефакты: `docs/codemap/system.json`, `docs/codemap/system.html`, `docs/codemap/system.lock`.",
         "",
+    ]
+    if delta is not None:
+        lines += render_delta_section(delta)
+    lines += [
         "## Сервисы без локального клона",
         "",
     ]

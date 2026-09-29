@@ -1,8 +1,8 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-29T05:21:39+00:00",
-  "target_commit": "bb92c55",
+  "generated_at": "2026-09-29T05:57:34+00:00",
+  "target_commit": "fb2524b",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
@@ -1445,7 +1445,7 @@
       "from": "AGENTS.md",
       "to": "docs/archive/README.md",
       "kind": "code-path",
-      "line": 122
+      "line": 123
     },
     {
       "from": "AGENTS.md",
