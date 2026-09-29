@@ -181,7 +181,7 @@ def render_report(document: dict, contracts: set[str], system_map_text: str, par
         lines += [
             f"| {name} | {item.get('fileCount', 0)} | {item.get('symbolCount', 0)} | {item.get('edgeCount', 0)} | "
             f"{item.get('partEdges', 0)} | {item.get('unresolvedEdgePct', 0):.1f}% | "
-            f"{'—' if item.get('builtAt') else 'нет'} |"
+            f"{'да' if item.get('builtAt') else 'нет'} |"
             for name, item in sorted(parts_summary.items())
         ]
         lines += [
