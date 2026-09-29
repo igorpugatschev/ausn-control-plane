@@ -9,10 +9,13 @@ from __future__ import annotations
 
 import hashlib
 import json
+import time
+import urllib.error
 import urllib.request
 from pathlib import Path
 
 DEFAULT_BASE_URL = "http://127.0.0.1:17333"
+TRANSIENT = (ConnectionError, TimeoutError, OSError, urllib.error.URLError)
 
 
 def project_id(path: Path) -> str:
@@ -32,7 +35,10 @@ def collection_names(pid: str) -> dict[str, str]:
 
 
 def fetch_json(base_url: str, path: str, payload: dict | None = None) -> dict:
-    """GET (payload=None) или POST к Qdrant; ошибки транспорта — исключением вызывающему."""
+    """GET (payload=None) или POST к Qdrant; ошибки транспорта — исключением вызывающему.
+
+    Транзиентные обрывы (локальный Qdrant перезапускается) повторяются до трёх раз.
+    """
     url = base_url.rstrip("/") + path
     if payload is None:
         request = urllib.request.Request(url)  # noqa: S310
@@ -42,8 +48,15 @@ def fetch_json(base_url: str, path: str, payload: dict | None = None) -> dict:
             data=json.dumps(payload).encode("utf-8"),
             headers={"Content-Type": "application/json"},
         )
-    with urllib.request.urlopen(request, timeout=30) as response:  # noqa: S310
-        return json.loads(response.read().decode("utf-8"))
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(request, timeout=30) as response:  # noqa: S310
+                return json.loads(response.read().decode("utf-8"))
+        except TRANSIENT:
+            if attempt == 2:
+                raise
+            time.sleep(0.1)
+    raise RuntimeError("недостижимо")
 
 
 def qdrant_collections(base_url: str) -> list[str]:
