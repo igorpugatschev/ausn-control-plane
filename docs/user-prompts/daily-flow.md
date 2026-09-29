@@ -30,7 +30,7 @@
    - gitlab health; test_pgdb list; test_graylog get_current_time; Grafana datasources health;
      test_ssh list_servers. Недоступное зафиксируй с fallback.
    - Продуктовые репозитории — read-only, только git pull --ff-only.
-   - Индексы SocratiCode обновляй только при необходимости; watcher остаётся включённым (штатный режим).
+   - Индексы SocratiCode обновляй только при необходимости; watcher активен во время работы SocratiCode (по требованию, решение 2026-09-29).
 
 1. Jira (atlassian) — только provenance: jira_get_issue (описание, changelog, комментарии, ссылки).
    Номер задачи не использовать в именах файлов, классов, тестов, маркерах и allure-атрибутах.

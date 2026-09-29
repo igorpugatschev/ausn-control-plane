@@ -13,7 +13,7 @@
   GitLab `health_check`, `test_pgdb.list`, `test_graylog.get_current_time`, Grafana datasources.
 - При недоступности указан fallback: какой вызов не сработал и что читается вместо него.
 - Источники при необходимости актуализированы (`git pull --ff-only`), индексы обновлены,
-  watcher включён (штатный режим).
+  watcher активен во время работы SocratiCode.
 
 ## Gate 2. Contract Gate
 
