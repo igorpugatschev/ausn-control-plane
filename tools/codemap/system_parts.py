@@ -143,3 +143,47 @@ def build_part(base_url: str, pid: str) -> dict:
         "nodes": [nodes[key] for key in sorted(nodes)],
         "edges": sorted(edges, key=lambda item: (item["source"], item["target"])),
     }
+
+
+def service_repo_paths(model, root: Path) -> list[tuple[str, Path]]:
+    """Пары (сервис, путь клона) для всех сервисов модели (без проверки наличия)."""
+    return [(service.id, (root / service.repo)) for service in model.services]
+
+
+def write_parts(target_root: Path, services: list[tuple[str, Path]], base_url: str) -> dict:
+    """Записать `<target_root>/.local/system-graph/parts/<service>.js` и `index.js`.
+
+    Части подключаются в `system.html` тегом `<script>` (без `fetch`) — работает по `file://`.
+    Возвращает сводку покрытия по сервисам.
+    """
+    parts_dir = Path(target_root) / ".local" / "system-graph" / "parts"
+    parts_dir.mkdir(parents=True, exist_ok=True)
+    summary: dict[str, dict] = {}
+    for service_id, repo_path in services:
+        pid = project_id(repo_path)
+        part = build_part(base_url, pid)
+        body = (
+            "window.SYSTEM_PARTS = window.SYSTEM_PARTS || {};\n"
+            f"window.SYSTEM_PARTS[{json.dumps(service_id, ensure_ascii=False)}] = "
+            f"{json.dumps(part, ensure_ascii=False)};\n"
+        )
+        (parts_dir / f"{service_id}.js").write_text(body, encoding="utf-8", newline="\n")
+        meta = part["meta"]
+        summary[service_id] = {
+            "projectId": pid,
+            "missing": bool(meta.get("missing")),
+            "fileCount": meta.get("fileCount", 0),
+            "symbolCount": meta.get("symbolCount", 0),
+            "edgeCount": meta.get("edgeCount", 0),
+            "partEdges": meta.get("partEdges", 0),
+            "unresolvedEdgePct": meta.get("unresolvedEdgePct", 0.0),
+            "generation": meta.get("generation", ""),
+            "builtAt": meta.get("builtAt", 0),
+        }
+    index = {"services": {key: summary[key] for key in sorted(summary)}}
+    (parts_dir / "index.js").write_text(
+        "window.SYSTEM_PARTS_INDEX = " + json.dumps(index, ensure_ascii=False) + ";\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    return summary

@@ -143,3 +143,29 @@ def test_missing_graph_is_not_fatal(fake_qdrant) -> None:
     part = build_part(fake_qdrant.url, "0" * 12)
     assert part["meta"]["missing"] is True
     assert part["nodes"] == []
+
+
+# --- T3: запись частей и index.js ---
+
+
+def test_write_parts_creates_index_and_service_files(fake_qdrant, tmp_path: Path) -> None:
+    from tools.codemap.system_parts import write_parts
+
+    services = [
+        ("ausn-front-module", Path("C:/rocketscience/ausn/ausn-front-module")),
+        ("ausn-gone", Path("C:/nowhere/ausn-gone")),
+    ]
+    summary = write_parts(tmp_path, services, fake_qdrant.url)
+
+    parts = tmp_path / ".local" / "system-graph" / "parts"
+    index_text = (parts / "index.js").read_text(encoding="utf-8")
+    service_text = (parts / "ausn-front-module.js").read_text(encoding="utf-8")
+
+    assert index_text.startswith("window.SYSTEM_PARTS_INDEX = ")
+    assert '"ausn-front-module"' in index_text
+    assert '"ausn-gone"' in index_text
+    assert '"missing": true' in index_text
+    assert 'window.SYSTEM_PARTS["ausn-front-module"]' in service_text
+    assert summary["ausn-front-module"]["fileCount"] == 2
+    assert summary["ausn-gone"]["missing"] is True
+    assert "\r" not in service_text
