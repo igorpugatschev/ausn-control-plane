@@ -1,21 +1,21 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-29T03:14:38+00:00",
-  "target_commit": "c281a80",
+  "generated_at": "2026-09-29T03:25:36+00:00",
+  "target_commit": "0396bd2",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
     "docs": 92,
-    "edges": 357,
+    "edges": 360,
     "broken": 0,
-    "unresolved": 47,
+    "unresolved": 39,
     "unreachable": 24,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 177,
+    "code-path": 180,
     "mention-skill": 78,
     "mention-agent": 40,
     "mention-command": 7,
@@ -375,7 +375,7 @@
       "id": "docs/plans/system-codemap-plan-c2.md",
       "kind": "doc",
       "in": 0,
-      "out": 3
+      "out": 6
     },
     {
       "id": "docs/plans/system-codemap-plan.md",
@@ -1445,7 +1445,7 @@
       "from": "AGENTS.md",
       "to": "docs/archive/README.md",
       "kind": "code-path",
-      "line": 121
+      "line": 122
     },
     {
       "from": "AGENTS.md",
@@ -1827,6 +1827,12 @@
     },
     {
       "from": "docs/plans/system-codemap-plan-c2.md",
+      "to": "tools/codemap/system_parts.py",
+      "kind": "code-path",
+      "line": 48
+    },
+    {
+      "from": "docs/plans/system-codemap-plan-c2.md",
       "to": "tools/codemap/generate.py",
       "kind": "code-path",
       "line": 49
@@ -1836,6 +1842,18 @@
       "to": "tools/codemap/system_render.py",
       "kind": "code-path",
       "line": 50
+    },
+    {
+      "from": "docs/plans/system-codemap-plan-c2.md",
+      "to": "tools/codemap/tests/test_system_parts.py",
+      "kind": "code-path",
+      "line": 51
+    },
+    {
+      "from": "docs/plans/system-codemap-plan-c2.md",
+      "to": "tools/codemap/tests/test_system_render_parts.py",
+      "kind": "code-path",
+      "line": 52
     },
     {
       "from": "docs/plans/system-codemap-plan-c2.md",
@@ -2772,56 +2790,8 @@
     },
     {
       "from": "docs/plans/system-codemap-plan-c2.md",
-      "target": "tools/codemap/system_parts.py",
-      "line": 48,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan-c2.md",
-      "target": "tools/codemap/tests/test_system_parts.py",
-      "line": 51,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan-c2.md",
-      "target": "tools/codemap/tests/test_system_render_parts.py",
-      "line": 52,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan-c2.md",
-      "target": "tools/codemap/system_parts.py",
-      "line": 59,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan-c2.md",
-      "target": "tools/codemap/tests/test_system_parts.py",
-      "line": 60,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan-c2.md",
-      "target": "tools/codemap/system_parts.py",
-      "line": 145,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan-c2.md",
-      "target": "tools/codemap/system_parts.py",
-      "line": 185,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan-c2.md",
       "target": "tools/codemap/tests/test_system_parts_cli.py",
       "line": 203,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan-c2.md",
-      "target": "tools/codemap/tests/test_system_render_parts.py",
-      "line": 218,
       "severity": "warning"
     },
     {

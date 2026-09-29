@@ -19,13 +19,13 @@ pre { background: #1b1e24; border: 1px solid #2a2f37; border-radius: 10px;
 </head>
 <body>
 <h1>docgraph: control-plane</h1>
-<p class="meta-line">ветка <code>main</code> · коммит <code>c281a80</code> (рабочая копия изменена) ·
-документов 92 · рёбер 357 · <span class="bad">битых 0</span> ·
-неразрешённых путей 47 · недостижимых 24 ·
-warnings 0 · сгенерировано 2026-09-29T03:14:38+00:00</p>
+<p class="meta-line">ветка <code>main</code> · коммит <code>0396bd2</code> (рабочая копия изменена) ·
+документов 92 · рёбер 360 · <span class="bad">битых 0</span> ·
+неразрешённых путей 39 · недостижимых 24 ·
+warnings 0 · сгенерировано 2026-09-29T03:25:36+00:00</p>
 <h2>Связи по типам</h2>
 <ul>
-<li>code-path — 177</li>
+<li>code-path — 180</li>
 <li>link — 54</li>
 <li>link-dir — 1</li>
 <li>mention-agent — 40</li>
@@ -46,15 +46,7 @@ warnings 0 · сгенерировано 2026-09-29T03:14:38+00:00</p>
 <li><code>docs/plans/system-codemap-design.md</code>:50 → <code>ausn-qa-project/docs/reports/system-codemap.md</code></li>
 <li><code>docs/plans/system-codemap-design.md</code>:51 → <code>ausn-control-plane/tools/codemap/model/system.json</code></li>
 <li><code>docs/plans/system-codemap-plan-c2.md</code>:18 → <code>ausn-control-plane/docs/plans/system-codemap-design.md</code></li>
-<li><code>docs/plans/system-codemap-plan-c2.md</code>:48 → <code>tools/codemap/system_parts.py</code></li>
-<li><code>docs/plans/system-codemap-plan-c2.md</code>:51 → <code>tools/codemap/tests/test_system_parts.py</code></li>
-<li><code>docs/plans/system-codemap-plan-c2.md</code>:52 → <code>tools/codemap/tests/test_system_render_parts.py</code></li>
-<li><code>docs/plans/system-codemap-plan-c2.md</code>:59 → <code>tools/codemap/system_parts.py</code></li>
-<li><code>docs/plans/system-codemap-plan-c2.md</code>:60 → <code>tools/codemap/tests/test_system_parts.py</code></li>
-<li><code>docs/plans/system-codemap-plan-c2.md</code>:145 → <code>tools/codemap/system_parts.py</code></li>
-<li><code>docs/plans/system-codemap-plan-c2.md</code>:185 → <code>tools/codemap/system_parts.py</code></li>
 <li><code>docs/plans/system-codemap-plan-c2.md</code>:203 → <code>tools/codemap/tests/test_system_parts_cli.py</code></li>
-<li><code>docs/plans/system-codemap-plan-c2.md</code>:218 → <code>tools/codemap/tests/test_system_render_parts.py</code></li>
 <li><code>docs/plans/system-codemap-plan.md</code>:10 → <code>model/system.json</code></li>
 <li><code>docs/plans/system-codemap-plan.md</code>:18 → <code>ausn-control-plane/docs/plans/system-codemap-design.md</code></li>
 <li><code>docs/plans/system-codemap-plan.md</code>:36 → <code>model/system.json</code></li>
@@ -222,8 +214,11 @@ warnings 0 · сгенерировано 2026-09-29T03:14:38+00:00</p>
   "docs/plans/2026-09-24-control-plane-portability-fixes.md" -->|code-path| "docs/reports/external-review-portability-2026-09-24.md"
   "docs/plans/system-codemap-design.md" -->|code-path| "tools/codemap/model/system.json"
   "docs/plans/system-codemap-design.md" -->|code-path| "docs/ausn-context/system-map.md"
+  "docs/plans/system-codemap-plan-c2.md" -->|code-path| "tools/codemap/system_parts.py"
   "docs/plans/system-codemap-plan-c2.md" -->|code-path| "tools/codemap/generate.py"
   "docs/plans/system-codemap-plan-c2.md" -->|code-path| "tools/codemap/system_render.py"
+  "docs/plans/system-codemap-plan-c2.md" -->|code-path| "tools/codemap/tests/test_system_parts.py"
+  "docs/plans/system-codemap-plan-c2.md" -->|code-path| "tools/codemap/tests/test_system_render_parts.py"
   "docs/plans/system-codemap-plan-c2.md" -->|code-path| "docs/plans/system-codemap-design.md"
   "docs/plans/system-codemap-plan.md" -->|code-path| "tools/codemap/generate.py"
   "docs/plans/system-codemap-plan.md" -->|code-path| "tools/codemap/system_model.py"
@@ -253,9 +248,6 @@ warnings 0 · сгенерировано 2026-09-29T03:14:38+00:00</p>
   "docs/presentations/README.md" -->|code-path| "docs/retrospectives.md"
   "docs/reports/categorizer-numeric-logic-2026-09-22.md" -->|code-path| "qa-project:artifacts/categorizer-rules-from-db.json"
   "docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md" -->|code-path| "qa-project:artifacts/categorizer-rules-from-db.json"
-  "docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md" -->|code-path| "qa-project:scripts/tools/categorizer_condition.py"
-  "docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md" -->|code-path| "qa-project:scripts/tools/analyze_rule_expectations.py"
-  "docs/reports/default-rule-reachability-2026-09-21.md" -->|code-path| "qa-project:artifacts/categorizer-rules-from-db.json"
-  "docs/reports/default-rule-reachability-2026-09-21.md" -->|code-path| "qa-project:artifacts/categorizer-case-specs/DEFAULT_RULE.json"</pre>
+  "docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md" -->|code-path| "qa-project:scripts/tools/categorizer_condition.py"</pre>
 </body>
 </html>
