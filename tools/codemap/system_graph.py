@@ -1,0 +1,120 @@
+"""Сборка system.json: узлы, рёбра, статистика. Без времени генерации (детерминизм)."""
+
+from __future__ import annotations
+
+import hashlib
+import json
+from pathlib import Path
+
+from tools.codemap.system_collect import collect_facts
+from tools.codemap.system_edges import (
+    auth_edges,
+    consumed_topics,
+    db_edges,
+    kafka_edges,
+    produced_topics,
+    rest_edges,
+    shared_lib_edges,
+)
+from tools.codemap.system_model import SystemModel
+
+
+def model_hash(path: Path) -> str:
+    """Хеш файла модели (для lock и гейта --check)."""
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def _service_ports(model: SystemModel) -> dict[int, str]:
+    """Карта «порт деплой-единицы → сервис» для определения REST-целей по URL."""
+    ports: dict[int, str] = {}
+    for service in model.services:
+        for unit in service.deploy:
+            port = unit.get("port")
+            if isinstance(port, int):
+                ports.setdefault(port, service.id)
+    return ports
+
+
+def _service_node(service, facts: dict, graph_meta: dict) -> dict:
+    return {
+        "id": service.id,
+        "title": service.title,
+        "kind": "service",
+        "role": service.role,
+        "stack": service.stack,
+        "db": service.db,
+        "deploy": service.deploy,
+        "note": service.note,
+        "gitlab": service.repo,
+        "size": {"files": facts.get("files", 0)},
+        "commit": facts.get("commit"),
+        "clone_present": bool(facts.get("path_exists")),
+        "graph": graph_meta.get(service.id, {}),
+    }
+
+
+def build_system_graph(model: SystemModel, root: Path, graph_meta: dict[str, dict] | None = None) -> dict:
+    """Собрать сервисный граф: детерминированный, без метки времени."""
+    graph_meta = graph_meta or {}
+    facts = collect_facts(model, root)
+    service_ids = {service.id for service in model.services}
+    infra_ids = {node["id"] for node in model.infra}
+    url_markers = model.rules.get("url_markers", {})
+    ports = _service_ports(model)
+
+    edges: list[dict] = list(model.edges)
+    producers: dict[str, dict[str, str]] = {}
+    consumers: dict[str, dict[str, str]] = {}
+    for service in model.services:
+        repo = root / service.repo
+        if not repo.is_dir():
+            continue
+        edges += shared_lib_edges(service.id, repo, model.rules.get("gradle_markers", []))
+        edges += rest_edges(service.id, repo, url_markers, ports)
+        edges += db_edges(service.id, repo, infra_ids)
+        edges += auth_edges(service.id, repo, model.rules.get("keycloak_markers", []))
+        produced, consumed = produced_topics(repo), consumed_topics(repo)
+        if produced:
+            producers[service.id] = produced
+        if consumed:
+            consumers[service.id] = consumed
+    edges += kafka_edges(producers=producers, consumers=consumers, service_ids=service_ids)
+
+    nodes = [
+        *(_service_node(service, facts[service.id], graph_meta) for service in model.services),
+        *(
+            {"id": node["id"], "title": node["title"], "kind": "infra", "note": node.get("note", "")}
+            for node in model.infra
+        ),
+        *(
+            {"id": node["id"], "title": node["title"], "kind": "external", "note": node.get("note", "")}
+            for node in model.external
+        ),
+    ]
+    known = {node["id"] for node in nodes}
+    edges = sorted(
+        (edge for edge in edges if edge["from"] in known and edge["to"] in known),
+        key=lambda item: (item["from"], item["type"], item["to"], item["label"], item.get("evidence", "")),
+    )
+    stats = {
+        "by_kind": {"service": len(model.services), "infra": len(model.infra), "external": len(model.external)},
+        "edges": len(edges),
+        "resolved": sum(1 for edge in edges if edge["confidence"] == "resolved"),
+        "unresolved": sum(1 for edge in edges if edge["confidence"] == "unresolved"),
+        "curated": sum(1 for edge in edges if edge["confidence"] == "curated"),
+    }
+    return {"title": model.title, "nodes": nodes, "edges": edges, "stats": stats}
+
+
+def write_system_outputs(target: Path, document: dict, lock: dict, report: str = "", html: str = "") -> None:
+    """Записать артефакты system-codemap в целевой репозиторий (report/html — если переданы)."""
+    out = target / "docs" / "codemap"
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "system.json").write_text(json.dumps(document, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (out / "system.lock").write_text(json.dumps(lock, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    if html:
+        (out / "system.html").write_text(html, encoding="utf-8")
+    if report:
+        reports = target / "docs" / "reports"
+        reports.mkdir(parents=True, exist_ok=True)
+        (reports / "system-codemap.md").write_text(report, encoding="utf-8")
