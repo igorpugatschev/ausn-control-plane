@@ -140,6 +140,14 @@
     "gradle_markers": ["ausn-kafka-contracts", "ausn-front-module-api", "ausn-common", "ausn-libs"],
     "producer_patterns": ["KafkaTemplate", "kafkaTemplate.send", "*Producer"],
     "consumer_patterns": ["@KafkaListener", "KafkaConsumer"],
+    "url_markers": {
+      "CORE": "ausn-core",
+      "FRONT_MODULE": "ausn-front-module",
+      "CATEGORIZER": "ausn-categorizer",
+      "DBO_INTEGRATION": "ausn-dbo-integration",
+      "ADMIN": "ausn-admin-backend",
+      "GATEWAY": "ausn-front-gateway"
+    },
     "datasource_files": ["application.yml", "application.yaml", "application.properties"],
     "keycloak_markers": ["keycloak", "issuer-uri", "jwk-set-uri"],
     "routes_files": ["application.yml", "application.yaml"]
