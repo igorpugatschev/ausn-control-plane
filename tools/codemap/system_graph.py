@@ -125,7 +125,7 @@ def divergence_report(document: dict, system_map_text: str) -> list[str]:
     )
 
 
-def render_report(document: dict, contracts: set[str], system_map_text: str) -> str:
+def render_report(document: dict, contracts: set[str], system_map_text: str, parts_summary: dict | None = None) -> str:
     """Отчёт: сводка, неразрешённые рёбра, несоответствия топиков, сверка с картой системы."""
     code_topics = {edge["label"] for edge in document["edges"] if edge["type"] == "kafka" and edge["label"]}
     missing = sorted(code_topics - contracts) if contracts else []
@@ -162,11 +162,34 @@ def render_report(document: dict, contracts: set[str], system_map_text: str) -> 
         "## Ограничения генерации",
         "",
         "- Связи `kafka`/`rest`/`auth` выводятся из кода (ключи конфигурации, порты, маркеры), `db` — только",
-        "  при literal `jdbc`-адресе; в продуктовых конфигах адрес БД приходит из окружения, поэтому рёбер `db` нет.",
+        "  при literal `jdbc`-адресе; в продуктовых конфигах адрес БД приходит из окружения, поэтому связей `db` нет.",
         "- Фронтенд (`ausn-frontend`) — TypeScript: связи с gateway заданы curated-ребром в модели.",
         "- `@FeignClient` в проекте не используется: межсервисный REST идёт через WebClient и конфиг-ключи.",
         "",
     ]
+    if parts_summary is not None:
+        lines += ["## Код-уровень (локальные части, вне Git)", ""]
+        have = [name for name, item in sorted(parts_summary.items()) if not item.get("missing")]
+        absent = [name for name, item in sorted(parts_summary.items()) if item.get("missing")]
+        lines += [
+            f"Собрано частей: **{len(have)}** из {len(parts_summary)} сервисов "
+            f"(файлы: `ausn-qa-project/.local/system-graph/parts/`).",
+            "",
+            "| Сервис | Файлов | Символов | Рёбер графа | Рёбер части | Неразрешённых | Граф собран |",
+            "|---|---|---|---|---|---|---|",
+        ]
+        lines += [
+            f"| {name} | {item.get('fileCount', 0)} | {item.get('symbolCount', 0)} | {item.get('edgeCount', 0)} | "
+            f"{item.get('partEdges', 0)} | {item.get('unresolvedEdgePct', 0):.1f}% | "
+            f"{'—' if item.get('builtAt') else 'нет'} |"
+            for name, item in sorted(parts_summary.items())
+        ]
+        lines += [
+            "",
+            f"Без графа: {', '.join(absent) if absent else 'нет'} "
+            "(построить: `codebase_graph_build` в SocratiCode).",
+            "",
+        ]
     return "\n".join(lines)
 
 

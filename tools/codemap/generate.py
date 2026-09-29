@@ -664,14 +664,15 @@ def run(name, do_check):
     return 0
 
 
-def run_system(do_check, allow_stale, target_override=None, root_override=None):
-    """Собрать или проверить system-codemap (сервисный слой). Возвращает код выхода.
+def run_system(do_check, allow_stale, target_override=None, root_override=None, parts=False, base_url=None):
+    """Собрать или проверить system-codemap. Возвращает код выхода.
 
-    `root_override` — каталог сервисов; используется тестами, чтобы не сканировать реальные репозитории.
+    `root_override` — каталог сервисов, `parts` — собрать код-уровень, `base_url` — адрес Qdrant.
     """
     from tools.codemap.system_edges import contract_topics
     from tools.codemap.system_graph import build_system_graph, model_hash, render_report, write_system_outputs
     from tools.codemap.system_model import load_system_model
+    from tools.codemap.system_parts import DEFAULT_BASE_URL, service_repo_paths, write_parts
     from tools.codemap.system_render import render_system_html
 
     if not SYSTEM_MODEL.is_file():
@@ -717,7 +718,15 @@ def run_system(do_check, allow_stale, target_override=None, root_override=None):
     contracts_repo = root / model.rules.get("contracts_repo", "")
     contracts = contract_topics(contracts_repo) if contracts_repo.is_dir() else set()
     map_path = ROOT / "docs" / "ausn-context" / "system-map.md"
-    report = render_report(document, contracts, map_path.read_text(encoding="utf-8") if map_path.is_file() else "")
+    map_text = map_path.read_text(encoding="utf-8") if map_path.is_file() else ""
+
+    parts_summary = None
+    if parts:
+        parts_summary = write_parts(target, service_repo_paths(model, root), base_url or DEFAULT_BASE_URL)
+        collected = sum(1 for item in parts_summary.values() if not item.get("missing"))
+        print(f"system: код-части собраны для {collected} из {len(parts_summary)} сервисов")
+
+    report = render_report(document, contracts, map_text, parts_summary)
 
     vendor_source = MODEL_DIR.parent / "vendor" / "cytoscape.min.js"
     vendor_target = target / "docs" / "codemap" / "vendor"
@@ -762,6 +771,8 @@ def main():
     parser.add_argument("--target", help="путь целевого репозитория; только вместе с --docs")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--system", action="store_true", help="сводный codemap системы ПК АУСН (сервисный слой)")
+    parser.add_argument("--parts", action="store_true", help="собрать код-уровень (parts/*.js) из графов SocratiCode")
+    parser.add_argument("--qdrant-url", default="", help="адрес Qdrant для --parts (по умолчанию 127.0.0.1:17333)")
     parser.add_argument("--allow-stale", action="store_true", help="не падать на устаревших коммитах сервисов")
     args = parser.parse_args()
 
@@ -802,7 +813,12 @@ def main():
 
     code = 0
     if args.system or args.all:
-        code |= run_system(args.check, args.allow_stale)
+        code |= run_system(
+            args.check,
+            args.allow_stale,
+            parts=args.parts and not args.check,
+            base_url=args.qdrant_url or None,
+        )
     for name in names:
         code |= run(name, args.check)
     return code

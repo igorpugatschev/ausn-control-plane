@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import threading
+import time
 from http.server import BaseHTTPRequestHandler
 from http.server import HTTPServer
 from pathlib import Path
@@ -11,6 +12,7 @@ from pathlib import Path
 import pytest
 
 from tools.codemap.system_parts import build_part
+from tools.codemap.system_parts import fetch_json
 from tools.codemap.system_parts import collection_names
 from tools.codemap.system_parts import project_id
 
@@ -114,6 +116,17 @@ def fake_qdrant():
 
     class Client:
         url = f"http://127.0.0.1:{server.server_port}"
+
+    # Ждём готовности сервера: иначе первый запрос в тесте уходит в пустоту (гонка).
+    deadline = time.time() + 3
+    while time.time() < deadline:
+        try:
+            fetch_json(Client.url, "/collections")
+            break
+        except Exception:  # noqa: BLE001 — сервер ещё поднимается
+            time.sleep(0.05)
+    else:
+        raise RuntimeError("фейковый Qdrant не поднялся")
 
     try:
         yield Client
