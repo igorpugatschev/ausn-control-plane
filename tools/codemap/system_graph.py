@@ -171,14 +171,20 @@ def render_report(document: dict, contracts: set[str], system_map_text: str) -> 
 
 
 def write_system_outputs(target: Path, document: dict, lock: dict, report: str = "", html: str = "") -> None:
-    """Записать артефакты system-codemap в целевой репозиторий (report/html — если переданы)."""
+    """Записать артефакты system-codemap в целевой репозиторий (report/html — если переданы).
+
+    Все файлы пишутся с LF: артефакт должен быть побайтово одинаковым на Windows и Linux.
+    """
     out = target / "docs" / "codemap"
     out.mkdir(parents=True, exist_ok=True)
-    (out / "system.json").write_text(json.dumps(document, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    (out / "system.lock").write_text(json.dumps(lock, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    document_text = json.dumps(document, ensure_ascii=False, indent=2) + "\n"
+    (out / "system.json").write_text(document_text, encoding="utf-8", newline="\n")
+    (out / "system.lock").write_text(
+        json.dumps(lock, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n"
+    )
     if html:
-        (out / "system.html").write_text(html, encoding="utf-8")
+        (out / "system.html").write_text(html, encoding="utf-8", newline="\n")
     if report:
         reports = target / "docs" / "reports"
         reports.mkdir(parents=True, exist_ok=True)
-        (reports / "system-codemap.md").write_text(report, encoding="utf-8")
+        (reports / "system-codemap.md").write_text(report, encoding="utf-8", newline="\n")
