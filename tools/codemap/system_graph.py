@@ -175,7 +175,7 @@ def render_report(document: dict, contracts: set[str], system_map_text: str, par
             f"Собрано частей: **{len(have)}** из {len(parts_summary)} сервисов "
             f"(файлы: `ausn-qa-project/.local/system-graph/parts/`).",
             "",
-            "| Сервис | Файлов | Символов | Рёбер графа | Рёбер части | Неразрешённых | Граф собран |",
+            "| Сервис | Файлов | Символов | Связей графа | Связей части | Неразрешённых | Граф собран |",
             "|---|---|---|---|---|---|---|",
         ]
         lines += [
