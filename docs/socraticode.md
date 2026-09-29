@@ -61,6 +61,42 @@ docker compose -f compose.socraticode.yaml down
   перед правкой, построение код-части сводного codemap). **Когда не нужен**: правки наших
   репозиториев, поиск по точному токену/шаблону (быстрее `rg`/`ast-grep` по локальному клону —
   урок 137 ретроспективы).
+
+### Включение сервера на время задачи
+
+По умолчанию сервер `socraticode` из конфигураций MCP **убран** (решение 2026-09-29): он рекламирует
+~25 инструментов в каждой сессии, а нужен не всегда. Чтобы включить — поднять Qdrant и вернуть блок
+в конфиг клиента (для opencode, Codex, VS Code и `.mcp.json` — одинаковый по смыслу, паритет проверяет
+`tools/checks/mcp_parity.py`).
+
+Для `.mcp.json` и `.vscode/mcp.json` (первым элементом в `mcpServers`):
+
+```json
+"socraticode": {
+  "command": "node",
+  "args": [
+    "-e",
+    "process.env.TMP=process.env.TEMP=require('node:path').resolve('.local/socraticode/tmp'); const p=require('node:child_process').spawn('npx',['-y','socraticode@1.14.0'],{stdio:'inherit',shell:process.platform==='win32'}); p.on('exit',c=>process.exit(c??1));"
+  ],
+  "env": {
+    "QDRANT_MODE": "external",
+    "QDRANT_URL": "http://127.0.0.1:17333",
+    "QDRANT_COLLECTION_PREFIX": "ausn_qa_",
+    "EMBEDDING_PROVIDER": "ollama",
+    "EMBEDDING_MODEL": "nomic-embed-text",
+    "OLLAMA_MODE": "external",
+    "OLLAMA_URL": "http://127.0.0.1:11434",
+    "TMP": "./.local/socraticode/tmp",
+    "TEMP": "./.local/socraticode/tmp",
+    "SOCRATICODE_GLOBAL_CONFIG_DIR": "./.local/socraticode/context"
+  }
+},
+```
+
+В `.codex/config.toml` — секции `[mcp_servers.socraticode]` (`command`, `args`,
+`startup_timeout_sec = 120`, `tool_timeout_sec = 600`) и `[mcp_servers.socraticode.env]` с теми же
+переменными; в `.opencode/opencode.jsonc` — тот же блок с `"type": "local"`, `"enabled": true` и
+`"environment"`. После правки — прогон `mcp_parity.py` и перезапуск клиента.
 Коллекции различаются по пути проекта с префиксом `ausn_qa_`.
 
 Перед индексацией обновить чистую рабочую копию каждого репозитория через `git pull --ff-only`.

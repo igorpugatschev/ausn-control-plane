@@ -97,7 +97,7 @@ Read-only относится к источникам (код и документ
 
 ## Конфигурация MCP
 
-- Один и тот же набор серверов (socraticode, atlassian, gitlab, mattermost, test_ssh, test_pgdb, test_graylog, test_grafana, playwright) описан в четырёх файлах: `.mcp.json`, `.codex/config.toml`, `.vscode/mcp.json`, `.opencode/opencode.jsonc`. При добавлении или изменении сервера обновлять все четыре.
+- Один и тот же набор серверов (atlassian, gitlab, mattermost, test_ssh, test_pgdb, test_graylog, test_grafana, playwright) описан в четырёх файлах: `.mcp.json`, `.codex/config.toml`, `.vscode/mcp.json`, `.opencode/opencode.jsonc`. **SocratiCode в конфигах по умолчанию отсутствует** (решение 2026-09-29): включается на время задачи по рецепту в `docs/socraticode.md` вместе с Qdrant. При добавлении или изменении сервера обновлять все четыре.
 - Node читает секреты из корневого `.env` через `--env-file`; вручную экспортировать переменные не нужно. Клиенты запускать из корня control plane (актуально и для opencode: в remote-серверах opencode не читать `.env`, авторизация идёт через `mcp-remote` из `tools/mcp-runtime`).
 - Кэш авторизации MCP — в `.local/mcp-auth/`. Telegram необязателен и не подключён.
 - Проверка паритета: `.\.venv\Scripts\python.exe tools\checks\mcp_parity.py` (код 1 — дрейф; при расхождении обновить все четыре файла).
