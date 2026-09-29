@@ -1,21 +1,21 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-29T11:24:54+00:00",
-  "target_commit": "242616b",
+  "generated_at": "2026-09-29T12:05:55+00:00",
+  "target_commit": "8424b84",
   "target_branch": "main",
-  "target_dirty": true,
+  "target_dirty": false,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
     "docs": 92,
-    "edges": 360,
+    "edges": 361,
     "broken": 0,
     "unresolved": 39,
     "unreachable": 24,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 180,
+    "code-path": 181,
     "mention-skill": 78,
     "mention-agent": 40,
     "mention-command": 7,
@@ -501,7 +501,7 @@
       "id": "docs/socraticode.md",
       "kind": "doc",
       "in": 9,
-      "out": 6
+      "out": 7
     },
     {
       "id": "docs/user-prompts/daily-flow.md",
@@ -1433,19 +1433,19 @@
       "from": "AGENTS.md",
       "to": "qa-project:docs/reports/system-codemap.md",
       "kind": "code-path",
-      "line": 117
+      "line": 119
     },
     {
       "from": "AGENTS.md",
       "to": "tools/codemap/model/system.json",
       "kind": "code-path",
-      "line": 117
+      "line": 119
     },
     {
       "from": "AGENTS.md",
       "to": "docs/archive/README.md",
       "kind": "code-path",
-      "line": 123
+      "line": 125
     },
     {
       "from": "AGENTS.md",
@@ -1713,15 +1713,15 @@
     },
     {
       "from": "docs/mcp.md",
-      "to": "tools/checks/mcp_parity.py",
+      "to": "docs/socraticode.md",
       "kind": "code-path",
-      "line": 12
+      "line": 11
     },
     {
       "from": "docs/mcp.md",
-      "to": "docs/socraticode.md",
+      "to": "tools/checks/mcp_parity.py",
       "kind": "code-path",
-      "line": 23
+      "line": 14
     },
     {
       "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
@@ -2391,6 +2391,12 @@
     },
     {
       "from": "docs/socraticode.md",
+      "to": "tools/checks/mcp_parity.py",
+      "kind": "code-path",
+      "line": 70
+    },
+    {
+      "from": "docs/socraticode.md",
       "to": ".agents/skills/ausn-qa-mcp/SKILL.md",
       "kind": "mention-skill",
       "line": 0
@@ -2543,109 +2549,109 @@
       "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/ausn-socraticode/SKILL.md",
       "kind": "code-path",
-      "line": 154
+      "line": 157
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/karpathy-guidelines/SKILL.md",
       "kind": "code-path",
-      "line": 155
+      "line": 158
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/socraticode.md",
       "kind": "code-path",
-      "line": 159
+      "line": 162
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/retrospectives.md",
       "kind": "code-path",
-      "line": 159
+      "line": 162
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/ausn-context/qa-source-assessment.md",
       "kind": "code-path",
-      "line": 159
+      "line": 162
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/generate.py",
       "kind": "code-path",
-      "line": 161
+      "line": 164
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/model/control-plane.json",
       "kind": "code-path",
-      "line": 161
+      "line": 164
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/model/qa-project.json",
       "kind": "code-path",
-      "line": 162
+      "line": 165
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:src/config/paths.py",
       "kind": "code-path",
-      "line": 167
+      "line": 170
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/kafka/conftest.py",
       "kind": "code-path",
-      "line": 169
+      "line": 172
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/static/test_categorizer_json_fixtures.py",
       "kind": "code-path",
-      "line": 170
+      "line": 173
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/integration/test_permission_refresh_queue_advance.py",
       "kind": "code-path",
-      "line": 176
+      "line": 179
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/db/test_permission_refresh_order.py",
       "kind": "code-path",
-      "line": 177
+      "line": 180
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:docs/reports/qa-loop-permission-refresh-order-2026-09-18.md",
       "kind": "code-path",
-      "line": 178
+      "line": 181
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/archive/README.md",
       "kind": "code-path",
-      "line": 219
+      "line": 222
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/data/kafka_topics/README.md",
       "kind": "code-path",
-      "line": 220
+      "line": 223
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/reports/external-review-portability-2026-09-24.md",
       "kind": "link",
-      "line": 227
+      "line": 230
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": ".codex/config.toml",
       "kind": "code-path",
-      "line": 227
+      "line": 230
     },
     {
       "from": "PROJECT_STATUS.md",
@@ -2947,31 +2953,31 @@
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/qa-task-flow.md",
-      "line": 156,
+      "line": 159,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/loop-quality-gates.md",
-      "line": 157,
+      "line": 160,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "ausn-qa-project/AGENTS.md",
-      "line": 195,
+      "line": 198,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/socraticode.json",
-      "line": 216,
+      "line": 219,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/socraticode.json",
-      "line": 260,
+      "line": 263,
       "severity": "warning"
     }
   ],
@@ -3040,11 +3046,11 @@
       "degree": 17
     },
     {
-      "id": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
-      "degree": 15
+      "id": "docs/socraticode.md",
+      "degree": 16
     },
     {
-      "id": "docs/socraticode.md",
+      "id": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
       "degree": 15
     },
     {
