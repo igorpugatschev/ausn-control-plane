@@ -23,6 +23,7 @@ import hashlib
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -671,6 +672,7 @@ def run_system(do_check, allow_stale, target_override=None, root_override=None):
     from tools.codemap.system_edges import contract_topics
     from tools.codemap.system_graph import build_system_graph, model_hash, render_report, write_system_outputs
     from tools.codemap.system_model import load_system_model
+    from tools.codemap.system_render import render_system_html
 
     if not SYSTEM_MODEL.is_file():
         print("system: модель model/system.json не найдена")
@@ -710,7 +712,13 @@ def run_system(do_check, allow_stale, target_override=None, root_override=None):
     map_path = ROOT / "docs" / "ausn-context" / "system-map.md"
     report = render_report(document, contracts, map_path.read_text(encoding="utf-8") if map_path.is_file() else "")
 
-    write_system_outputs(target, document, new_lock, report=report)
+    vendor_source = MODEL_DIR.parent / "vendor" / "cytoscape.min.js"
+    vendor_target = target / "docs" / "codemap" / "vendor"
+    if vendor_source.is_file():
+        vendor_target.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(vendor_source, vendor_target / "cytoscape.min.js")
+
+    write_system_outputs(target, document, new_lock, report=report, html=render_system_html(document))
     rel = target.relative_to(ROOT) if str(target).startswith(str(ROOT)) else target
     print(
         f"system: сервисов {document['stats']['by_kind']['service']}, "

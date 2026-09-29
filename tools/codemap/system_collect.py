@@ -8,7 +8,18 @@ from pathlib import Path
 
 from tools.codemap.system_model import SystemModel
 
-SKIP_DIRS = {".git", "build", "node_modules", "dist", ".gradle", "__pycache__"}
+SKIP_DIRS = {
+    ".git",
+    "build",
+    "node_modules",
+    "dist",
+    ".gradle",
+    "__pycache__",
+    "docs",
+    "vendor",
+    "artifacts",
+    ".reports",
+}
 
 
 def repo_commit(repo_path: Path) -> str | None:

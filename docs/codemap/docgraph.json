@@ -1,21 +1,21 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-28T07:47:38+00:00",
-  "target_commit": "9e098ea",
+  "generated_at": "2026-09-29T03:00:13+00:00",
+  "target_commit": "8ca2d78",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
-    "docs": 90,
-    "edges": 333,
+    "docs": 91,
+    "edges": 354,
     "broken": 0,
-    "unresolved": 69,
+    "unresolved": 37,
     "unreachable": 24,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 153,
+    "code-path": 174,
     "mention-skill": 78,
     "mention-agent": 40,
     "mention-command": 7,
@@ -255,7 +255,7 @@
       "id": "AGENTS.md",
       "kind": "doc",
       "in": 2,
-      "out": 31
+      "out": 33
     },
     {
       "id": "docs/ausn-context/current-state.md",
@@ -369,13 +369,13 @@
       "id": "docs/plans/system-codemap-design.md",
       "kind": "doc",
       "in": 0,
-      "out": 1
+      "out": 2
     },
     {
       "id": "docs/plans/system-codemap-plan.md",
       "kind": "doc",
       "in": 0,
-      "out": 3
+      "out": 21
     },
     {
       "id": "docs/presentations/README.md",
@@ -559,6 +559,12 @@
     },
     {
       "id": "TEAM_MEMBERS.md",
+      "kind": "doc",
+      "in": 1,
+      "out": 0
+    },
+    {
+      "id": "tools/codemap/vendor/README.md",
       "kind": "doc",
       "in": 1,
       "out": 0
@@ -1419,9 +1425,21 @@
     },
     {
       "from": "AGENTS.md",
+      "to": "qa-project:docs/reports/system-codemap.md",
+      "kind": "code-path",
+      "line": 117
+    },
+    {
+      "from": "AGENTS.md",
+      "to": "tools/codemap/model/system.json",
+      "kind": "code-path",
+      "line": 117
+    },
+    {
+      "from": "AGENTS.md",
       "to": "docs/archive/README.md",
       "kind": "code-path",
-      "line": 120
+      "line": 121
     },
     {
       "from": "AGENTS.md",
@@ -1791,6 +1809,12 @@
     },
     {
       "from": "docs/plans/system-codemap-design.md",
+      "to": "tools/codemap/model/system.json",
+      "kind": "code-path",
+      "line": 101
+    },
+    {
+      "from": "docs/plans/system-codemap-design.md",
       "to": "docs/ausn-context/system-map.md",
       "kind": "code-path",
       "line": 103
@@ -1800,6 +1824,114 @@
       "to": "tools/codemap/generate.py",
       "kind": "code-path",
       "line": 15
+    },
+    {
+      "from": "docs/plans/system-codemap-plan.md",
+      "to": "tools/codemap/system_model.py",
+      "kind": "code-path",
+      "line": 36
+    },
+    {
+      "from": "docs/plans/system-codemap-plan.md",
+      "to": "tools/codemap/system_collect.py",
+      "kind": "code-path",
+      "line": 37
+    },
+    {
+      "from": "docs/plans/system-codemap-plan.md",
+      "to": "tools/codemap/system_edges.py",
+      "kind": "code-path",
+      "line": 38
+    },
+    {
+      "from": "docs/plans/system-codemap-plan.md",
+      "to": "tools/codemap/system_graph.py",
+      "kind": "code-path",
+      "line": 39
+    },
+    {
+      "from": "docs/plans/system-codemap-plan.md",
+      "to": "tools/codemap/system_render.py",
+      "kind": "code-path",
+      "line": 40
+    },
+    {
+      "from": "docs/plans/system-codemap-plan.md",
+      "to": "tools/codemap/model/system.json",
+      "kind": "code-path",
+      "line": 42
+    },
+    {
+      "from": "docs/plans/system-codemap-plan.md",
+      "to": "tools/codemap/tests/test_system_model.py",
+      "kind": "code-path",
+      "line": 44
+    },
+    {
+      "from": "docs/plans/system-codemap-plan.md",
+      "to": "qa-project:docs/reports/system-codemap.md",
+      "kind": "code-path",
+      "line": 45
+    },
+    {
+      "from": "docs/plans/system-codemap-plan.md",
+      "to": "tools/codemap/tests/test_system_model_fixture.py",
+      "kind": "code-path",
+      "line": 196
+    },
+    {
+      "from": "docs/plans/system-codemap-plan.md",
+      "to": "tools/codemap/tests/test_system_collect.py",
+      "kind": "code-path",
+      "line": 321
+    },
+    {
+      "from": "docs/plans/system-codemap-plan.md",
+      "to": "tools/codemap/tests/test_system_edges_shared_lib.py",
+      "kind": "code-path",
+      "line": 434
+    },
+    {
+      "from": "docs/plans/system-codemap-plan.md",
+      "to": "tools/codemap/tests/test_system_edges_kafka.py",
+      "kind": "code-path",
+      "line": 527
+    },
+    {
+      "from": "docs/plans/system-codemap-plan.md",
+      "to": "tools/codemap/tests/test_system_edges_config.py",
+      "kind": "code-path",
+      "line": 701
+    },
+    {
+      "from": "docs/plans/system-codemap-plan.md",
+      "to": "tools/codemap/tests/test_system_graph.py",
+      "kind": "code-path",
+      "line": 838
+    },
+    {
+      "from": "docs/plans/system-codemap-plan.md",
+      "to": "tools/codemap/tests/test_system_cli.py",
+      "kind": "code-path",
+      "line": 982
+    },
+    {
+      "from": "docs/plans/system-codemap-plan.md",
+      "to": "tools/codemap/tests/test_system_report.py",
+      "kind": "code-path",
+      "line": 1099
+    },
+    {
+      "from": "docs/plans/system-codemap-plan.md",
+      "to": "tools/codemap/vendor/README.md",
+      "kind": "code-path",
+      "line": 1229
+    },
+    {
+      "from": "docs/plans/system-codemap-plan.md",
+      "to": "tools/codemap/tests/test_system_render.py",
+      "kind": "code-path",
+      "line": 1231
     },
     {
       "from": "docs/plans/system-codemap-plan.md",
@@ -2537,13 +2669,13 @@
       "from": "README.md",
       "to": "REPOSITORIES.md",
       "kind": "link",
-      "line": 22
+      "line": 23
     },
     {
       "from": "README.md",
       "to": "TEAM_MEMBERS.md",
       "kind": "link",
-      "line": 22
+      "line": 23
     },
     {
       "from": "README.md",
@@ -2609,12 +2741,6 @@
       "severity": "warning"
     },
     {
-      "from": "docs/plans/system-codemap-design.md",
-      "target": "tools/codemap/model/system.json",
-      "line": 101,
-      "severity": "warning"
-    },
-    {
       "from": "docs/plans/system-codemap-plan.md",
       "target": "model/system.json",
       "line": 10,
@@ -2628,38 +2754,8 @@
     },
     {
       "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/system_model.py",
-      "line": 36,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
       "target": "model/system.json",
       "line": 36,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/system_collect.py",
-      "line": 37,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/system_edges.py",
-      "line": 38,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/system_graph.py",
-      "line": 39,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/system_render.py",
-      "line": 40,
       "severity": "warning"
     },
     {
@@ -2670,170 +2766,14 @@
     },
     {
       "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/model/system.json",
-      "line": 42,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/tests/test_system_model.py",
-      "line": 44,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "docs/reports/system-codemap.md",
-      "line": 45,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/system_model.py",
-      "line": 52,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/tests/test_system_model.py",
-      "line": 53,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
       "target": "model/system.json",
       "line": 192,
       "severity": "warning"
     },
     {
       "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/model/system.json",
-      "line": 195,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/tests/test_system_model_fixture.py",
-      "line": 196,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/system_collect.py",
-      "line": 320,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/tests/test_system_collect.py",
-      "line": 321,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/system_edges.py",
-      "line": 433,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/tests/test_system_edges_shared_lib.py",
-      "line": 434,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/system_edges.py",
-      "line": 526,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/tests/test_system_edges_kafka.py",
-      "line": 527,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/system_edges.py",
-      "line": 700,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/tests/test_system_edges_config.py",
-      "line": 701,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/system_graph.py",
-      "line": 837,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/tests/test_system_graph.py",
-      "line": 838,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/tests/test_system_cli.py",
-      "line": 982,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/system_graph.py",
-      "line": 1098,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/tests/test_system_report.py",
-      "line": 1099,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
       "target": "target/docs/reports/system-codemap.md",
       "line": 1173,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/system_render.py",
-      "line": 1229,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/vendor/README.md",
-      "line": 1229,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/system_graph.py",
-      "line": 1230,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/tests/test_system_render.py",
-      "line": 1231,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "tools/codemap/vendor/README.md",
-      "line": 1269,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "docs/reports/system-codemap.md",
-      "line": 1388,
       "severity": "warning"
     },
     {
@@ -3014,16 +2954,20 @@
       "degree": 35
     },
     {
+      "id": "AGENTS.md",
+      "degree": 35
+    },
+    {
       "id": "PROJECT_STATUS.md",
       "degree": 35
     },
     {
-      "id": "AGENTS.md",
-      "degree": 33
-    },
-    {
       "id": ".agents/skills/ausn-qa-agents/SKILL.md",
       "degree": 28
+    },
+    {
+      "id": "docs/plans/system-codemap-plan.md",
+      "degree": 21
     },
     {
       "id": "docs/qa-methodology/README.md",
@@ -3063,10 +3007,6 @@
     },
     {
       "id": ".agents/skills/ausn-socraticode/SKILL.md",
-      "degree": 11
-    },
-    {
-      "id": ".opencode/agent/test-design-agent.md",
       "degree": 11
     }
   ]

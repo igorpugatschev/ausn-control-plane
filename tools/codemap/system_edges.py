@@ -17,7 +17,20 @@ from pathlib import Path
 
 BUILD_FILES = ("build.gradle.kts", "build.gradle", "settings.gradle.kts", "settings.gradle")
 CONFIG_RE = re.compile(r"^(application|bootstrap)(-[A-Za-z0-9._-]+)?\.(ya?ml|properties)$")
-SKIP_DIRS = {".git", "build", "node_modules", "dist", ".gradle", "__pycache__"}
+SKIP_DIRS = {
+    ".git",
+    "build",
+    "node_modules",
+    "dist",
+    ".gradle",
+    "__pycache__",
+    # артефакты и документация не являются кодом системы; каталоги исключены,
+    # чтобы генерация не влияла на саму себя (system.html и вендор лежат в docs/)
+    "docs",
+    "vendor",
+    "artifacts",
+    ".reports",
+}
 
 SEND_CALL = re.compile(r"kafkaTemplate\.send\s*\(")
 LISTENER = re.compile(r"@KafkaListener\s*\(")

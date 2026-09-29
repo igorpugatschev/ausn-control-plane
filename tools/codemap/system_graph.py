@@ -136,7 +136,7 @@ def render_report(document: dict, contracts: set[str], system_map_text: str) -> 
         "",
         f"Сервисов: **{stats['by_kind']['service']}**, инфраструктуры: {stats['by_kind']['infra']}, "
         f"внешних: {stats['by_kind']['external']}.",
-        f"Рёбер: **{stats['edges']}** (resolved {stats['resolved']}, unresolved {stats['unresolved']}, "
+        f"Связей: **{stats['edges']}** (resolved {stats['resolved']}, unresolved {stats['unresolved']}, "
         f"curated {stats['curated']}).",
         "",
         "Артефакты: `docs/codemap/system.json`, `docs/codemap/system.html`, `docs/codemap/system.lock`.",
@@ -146,7 +146,7 @@ def render_report(document: dict, contracts: set[str], system_map_text: str) -> 
     ]
     absent = [node["id"] for node in document["nodes"] if node["kind"] == "service" and not node.get("clone_present")]
     lines += [f"- `{name}`" for name in absent] or ["- нет"]
-    lines += ["", "## Неразрешённые рёбра", ""]
+    lines += ["", "## Неразрешённые связи", ""]
     lines += [
         f"- `{edge['from']}` → `{edge['to']}` [{edge['type']}] {edge['label']} — "
         f"{edge['note']} ({edge['evidence']})"
@@ -161,7 +161,7 @@ def render_report(document: dict, contracts: set[str], system_map_text: str) -> 
         "",
         "## Ограничения генерации",
         "",
-        "- Рёбра `kafka`/`rest`/`auth` выводятся из кода (ключи конфигурации, порты, маркеры), `db` — только",
+        "- Связи `kafka`/`rest`/`auth` выводятся из кода (ключи конфигурации, порты, маркеры), `db` — только",
         "  при literal `jdbc`-адресе; в продуктовых конфигах адрес БД приходит из окружения, поэтому рёбер `db` нет.",
         "- Фронтенд (`ausn-frontend`) — TypeScript: связи с gateway заданы curated-ребром в модели.",
         "- `@FeignClient` в проекте не используется: межсервисный REST идёт через WebClient и конфиг-ключи.",

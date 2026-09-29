@@ -10,7 +10,7 @@
 3. Установить runtime MCP: `npm ci --prefix tools/mcp-runtime` (Node.js 22+).
 4. Поднять инфраструктуру индекса: `docker compose -f compose.socraticode.yaml up -d`; при отсутствии модели — `ollama pull nomic-embed-text`.
 5. Открыть проект из корня и подтвердить доверие к проекту/MCP, если клиент запросит.
-6. Проверить готовность: `python tools/checks/mcp_parity.py` (паритет конфигов MCP), `python tools/codemap/generate.py --all --check` (актуальность карт репозиториев).
+6. Проверить готовность: `python tools/checks/mcp_parity.py` (паритет конфигов MCP), `python tools/codemap/generate.py --all --check` (актуальность карт репозиториев), `python tools/codemap/generate.py --system --check` (актуальность сводной карты системы ПК АУСН).
 7. Запустить первую задачу: промты в [docs/user-prompts/](docs/user-prompts/), источник истины процесса — навык `ausn-qa-loop`.
 
 ## Разделы
@@ -18,5 +18,6 @@
 - [Методологическая база QA/SDET](docs/qa-methodology/README.md)
 - [Инструменты корпоративных MCP](docs/mcp.md)
 - [Индексация контекста](docs/socraticode.md)
+- [Сводная карта системы ПК АУСН](https://gitlab.com/rcktsci/projects/ausn/integrator/ausn-qa-project/-/blob/main/docs/reports/system-codemap.md) — генерируется `tools/codemap/generate.py --system`
 
 Мета-файлы репозитория: [REPOSITORIES.md](REPOSITORIES.md), [TEAM_MEMBERS.md](TEAM_MEMBERS.md). Проектные навыки для AI — в `.agents/skills/`. Секреты хранятся только в локальном `.env`.
