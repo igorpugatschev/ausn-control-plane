@@ -32,6 +32,12 @@ ROOT = Path(__file__).resolve().parents[2]
 MODEL_DIR = ROOT / "tools" / "codemap" / "model"
 SKIP_DIRS = {".git", "__pycache__", ".venv", "node_modules", ".mypy_cache", ".pytest_cache", ".ruff_cache", "tmp", ".local", "archive", ".superpowers", ".reports"}
 MAX_PRIMARY = 20
+SYSTEM_MODEL_NAME = "system"
+SYSTEM_MODEL = MODEL_DIR / f"{SYSTEM_MODEL_NAME}.json"
+
+# Скриптовый запуск (`python tools/codemap/generate.py`) не видит пакет `tools` — добавляем корень.
+if __package__ in (None, ""):
+    sys.path.insert(0, str(ROOT))
 
 
 
@@ -657,9 +663,61 @@ def run(name, do_check):
     return 0
 
 
+def run_system(do_check, allow_stale, target_override=None, root_override=None):
+    """Собрать или проверить system-codemap (сервисный слой). Возвращает код выхода.
+
+    `root_override` — каталог сервисов; используется тестами, чтобы не сканировать реальные репозитории.
+    """
+    from tools.codemap.system_graph import build_system_graph, model_hash, write_system_outputs
+    from tools.codemap.system_model import load_system_model
+
+    if not SYSTEM_MODEL.is_file():
+        print("system: модель model/system.json не найдена")
+        return 1
+    model = load_system_model(SYSTEM_MODEL)
+    target = Path(target_override).resolve() if target_override else (ROOT / model.target).resolve()
+    root = Path(root_override).resolve() if root_override else (ROOT / model.repos_root).resolve()
+    document = build_system_graph(model, root)
+    lock_path = target / "docs" / "codemap" / "system.lock"
+    repos = {node["id"]: node["commit"] for node in document["nodes"] if node["kind"] == "service"}
+    new_lock = {"model_hash": model_hash(SYSTEM_MODEL), "repos": repos, "stats": document["stats"]}
+
+    if do_check:
+        if not lock_path.is_file():
+            print("system: нет system.lock — запустите генерацию без --check")
+            return 1
+        old = json.loads(lock_path.read_text(encoding="utf-8"))
+        if old.get("model_hash") != new_lock["model_hash"]:
+            print("system: УСТАРЕЛО — модель изменилась")
+            return 1
+        changed = sorted(key for key, value in repos.items() if old.get("repos", {}).get(key) != value)
+        if changed:
+            message = f"system: УСТАРЕЛО — изменились коммиты сервисов: {', '.join(changed)}"
+            if allow_stale:
+                print(message + " (--allow-stale: предупреждение)")
+            else:
+                print(message)
+                return 1
+        print(
+            f"system: OK — сервисов {document['stats']['by_kind']['service']}, "
+            f"рёбер {document['stats']['edges']}"
+        )
+        return 0
+
+    write_system_outputs(target, document, new_lock)
+    rel = target.relative_to(ROOT) if str(target).startswith(str(ROOT)) else target
+    print(
+        f"system: сервисов {document['stats']['by_kind']['service']}, "
+        f"рёбер {document['stats']['edges']} -> {rel}"
+    )
+    return 0
+
+
 def modeled_targets():
     targets = []
     for path in sorted(MODEL_DIR.glob("*.json")):
+        if path.stem == SYSTEM_MODEL_NAME:
+            continue
         model = load_model(path.stem)
         target = (ROOT / model["target"]).resolve()
         targets.append({
@@ -682,6 +740,8 @@ def main():
     parser.add_argument("--docs", action="store_true", help="граф связей документации (docgraph)")
     parser.add_argument("--target", help="путь целевого репозитория; только вместе с --docs")
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--system", action="store_true", help="сводный codemap системы ПК АУСН (сервисный слой)")
+    parser.add_argument("--allow-stale", action="store_true", help="не падать на устаревших коммитах сервисов")
     args = parser.parse_args()
 
     if args.target and not args.docs:
@@ -707,11 +767,21 @@ def main():
 
     if args.model and args.all:
         raise SystemExit("--model и --all взаимоисключающие")
-    if not (args.model or args.all):
-        raise SystemExit("Укажите --model, --all или --docs")
+    if args.system and args.model:
+        raise SystemExit("--system и --model взаимоисключающие")
+    if not (args.model or args.all or args.system):
+        raise SystemExit("Укажите --model, --all, --docs или --system")
 
-    names = sorted(p.stem for p in MODEL_DIR.glob("*.json")) if args.all else [args.model]
+    if args.all:
+        names = sorted(p.stem for p in MODEL_DIR.glob("*.json") if p.stem != SYSTEM_MODEL_NAME)
+    elif args.model:
+        names = [args.model]
+    else:
+        names = []
+
     code = 0
+    if args.system or args.all:
+        code |= run_system(args.check, args.allow_stale)
     for name in names:
         code |= run(name, args.check)
     return code
