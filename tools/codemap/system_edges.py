@@ -51,6 +51,19 @@ def _config_files(repo_path: Path) -> list[Path]:
     return _walk(repo_path, lambda name: bool(CONFIG_RE.match(name)))
 
 
+PROFILE_SKIP = ("-test", "-local", "-it", "-integration")
+
+
+def _base_configs_first(repo_path: Path) -> list[Path]:
+    """Базовые конфиги (без профиля) — первыми; профильные тестов/локали исключаются."""
+    files = [
+        path
+        for path in _config_files(repo_path)
+        if not any(profile in path.name for profile in PROFILE_SKIP)
+    ]
+    return sorted(files, key=lambda path: (("-" in path.stem), str(path)))
+
+
 def shared_lib_edges(service_id: str, repo_path: Path, markers: list[str]) -> list[dict]:
     """Рёбра shared-lib: упоминание библиотеки-маркера в файлах сборки."""
     edges: list[dict] = []
@@ -78,9 +91,11 @@ def kafka_topic_names(repo_path: Path) -> dict[str, str]:
 
     Поддерживает вложенный YAML и плоский вид `<полный путь>=<значение>`.
     Значение вида `${ENV_VAR:имя-топика}` разворачивается в имя по умолчанию.
+    Профильные конфиги тестов/локали (`application-test|local|it`) не участвуют:
+    их топики имеют тестовый префикс и не описывают систему.
     """
     names: dict[str, str] = {}
-    for path in _config_files(repo_path):
+    for path in _base_configs_first(repo_path):
         stack: list[tuple[int, str]] = []
         for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
             stripped = line.strip()
@@ -106,7 +121,7 @@ def kafka_topic_names(repo_path: Path) -> dict[str, str]:
             else:
                 continue
             default = ENV_DEFAULT.search(value)
-            names[topic_key] = default.group("name") if default else value.strip('"\'')
+            names.setdefault(topic_key, default.group("name") if default else value.strip("\"'"))
     return names
 
 

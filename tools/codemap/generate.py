@@ -668,7 +668,8 @@ def run_system(do_check, allow_stale, target_override=None, root_override=None):
 
     `root_override` — каталог сервисов; используется тестами, чтобы не сканировать реальные репозитории.
     """
-    from tools.codemap.system_graph import build_system_graph, model_hash, write_system_outputs
+    from tools.codemap.system_edges import contract_topics
+    from tools.codemap.system_graph import build_system_graph, model_hash, render_report, write_system_outputs
     from tools.codemap.system_model import load_system_model
 
     if not SYSTEM_MODEL.is_file():
@@ -704,7 +705,12 @@ def run_system(do_check, allow_stale, target_override=None, root_override=None):
         )
         return 0
 
-    write_system_outputs(target, document, new_lock)
+    contracts_repo = root / model.rules.get("contracts_repo", "")
+    contracts = contract_topics(contracts_repo) if contracts_repo.is_dir() else set()
+    map_path = ROOT / "docs" / "ausn-context" / "system-map.md"
+    report = render_report(document, contracts, map_path.read_text(encoding="utf-8") if map_path.is_file() else "")
+
+    write_system_outputs(target, document, new_lock, report=report)
     rel = target.relative_to(ROOT) if str(target).startswith(str(ROOT)) else target
     print(
         f"system: сервисов {document['stats']['by_kind']['service']}, "

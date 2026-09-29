@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from pathlib import Path
 
 from tools.codemap.system_collect import collect_facts
@@ -104,6 +105,69 @@ def build_system_graph(model: SystemModel, root: Path, graph_meta: dict[str, dic
         "curated": sum(1 for edge in edges if edge["confidence"] == "curated"),
     }
     return {"title": model.title, "nodes": nodes, "edges": edges, "stats": stats}
+
+
+MAP_ROW = re.compile(r"^\|\s*`(?P<name>ausn-[a-z0-9-]+|dbo-emulator)`", re.M)
+
+
+def system_map_services(system_map_text: str) -> set[str]:
+    """Имена сервисов из таблицы компонентов docs/ausn-context/system-map.md."""
+    return {match.group("name") for match in MAP_ROW.finditer(system_map_text)}
+
+
+def divergence_report(document: dict, system_map_text: str) -> list[str]:
+    """Расхождения «карта системы ↔ граф»: сервисы, которых нет с одной из сторон."""
+    in_graph = {node["id"] for node in document["nodes"] if node["kind"] == "service"}
+    in_map = system_map_services(system_map_text)
+    return sorted(
+        [f"в карте системы, но не в графе: {name}" for name in in_map - in_graph]
+        + [f"в графе, но не в карте системы: {name}" for name in in_graph - in_map]
+    )
+
+
+def render_report(document: dict, contracts: set[str], system_map_text: str) -> str:
+    """Отчёт: сводка, неразрешённые рёбра, несоответствия топиков, сверка с картой системы."""
+    code_topics = {edge["label"] for edge in document["edges"] if edge["type"] == "kafka" and edge["label"]}
+    missing = sorted(code_topics - contracts) if contracts else []
+    unresolved = [edge for edge in document["edges"] if edge["confidence"] == "unresolved"]
+    stats = document["stats"]
+    lines = [
+        "# Сводный codemap системы ПК АУСН",
+        "",
+        f"Сервисов: **{stats['by_kind']['service']}**, инфраструктуры: {stats['by_kind']['infra']}, "
+        f"внешних: {stats['by_kind']['external']}.",
+        f"Рёбер: **{stats['edges']}** (resolved {stats['resolved']}, unresolved {stats['unresolved']}, "
+        f"curated {stats['curated']}).",
+        "",
+        "Артефакты: `docs/codemap/system.json`, `docs/codemap/system.html`, `docs/codemap/system.lock`.",
+        "",
+        "## Сервисы без локального клона",
+        "",
+    ]
+    absent = [node["id"] for node in document["nodes"] if node["kind"] == "service" and not node.get("clone_present")]
+    lines += [f"- `{name}`" for name in absent] or ["- нет"]
+    lines += ["", "## Неразрешённые рёбра", ""]
+    lines += [
+        f"- `{edge['from']}` → `{edge['to']}` [{edge['type']}] {edge['label']} — "
+        f"{edge['note']} ({edge['evidence']})"
+        for edge in unresolved
+    ] or ["- нет"]
+    lines += ["", "## Топики в коде, отсутствующие в контрактах", ""]
+    lines += [f"- `{topic}`" for topic in missing] or ["- нет"]
+    lines += ["", "## Сверка с картой системы", ""]
+    problems = divergence_report(document, system_map_text) if system_map_text else []
+    lines += [f"- {item}" for item in problems] or ["- расхождений нет"]
+    lines += [
+        "",
+        "## Ограничения генерации",
+        "",
+        "- Рёбра `kafka`/`rest`/`auth` выводятся из кода (ключи конфигурации, порты, маркеры), `db` — только",
+        "  при literal `jdbc`-адресе; в продуктовых конфигах адрес БД приходит из окружения, поэтому рёбер `db` нет.",
+        "- Фронтенд (`ausn-frontend`) — TypeScript: связи с gateway заданы curated-ребром в модели.",
+        "- `@FeignClient` в проекте не используется: межсервисный REST идёт через WebClient и конфиг-ключи.",
+        "",
+    ]
+    return "\n".join(lines)
 
 
 def write_system_outputs(target: Path, document: dict, lock: dict, report: str = "", html: str = "") -> None:
