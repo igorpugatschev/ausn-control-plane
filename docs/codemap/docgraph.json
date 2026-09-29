@@ -1,21 +1,21 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-29T03:07:29+00:00",
-  "target_commit": "416bff3",
+  "generated_at": "2026-09-29T03:14:38+00:00",
+  "target_commit": "c281a80",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
-    "docs": 91,
-    "edges": 354,
+    "docs": 92,
+    "edges": 357,
     "broken": 0,
-    "unresolved": 37,
+    "unresolved": 47,
     "unreachable": 24,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 174,
+    "code-path": 177,
     "mention-skill": 78,
     "mention-agent": 40,
     "mention-command": 7,
@@ -368,8 +368,14 @@
     {
       "id": "docs/plans/system-codemap-design.md",
       "kind": "doc",
-      "in": 0,
+      "in": 1,
       "out": 2
+    },
+    {
+      "id": "docs/plans/system-codemap-plan-c2.md",
+      "kind": "doc",
+      "in": 0,
+      "out": 3
     },
     {
       "id": "docs/plans/system-codemap-plan.md",
@@ -1820,6 +1826,24 @@
       "line": 103
     },
     {
+      "from": "docs/plans/system-codemap-plan-c2.md",
+      "to": "tools/codemap/generate.py",
+      "kind": "code-path",
+      "line": 49
+    },
+    {
+      "from": "docs/plans/system-codemap-plan-c2.md",
+      "to": "tools/codemap/system_render.py",
+      "kind": "code-path",
+      "line": 50
+    },
+    {
+      "from": "docs/plans/system-codemap-plan-c2.md",
+      "to": "docs/plans/system-codemap-design.md",
+      "kind": "code-path",
+      "line": 248
+    },
+    {
       "from": "docs/plans/system-codemap-plan.md",
       "to": "tools/codemap/generate.py",
       "kind": "code-path",
@@ -2741,6 +2765,66 @@
       "severity": "warning"
     },
     {
+      "from": "docs/plans/system-codemap-plan-c2.md",
+      "target": "ausn-control-plane/docs/plans/system-codemap-design.md",
+      "line": 18,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/system-codemap-plan-c2.md",
+      "target": "tools/codemap/system_parts.py",
+      "line": 48,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/system-codemap-plan-c2.md",
+      "target": "tools/codemap/tests/test_system_parts.py",
+      "line": 51,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/system-codemap-plan-c2.md",
+      "target": "tools/codemap/tests/test_system_render_parts.py",
+      "line": 52,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/system-codemap-plan-c2.md",
+      "target": "tools/codemap/system_parts.py",
+      "line": 59,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/system-codemap-plan-c2.md",
+      "target": "tools/codemap/tests/test_system_parts.py",
+      "line": 60,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/system-codemap-plan-c2.md",
+      "target": "tools/codemap/system_parts.py",
+      "line": 145,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/system-codemap-plan-c2.md",
+      "target": "tools/codemap/system_parts.py",
+      "line": 185,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/system-codemap-plan-c2.md",
+      "target": "tools/codemap/tests/test_system_parts_cli.py",
+      "line": 203,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/system-codemap-plan-c2.md",
+      "target": "tools/codemap/tests/test_system_render_parts.py",
+      "line": 218,
+      "severity": "warning"
+    },
+    {
       "from": "docs/plans/system-codemap-plan.md",
       "target": "model/system.json",
       "line": 10,
@@ -2930,7 +3014,7 @@
     "docs/ausn-context/ui-entrypoint.md",
     "docs/evidence/2026-09-17-full-smoke-test1.md",
     "docs/plans/2026-09-24-control-plane-portability-fixes.md",
-    "docs/plans/system-codemap-design.md",
+    "docs/plans/system-codemap-plan-c2.md",
     "docs/plans/system-codemap-plan.md",
     "docs/presentations/README.md",
     "docs/reports/analyst-questions-categorizer-numeric-2026-09-22.md",
