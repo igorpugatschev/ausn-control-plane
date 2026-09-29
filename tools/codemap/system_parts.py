@@ -49,3 +49,97 @@ def fetch_json(base_url: str, path: str, payload: dict | None = None) -> dict:
 def qdrant_collections(base_url: str) -> list[str]:
     """Список коллекций Qdrant."""
     return [item["name"] for item in fetch_json(base_url, "/collections")["result"]["collections"]]
+
+
+def scroll_all(base_url: str, collection: str, page: int = 1000) -> list[dict]:
+    """Все точки коллекции (с постраничной догрузкой)."""
+    points: list[dict] = []
+    offset = None
+    while True:
+        payload: dict = {"limit": page, "with_payload": True, "with_vector": False}
+        if offset is not None:
+            payload["offset"] = offset
+        result = fetch_json(base_url, f"/collections/{collection}/points/scroll", payload)["result"]
+        points.extend(result.get("points", []))
+        offset = result.get("next_page_offset")
+        if not offset:
+            return points
+
+
+def read_graph_meta(base_url: str, names: dict[str, str]) -> dict:
+    """Метаданные графа проекта; пустой словарь, если графа нет."""
+    try:
+        points = scroll_all(base_url, names["meta"], page=1)
+    except Exception:  # noqa: BLE001 — нет коллекции/графа: считаем отсутствием
+        return {}
+    return points[0]["payload"].get("meta", {}) if points else {}
+
+
+def _file_of(symbol_id: str) -> str:
+    """Файл из идентификатора символа вида `path::name#line`."""
+    return symbol_id.split("::", 1)[0]
+
+
+def build_part(base_url: str, pid: str) -> dict:
+    """Собрать код-часть сервиса: узлы — файлы, рёбра — вызовы файл→файл.
+
+    Разрешёнными (`confidence == "unique"`) считаются вызовы с кандидатом-целью; вызовы без цели
+    попадают в `meta.unresolvedCalls` и в отчёт — рёбер не создают.
+    """
+    names = collection_names(pid)
+    meta = read_graph_meta(base_url, names)
+    if not meta:
+        return {"meta": {"projectId": pid, "missing": True}, "nodes": [], "edges": []}
+
+    nodes: dict[str, dict] = {}
+    calls: dict[tuple[str, str], dict] = {}
+    unresolved = 0
+    for point in scroll_all(base_url, names["file"]):
+        file_payload = point.get("payload", {}).get("filePayload", {})
+        source = file_payload.get("file")
+        if not source:
+            continue
+        symbols = file_payload.get("symbols", [])
+        nodes[source] = {
+            "id": source,
+            "label": source.rsplit("/", 1)[-1],
+            "kind": "file",
+            "language": file_payload.get("language", ""),
+            "symbols": len(symbols),
+            "path": source,
+        }
+        for call in file_payload.get("outgoingCalls", []):
+            candidates = call.get("calleeCandidates") or []
+            if call.get("confidence") != "unique" or not candidates:
+                unresolved += 1
+                continue
+            target = _file_of(candidates[0])
+            if target == source:
+                continue
+            entry = calls.setdefault((source, target), {"calls": 0, "examples": []})
+            entry["calls"] += 1
+            if len(entry["examples"]) < 3:
+                entry["examples"].append(f"{call.get('callerId', '')} → {candidates[0]}")
+
+    edges = [
+        {"source": source, "target": target, "calls": value["calls"], "examples": sorted(value["examples"])}
+        for (source, target), value in calls.items()
+    ]
+    summary = {
+        "projectId": pid,
+        "missing": False,
+        "fileCount": len(nodes),
+        "symbolCount": meta.get("symbolCount", 0),
+        "edgeCount": meta.get("edgeCount", 0),
+        "unresolvedEdgePct": meta.get("unresolvedEdgePct", 0.0),
+        "unresolvedCalls": unresolved,
+        "generation": meta.get("generation", ""),
+        "builtAt": meta.get("builtAt", 0),
+        "schemaVersion": meta.get("schemaVersion", 0),
+        "partEdges": len(edges),
+    }
+    return {
+        "meta": summary,
+        "nodes": [nodes[key] for key in sorted(nodes)],
+        "edges": sorted(edges, key=lambda item: (item["source"], item["target"])),
+    }
