@@ -1,0 +1,147 @@
+{
+  "name": "system",
+  "title": "ПК АУСН — система сервисов",
+  "target": "../ausn/ausn-qa-project",
+  "repos_root": "../ausn",
+  "services": [
+    {
+      "id": "ausn-core",
+      "title": "ausn-core",
+      "repo": "ausn-core",
+      "role": "Доменные процессы и интеграция с ФНС",
+      "stack": ["kotlin", "spring"],
+      "db": "ausn-core",
+      "deploy": [{"container": "ausn-core", "port": 8080}]
+    },
+    {
+      "id": "ausn-front-module",
+      "title": "ausn-front-module",
+      "repo": "ausn-front-module",
+      "role": "BFF кабинета",
+      "stack": ["kotlin", "spring"],
+      "db": "ausn-front-module",
+      "deploy": [
+        {"container": "ausn-front-module", "port": 8081},
+        {"container": "ausn-front-module (with_accounts)", "port": 8082}
+      ]
+    },
+    {
+      "id": "ausn-categorizer",
+      "title": "ausn-categorizer",
+      "repo": "ausn-categorizer",
+      "role": "Категоризация операций",
+      "stack": ["kotlin", "spring"],
+      "db": "ausn-categorizer",
+      "deploy": [{"container": "ausn-categorizer", "port": 8881}]
+    },
+    {
+      "id": "ausn-dbo-integration",
+      "title": "ausn-dbo-integration",
+      "repo": "ausn-dbo-integration",
+      "role": "Интеграция с ДБО",
+      "stack": ["kotlin", "spring"],
+      "deploy": [{"container": "ausn-dbo-integration", "port": 8882}]
+    },
+    {
+      "id": "ausn-front-gateway",
+      "title": "ausn-front-gateway",
+      "repo": "ausn-front-gateway",
+      "role": "Адаптеры банков",
+      "stack": ["kotlin", "spring"],
+      "deploy": [{"container": "gateway (19 банков)", "port": 7001, "ports_range": "7001-7018"}]
+    },
+    {
+      "id": "ausn-admin-backend",
+      "title": "ausn-admin-backend",
+      "repo": "ausn-admin-backend",
+      "role": "Административные операции",
+      "stack": ["kotlin", "spring"],
+      "deploy": [{"container": "ausn-admin-backend", "port": 8883}]
+    },
+    {
+      "id": "ausn-admin-dashboard",
+      "title": "ausn-admin-dashboard",
+      "repo": "ausn-admin-dashboard",
+      "role": "Админ-панель",
+      "stack": ["typescript"],
+      "deploy": [{"container": "ausn-admin-dashboard", "port": 8884}]
+    },
+    {
+      "id": "ausn-frontend",
+      "title": "ausn-frontend",
+      "repo": "ausn-frontend",
+      "role": "Клиентские приложения банков",
+      "stack": ["typescript"],
+      "deploy": [{"container": "ausn-frontend-<bank> (≈16 приложений)", "port": 8018}]
+    },
+    {
+      "id": "ausn-api",
+      "title": "ausn-api",
+      "repo": "ausn-api",
+      "role": "API-контракты (источник expected behavior)",
+      "stack": ["openapi"],
+      "note": "Не деплоится; контракты для сверки"
+    },
+    {
+      "id": "ausn-kafka-contracts",
+      "title": "ausn-kafka-contracts",
+      "repo": "ausn-kafka-contracts",
+      "role": "Схемы Kafka-сообщений",
+      "stack": ["kotlin"],
+      "note": "Библиотека; топики и схемы"
+    },
+    {
+      "id": "ausn-front-module-api",
+      "title": "ausn-front-module-api",
+      "repo": "ausn-front-module-api",
+      "role": "DTO REST кабинета",
+      "stack": ["kotlin"],
+      "note": "Библиотека; контракты ответов"
+    },
+    {
+      "id": "dbo-emulator",
+      "title": "dbo-emulator",
+      "repo": "dbo-emulator",
+      "role": "Эмулятор ДБО/ABBD/BSS",
+      "stack": ["javascript"],
+      "deploy": [{"container": "dbo-emulator", "port": 9000}]
+    },
+    {
+      "id": "ausn-qa-project",
+      "title": "ausn-qa-project",
+      "repo": "ausn-qa-project",
+      "role": "Автотесты и артефакты QA",
+      "stack": ["python"],
+      "note": "Потребитель контрактов; не входит в рантайм системы"
+    }
+  ],
+  "infra": [
+    {"id": "kafka", "title": "Kafka (Redpanda)", "kind": "infra", "note": "Событийный обмен; порт 9091"},
+    {"id": "pg-core", "title": "PostgreSQL: core", "kind": "infra"},
+    {"id": "pg-categorizer", "title": "PostgreSQL: categorizer", "kind": "infra"},
+    {"id": "keycloak", "title": "Keycloak", "kind": "infra", "note": "Аутентификация; порт 8888"},
+    {"id": "observability", "title": "Graylog / Prometheus", "kind": "infra"}
+  ],
+  "external": [
+    {"id": "fns", "title": "ФНС", "kind": "external"},
+    {"id": "bank-dbo", "title": "ДБО банков", "kind": "external"},
+    {"id": "bank-clients", "title": "Клиенты банков", "kind": "external"}
+  ],
+  "edges": [
+    {"from": "ausn-frontend", "to": "ausn-front-gateway", "type": "static", "label": "base url", "source": "curated"},
+    {"from": "ausn-front-gateway", "to": "ausn-front-module", "type": "rest", "label": "кабинет", "source": "curated"},
+    {"from": "ausn-core", "to": "fns", "type": "rest", "label": "СМЭВ/API ФНС", "source": "curated"},
+    {"from": "ausn-dbo-integration", "to": "bank-dbo", "type": "rest", "label": "ДБО", "source": "curated"},
+    {"from": "ausn-admin-dashboard", "to": "ausn-admin-backend", "type": "rest", "source": "curated"},
+    {"from": "bank-clients", "to": "ausn-frontend", "type": "static", "source": "curated"}
+  ],
+  "rules": {
+    "contracts_repo": "ausn-kafka-contracts",
+    "gradle_markers": ["ausn-kafka-contracts", "ausn-front-module-api", "ausn-common", "ausn-libs"],
+    "producer_patterns": ["KafkaTemplate", "kafkaTemplate.send", "*Producer"],
+    "consumer_patterns": ["@KafkaListener", "KafkaConsumer"],
+    "datasource_files": ["application.yml", "application.yaml", "application.properties"],
+    "keycloak_markers": ["keycloak", "issuer-uri", "jwk-set-uri"],
+    "routes_files": ["application.yml", "application.yaml"]
+  }
+}
