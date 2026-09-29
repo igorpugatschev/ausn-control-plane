@@ -1,8 +1,8 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-29T05:13:08+00:00",
-  "target_commit": "084ae3a",
+  "generated_at": "2026-09-29T05:21:39+00:00",
+  "target_commit": "bb92c55",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
@@ -2729,7 +2729,7 @@
       "from": "REPOSITORIES.md",
       "to": "docs/ausn-context/system-map.md",
       "kind": "link",
-      "line": 43
+      "line": 44
     },
     {
       "from": "REPOSITORIES.md",

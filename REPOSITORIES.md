@@ -15,6 +15,7 @@
 | Локальная папка | GitLab URL | Роль |
 |---|---|---|
 | `../ausn/ausn-core` | `backend/ausn-core` | доменные процессы и интеграция с ФНС |
+| `../ausn/ausn-categorizer` | `backend/ausn-categorizer` | категоризация операций (Kafka: `operation-categorizer.*`) |
 | `../ausn/ausn-front-module` | `backend/ausn-front-module` | BFF кабинета: REST кабинета, Kafka-потребители/продюсеры |
 | `../ausn/ausn-front-module-api` | `backend/libs/ausn-front-module-api` | DTO REST кабинета (источник expected behavior API) |
 | `../ausn/ausn-kafka-contracts` | `backend/libs/ausn-kafka-contracts` | схемы Kafka-сообщений и типы обёрток |

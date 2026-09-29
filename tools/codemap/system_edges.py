@@ -35,8 +35,23 @@ SKIP_DIRS = {
 
 SEND_CALL = re.compile(r"kafkaTemplate\.send\s*\(")
 LISTENER = re.compile(r"@KafkaListener\s*\(")
-KEY_IN_TEXT = re.compile(r"kafka\.topics\.(?P<key>[A-Za-z0-9._-]+)\.destination")
+KEY_IN_TEXT = re.compile(r"kafka\.topics\.(?P<key>[A-Za-z0-9._-]+)")
 ENV_DEFAULT = re.compile(r"\$\{[A-Za-z0-9_]+:(?P<name>[A-Za-z0-9._-]+)")
+
+
+def keys_in_text(text: str) -> list[str]:
+    """Ключи топиков, упомянутые в коде: `kafka.topics.<ключ>` или `…<ключ>.destination`.
+
+    В ПК АУСН два стиля: часть сервисов использует суффикс `.destination`
+    (ключ лежит на уровень выше), категоризатор ссылается на ключ напрямую.
+    """
+    found: list[str] = []
+    for match in KEY_IN_TEXT.finditer(text):
+        key = match.group("key")
+        if key.endswith(".destination"):
+            key = key[: -len(".destination")]
+        found.append(key)
+    return found
 
 
 def _walk(repo_path: Path, predicate) -> list[Path]:
@@ -125,13 +140,17 @@ def kafka_topic_names(repo_path: Path) -> dict[str, str]:
             stack.append((indent, key))
             if not value:
                 continue
+            parents = [name for _, name in stack[:-1]]
+            parents_are_topics = parents[:2] == ["kafka", "topics"]
             if key == "destination":
-                parents = [name for _, name in stack[:-1]]
-                if parents[:2] != ["kafka", "topics"] or len(parents) < 3:
+                if not parents_are_topics or len(parents) < 3:
                     continue
                 topic_key = ".".join(parents[2:])
             elif key.startswith("kafka.topics.") and key.endswith(".destination"):
                 topic_key = key[len("kafka.topics.") : -len(".destination")]
+            elif parents_are_topics and value:
+                # стиль категоризатора: `kafka.topics.<путь>: ${ENV:имя-топика}` (путь может быть пустым)
+                topic_key = ".".join([*parents[2:], key])
             else:
                 continue
             default = ENV_DEFAULT.search(value)
@@ -147,11 +166,11 @@ def produced_topics(repo_path: Path) -> dict[str, str]:
         text = path.read_text(encoding="utf-8", errors="replace")
         if not SEND_CALL.search(text):
             continue
-        for match in KEY_IN_TEXT.finditer(text):
-            topic = names.get(match.group("key"))
+        for key in keys_in_text(text):
+            topic = names.get(key)
             if not topic:
                 continue
-            line = text[: match.start()].count("\n") + 1
+            line = text[: text.find(f"kafka.topics.{key}")].count("\n") + 1
             topics.setdefault(topic, f"{path.relative_to(repo_path).as_posix()}:{line}")
     return topics
 
@@ -164,11 +183,11 @@ def consumed_topics(repo_path: Path) -> dict[str, str]:
         text = path.read_text(encoding="utf-8", errors="replace")
         if not LISTENER.search(text):
             continue
-        for match in KEY_IN_TEXT.finditer(text):
-            topic = names.get(match.group("key"))
+        for key in keys_in_text(text):
+            topic = names.get(key)
             if not topic:
                 continue
-            line = text[: match.start()].count("\n") + 1
+            line = text[: text.find(f"kafka.topics.{key}")].count("\n") + 1
             topics.setdefault(topic, f"{path.relative_to(repo_path).as_posix()}:{line}")
     return topics
 

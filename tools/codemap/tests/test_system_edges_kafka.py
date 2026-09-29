@@ -78,6 +78,41 @@ def test_contract_topics_includes_config_names(tmp_path: Path) -> None:
     assert contract_topics(tmp_path) >= {"ausn.registration-out", "ausn.registration-in"}
 
 
+CATEGORIZER_YAML = """kafka:
+  topics:
+    operations: ${KAFKA_TOPIC_CATEGORIZER_IN:operation-categorizer.operation-in}
+    ausn-core:
+      operations: ${KAFKA_TOPIC_OPERATION_IN:ausn.operation-in}
+"""
+
+CATEGORIZER_LISTENER = """package app
+
+import org.springframework.kafka.annotation.KafkaListener
+
+class OperationKafkaListener {
+    @KafkaListener(topics = ["\\${kafka.topics.operations}"])
+    fun getOperation(message: String) {}
+
+    @KafkaListener(topics = ["\\${kafka.topics.ausn-core.operations}"])
+    fun getCoreOperation(message: String) {}
+}
+"""
+
+
+def test_categorizer_style_without_destination(tmp_path: Path) -> None:
+    resources = tmp_path / "src/main/resources"
+    resources.mkdir(parents=True)
+    (resources / "application.yaml").write_text(CATEGORIZER_YAML, encoding="utf-8")
+    sources = tmp_path / "src/main/kotlin"
+    sources.mkdir(parents=True)
+    (sources / "OperationKafkaListener.kt").write_text(CATEGORIZER_LISTENER, encoding="utf-8")
+
+    names = kafka_topic_names(tmp_path)
+    assert names["operations"] == "operation-categorizer.operation-in"
+    assert names["ausn-core.operations"] == "ausn.operation-in"
+    assert set(consumed_topics(tmp_path)) == {"operation-categorizer.operation-in", "ausn.operation-in"}
+
+
 def test_test_sources_are_skipped(tmp_path: Path) -> None:
     resources = tmp_path / "src/main/resources"
     resources.mkdir(parents=True)
