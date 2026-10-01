@@ -1,16 +1,16 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-10-01T13:23:58+00:00",
-  "target_commit": "96db075",
+  "generated_at": "2026-10-01T13:24:42+00:00",
+  "target_commit": "2e8f074",
   "target_branch": "main",
-  "target_dirty": false,
+  "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
     "docs": 103,
     "edges": 495,
     "broken": 0,
-    "unresolved": 1,
+    "unresolved": 0,
     "unreachable": 29,
     "warnings": 0
   },
@@ -3615,14 +3615,7 @@
     }
   ],
   "broken": [],
-  "unresolved": [
-    {
-      "from": "profiles/slider/docs/slider-management-review.md",
-      "target": "docs/codexcli-artifact-lifecycle-policy.md",
-      "line": 12,
-      "severity": "warning"
-    }
-  ],
+  "unresolved": [],
   "unreachable": [
     "docs/plans/2026-09-24-control-plane-portability-fixes.md",
     "docs/plans/portability-bootstrap-plan.md",

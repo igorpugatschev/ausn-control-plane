@@ -9,7 +9,7 @@
 - Agent layer `agents/slider-ai-qa/` (skills `slider-qa-loop`, `slider-test-design`); отдельный nested-контракт SliderDiagram.
 - **Три отдельно запускаемых этапа**: `context-review` → `testing` → `stage-regression`; approvals не переносятся, сборка olddev и merge в stage — только по отдельной команде пользователя; статусы Bitrix агент не меняет.
 - **Продуктовые ветки Редактора не создаются**; task-ветки/worktree — только в `slider-autotests`.
-- **Жизненный цикл артефактов**: control plane не архив; временные отчёты — в ignored `.reports/`; gate очистки `docs/codexcli-artifact-lifecycle-policy.md`; `finalize-control-plane-change.mjs` + серия `check-*` (agent-execution-policy, prompt-regression, codemap, secrets).
+- **Жизненный цикл артефактов**: control plane не архив; временные отчёты — в ignored `.reports/`; gate очистки — docs/codexcli-artifact-lifecycle-policy.md; `finalize-control-plane-change.mjs` + серия `check-*` (agent-execution-policy, prompt-regression, codemap, secrets).
 - **Секреты**: проектные — в `.env` проекта; отдельный vault Codex; права ≤600.
 - Задачи — из карточки Bitrix; перед testing читается delta требований/комментариев/макетов.
 
