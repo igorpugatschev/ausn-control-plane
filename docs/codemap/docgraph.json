@@ -1,22 +1,22 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-10-01T11:28:32+00:00",
-  "target_commit": "9cdc506",
+  "generated_at": "2026-10-01T11:32:46+00:00",
+  "target_commit": "0c25b43",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
     "docs": 101,
-    "edges": 449,
+    "edges": 455,
     "broken": 0,
-    "unresolved": 3,
+    "unresolved": 0,
     "unreachable": 27,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 258,
-    "mention-skill": 84,
+    "code-path": 262,
+    "mention-skill": 86,
     "mention-agent": 41,
     "mention-command": 9,
     "link": 56,
@@ -231,7 +231,7 @@
       "id": "AGENTS.md",
       "kind": "doc",
       "in": 2,
-      "out": 33
+      "out": 34
     },
     {
       "id": "docs/ausn-context/current-state.md",
@@ -255,7 +255,7 @@
       "id": "docs/ausn-context/qa-source-assessment.md",
       "kind": "doc",
       "in": 1,
-      "out": 13
+      "out": 15
     },
     {
       "id": "docs/ausn-context/README.md",
@@ -578,32 +578,32 @@
     {
       "id": "profiles/ausn/skills/ausn-categorizer-lifecycle/references/categorizer-lifecycle.md",
       "kind": "doc",
-      "in": 1,
+      "in": 2,
       "out": 1
     },
     {
       "id": "profiles/ausn/skills/ausn-categorizer-lifecycle/SKILL.md",
       "kind": "doc",
-      "in": 5,
+      "in": 6,
       "out": 5
     },
     {
       "id": "profiles/ausn/skills/ausn-postman-sync/references/postman-flow.md",
       "kind": "doc",
-      "in": 1,
+      "in": 2,
       "out": 2
     },
     {
       "id": "profiles/ausn/skills/ausn-postman-sync/SKILL.md",
       "kind": "doc",
-      "in": 3,
+      "in": 4,
       "out": 5
     },
     {
       "id": "PROJECT_STATUS.md",
       "kind": "doc",
       "in": 0,
-      "out": 47
+      "out": 50
     },
     {
       "id": "README.md",
@@ -1419,6 +1419,12 @@
     },
     {
       "from": "AGENTS.md",
+      "to": "profiles/ausn/models/system.json",
+      "kind": "code-path",
+      "line": 128
+    },
+    {
+      "from": "AGENTS.md",
       "to": "docs/archive/README.md",
       "kind": "code-path",
       "line": 134
@@ -1536,6 +1542,18 @@
       "to": ".opencode/command/qa-task.md",
       "kind": "mention-command",
       "line": 0
+    },
+    {
+      "from": "docs/ausn-context/qa-source-assessment.md",
+      "to": "profiles/ausn/skills/ausn-categorizer-lifecycle/references/categorizer-lifecycle.md",
+      "kind": "code-path",
+      "line": 24
+    },
+    {
+      "from": "docs/ausn-context/qa-source-assessment.md",
+      "to": "profiles/ausn/skills/ausn-postman-sync/references/postman-flow.md",
+      "kind": "code-path",
+      "line": 25
     },
     {
       "from": "docs/ausn-context/qa-source-assessment.md",
@@ -3069,129 +3087,135 @@
     },
     {
       "from": "PROJECT_STATUS.md",
+      "to": "profiles/ausn/models/system.json",
+      "kind": "code-path",
+      "line": 177
+    },
+    {
+      "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/ausn-socraticode/SKILL.md",
       "kind": "code-path",
-      "line": 191
+      "line": 198
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/karpathy-guidelines/SKILL.md",
       "kind": "code-path",
-      "line": 192
+      "line": 199
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/ausn-qa-loop/references/qa-task-flow.md",
       "kind": "code-path",
-      "line": 193
+      "line": 200
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/ausn-qa-loop/references/loop-quality-gates.md",
       "kind": "code-path",
-      "line": 194
+      "line": 201
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/socraticode.md",
       "kind": "code-path",
-      "line": 196
+      "line": 203
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/retrospectives.md",
       "kind": "code-path",
-      "line": 196
+      "line": 203
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/ausn-context/qa-source-assessment.md",
       "kind": "code-path",
-      "line": 196
+      "line": 203
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/generate.py",
       "kind": "code-path",
-      "line": 198
+      "line": 205
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/model/control-plane.json",
       "kind": "code-path",
-      "line": 198
+      "line": 205
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/model/qa-project.json",
       "kind": "code-path",
-      "line": 199
+      "line": 206
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:src/config/paths.py",
       "kind": "code-path",
-      "line": 204
+      "line": 211
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/kafka/conftest.py",
       "kind": "code-path",
-      "line": 206
+      "line": 213
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/static/test_categorizer_json_fixtures.py",
       "kind": "code-path",
-      "line": 207
+      "line": 214
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/integration/test_permission_refresh_queue_advance.py",
       "kind": "code-path",
-      "line": 213
+      "line": 220
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/db/test_permission_refresh_order.py",
       "kind": "code-path",
-      "line": 214
+      "line": 221
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:docs/reports/qa-loop-permission-refresh-order-2026-09-18.md",
       "kind": "code-path",
-      "line": 215
+      "line": 222
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/ausn-qa-mcp/references/socraticode.json",
       "kind": "code-path",
-      "line": 253
+      "line": 260
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/archive/README.md",
       "kind": "code-path",
-      "line": 256
+      "line": 263
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/data/kafka_topics/README.md",
       "kind": "code-path",
-      "line": 257
+      "line": 264
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/reports/external-review-portability-2026-09-24.md",
       "kind": "link",
-      "line": 264
+      "line": 271
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": ".codex/config.toml",
       "kind": "code-path",
-      "line": 264
+      "line": 271
     },
     {
       "from": "PROJECT_STATUS.md",
@@ -3214,6 +3238,18 @@
     {
       "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/karpathy-guidelines/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "PROJECT_STATUS.md",
+      "to": "profiles/ausn/skills/ausn-categorizer-lifecycle/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "PROJECT_STATUS.md",
+      "to": "profiles/ausn/skills/ausn-postman-sync/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -3327,26 +3363,7 @@
     }
   ],
   "broken": [],
-  "unresolved": [
-    {
-      "from": "AGENTS.md",
-      "target": "tools/codemap/model/system.json",
-      "line": 128,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/ausn-context/qa-source-assessment.md",
-      "target": "ausn-control-plane/.agents/skills/ausn-categorizer-lifecycle/references/categorizer-lifecycle.md",
-      "line": 24,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/ausn-context/qa-source-assessment.md",
-      "target": "ausn-control-plane/.agents/skills/ausn-postman-sync/references/postman-flow.md",
-      "line": 25,
-      "severity": "warning"
-    }
-  ],
+  "unresolved": [],
   "unreachable": [
     "docs/ausn-context/review-addendum.md",
     "docs/ausn-context/scenario-map.md",
@@ -3380,7 +3397,7 @@
   "hubs": [
     {
       "id": "PROJECT_STATUS.md",
-      "degree": 47
+      "degree": 50
     },
     {
       "id": ".agents/skills/ausn-qa-loop/SKILL.md",
@@ -3388,7 +3405,7 @@
     },
     {
       "id": "AGENTS.md",
-      "degree": 35
+      "degree": 36
     },
     {
       "id": ".agents/skills/ausn-qa-agents/SKILL.md",
@@ -3419,6 +3436,10 @@
       "degree": 18
     },
     {
+      "id": "docs/ausn-context/qa-source-assessment.md",
+      "degree": 16
+    },
+    {
       "id": ".agents/skills/ausn-socraticode/SKILL.md",
       "degree": 15
     },
@@ -3432,10 +3453,6 @@
     },
     {
       "id": ".opencode/command/qa-task.md",
-      "degree": 14
-    },
-    {
-      "id": "docs/ausn-context/qa-source-assessment.md",
       "degree": 14
     }
   ]

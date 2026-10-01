@@ -21,8 +21,8 @@ Remote: `https://gitlab.com/rcktsci/projects/ausn/codexcli-ausn.git` — ист�
 адресов к текущему окружению):
 
 - навыки: `ausn-source-driven-development`, `ausn-api-contract-testing`, `ausn-context-engineering`,
-  `ausn-categorizer-lifecycle` (+ `ausn-control-plane/.agents/skills/ausn-categorizer-lifecycle/references/categorizer-lifecycle.md`), `ausn-postman-sync`
-  (+ `ausn-control-plane/.agents/skills/ausn-postman-sync/references/postman-flow.md`);
+  `ausn-categorizer-lifecycle` (+ `ausn-control-plane/profiles/ausn/skills/ausn-categorizer-lifecycle/references/categorizer-lifecycle.md`), `ausn-postman-sync`
+  (+ `ausn-control-plane/profiles/ausn/skills/ausn-postman-sync/references/postman-flow.md`);
 - агентный слой: навык `ausn-qa-agents` (`ausn-control-plane/.agents/skills/ausn-qa-agents/references/agent-roles.md`, `agent-security-policy.md`,
   `test-data-strategy.md`, `qa-agent-metrics.md`, `qa-agent-feedback-loop.md`, `reporting-templates.md`,
   `bug-report-template.md`) и субагенты `.opencode/agent/` — семь ролей QA/SDET;

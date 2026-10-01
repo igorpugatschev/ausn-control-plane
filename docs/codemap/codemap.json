@@ -3,13 +3,13 @@
   "title": "AUSN QA Control Plane",
   "summary": "Управляющий репозиторий QA-команды АУСН: правила, навыки, субагенты, MCP-конфигурация, методология и ретроспективы. Приложения и сборки нет; продукт работы — ausn-qa-project.",
   "target": ".",
-  "generated_at": "2026-10-01T11:11:44+00:00",
-  "target_commit": "f36954f",
+  "generated_at": "2026-10-01T11:32:06+00:00",
+  "target_commit": "0c25b43",
   "target_branch": "main",
   "target_dirty": true,
   "primary_count": 12,
   "primary_limit": 20,
-  "total_files": 128,
+  "total_files": 125,
   "nodes": [
     {
       "id": "agents",
@@ -43,7 +43,7 @@
         ".agents/skills"
       ],
       "note": "11 навыков: ausn-qa-loop, ausn-socraticode (высший приоритет), ausn-qa-mcp, ausn-qa-agents, ausn-qa-methodology, ausn-api-contract-testing, ausn-categorizer-lifecycle, ausn-source-driven-development, ausn-context-engineering, ausn-postman-sync, karpathy-guidelines.",
-      "files": 37
+      "files": 33
     },
     {
       "id": "agents-layer",
@@ -54,7 +54,7 @@
         ".opencode"
       ],
       "note": "7 субагентов QA/SDET, команды /qa-task, /lint, /test, конфиг opencode.jsonc.",
-      "files": 15
+      "files": 16
     },
     {
       "id": "ausn-context",

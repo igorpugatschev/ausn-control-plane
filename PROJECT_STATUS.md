@@ -173,6 +173,13 @@
   codemap берёт префиксы рабочего пространства и список моделей из профиля. Поведение профиля `ausn` неизменно
   (golden-гейты: codemap/docgraph/render/bootstrap зелёные). Открыто: инкремент 2 (перенос домена в `profiles/ausn/`)
   и 3 (`scripts/new-project.mjs`).
+- **Универсальность, инкременты 2–3 (2026-10-01).** Домен вынесен в профиль: системная модель —
+  `profiles/ausn/models/system.json`, доменные навыки (`ausn-categorizer-lifecycle`, `ausn-postman-sync`) —
+  `profiles/ausn/skills/`; плагин `.opencode/plugin/profile.js` подключает `profiles/<active>/skills` в
+  `skills.paths`; граф документации распознаёт профильные навыки (`profiles/` — строгий контент).
+  Скаффолд нового проекта — `scripts/new-project.mjs --id <id> --name "<Название>"` (создаёт профиль и
+  структуру; значения заполняются вручную). Открыто: перенос доменных доков (контекст/отчёты) в `profiles/ausn/docs`
+  и переименование навыков `ausn-*` (шаг с картой ссылок).
 - **Модель владения:** `ausn-qa-project` — записываемый продукт (commit и push сразу); исходники
   разработчиков и `ausn-ai` — только чтение (`git pull --ff-only`, локальные изменения не сбрасывать).
 - **Внешние публикации** (Jira/Confluence/Mattermost) выполняет пользователь; агент готовит текст.
