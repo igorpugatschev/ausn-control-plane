@@ -1,24 +1,24 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-10-01T11:00:00+00:00",
-  "target_commit": "3bae2b8",
+  "generated_at": "2026-10-01T11:06:15+00:00",
+  "target_commit": "8b13a9f",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
-    "docs": 99,
-    "edges": 432,
+    "docs": 100,
+    "edges": 438,
     "broken": 0,
-    "unresolved": 0,
-    "unreachable": 26,
+    "unresolved": 7,
+    "unreachable": 27,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 243,
-    "mention-skill": 83,
+    "code-path": 247,
+    "mention-skill": 84,
     "mention-agent": 41,
-    "mention-command": 8,
+    "mention-command": 9,
     "link": 56,
     "link-dir": 1
   },
@@ -188,7 +188,7 @@
     {
       "id": ".agents/skills/karpathy-guidelines/SKILL.md",
       "kind": "doc",
-      "in": 5,
+      "in": 6,
       "out": 1
     },
     {
@@ -242,7 +242,7 @@
     {
       "id": ".opencode/command/qa-task.md",
       "kind": "doc",
-      "in": 9,
+      "in": 10,
       "out": 4
     },
     {
@@ -412,6 +412,12 @@
       "kind": "doc",
       "in": 0,
       "out": 22
+    },
+    {
+      "id": "docs/plans/universal-control-plane-design.md",
+      "kind": "doc",
+      "in": 0,
+      "out": 6
     },
     {
       "id": "docs/portability-clean-clone-pilot.md",
@@ -2306,6 +2312,42 @@
       "line": 1405
     },
     {
+      "from": "docs/plans/universal-control-plane-design.md",
+      "to": "configs/mcp/servers.json",
+      "kind": "code-path",
+      "line": 11
+    },
+    {
+      "from": "docs/plans/universal-control-plane-design.md",
+      "to": "configs/workspace.json",
+      "kind": "code-path",
+      "line": 37
+    },
+    {
+      "from": "docs/plans/universal-control-plane-design.md",
+      "to": "tools/codemap/generate.py",
+      "kind": "code-path",
+      "line": 49
+    },
+    {
+      "from": "docs/plans/universal-control-plane-design.md",
+      "to": "tools/checks/validate_manifests.py",
+      "kind": "code-path",
+      "line": 52
+    },
+    {
+      "from": "docs/plans/universal-control-plane-design.md",
+      "to": ".agents/skills/karpathy-guidelines/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "docs/plans/universal-control-plane-design.md",
+      "to": ".opencode/command/qa-task.md",
+      "kind": "mention-command",
+      "line": 0
+    },
+    {
       "from": "docs/portability-clean-clone-pilot.md",
       "to": "configs/workspace.json",
       "kind": "code-path",
@@ -3213,7 +3255,50 @@
     }
   ],
   "broken": [],
-  "unresolved": [],
+  "unresolved": [
+    {
+      "from": "docs/plans/universal-control-plane-design.md",
+      "target": "configs/project.json",
+      "line": 41,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/universal-control-plane-design.md",
+      "target": "configs/project.json",
+      "line": 57,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/universal-control-plane-design.md",
+      "target": "profiles/ausn/project.json",
+      "line": 57,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/universal-control-plane-design.md",
+      "target": "configs/project.json",
+      "line": 76,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/universal-control-plane-design.md",
+      "target": "profiles/ausn/project.json",
+      "line": 76,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/universal-control-plane-design.md",
+      "target": "profiles/_fixture/project.json",
+      "line": 79,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/universal-control-plane-design.md",
+      "target": "configs/project.json",
+      "line": 83,
+      "severity": "warning"
+    }
+  ],
   "unreachable": [
     "docs/ausn-context/review-addendum.md",
     "docs/ausn-context/scenario-map.md",
@@ -3228,6 +3313,7 @@
     "docs/plans/socraticode-plugin-plan.md",
     "docs/plans/system-codemap-plan-c2.md",
     "docs/plans/system-codemap-plan.md",
+    "docs/plans/universal-control-plane-design.md",
     "docs/presentations/README.md",
     "docs/reports/analyst-questions-categorizer-numeric-2026-09-22.md",
     "docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md",
@@ -3297,12 +3383,12 @@
       "degree": 15
     },
     {
-      "id": "README.md",
+      "id": ".opencode/command/qa-task.md",
       "degree": 14
     },
     {
-      "id": ".opencode/command/qa-task.md",
-      "degree": 13
+      "id": "README.md",
+      "degree": 14
     }
   ]
 }
