@@ -76,3 +76,25 @@ def test_access_conflict_is_rejected(tmp_path):
         encoding="utf-8",
     )
     assert any("access" in v.lower() for v in validate_workspace(tmp_path))
+
+
+def test_env_schema_names_are_unique_and_grouped():
+    data = json.loads((CONFIGS / "env.schema.json").read_text(encoding="utf-8"))
+    names = [item["name"] for item in data["vars"]]
+    assert len(names) == len(set(names)), "дубликаты имён в env.schema.json"
+    assert all(item["group"] in {"mcp", "gitlab", "stands", "ai"} for item in data["vars"])
+
+
+def test_env_duplicate_name_is_rejected(tmp_path):
+    (tmp_path / "env.schema.json").write_text(
+        json.dumps(
+            {
+                "vars": [
+                    {"name": "MCP_X", "group": "mcp", "required": True, "source": "x"},
+                    {"name": "MCP_X", "group": "mcp", "required": False, "source": "y"},
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    assert any("duplicate" in v.lower() for v in validate_all(tmp_path)["env"])
