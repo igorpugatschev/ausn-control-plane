@@ -95,7 +95,7 @@ export async function ensureQdrant(run, opts = {}) {
     if (await httpOkFn(`${url}/readyz`)) return started ? "started" : "ok"
     await sleep(intervalMs)
   }
-  return "fail"
+  return started ? "starting" : "fail"
 }
 
 export async function ensureOllama(run, opts = {}) {

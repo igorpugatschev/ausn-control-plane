@@ -62,6 +62,12 @@ test("ensureQdrant: при полном провале возвращает fail
   assert.equal(result, "fail")
 })
 
+test("ensureQdrant: контейнер поднят, но готовность не уложилась в окно -> starting", async () => {
+  const run = async () => ""
+  const result = await ensureQdrant(run, { httpOkFn: noHttp, timeoutMs: 40, intervalMs: 10 })
+  assert.equal(result, "starting")
+})
+
 test("ensureOllama: если уже отвечает — не запускает serve", async () => {
   const calls = []
   const run = async (cmd) => { calls.push(cmd); return "" }
