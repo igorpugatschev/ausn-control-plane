@@ -46,7 +46,20 @@ MODEL_DIR = ROOT / "tools" / "codemap" / "model"
 SKIP_DIRS = {".git", "__pycache__", ".venv", "node_modules", ".mypy_cache", ".pytest_cache", ".ruff_cache", "tmp", ".local", "archive", ".superpowers", ".reports"}
 MAX_PRIMARY = 20
 SYSTEM_MODEL_NAME = "system"
-SYSTEM_MODEL = MODEL_DIR / f"{SYSTEM_MODEL_NAME}.json"
+
+
+def _system_model_path() -> Path:
+    """Системная модель активного профиля; fallback — tools/codemap/model/system.json."""
+    profile = _active_profile()
+    relative = (profile.get("models") or {}).get("system")
+    if relative:
+        candidate = ROOT / "profiles" / profile.get("id", "") / relative
+        if candidate.is_file():
+            return candidate
+    return MODEL_DIR / f"{SYSTEM_MODEL_NAME}.json"
+
+
+SYSTEM_MODEL = _system_model_path()
 
 # Скриптовый запуск (`python tools/codemap/generate.py`) не видит пакет `tools` — добавляем корень.
 if __package__ in (None, ""):
@@ -256,12 +269,13 @@ def scan_tree(target):
 
 def named_entry_points(target):
     skills, agents, commands = {}, {}, {}
-    skills_dir = target / ".agents" / "skills"
-    if skills_dir.is_dir():
-        for entry in sorted(skills_dir.iterdir()):
-            skill = entry / "SKILL.md"
-            if skill.is_file():
-                skills[entry.name] = skill.relative_to(target).as_posix()
+    profile_skills = target / "profiles" / _active_profile().get("id", "ausn") / "skills"
+    for skills_dir in (target / ".agents" / "skills", profile_skills):
+        if skills_dir.is_dir():
+            for entry in sorted(skills_dir.iterdir()):
+                skill = entry / "SKILL.md"
+                if skill.is_file():
+                    skills.setdefault(entry.name, skill.relative_to(target).as_posix())
     for label, folder, store in (("agent", "agent", agents), ("command", "command", commands)):
         base = target / ".opencode" / folder
         if base.is_dir():
@@ -300,6 +314,11 @@ def _locate_any(target, path, raw, others):
         parts = rel.split("/")
         if len(parts) >= 3:
             bases.insert(0, target.joinpath(*parts[:3]))
+    elif rel.startswith("profiles/") and "/skills/" in rel:
+        parts = rel.split("/")
+        skill_index = parts.index("skills") + 1
+        if len(parts) > skill_index:
+            bases.insert(0, target.joinpath(*parts[: skill_index + 1]))
     for base in bases:
         resolved = _resolve(target, base, raw)
         if resolved is not None and (target / resolved).exists():
@@ -312,7 +331,7 @@ def _locate_any(target, path, raw, others):
 
 
 def _is_model_logic(rel_path):
-    return rel_path.startswith((".agents/", ".opencode/"))
+    return rel_path.startswith((".agents/", ".opencode/", "profiles/"))
 
 
 def _is_external(raw):
@@ -829,7 +848,7 @@ def run_system(do_check, allow_stale, target_override=None, root_override=None, 
     print(f"system: изменения — {delta_summary(delta)}")
     report = render_report(document, contracts, map_text, parts_summary, delta)
 
-    vendor_source = MODEL_DIR.parent / "vendor" / "cytoscape.min.js"
+    vendor_source = ROOT / "tools" / "codemap" / "vendor" / "cytoscape.min.js"
     vendor_target = target / "docs" / "codemap" / "vendor"
     if vendor_source.is_file():
         vendor_target.mkdir(parents=True, exist_ok=True)

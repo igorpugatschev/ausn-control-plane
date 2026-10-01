@@ -6,7 +6,7 @@ from pathlib import Path
 
 from tools.codemap.system_model import load_system_model
 
-MODEL = Path(__file__).parents[1] / "model" / "system.json"
+MODEL = Path(__file__).parents[3] / "profiles" / "ausn" / "models" / "system.json"
 
 
 def test_model_loads_and_has_all_services() -> None:

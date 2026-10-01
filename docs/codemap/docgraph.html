@@ -19,13 +19,13 @@ pre { background: #1b1e24; border: 1px solid #2a2f37; border-radius: 10px;
 </head>
 <body>
 <h1>docgraph: control-plane</h1>
-<p class="meta-line">ветка <code>main</code> · коммит <code>f36954f</code> (рабочая копия изменена) ·
-документов 101 · рёбер 454 · <span class="bad">битых 0</span> ·
-неразрешённых путей 0 · недостижимых 27 ·
-warnings 0 · сгенерировано 2026-10-01T11:15:14+00:00</p>
+<p class="meta-line">ветка <code>main</code> · коммит <code>9cdc506</code> (рабочая копия изменена) ·
+документов 101 · рёбер 449 · <span class="bad">битых 0</span> ·
+неразрешённых путей 3 · недостижимых 27 ·
+warnings 0 · сгенерировано 2026-10-01T11:28:32+00:00</p>
 <h2>Связи по типам</h2>
 <ul>
-<li>code-path — 263</li>
+<li>code-path — 258</li>
 <li>link — 56</li>
 <li>link-dir — 1</li>
 <li>mention-agent — 41</li>
@@ -38,7 +38,9 @@ warnings 0 · сгенерировано 2026-10-01T11:15:14+00:00</p>
 </ul>
 <h2>Неразрешённые пути (warning; ошибка внутри .agents/.opencode)</h2>
 <ul>
-<li>(нет)</li>
+<li><code>AGENTS.md</code>:128 → <code>tools/codemap/model/system.json</code></li>
+<li><code>docs/ausn-context/qa-source-assessment.md</code>:24 → <code>ausn-control-plane/.agents/skills/ausn-categorizer-lifecycle/references/categorizer-lifecycle.md</code></li>
+<li><code>docs/ausn-context/qa-source-assessment.md</code>:25 → <code>ausn-control-plane/.agents/skills/ausn-postman-sync/references/postman-flow.md</code></li>
 </ul>
 <h2>Warnings</h2>
 <ul>
@@ -78,34 +80,24 @@ warnings 0 · сгенерировано 2026-10-01T11:15:14+00:00</p>
 <ul>
 <li><code>PROJECT_STATUS.md</code> — 47</li>
 <li><code>.agents/skills/ausn-qa-loop/SKILL.md</code> — 36</li>
-<li><code>AGENTS.md</code> — 36</li>
+<li><code>AGENTS.md</code> — 35</li>
 <li><code>.agents/skills/ausn-qa-agents/SKILL.md</code> — 28</li>
-<li><code>docs/plans/system-codemap-plan.md</code> — 22</li>
 <li><code>docs/retrospectives.md</code> — 22</li>
+<li><code>docs/plans/system-codemap-plan.md</code> — 21</li>
 <li><code>docs/qa-methodology/README.md</code> — 21</li>
 <li><code>.agents/skills/ausn-qa-methodology/SKILL.md</code> — 19</li>
 <li><code>.agents/skills/ausn-qa-mcp/SKILL.md</code> — 18</li>
 <li><code>docs/socraticode.md</code> — 18</li>
-<li><code>docs/ausn-context/qa-source-assessment.md</code> — 16</li>
 <li><code>.agents/skills/ausn-socraticode/SKILL.md</code> — 15</li>
 <li><code>README.md</code> — 15</li>
 <li><code>docs/plans/2026-09-24-control-plane-portability-fixes.md</code> — 15</li>
 <li><code>.opencode/command/qa-task.md</code> — 14</li>
+<li><code>docs/ausn-context/qa-source-assessment.md</code> — 14</li>
 </ul>
 <h2>Граф (Mermaid)</h2>
 <pre class="mermaid">graph LR
   ".agents/skills/ausn-api-contract-testing/SKILL.md" -->|code-path| "qa-project:tests/conftest.py"
-  ".agents/skills/ausn-categorizer-lifecycle/SKILL.md" -->|code-path| "docs/ausn-context/README.md"
-  ".agents/skills/ausn-categorizer-lifecycle/SKILL.md" -->|code-path| "docs/ausn-context/system-map.md"
-  ".agents/skills/ausn-categorizer-lifecycle/SKILL.md" -->|code-path| "docs/ausn-context/runtime-access.md"
-  ".agents/skills/ausn-categorizer-lifecycle/SKILL.md" -->|code-path| ".agents/skills/ausn-categorizer-lifecycle/references/categorizer-lifecycle.md"
   ".agents/skills/ausn-context-engineering/SKILL.md" -->|code-path| "docs/ausn-context/README.md"
-  ".agents/skills/ausn-postman-sync/references/postman-flow.md" -->|code-path| "qa-project:postman/environments/AUSN_Full_Test_Environment.postman_environment.json"
-  ".agents/skills/ausn-postman-sync/references/postman-flow.md" -->|code-path| "qa-project:tests/tooling/test_tooling_controller.py"
-  ".agents/skills/ausn-postman-sync/SKILL.md" -->|code-path| "docs/ausn-context/README.md"
-  ".agents/skills/ausn-postman-sync/SKILL.md" -->|code-path| "docs/ausn-context/test-automation-assets.md"
-  ".agents/skills/ausn-postman-sync/SKILL.md" -->|code-path| ".agents/skills/ausn-postman-sync/references/postman-flow.md"
-  ".agents/skills/ausn-postman-sync/SKILL.md" -->|code-path| "qa-project:postman/environments/AUSN_Full_Test_Environment.postman_environment.json"
   ".agents/skills/ausn-qa-agents/references/agent-roles.md" -->|code-path| ".agents/skills/ausn-qa-loop/references/qa-task-flow.md"
   ".agents/skills/ausn-qa-agents/references/agent-roles.md" -->|code-path| ".agents/skills/ausn-qa-agents/references/qa-agent-feedback-loop.md"
   ".agents/skills/ausn-qa-agents/references/qa-agent-feedback-loop.md" -->|code-path| ".agents/skills/ausn-qa-agents/references/test-data-strategy.md"
@@ -149,10 +141,7 @@ warnings 0 · сгенерировано 2026-10-01T11:15:14+00:00</p>
   "AGENTS.md" -->|code-path| ".vscode/mcp.json"
   "AGENTS.md" -->|code-path| "configs/mcp/servers.json"
   "AGENTS.md" -->|code-path| "qa-project:docs/reports/system-codemap.md"
-  "AGENTS.md" -->|code-path| "tools/codemap/model/system.json"
   "AGENTS.md" -->|code-path| "docs/archive/README.md"
-  "docs/ausn-context/qa-source-assessment.md" -->|code-path| ".agents/skills/ausn-categorizer-lifecycle/references/categorizer-lifecycle.md"
-  "docs/ausn-context/qa-source-assessment.md" -->|code-path| ".agents/skills/ausn-postman-sync/references/postman-flow.md"
   "docs/ausn-context/qa-source-assessment.md" -->|code-path| ".agents/skills/ausn-qa-agents/references/agent-roles.md"
   "docs/ausn-context/qa-source-assessment.md" -->|code-path| ".opencode/command/lint.md"
   "docs/ausn-context/qa-source-assessment.md" -->|code-path| ".opencode/command/test.md"
@@ -213,6 +202,19 @@ warnings 0 · сгенерировано 2026-10-01T11:15:14+00:00</p>
   "docs/plans/socraticode-plugin-plan.md" -->|code-path| "docs/plans/socraticode-plugin-design.md"
   "docs/plans/socraticode-plugin-plan.md" -->|code-path| "tools/checks/mcp_parity.py"
   "docs/plans/socraticode-plugin-plan.md" -->|code-path| ".vscode/mcp.json"
-  "docs/plans/socraticode-plugin-plan.md" -->|code-path| ".codex/config.toml"</pre>
+  "docs/plans/socraticode-plugin-plan.md" -->|code-path| ".codex/config.toml"
+  "docs/plans/socraticode-plugin-plan.md" -->|code-path| ".opencode/opencode.jsonc"
+  "docs/plans/socraticode-plugin-plan.md" -->|code-path| ".agents/skills/ausn-socraticode/SKILL.md"
+  "docs/plans/socraticode-plugin-plan.md" -->|code-path| "docs/socraticode.md"
+  "docs/plans/socraticode-plugin-plan.md" -->|code-path| "docs/mcp.md"
+  "docs/plans/system-codemap-design.md" -->|code-path| "docs/ausn-context/system-map.md"
+  "docs/plans/system-codemap-plan-c2.md" -->|code-path| "docs/plans/system-codemap-design.md"
+  "docs/plans/system-codemap-plan-c2.md" -->|code-path| "tools/codemap/system_parts.py"
+  "docs/plans/system-codemap-plan-c2.md" -->|code-path| "tools/codemap/generate.py"
+  "docs/plans/system-codemap-plan-c2.md" -->|code-path| "tools/codemap/system_render.py"
+  "docs/plans/system-codemap-plan-c2.md" -->|code-path| "tools/codemap/tests/test_system_parts.py"
+  "docs/plans/system-codemap-plan-c2.md" -->|code-path| "tools/codemap/tests/test_system_render_parts.py"
+  "docs/plans/system-codemap-plan.md" -->|code-path| "tools/codemap/generate.py"
+  "docs/plans/system-codemap-plan.md" -->|code-path| "docs/plans/system-codemap-design.md"</pre>
 </body>
 </html>

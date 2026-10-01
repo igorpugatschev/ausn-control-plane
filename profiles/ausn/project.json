@@ -28,5 +28,5 @@
   "jira": { "projectKey": "PKAUSN" },
   "zephyr": { "folders": { "backend": "Backend", "frontend": "Frontend", "common": "Общее" } },
   "taxonomy": { "casePrefix": "[AUTO]", "locale": "ru" },
-  "models": { "repos": ["control-plane", "qa-project"], "system": "system.json" }
+  "models": { "repos": ["control-plane", "qa-project"], "system": "models/system.json" }
 }

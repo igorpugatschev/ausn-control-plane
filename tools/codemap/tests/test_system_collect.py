@@ -8,7 +8,7 @@ from pathlib import Path
 from tools.codemap.system_collect import collect_facts, count_files, repo_commit
 from tools.codemap.system_model import load_system_model
 
-MODEL = Path(__file__).parents[1] / "model" / "system.json"
+MODEL = Path(__file__).parents[3] / "profiles" / "ausn" / "models" / "system.json"
 
 
 def test_repo_commit_reads_head(tmp_path: Path) -> None:
