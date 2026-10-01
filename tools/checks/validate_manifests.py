@@ -1,0 +1,132 @@
+"""Валидация канонических манифестов переносимости (workspace/env/mcp).
+
+Проверяются только структура и имена; секреты не читаются и не выводятся.
+Правила: относительные пути, уникальные id/path, корректный access, отсутствие конфликтов,
+writable — только у `ausn-qa-project`.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+
+ABSOLUTE_MARKERS = ("c:\\", "\\\\", "/users/", "/home/", "/mnt/")
+ALLOWED_GROUPS = {"mcp", "gitlab", "stands", "ai"}
+ALLOWED_CLIENTS = {"opencode", "codex", "vscode", "mcp"}
+ALLOWED_ACCESS = {"read-only", "writable"}
+WRITABLE_IDS = {"ausn-qa-project"}
+
+
+def _load(path: Path) -> dict:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _is_absolute(value: str) -> bool:
+    low = value.lower()
+    return value.startswith("/") or ":" in value or any(marker in low for marker in ABSOLUTE_MARKERS)
+
+
+def validate_workspace(configs_dir: Path) -> list[str]:
+    path = configs_dir / "workspace.json"
+    if not path.is_file():
+        return [f"workspace: файл не найден: {path}"]
+    data = _load(path)
+    issues: list[str] = []
+    ids: set[str] = set()
+    paths: dict[str, str] = {}
+    for repo in data.get("repos", []):
+        rid = repo.get("id", "")
+        rpath = repo.get("path", "")
+        access = repo.get("access", "")
+        if not rid or not rpath:
+            issues.append(f"workspace: запись без id/path: {repo}")
+            continue
+        if _is_absolute(rpath):
+            issues.append(f"workspace: absolute path запрещён: {rid} -> {rpath}")
+        if rid in ids:
+            issues.append(f"workspace: duplicate id: {rid}")
+        ids.add(rid)
+        if rpath in paths and paths[rpath] != access:
+            issues.append(f"workspace: access conflict для {rpath}: {paths[rpath]} vs {access}")
+        paths[rpath] = access
+        if access not in ALLOWED_ACCESS:
+            issues.append(f"workspace: недопустимый access '{access}' у {rid}")
+        if access == "writable" and rid not in WRITABLE_IDS:
+            issues.append(f"workspace: writable разрешён только ausn-qa-project, а не {rid}")
+    return issues
+
+
+def validate_env(configs_dir: Path) -> list[str]:
+    path = configs_dir / "env.schema.json"
+    if not path.is_file():
+        return [f"env: файл не найден: {path}"]
+    data = _load(path)
+    issues: list[str] = []
+    seen: set[str] = set()
+    for item in data.get("vars", []):
+        name = item.get("name", "")
+        group = item.get("group", "")
+        if not name:
+            issues.append(f"env: запись без name: {item}")
+            continue
+        if name in seen:
+            issues.append(f"env: duplicate name: {name}")
+        seen.add(name)
+        if group not in ALLOWED_GROUPS:
+            issues.append(f"env: неизвестная group '{group}' у {name}")
+    return issues
+
+
+def validate_mcp_manifest(configs_dir: Path) -> list[str]:
+    path = configs_dir / "mcp" / "servers.json"
+    if not path.is_file():
+        return [f"mcp: файл не найден: {path}"]
+    data = _load(path)
+    issues: list[str] = []
+    names: set[str] = set()
+    for server in data.get("servers", []):
+        name = server.get("name", "")
+        stype = server.get("type", "")
+        if not name:
+            issues.append(f"mcp: запись без name: {server}")
+            continue
+        if name in names:
+            issues.append(f"mcp: duplicate server: {name}")
+        names.add(name)
+        if stype not in {"local", "remote"}:
+            issues.append(f"mcp: недопустимый type '{stype}' у {name}")
+        for client in server.get("clients", []):
+            if client not in ALLOWED_CLIENTS:
+                issues.append(f"mcp: неизвестный client '{client}' у {name}")
+    return issues
+
+
+def validate_all(configs_dir: Path) -> dict[str, list[str]]:
+    report = {"workspace": validate_workspace(configs_dir)}
+    if (configs_dir / "env.schema.json").is_file():
+        report["env"] = validate_env(configs_dir)
+    if (configs_dir / "mcp" / "servers.json").is_file():
+        report["mcp"] = validate_mcp_manifest(configs_dir)
+    return report
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Валидация манифестов переносимости")
+    parser.add_argument("--configs", type=Path, default=Path(__file__).resolve().parents[2] / "configs")
+    args = parser.parse_args()
+
+    failed = False
+    for name, issues in validate_all(args.configs).items():
+        if issues:
+            failed = True
+            print(f"FAIL {name}:")
+            for issue in issues:
+                print(f"  - {issue}")
+        else:
+            print(f"OK {name}")
+    return 1 if failed else 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

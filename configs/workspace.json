@@ -1,0 +1,20 @@
+{
+  "root": "..",
+  "repos": [
+    {"id": "ausn-ai", "path": "../ausn/ausn-ai", "url": "https://gitlab.com/rcktsci/projects/ausn/ausn-ai.git", "access": "read-only", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "main"},
+    {"id": "ausn-qa-project", "path": "../ausn/ausn-qa-project", "url": "https://gitlab.com/rcktsci/projects/ausn/integrator/ausn-qa-project.git", "access": "writable", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "main"},
+    {"id": "ausn-core", "path": "../ausn/ausn-core", "url": "https://gitlab.com/rcktsci/projects/ausn/backend/ausn-core.git", "access": "read-only", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "develop"},
+    {"id": "ausn-categorizer", "path": "../ausn/ausn-categorizer", "url": "https://gitlab.com/rcktsci/projects/ausn/backend/ausn-categorizer.git", "access": "read-only", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "develop"},
+    {"id": "ausn-front-module", "path": "../ausn/ausn-front-module", "url": "https://gitlab.com/rcktsci/projects/ausn/backend/ausn-front-module.git", "access": "read-only", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "develop"},
+    {"id": "ausn-front-gateway", "path": "../ausn/ausn-front-gateway", "url": "https://gitlab.com/rcktsci/projects/ausn/backend/ausn-front-gateway.git", "access": "read-only", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "develop"},
+    {"id": "ausn-dbo-integration", "path": "../ausn/ausn-dbo-integration", "url": "https://gitlab.com/rcktsci/projects/ausn/backend/ausn-dbo-integration.git", "access": "read-only", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "develop"},
+    {"id": "ausn-admin-backend", "path": "../ausn/ausn-admin-backend", "url": "https://gitlab.com/rcktsci/projects/ausn/backend/ausn-admin-backend.git", "access": "read-only", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "develop"},
+    {"id": "ausn-admin-dashboard", "path": "../ausn/ausn-admin-dashboard", "url": "https://gitlab.com/rcktsci/projects/ausn/frontend/ausn-admin-dashboard.git", "access": "read-only", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "develop"},
+    {"id": "ausn-bom", "path": "../ausn/ausn-bom", "url": "https://gitlab.com/rcktsci/projects/ausn/backend/libs/ausn-bom.git", "access": "read-only", "required": true, "index": false, "contextArtifacts": false, "defaultBranch": "main"},
+    {"id": "ausn-front-module-api", "path": "../ausn/ausn-front-module-api", "url": "https://gitlab.com/rcktsci/projects/ausn/backend/libs/ausn-front-module-api.git", "access": "read-only", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "develop"},
+    {"id": "ausn-kafka-contracts", "path": "../ausn/ausn-kafka-contracts", "url": "https://gitlab.com/rcktsci/projects/ausn/backend/libs/ausn-kafka-contracts.git", "access": "read-only", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "develop"},
+    {"id": "ausn-api", "path": "../ausn/ausn-api", "url": "https://gitlab.com/rcktsci/projects/ausn/ausn-api.git", "access": "read-only", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "main"},
+    {"id": "dbo-emulator", "path": "../ausn/dbo-emulator", "url": "https://gitlab.com/rcktsci/projects/ausn/integrator/front-module/dbo-emulator.git", "access": "read-only", "required": false, "index": false, "contextArtifacts": false, "defaultBranch": "develop"},
+    {"id": "test-stands", "path": "../ausn/test-stands", "url": "https://gitlab.com/rcktsci/projects/ausn/integrator/test-stands.git", "access": "read-only", "required": false, "index": false, "contextArtifacts": false, "defaultBranch": "main"}
+  ]
+}
