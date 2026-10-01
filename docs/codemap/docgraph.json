@@ -1,17 +1,17 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-10-01T13:43:45+00:00",
-  "target_commit": "342b9cc",
+  "generated_at": "2026-10-01T13:48:42+00:00",
+  "target_commit": "fe0673d",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
-    "docs": 104,
+    "docs": 105,
     "edges": 495,
     "broken": 0,
-    "unresolved": 0,
-    "unreachable": 30,
+    "unresolved": 1,
+    "unreachable": 31,
     "warnings": 0
   },
   "kinds": {
@@ -607,6 +607,12 @@
     },
     {
       "id": "profiles/slider/docs/two-writers-regulation.md",
+      "kind": "doc",
+      "in": 0,
+      "out": 0
+    },
+    {
+      "id": "profiles/slider/docs/writers-channel-protocol.md",
       "kind": "doc",
       "in": 0,
       "out": 0
@@ -3621,7 +3627,14 @@
     }
   ],
   "broken": [],
-  "unresolved": [],
+  "unresolved": [
+    {
+      "from": "profiles/slider/docs/writers-channel-protocol.md",
+      "target": "slider-web-control-plane/docs/slider-ai/writers-channel.md",
+      "line": 3,
+      "severity": "warning"
+    }
+  ],
   "unreachable": [
     "docs/plans/2026-09-24-control-plane-portability-fixes.md",
     "docs/plans/portability-bootstrap-plan.md",
@@ -3651,6 +3664,7 @@
     "profiles/ausn/docs/evidence/2026-09-17-full-smoke-test1.md",
     "profiles/slider/docs/slider-management-review.md",
     "profiles/slider/docs/two-writers-regulation.md",
+    "profiles/slider/docs/writers-channel-protocol.md",
     "profiles/slider/README.md",
     "PROJECT_STATUS.md"
   ],
