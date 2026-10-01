@@ -1,25 +1,25 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-10-01T09:00:30+00:00",
-  "target_commit": "f719576",
+  "generated_at": "2026-10-01T09:13:44+00:00",
+  "target_commit": "9b19ea3",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
     "docs": 94,
-    "edges": 380,
+    "edges": 383,
     "broken": 0,
     "unresolved": 41,
     "unreachable": 25,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 196,
+    "code-path": 197,
     "mention-skill": 81,
     "mention-agent": 41,
-    "mention-command": 7,
-    "link": 54,
+    "mention-command": 8,
+    "link": 55,
     "link-dir": 1
   },
   "nodes": [
@@ -242,7 +242,7 @@
     {
       "id": ".opencode/command/qa-task.md",
       "kind": "doc",
-      "in": 8,
+      "in": 9,
       "out": 4
     },
     {
@@ -536,7 +536,7 @@
     {
       "id": "ENVIRONMENT-example.md",
       "kind": "doc",
-      "in": 1,
+      "in": 2,
       "out": 0
     },
     {
@@ -567,7 +567,7 @@
       "id": "README.md",
       "kind": "doc",
       "in": 0,
-      "out": 9
+      "out": 12
     },
     {
       "id": "REPOSITORIES.md",
@@ -1433,31 +1433,31 @@
       "from": "AGENTS.md",
       "to": ".codex/config.toml",
       "kind": "code-path",
-      "line": 100
+      "line": 101
     },
     {
       "from": "AGENTS.md",
       "to": ".vscode/mcp.json",
       "kind": "code-path",
-      "line": 100
+      "line": 101
     },
     {
       "from": "AGENTS.md",
       "to": "qa-project:docs/reports/system-codemap.md",
       "kind": "code-path",
-      "line": 126
+      "line": 127
     },
     {
       "from": "AGENTS.md",
       "to": "tools/codemap/model/system.json",
       "kind": "code-path",
-      "line": 126
+      "line": 127
     },
     {
       "from": "AGENTS.md",
       "to": "docs/archive/README.md",
       "kind": "code-path",
-      "line": 132
+      "line": 133
     },
     {
       "from": "AGENTS.md",
@@ -2807,49 +2807,61 @@
       "from": "README.md",
       "to": "AGENTS.md",
       "kind": "link",
-      "line": 7
+      "line": 9
+    },
+    {
+      "from": "README.md",
+      "to": "ENVIRONMENT-example.md",
+      "kind": "link",
+      "line": 15
     },
     {
       "from": "README.md",
       "to": "ENVIRONMENT-manual.md",
       "kind": "link",
-      "line": 8
+      "line": 15
     },
     {
       "from": "README.md",
-      "to": "docs/user-prompts/",
-      "kind": "link-dir",
-      "line": 14
-    },
-    {
-      "from": "README.md",
-      "to": "docs/qa-methodology/README.md",
-      "kind": "link",
-      "line": 18
-    },
-    {
-      "from": "README.md",
-      "to": "docs/mcp.md",
-      "kind": "link",
-      "line": 19
-    },
-    {
-      "from": "README.md",
-      "to": "docs/socraticode.md",
-      "kind": "link",
-      "line": 20
+      "to": ".opencode/opencode.jsonc",
+      "kind": "code-path",
+      "line": 15
     },
     {
       "from": "README.md",
       "to": "REPOSITORIES.md",
       "kind": "link",
-      "line": 23
+      "line": 16
+    },
+    {
+      "from": "README.md",
+      "to": "docs/user-prompts/",
+      "kind": "link-dir",
+      "line": 20
+    },
+    {
+      "from": "README.md",
+      "to": "docs/qa-methodology/README.md",
+      "kind": "link",
+      "line": 24
+    },
+    {
+      "from": "README.md",
+      "to": "docs/mcp.md",
+      "kind": "link",
+      "line": 25
+    },
+    {
+      "from": "README.md",
+      "to": "docs/socraticode.md",
+      "kind": "link",
+      "line": 26
     },
     {
       "from": "README.md",
       "to": "TEAM_MEMBERS.md",
       "kind": "link",
-      "line": 23
+      "line": 29
     },
     {
       "from": "README.md",
@@ -2858,10 +2870,16 @@
       "line": 0
     },
     {
+      "from": "README.md",
+      "to": ".opencode/command/qa-task.md",
+      "kind": "mention-command",
+      "line": 0
+    },
+    {
       "from": "REPOSITORIES.md",
       "to": "docs/ausn-context/system-map.md",
       "kind": "link",
-      "line": 44
+      "line": 73
     },
     {
       "from": "REPOSITORIES.md",
@@ -3197,15 +3215,15 @@
       "degree": 15
     },
     {
+      "id": ".opencode/command/qa-task.md",
+      "degree": 13
+    },
+    {
       "id": "docs/ausn-context/qa-source-assessment.md",
       "degree": 13
     },
     {
-      "id": ".opencode/command/qa-task.md",
-      "degree": 12
-    },
-    {
-      "id": "docs/mcp.md",
+      "id": "README.md",
       "degree": 12
     }
   ]

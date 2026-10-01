@@ -11,6 +11,33 @@
 ## Локальные клоны продуктовых сервисов (только чтение)
 
 Продуктовые сервисы клонируются рядом с control plane; актуальный состав — в `ENVIRONMENT.md`.
+Базовый URL группы — `https://gitlab.com/rcktsci/projects/ausn/`; в таблице для путей вида `backend/...`
+подставляется как `<base><путь>.git`, для корневых (`ausn-api`, `ausn-ai`, `ausn-qa-project`) — как
+`<base><имя>.git`.
+
+### Первичное клонирование (выполняет модель при первом запуске)
+
+Если соседний клон отсутствует, модель клонирует его сама по этому файлу, не дожидаясь пользователя:
+
+```bash
+# из родительского каталога control plane (../ausn — соседняя папка)
+mkdir -p ../ausn && cd ../ausn
+git clone https://gitlab.com/rcktsci/projects/ausn/backend/ausn-core.git
+git clone https://gitlab.com/rcktsci/projects/ausn/backend/ausn-categorizer.git
+git clone https://gitlab.com/rcktsci/projects/ausn/backend/ausn-front-module.git
+git clone https://gitlab.com/rcktsci/projects/ausn/backend/ausn-front-gateway.git
+git clone https://gitlab.com/rcktsci/projects/ausn/backend/ausn-dbo-integration.git
+git clone https://gitlab.com/rcktsci/projects/ausn/backend/ausn-admin-backend.git
+git clone https://gitlab.com/rcktsci/projects/ausn/backend/libs/ausn-bom.git
+git clone https://gitlab.com/rcktsci/projects/ausn/backend/libs/ausn-front-module-api.git
+git clone https://gitlab.com/rcktsci/projects/ausn/backend/libs/ausn-kafka-contracts.git
+git clone https://gitlab.com/rcktsci/projects/ausn/ausn-api.git
+git clone https://gitlab.com/rcktsci/projects/ausn/ausn-ai.git
+git clone https://gitlab.com/rcktsci/projects/ausn/integrator/ausn-qa-project.git
+```
+
+Клоны используются только для чтения (`git pull --ff-only`), правки и push запрещены. GUI-инструменты
+(Docker Desktop, Ollama, VPN), корпоративный плагин opencode и секреты — за пользователем (см. `README.md`).
 
 | Локальная папка | GitLab URL | Роль |
 |---|---|---|
@@ -22,6 +49,8 @@
 | `../ausn/ausn-frontend` | `frontend/ausn-frontend` | общее ядро UI (маршруты, API-клиенты, формы) |
 | `../ausn/ausn-front-gateway` | `backend/ausn-front-gateway` | профильные адаптеры банков/ДБО |
 | `../ausn/ausn-api` | `ausn-api` | контракты API-first |
+| `../ausn/ausn-dbo-integration` | `backend/ausn-dbo-integration` | интеграция с ДБО |
+| `../ausn/ausn-bom` | `backend/libs/ausn-bom` | platform-BOM версий зависимостей сервисов коробки |
 | `../ausn/ausn-admin-backend`, `../ausn/ausn-admin-dashboard` | `backend/ausn-admin-backend`, `frontend/ausn-admin-dashboard` | админ-контур |
 | `../ausn/dbo-emulator`, `../ausn/test-stands` | `integrator/front-module/dbo-emulator`, `test-stands` | эмуляторы и описание стендов |
 
