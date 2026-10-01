@@ -6,7 +6,7 @@
 
 from pathlib import Path
 
-from tools.codemap.generate import build_docs
+from tools.codemap.generate import build_docs, run_docs
 
 
 def _make_target(root: Path) -> None:
@@ -27,3 +27,17 @@ def test_strict_unresolved_is_typed_gap_when_external_missing(tmp_path):
     assert doc["stats"]["broken"] == 0
     assert doc["stats"]["unresolved"] >= 1
     assert any("внешний репозиторий недоступен" in problem.get("message", "") for problem in doc["unresolved"])
+
+
+def test_check_passes_with_typed_gap_when_external_missing(tmp_path):
+    _make_target(tmp_path)
+    # lock отсутствует/не совпадает → check_docs вернёт «не ок»; в degraded-режиме это typed gap, не ошибка
+    code = run_docs(tmp_path, True, "x", None, (), True, ["qa-project"])
+    assert code == 0
+
+
+def test_generation_is_skipped_when_external_missing(tmp_path):
+    _make_target(tmp_path)
+    code = run_docs(tmp_path, False, "x", None, (), True, ["qa-project"])
+    assert code == 0
+    assert not (tmp_path / "docs" / "codemap" / "docgraph.json").exists()

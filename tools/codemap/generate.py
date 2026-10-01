@@ -565,8 +565,19 @@ def run_docs(target, do_check, label, target_label=None, others=(), degraded=Fal
     stats = doc["stats"]
     if do_check:
         ok, reason = check_docs(target, doc)
-        print(f"{label}: {'OK' if ok else 'УСТАРЕЛО'} — {reason}")
-        return 0 if ok else 1
+        if ok:
+            print(f"{label}: OK — {reason}")
+            return 0
+        if degraded:
+            gap = "внешние репозитории отсутствуют: " + ", ".join(missing_labels)
+            print(f"{label}: OK (частично) — {gap}; {reason}")
+            return 0
+        print(f"{label}: УСТАРЕЛО — {reason}")
+        return 1
+    if degraded:
+        gap = "внешние репозитории отсутствуют: " + ", ".join(missing_labels)
+        print(f"{label}: генерация пропущена — {gap} (неполная карта не записывается)")
+        return 0
     out_dir = write_docs_outputs(target, label, doc, target_label or label)
     rel = out_dir.relative_to(ROOT) if str(out_dir).startswith(str(ROOT)) else out_dir
     print(f"{label}: документов {stats['docs']}, рёбер {stats['edges']}, битых {stats['broken']}, "
