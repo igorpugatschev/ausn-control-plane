@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Control plane project profile",
+  "type": "object",
+  "required": ["id", "name"],
+  "additionalProperties": true,
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "workspaceRoot": { "type": "string" },
+    "repoPrefix": { "type": "string" },
+    "controlPlanePath": { "type": "string" },
+    "productRepo": { "type": "string" },
+    "contextRepos": { "type": "array", "items": { "type": "string" } },
+    "stands": { "type": "object" },
+    "mcp": { "type": "object" },
+    "jira": { "type": "object", "properties": { "projectKey": { "type": "string" } } },
+    "zephyr": { "type": "object" },
+    "taxonomy": { "type": "object" },
+    "models": { "type": "object" }
+  }
+}

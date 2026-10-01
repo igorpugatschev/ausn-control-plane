@@ -1,0 +1,32 @@
+{
+  "id": "ausn",
+  "name": "ПК АУСН",
+  "workspaceRoot": "..",
+  "repoPrefix": "ausn",
+  "controlPlanePath": "ausn-control-plane",
+  "productRepo": "ausn-qa-project",
+  "contextRepos": [
+    "ausn-ai",
+    "ausn-core",
+    "ausn-categorizer",
+    "ausn-front-module",
+    "ausn-front-gateway",
+    "ausn-dbo-integration",
+    "ausn-admin-backend",
+    "ausn-admin-dashboard",
+    "ausn-frontend",
+    "ausn-bom",
+    "ausn-front-module-api",
+    "ausn-kafka-contracts",
+    "ausn-api"
+  ],
+  "stands": {
+    "test1": { "host": "192.168.100.105" },
+    "infra": { "host": "192.168.100.104" }
+  },
+  "mcp": { "corporateHost": "192.168.100.108" },
+  "jira": { "projectKey": "PKAUSN" },
+  "zephyr": { "folders": { "backend": "Backend", "frontend": "Frontend", "common": "Общее" } },
+  "taxonomy": { "casePrefix": "[AUTO]", "locale": "ru" },
+  "models": { "repos": ["control-plane", "qa-project"], "system": "system.json" }
+}
