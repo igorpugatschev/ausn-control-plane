@@ -1,8 +1,8 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-10-01T11:06:15+00:00",
-  "target_commit": "8b13a9f",
+  "generated_at": "2026-10-01T11:06:58+00:00",
+  "target_commit": "0ea123e",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
@@ -10,7 +10,7 @@
     "docs": 100,
     "edges": 438,
     "broken": 0,
-    "unresolved": 7,
+    "unresolved": 0,
     "unreachable": 27,
     "warnings": 0
   },
@@ -3255,50 +3255,7 @@
     }
   ],
   "broken": [],
-  "unresolved": [
-    {
-      "from": "docs/plans/universal-control-plane-design.md",
-      "target": "configs/project.json",
-      "line": 41,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/universal-control-plane-design.md",
-      "target": "configs/project.json",
-      "line": 57,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/universal-control-plane-design.md",
-      "target": "profiles/ausn/project.json",
-      "line": 57,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/universal-control-plane-design.md",
-      "target": "configs/project.json",
-      "line": 76,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/universal-control-plane-design.md",
-      "target": "profiles/ausn/project.json",
-      "line": 76,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/universal-control-plane-design.md",
-      "target": "profiles/_fixture/project.json",
-      "line": 79,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/universal-control-plane-design.md",
-      "target": "configs/project.json",
-      "line": 83,
-      "severity": "warning"
-    }
-  ],
+  "unresolved": [],
   "unreachable": [
     "docs/ausn-context/review-addendum.md",
     "docs/ausn-context/scenario-map.md",

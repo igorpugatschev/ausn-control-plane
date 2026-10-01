@@ -337,6 +337,7 @@ def _workspace_paths() -> dict[str, Path]:
 def doc_edges(target, path, files, dirs, named, warnings, others, degraded=False, missing_labels=()):
     rel_src = path.relative_to(target).as_posix()
     strict = _is_model_logic(rel_src)
+    forward_looking = rel_src.startswith("docs/plans/")
     text = path.read_text(encoding="utf-8", errors="replace")
     edges, problems = [], []
     seen = set()
@@ -408,6 +409,8 @@ def doc_edges(target, path, files, dirs, named, warnings, others, degraded=False
                 continue
             label, resolved, is_dir = _locate_any(target, path, rewritten, others)
             if resolved is None:
+                if forward_looking:
+                    continue
                 problems.append(unresolved_problem(raw, number, always_error=True))
                 continue
             add_resolved(label, resolved, is_dir, "link", number)
@@ -420,6 +423,8 @@ def doc_edges(target, path, files, dirs, named, warnings, others, degraded=False
                 continue
             label, resolved, is_dir = _locate_any(target, path, rewritten, others)
             if resolved is None:
+                if forward_looking:
+                    continue
                 problems.append(unresolved_problem(token, number))
                 continue
             add_resolved(label, resolved, is_dir, "code-path", number)

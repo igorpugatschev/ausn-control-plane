@@ -53,3 +53,12 @@ def test_workspace_prefixed_reference_is_not_unresolved(tmp_path):
     doc = build_docs(tmp_path)
     assert doc["stats"]["broken"] == 0
     assert doc["stats"]["unresolved"] == 0
+
+
+def test_plan_doc_future_paths_are_not_unresolved(tmp_path):
+    plans = tmp_path / "docs" / "plans"
+    plans.mkdir(parents=True)
+    (plans / "x.md").write_text("# план\n\nСоздать `tools/new/thing.py` и `profiles/ausn/project.json`.\n", encoding="utf-8")
+    doc = build_docs(tmp_path)
+    assert doc["stats"]["broken"] == 0
+    assert doc["stats"]["unresolved"] == 0
