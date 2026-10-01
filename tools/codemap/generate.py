@@ -307,6 +307,33 @@ def _is_external(raw):
     return raw.startswith("~") or (raw.startswith("../") and "/ausn/" in raw)
 
 
+_WORKSPACE_PATHS: dict[str, Path] | None = None
+
+
+def _workspace_paths() -> dict[str, Path]:
+    """Префиксы путей от общего корня (rocketscience): 'ausn/<repo>/' и '<repo-id>/' -> каталог.
+
+    Используется, чтобы ссылки в документации, записанные от общего корня рабочего пространства,
+    считались внешними (или резолвились внутрь своего репозитория), а не «битыми».
+    """
+    global _WORKSPACE_PATHS
+    if _WORKSPACE_PATHS is not None:
+        return _WORKSPACE_PATHS
+    prefixes: dict[str, Path] = {"ausn-control-plane/": ROOT, "ausn/": ROOT.parent / "ausn"}
+    workspace = ROOT / "configs" / "workspace.json"
+    if workspace.is_file():
+        data = json.loads(workspace.read_text(encoding="utf-8"))
+        for repo in data.get("repos", []):
+            raw = repo.get("path", "")
+            absolute = (ROOT / raw).resolve()
+            name = raw.split("ausn/")[-1] if "ausn/" in raw else raw.lstrip("./")
+            prefixes[f"ausn/{name}/"] = absolute
+            if repo.get("id"):
+                prefixes[f"{repo['id']}/"] = absolute
+    _WORKSPACE_PATHS = prefixes
+    return prefixes
+
+
 def doc_edges(target, path, files, dirs, named, warnings, others, degraded=False, missing_labels=()):
     rel_src = path.relative_to(target).as_posix()
     strict = _is_model_logic(rel_src)
@@ -340,6 +367,27 @@ def doc_edges(target, path, files, dirs, named, warnings, others, degraded=False
         severity = "error" if (always_error or strict) else "warning"
         return {"from": rel_src, "target": token, "line": number, "severity": severity}
 
+    workspace = _workspace_paths()
+    self_prefixes: set[str] = set()
+    try:
+        self_rel = target.resolve().relative_to(ROOT.parent).as_posix()
+        self_prefixes.add(f"{self_rel}/")
+    except ValueError:
+        pass
+    for prefix, directory in workspace.items():
+        if directory == target.resolve():
+            self_prefixes.add(prefix)
+
+    def workspace_rewrite(raw):
+        """Свой workspace-префикс — срезаем (резолв внутри репо); чужой — внешняя ссылка (None)."""
+        for prefix in self_prefixes:
+            if raw.startswith(prefix):
+                return raw[len(prefix):]
+        for prefix in workspace:
+            if prefix not in self_prefixes and raw.startswith(prefix):
+                return None
+        return raw
+
     in_fence = False
     for number, line in enumerate(text.splitlines(), 1):
         if line.lstrip().startswith(("```", "~~~")):
@@ -355,7 +403,10 @@ def doc_edges(target, path, files, dirs, named, warnings, others, degraded=False
             clean = raw.split("#", 1)[0]
             if not clean or "*" in clean:
                 continue
-            label, resolved, is_dir = _locate_any(target, path, clean, others)
+            rewritten = workspace_rewrite(clean)
+            if rewritten is None:
+                continue
+            label, resolved, is_dir = _locate_any(target, path, rewritten, others)
             if resolved is None:
                 problems.append(unresolved_problem(raw, number, always_error=True))
                 continue
@@ -364,7 +415,10 @@ def doc_edges(target, path, files, dirs, named, warnings, others, degraded=False
             token = match.group(1).strip()
             if not _concrete_path(token) or _is_external(token):
                 continue
-            label, resolved, is_dir = _locate_any(target, path, token, others)
+            rewritten = workspace_rewrite(token)
+            if rewritten is None:
+                continue
+            label, resolved, is_dir = _locate_any(target, path, rewritten, others)
             if resolved is None:
                 problems.append(unresolved_problem(token, number))
                 continue

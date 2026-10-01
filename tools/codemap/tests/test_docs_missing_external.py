@@ -41,3 +41,15 @@ def test_generation_is_skipped_when_external_missing(tmp_path):
     code = run_docs(tmp_path, False, "x", None, (), True, ["qa-project"])
     assert code == 0
     assert not (tmp_path / "docs" / "codemap" / "docgraph.json").exists()
+
+
+def test_workspace_prefixed_reference_is_not_unresolved(tmp_path):
+    skill = tmp_path / ".agents" / "skills" / "x"
+    skill.mkdir(parents=True)
+    (skill / "SKILL.md").write_text(
+        "# x\n\nСм. `ausn/dbo-emulator/AKBARS_TESTING.md`, `dbo-emulator/AKBARS_TESTING.md` и `ausn/any-repo/file.md`.\n",
+        encoding="utf-8",
+    )
+    doc = build_docs(tmp_path)
+    assert doc["stats"]["broken"] == 0
+    assert doc["stats"]["unresolved"] == 0

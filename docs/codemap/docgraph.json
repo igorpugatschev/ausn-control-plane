@@ -1,21 +1,21 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-10-01T10:24:41+00:00",
-  "target_commit": "c7a31a2",
+  "generated_at": "2026-10-01T10:33:59+00:00",
+  "target_commit": "17be4cb",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
     "docs": 99,
-    "edges": 418,
+    "edges": 420,
     "broken": 0,
-    "unresolved": 42,
-    "unreachable": 27,
+    "unresolved": 26,
+    "unreachable": 26,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 230,
+    "code-path": 232,
     "mention-skill": 82,
     "mention-agent": 41,
     "mention-command": 8,
@@ -398,7 +398,7 @@
     {
       "id": "docs/plans/system-codemap-design.md",
       "kind": "doc",
-      "in": 1,
+      "in": 2,
       "out": 2
     },
     {
@@ -411,7 +411,7 @@
       "id": "docs/plans/system-codemap-plan.md",
       "kind": "doc",
       "in": 0,
-      "out": 21
+      "out": 22
     },
     {
       "id": "docs/portability-clean-clone-pilot.md",
@@ -477,12 +477,12 @@
       "id": "docs/reports/analyst-questions-categorizer-numeric-2026-09-22.md",
       "kind": "doc",
       "in": 0,
-      "out": 0
+      "out": 1
     },
     {
       "id": "docs/reports/categorizer-numeric-logic-2026-09-22.md",
       "kind": "doc",
-      "in": 0,
+      "in": 1,
       "out": 1
     },
     {
@@ -2111,13 +2111,19 @@
       "from": "docs/plans/system-codemap-design.md",
       "to": "tools/codemap/model/system.json",
       "kind": "code-path",
-      "line": 101
+      "line": 51
     },
     {
       "from": "docs/plans/system-codemap-design.md",
       "to": "docs/ausn-context/system-map.md",
       "kind": "code-path",
       "line": 103
+    },
+    {
+      "from": "docs/plans/system-codemap-plan-c2.md",
+      "to": "docs/plans/system-codemap-design.md",
+      "kind": "code-path",
+      "line": 18
     },
     {
       "from": "docs/plans/system-codemap-plan-c2.md",
@@ -2150,16 +2156,16 @@
       "line": 52
     },
     {
-      "from": "docs/plans/system-codemap-plan-c2.md",
-      "to": "docs/plans/system-codemap-design.md",
-      "kind": "code-path",
-      "line": 248
-    },
-    {
       "from": "docs/plans/system-codemap-plan.md",
       "to": "tools/codemap/generate.py",
       "kind": "code-path",
       "line": 15
+    },
+    {
+      "from": "docs/plans/system-codemap-plan.md",
+      "to": "docs/plans/system-codemap-design.md",
+      "kind": "code-path",
+      "line": 18
     },
     {
       "from": "docs/plans/system-codemap-plan.md",
@@ -2424,6 +2430,12 @@
       "to": "docs/qa-methodology/source-manifest.json",
       "kind": "link",
       "line": 3
+    },
+    {
+      "from": "docs/reports/analyst-questions-categorizer-numeric-2026-09-22.md",
+      "to": "docs/reports/categorizer-numeric-logic-2026-09-22.md",
+      "kind": "code-path",
+      "line": 5
     },
     {
       "from": "docs/reports/categorizer-numeric-logic-2026-09-22.md",
@@ -3167,36 +3179,6 @@
       "severity": "warning"
     },
     {
-      "from": "docs/plans/system-codemap-design.md",
-      "target": "ausn-qa-project/docs/codemap/system.json",
-      "line": 46,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-design.md",
-      "target": "ausn-qa-project/docs/codemap/system.html",
-      "line": 47,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-design.md",
-      "target": "ausn-qa-project/docs/reports/system-codemap.md",
-      "line": 50,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-design.md",
-      "target": "ausn-control-plane/tools/codemap/model/system.json",
-      "line": 51,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan-c2.md",
-      "target": "ausn-control-plane/docs/plans/system-codemap-design.md",
-      "line": 18,
-      "severity": "warning"
-    },
-    {
       "from": "docs/plans/system-codemap-plan-c2.md",
       "target": "tools/codemap/tests/test_system_parts_cli.py",
       "line": 203,
@@ -3206,12 +3188,6 @@
       "from": "docs/plans/system-codemap-plan.md",
       "target": "model/system.json",
       "line": 10,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "ausn-control-plane/docs/plans/system-codemap-design.md",
-      "line": 18,
       "severity": "warning"
     },
     {
@@ -3239,45 +3215,9 @@
       "severity": "warning"
     },
     {
-      "from": "docs/presentations/README.md",
-      "target": "ausn-qa-project/data/zephyr/import/imported.json",
-      "line": 75,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/reports/analyst-questions-categorizer-numeric-2026-09-22.md",
-      "target": "ausn-control-plane/docs/reports/categorizer-numeric-logic-2026-09-22.md",
-      "line": 5,
-      "severity": "warning"
-    },
-    {
       "from": "docs/reports/ui-truth-notifications-kkt-2026-09-23.md",
       "target": "qa-project/docs/archive/use-cases-wiki/5-use-case.md",
       "line": 19,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/reports/ui-truth-notifications-kkt-2026-09-23.md",
-      "target": "ausn-qa-project/tests/ui/test_notifications_status_flow.py",
-      "line": 21,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/reports/zephyr-access-2026-09-23.md",
-      "target": "ausn-qa-project/scripts/tools/zephyr_export.py",
-      "line": 24,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/reports/zephyr-access-2026-09-23.md",
-      "target": "ausn-qa-project/data/zephyr/testcases.json",
-      "line": 37,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/reports/zephyr-access-2026-09-23.md",
-      "target": "ausn-qa-project/docs/reports/zephyr-testcases.md",
-      "line": 38,
       "severity": "warning"
     },
     {
@@ -3336,24 +3276,6 @@
     },
     {
       "from": "PROJECT_STATUS.md",
-      "target": "ausn-qa-project/docs/reports/qa-loop-acquiring-third-party-bank-format-2026-09-22.md",
-      "line": 103,
-      "severity": "warning"
-    },
-    {
-      "from": "PROJECT_STATUS.md",
-      "target": "ausn-qa-project/docs/reports/qa-loop-ui-authorization-2026-09-22.md",
-      "line": 112,
-      "severity": "warning"
-    },
-    {
-      "from": "PROJECT_STATUS.md",
-      "target": "ausn-qa-project/docs/reports/qa-loop-ui-account-sections-2026-09-22.md",
-      "line": 116,
-      "severity": "warning"
-    },
-    {
-      "from": "PROJECT_STATUS.md",
       "target": "references/qa-task-flow.md",
       "line": 187,
       "severity": "warning"
@@ -3362,12 +3284,6 @@
       "from": "PROJECT_STATUS.md",
       "target": "references/loop-quality-gates.md",
       "line": 188,
-      "severity": "warning"
-    },
-    {
-      "from": "PROJECT_STATUS.md",
-      "target": "ausn-qa-project/AGENTS.md",
-      "line": 226,
       "severity": "warning"
     },
     {
@@ -3399,7 +3315,6 @@
     "docs/plans/system-codemap-plan.md",
     "docs/presentations/README.md",
     "docs/reports/analyst-questions-categorizer-numeric-2026-09-22.md",
-    "docs/reports/categorizer-numeric-logic-2026-09-22.md",
     "docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md",
     "docs/reports/methodology-usage-audit-2026-09-23.md",
     "docs/reports/ui-truth-notifications-kkt-2026-09-23.md",
@@ -3432,7 +3347,7 @@
     },
     {
       "id": "docs/plans/system-codemap-plan.md",
-      "degree": 21
+      "degree": 22
     },
     {
       "id": "docs/qa-methodology/README.md",
