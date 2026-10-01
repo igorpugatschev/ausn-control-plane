@@ -1,21 +1,21 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-10-01T12:02:50+00:00",
-  "target_commit": "32a37bd",
+  "generated_at": "2026-10-01T12:06:02+00:00",
+  "target_commit": "788bbc0",
   "target_branch": "main",
-  "target_dirty": true,
+  "target_dirty": false,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
     "docs": 101,
-    "edges": 491,
+    "edges": 492,
     "broken": 0,
     "unresolved": 0,
     "unreachable": 27,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 262,
+    "code-path": 263,
     "mention-skill": 122,
     "mention-agent": 41,
     "mention-command": 9,
@@ -471,7 +471,7 @@
       "id": "ENVIRONMENT.md",
       "kind": "doc",
       "in": 0,
-      "out": 1
+      "out": 2
     },
     {
       "id": "OPENCODE_PORTABILITY_OPTIMIZATION_PROMPT.md",
@@ -2898,6 +2898,12 @@
       "to": ".opencode/opencode.jsonc",
       "kind": "code-path",
       "line": 5
+    },
+    {
+      "from": "ENVIRONMENT.md",
+      "to": "configs/project.json",
+      "kind": "code-path",
+      "line": 55
     },
     {
       "from": "ENVIRONMENT.md",
