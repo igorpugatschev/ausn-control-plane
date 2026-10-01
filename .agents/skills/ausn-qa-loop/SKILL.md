@@ -101,6 +101,9 @@ provenance/traceability требований. Не выводи expected behavio
 .\.venv\Scripts\python.exe -m scripts.tools.zephyr_link_cases --since <YYYY-MM-DD> [--exclude PKAUSN-<предшественник>]
 # 4. зафиксировать результаты прогона тест-ранами
 .\.venv\Scripts\python.exe -m scripts.tools.zephyr_automation --date <YYYY-MM-DD>
+# 5. ОБЯЗАТЕЛЬНО: включить новые/догруженные кейсы в тест-план регресса
+.\.venv\Scripts\python.exe -m scripts.tools.zephyr_plan --layer-runs --plan PKAUSN-P4
+.\.venv\Scripts\python.exe -m scripts.tools.zephyr_plan --layer-runs --plan PKAUSN-P4 --smoke
 ```
 
 Артефакты: `ausn-qa-project/data/zephyr/import/{autotests-ql.csv,imported.json,trace_links.json,executions.json}`,
@@ -111,6 +114,14 @@ provenance/traceability требований. Не выводи expected behavio
 Трассируемость обязательна для каждой принятой задачи: нет кейса в Zephyr — догрузить и привязать.
 Это касается и задач, чьё покрытие подтверждено продуктовым тестом разработчика: кейс создаётся, а в его
 описании указывается, что evidence — продуктовый тест (решение пользователя 2026-09-23).
+
+**Кейс обязан войти в тест-план регресса.** Создать и привязать кейс недостаточно: после этого новые и
+догруженные кейсы включаются в прогоны тест-плана (`zephyr_plan --layer-runs`, слой определяется по
+`data/zephyr/import/layers.json`). Покрытая Done-задача, чей кейс не входит ни в один прогон плана,
+закрытой не считается. Повторный `--layer-runs` создаёт дельта-прогон без дублей (см. «Регресс тест-планом»).
+В колонке `coverage` ledger'а указывать **путь автотеста** (`tests/...`), а не слово «automated»: pack кладёт
+её в `Automated Test`, и именно по ней определяется слой. Без пути автоматизируемый кейс молча уезжает в
+`Non-automated`.
 
 Ключи задач для привязки берутся только из provenance-шапки ledger'а (`--key-scope header` — значение по
 умолчанию в `zephyr_link_cases`); упоминания задач в тексте ledger'а (связанные требования, предшественники)

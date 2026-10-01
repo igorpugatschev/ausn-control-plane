@@ -224,12 +224,16 @@ codebase_index(projectPath="<path>")
 .\.venv\Scripts\python.exe -m scripts.tools.zephyr_import
 .\.venv\Scripts\python.exe -m scripts.tools.zephyr_link_cases --since <YYYY-MM-DD> [--exclude PKAUSN-<предшественник>]
 .\.venv\Scripts\python.exe -m scripts.tools.zephyr_automation --date <YYYY-MM-DD>
+.\.venv\Scripts\python.exe -m scripts.tools.zephyr_plan --layer-runs --plan PKAUSN-P4
+.\.venv\Scripts\python.exe -m scripts.tools.zephyr_plan --layer-runs --plan PKAUSN-P4 --smoke
 ```
 
    Эти записи в Zephyr Scale — штатная часть QA-флоу (approval не требуют); комментарии и публикации
    в Jira/Confluence/Mattermost по-прежнему выполняет пользователь.
    Если у принятой задачи кейса нет — догрузить и привязать; это касается и задач, покрытых продуктовым
    тестом разработчика (в описании кейса указать, что evidence — продуктовый тест).
+   Кейс **обязательно** включается в тест-план регресса (`zephyr_plan --layer-runs`); покрытая задача
+   вне плана закрытой не считается.
 4. Запустить релевантные проверки после merge.
 5. Удалить ветку задачи после успешного merge.
 6. Актуализировать индекс SocratiCode для QA-проекта (watcher активен во время работы SocratiCode):
