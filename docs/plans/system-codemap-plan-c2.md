@@ -200,7 +200,7 @@ def test_build_part_is_deterministic(fake_qdrant):
 
 ### Task 4: CLI `--parts`
 
-**Files:** Modify `tools/codemap/generate.py`; Test: `tools/codemap/tests/test_system_parts_cli.py`
+**Files:** Modify `tools/codemap/generate.py`; Test: tools/codemap/tests/test_system_parts_cli.py
 
 **Interfaces:**
 - Produces: `run_system(..., parts: bool = False, base_url: str | None = None) -> int`

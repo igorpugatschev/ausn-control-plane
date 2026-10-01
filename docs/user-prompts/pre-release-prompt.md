@@ -4,7 +4,7 @@
 требования актуальными автотестами; закрыть пробелы через ежедневный QA-TASK-FLOW.
 
 Источник истины: навык `ausn-qa-loop` (режимы `regression-audit` и `single-feature`) и его
-`references/qa-task-flow.md`, `references/loop-ledger-schema.md`, `references/loop-quality-gates.md`;
+`ausn-control-plane/.agents/skills/ausn-qa-loop/references/qa-task-flow.md`, `ausn-control-plane/.agents/skills/ausn-qa-loop/references/loop-ledger-schema.md`, `ausn-control-plane/.agents/skills/ausn-qa-loop/references/loop-quality-gates.md`;
 правила — корневой `AGENTS.md`. Подставьте `<VERSION>`/ссылку на релиз.
 
 ```text

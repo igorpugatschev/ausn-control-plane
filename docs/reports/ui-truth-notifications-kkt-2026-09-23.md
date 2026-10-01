@@ -16,7 +16,7 @@
 | Смена статуса | `PUT` сохраняет статус (`ACKNOWLEDGED`/`UNACKNOWLEDGED`) и **продюсирует** `NOTIFICATIONS_STATUS_UPDATE` в `ausn.notifications-status-in` (`body.notificationList[].notificationInfoList[].id = externalId`) | `NotificationService.updateNotificationStatus`, `UpdateNotificationStatusProducer` |
 | UI: метки | `UNACKNOWLEDGED` → «Новое», `ACKNOWLEDGED` → «Прочитано» | `frontend`: `MessageMapperService` |
 | UI: отметка прочтения | Кнопка «Отметить прочитанным» в карточке непрочитанного. На десктопе (`screen-laptop`) она `visibility: hidden; opacity: 0` и показывается по `:hover` карточки (метка «Новое» при ховере скрывается); на мобильных видна всегда | `frontend`: `message-item.module.scss` |
-| UC-5 «автоматическая отметка при открытии» | Устарел: в текущем UI уведомление раскрыто целиком, отдельного «открытия» нет; отметка — кнопкой | архив `qa-project/docs/archive/use-cases-wiki/5-use-case.md` vs исходники |
+| UC-5 «автоматическая отметка при открытии» | Устарел: в текущем UI уведомление раскрыто целиком, отдельного «открытия» нет; отметка — кнопкой | архив `ausn/ausn-qa-project/docs/archive/use-cases-wiki/5-use-case.md` vs исходники |
 
 Проверено живьём (`ausn-qa-project/tests/ui/test_notifications_status_flow.py`): уведомление из Kafka
 появляется как «Новое»; `PUT` меняет статус и порождает сообщение в `ausn.notifications-status-in`;

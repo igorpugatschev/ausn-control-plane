@@ -78,7 +78,7 @@
   `tests/static/test_categorizer_disabled_rules.py`: состав отключённых правил не должен меняться
   незаметно (изменение = сигнал обновить кейсы и документацию).
 - Наследие категоризатора удалено: старые генераторы (`extract_test_data.py`, `convert_categorizer_fixtures.py`,
-  `generate_categorizer_pytest_tests.py`, `tools/update_collection_scripts.py`), categorizer-коллекции Postman
+  `generate_categorizer_pytest_tests.py`, tools/update_collection_scripts.py), categorizer-коллекции Postman
   (104 файла) и их runner; генератор Postman-коллекций исключает пути `tests/kafka/categorizer`
   (слой Postman — API/HTTP и Kafka-топики). `postman/README.md` и `scripts/README.md` приведены в соответствие.
 - Подготовлен отчёт для аналитика по `DEFAULT_RULE`
@@ -184,8 +184,8 @@
   и watcher, раздел и правило Codemap.
 - `.agents/skills/ausn-socraticode/SKILL.md` — работа с индексированными проектами.
 - `.agents/skills/karpathy-guidelines/SKILL.md` — правила работы с кодом.
-- `.agents/skills/ausn-qa-loop/` (`SKILL.md`, `references/qa-task-flow.md`,
-  `references/loop-quality-gates.md`) — убраны указания останавливать watcher.
+- `.agents/skills/ausn-qa-loop/` (`SKILL.md`, `ausn-control-plane/.agents/skills/ausn-qa-loop/references/qa-task-flow.md`,
+  `ausn-control-plane/.agents/skills/ausn-qa-loop/references/loop-quality-gates.md`) — убраны указания останавливать watcher.
 - `.socraticodecontextartifacts.json` — три артефакта: `skills`, `subagents`, `commands`.
 - `docs/socraticode.md`, `docs/retrospectives.md`, `docs/ausn-context/qa-source-assessment.md` —
   документация индексации, ретроспективы, контекст.
@@ -244,7 +244,7 @@
 - **Остаточные хвосты:** бэкап `.local/socraticode/qdrant.backup-20260921` удалён 2026-09-22 по approve
   (освобождено 2,6 ГБ); остаётся карантин битых коллекций `.local/socraticode/qdrant.broken-20260922`
   (1,46 ГБ) — удалять только по отдельному согласованию; снимок MCP-контрактов SocratiCode
-  (`references/socraticode.json`) не обновлён под 1.14.0.
+  (`ausn-control-plane/.agents/skills/ausn-qa-mcp/references/socraticode.json`) не обновлён под 1.14.0.
 - **Долг документации qa-project — закрыт (2026-09-22):** 9 легаси-каталогов (test-cases, categorize-rules,
   kafka/kkt/tooling-test-cases, categorizer/tooling/use-cases-wiki, superpowers; ~500 файлов) перенесены в
   `docs/archive/` (исключён из графа, обратимо, с `docs/archive/README.md`), живые ссылки починены
@@ -288,7 +288,7 @@
      2026 `ENS_PAYMENT`, 1974 `BANK_REJECTED_..._4_5_2`, 1970 `SELF_PAYOUT`;
    - legacy-набор выключенного правила `ACQUIRING_INCOMING_4_4_1` (22 фикстуры с кодом `1`) — решить:
      обновить под текущую разметку или вывести из обращения.
-2. **SocratiCode:** обновить `references/socraticode.json` под `1.14.0` и проверить набор инструментов.
+2. **SocratiCode:** обновить `ausn-control-plane/.agents/skills/ausn-qa-mcp/references/socraticode.json` под `1.14.0` и проверить набор инструментов.
 3. **Документация:** долг `qa-project` закрыт (архив + починка ссылок). Держать `--docs --all --check` зелёным
    в том же цикле, что и `--all --check`; новые легаси-документы переносить в `docs/archive/`, а не удалять.
 3. **Codemap:** при значимом изменении структуры — `generate.py --all`, затем `--check`; при

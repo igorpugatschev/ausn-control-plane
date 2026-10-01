@@ -18,7 +18,7 @@ Qdrant и сервера съедает рабочее время, а семан
 
 - **SocratiCode 1.14.0** (`_npx/<id>/node_modules/socraticode`): MCP-сервер `dist/index.js`;
   вложенные хост-бандлы `skills/codebase-exploration`, `skills/codebase-management`,
-  `agents/codebase-explorer.md`, `hooks/hooks.json`, `.claude-plugin/`.
+  agents/codebase-explorer.md, hooks/hooks.json, `.claude-plugin/`.
 - **Плагин Codex**: тот же бандл из Git-маркетплейса (`codex plugin marketplace add
   giancarloerra/socraticode`); для opencode штатного плагина нет — README прямо указывает
   «OpenCode | Direct MCP».

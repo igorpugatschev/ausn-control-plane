@@ -7,7 +7,7 @@
 `system.lock` + отчёт), детерминированный и пригодный для гейта `--check`.
 
 **Architecture:** генератор живёт в control plane (`tools/codemap/`), артефакты пишутся в целевой
-репозиторий (`../ausn/ausn-qa-project`). Слой данных = курируемая модель (`model/system.json`) +
+репозиторий (`../ausn/ausn-qa-project`). Слой данных = курируемая модель (`ausn-control-plane/tools/codemap/model/system.json`) +
 авто-факты (коммиты, размеры, деплой, БД) + правила рёбер (Kafka, REST, shared-lib, DB, auth, static).
 Код-уровень (этап C2) не входит: `system.html` содержит проекции «Сервисы» и «Контейнеры», drill-down
 в код выключен до C2.
@@ -33,12 +33,12 @@ Cytoscape.js (вендорится локально), Git (только чтен
 
 | Файл | Ответственность |
 |---|---|
-| `tools/codemap/system_model.py` (new) | загрузка и валидация `model/system.json`; dataclass-схема |
+| `tools/codemap/system_model.py` (new) | загрузка и валидация `ausn-control-plane/tools/codemap/model/system.json`; dataclass-схема |
 | `tools/codemap/system_collect.py` (new) | авто-факты (git, размеры, деплой, БД) |
 | `tools/codemap/system_edges.py` (new) | правила рёбер: `shared-lib`, `kafka`, `rest`, `db`, `auth`, `static` |
 | `tools/codemap/system_graph.py` (new) | сборка `system.json`, `system.lock`, `--check`, детерминизм |
 | `tools/codemap/system_render.py` (new) | `system.html`, отчёт `system-codemap.md` |
-| `tools/codemap/vendor/cytoscape.min.js` + `vendor/README.md` (new) | вендоренный рантайм (версия, лицензия) |
+| `tools/codemap/vendor/cytoscape.min.js` + `ausn-control-plane/tools/codemap/vendor/README.md` (new) | вендоренный рантайм (версия, лицензия) |
 | `tools/codemap/model/system.json` (new) | курируемая модель системы |
 | `tools/codemap/generate.py` (modify) | флаги `--system`, `--check`, `--allow-stale`; встраивание в `--all` |
 | `tools/codemap/tests/test_system_model.py`, `test_system_collect.py`, `test_system_edges.py`, `test_system_graph.py`, `test_system_render.py` (new) | тесты задач |
@@ -189,7 +189,7 @@ git commit -m "feat(codemap): модель и валидация system-codemap"
 
 ---
 
-### Task 2: Курируемая модель `model/system.json`
+### Task 2: Курируемая модель `ausn-control-plane/tools/codemap/model/system.json`
 
 **Files:**
 - Create: `tools/codemap/model/system.json`
@@ -1170,7 +1170,7 @@ def render_report(document: dict, contracts: set[str], system_map_text: str) -> 
     return "\n".join(lines) + "\n"
 ```
 
-Записать отчёт в `write_system_outputs` → `target/docs/reports/system-codemap.md`.
+Записать отчёт в `write_system_outputs` → target/docs/reports/system-codemap.md.
 
 Сверка с картой системы (предупреждение при расхождении, требование спека):
 

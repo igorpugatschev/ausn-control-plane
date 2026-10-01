@@ -1,22 +1,22 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-10-01T10:33:59+00:00",
-  "target_commit": "17be4cb",
+  "generated_at": "2026-10-01T10:37:38+00:00",
+  "target_commit": "ccaa4f7",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
     "docs": 99,
-    "edges": 420,
+    "edges": 431,
     "broken": 0,
-    "unresolved": 26,
+    "unresolved": 0,
     "unreachable": 26,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 232,
-    "mention-skill": 82,
+    "code-path": 242,
+    "mention-skill": 83,
     "mention-agent": 41,
     "mention-command": 8,
     "link": 56,
@@ -32,7 +32,7 @@
     {
       "id": ".agents/skills/ausn-categorizer-lifecycle/references/categorizer-lifecycle.md",
       "kind": "doc",
-      "in": 1,
+      "in": 2,
       "out": 1
     },
     {
@@ -50,7 +50,7 @@
     {
       "id": ".agents/skills/ausn-postman-sync/references/postman-flow.md",
       "kind": "doc",
-      "in": 1,
+      "in": 2,
       "out": 2
     },
     {
@@ -62,7 +62,7 @@
     {
       "id": ".agents/skills/ausn-qa-agents/references/agent-roles.md",
       "kind": "doc",
-      "in": 1,
+      "in": 2,
       "out": 10
     },
     {
@@ -116,25 +116,25 @@
     {
       "id": ".agents/skills/ausn-qa-loop/references/loop-goal-prompts.md",
       "kind": "doc",
-      "in": 1,
+      "in": 2,
       "out": 2
     },
     {
       "id": ".agents/skills/ausn-qa-loop/references/loop-ledger-schema.md",
       "kind": "doc",
-      "in": 1,
+      "in": 2,
       "out": 1
     },
     {
       "id": ".agents/skills/ausn-qa-loop/references/loop-quality-gates.md",
       "kind": "doc",
-      "in": 1,
+      "in": 3,
       "out": 0
     },
     {
       "id": ".agents/skills/ausn-qa-loop/references/qa-task-flow.md",
       "kind": "doc",
-      "in": 3,
+      "in": 5,
       "out": 4
     },
     {
@@ -164,7 +164,7 @@
     {
       "id": ".agents/skills/ausn-qa-mcp/SKILL.md",
       "kind": "doc",
-      "in": 9,
+      "in": 10,
       "out": 8
     },
     {
@@ -279,7 +279,7 @@
       "id": "docs/ausn-context/qa-source-assessment.md",
       "kind": "doc",
       "in": 1,
-      "out": 12
+      "out": 15
     },
     {
       "id": "docs/ausn-context/README.md",
@@ -549,13 +549,13 @@
       "id": "docs/user-prompts/daily-flow.md",
       "kind": "doc",
       "in": 0,
-      "out": 2
+      "out": 3
     },
     {
       "id": "docs/user-prompts/pre-release-prompt.md",
       "kind": "doc",
       "in": 0,
-      "out": 6
+      "out": 9
     },
     {
       "id": "docs/user-prompts/start-regression-flow.md",
@@ -591,7 +591,7 @@
       "id": "PROJECT_STATUS.md",
       "kind": "doc",
       "in": 0,
-      "out": 41
+      "out": 45
     },
     {
       "id": "README.md",
@@ -1611,6 +1611,24 @@
     },
     {
       "from": "docs/ausn-context/qa-source-assessment.md",
+      "to": ".agents/skills/ausn-categorizer-lifecycle/references/categorizer-lifecycle.md",
+      "kind": "code-path",
+      "line": 24
+    },
+    {
+      "from": "docs/ausn-context/qa-source-assessment.md",
+      "to": ".agents/skills/ausn-postman-sync/references/postman-flow.md",
+      "kind": "code-path",
+      "line": 25
+    },
+    {
+      "from": "docs/ausn-context/qa-source-assessment.md",
+      "to": ".agents/skills/ausn-qa-agents/references/agent-roles.md",
+      "kind": "code-path",
+      "line": 26
+    },
+    {
+      "from": "docs/ausn-context/qa-source-assessment.md",
       "to": ".opencode/command/lint.md",
       "kind": "code-path",
       "line": 29
@@ -2157,6 +2175,12 @@
     },
     {
       "from": "docs/plans/system-codemap-plan.md",
+      "to": "tools/codemap/model/system.json",
+      "kind": "code-path",
+      "line": 10
+    },
+    {
+      "from": "docs/plans/system-codemap-plan.md",
       "to": "tools/codemap/generate.py",
       "kind": "code-path",
       "line": 15
@@ -2199,9 +2223,9 @@
     },
     {
       "from": "docs/plans/system-codemap-plan.md",
-      "to": "tools/codemap/model/system.json",
+      "to": "tools/codemap/vendor/README.md",
       "kind": "code-path",
-      "line": 42
+      "line": 41
     },
     {
       "from": "docs/plans/system-codemap-plan.md",
@@ -2262,12 +2286,6 @@
       "to": "tools/codemap/tests/test_system_report.py",
       "kind": "code-path",
       "line": 1099
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "to": "tools/codemap/vendor/README.md",
-      "kind": "code-path",
-      "line": 1229
     },
     {
       "from": "docs/plans/system-codemap-plan.md",
@@ -2733,6 +2751,12 @@
     },
     {
       "from": "docs/user-prompts/daily-flow.md",
+      "to": ".agents/skills/ausn-qa-loop/references/loop-goal-prompts.md",
+      "kind": "code-path",
+      "line": 5
+    },
+    {
+      "from": "docs/user-prompts/daily-flow.md",
       "to": ".agents/skills/ausn-qa-loop/SKILL.md",
       "kind": "mention-skill",
       "line": 0
@@ -2742,6 +2766,24 @@
       "to": ".opencode/command/qa-task.md",
       "kind": "mention-command",
       "line": 0
+    },
+    {
+      "from": "docs/user-prompts/pre-release-prompt.md",
+      "to": ".agents/skills/ausn-qa-loop/references/qa-task-flow.md",
+      "kind": "code-path",
+      "line": 7
+    },
+    {
+      "from": "docs/user-prompts/pre-release-prompt.md",
+      "to": ".agents/skills/ausn-qa-loop/references/loop-ledger-schema.md",
+      "kind": "code-path",
+      "line": 7
+    },
+    {
+      "from": "docs/user-prompts/pre-release-prompt.md",
+      "to": ".agents/skills/ausn-qa-loop/references/loop-quality-gates.md",
+      "kind": "code-path",
+      "line": 7
     },
     {
       "from": "docs/user-prompts/pre-release-prompt.md",
@@ -2925,6 +2967,18 @@
     },
     {
       "from": "PROJECT_STATUS.md",
+      "to": ".agents/skills/ausn-qa-loop/references/qa-task-flow.md",
+      "kind": "code-path",
+      "line": 187
+    },
+    {
+      "from": "PROJECT_STATUS.md",
+      "to": ".agents/skills/ausn-qa-loop/references/loop-quality-gates.md",
+      "kind": "code-path",
+      "line": 188
+    },
+    {
+      "from": "PROJECT_STATUS.md",
       "to": "docs/socraticode.md",
       "kind": "code-path",
       "line": 190
@@ -2997,6 +3051,12 @@
     },
     {
       "from": "PROJECT_STATUS.md",
+      "to": ".agents/skills/ausn-qa-mcp/references/socraticode.json",
+      "kind": "code-path",
+      "line": 247
+    },
+    {
+      "from": "PROJECT_STATUS.md",
       "to": "docs/archive/README.md",
       "kind": "code-path",
       "line": 250
@@ -3022,6 +3082,12 @@
     {
       "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/ausn-qa-loop/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "PROJECT_STATUS.md",
+      "to": ".agents/skills/ausn-qa-mcp/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -3141,164 +3207,7 @@
     }
   ],
   "broken": [],
-  "unresolved": [
-    {
-      "from": "docs/ausn-context/qa-source-assessment.md",
-      "target": "references/categorizer-lifecycle.md",
-      "line": 24,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/ausn-context/qa-source-assessment.md",
-      "target": "references/postman-flow.md",
-      "line": 25,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/ausn-context/qa-source-assessment.md",
-      "target": "references/agent-roles.md",
-      "line": 26,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-plan.md",
-      "target": "tools/checks/fixtures/manifests/bad-absolute/workspace.json",
-      "line": 30,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/socraticode-plugin-design.md",
-      "target": "agents/codebase-explorer.md",
-      "line": 21,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/socraticode-plugin-design.md",
-      "target": "hooks/hooks.json",
-      "line": 21,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan-c2.md",
-      "target": "tools/codemap/tests/test_system_parts_cli.py",
-      "line": 203,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "model/system.json",
-      "line": 10,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "model/system.json",
-      "line": 36,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "vendor/README.md",
-      "line": 41,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "model/system.json",
-      "line": 192,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/system-codemap-plan.md",
-      "target": "target/docs/reports/system-codemap.md",
-      "line": 1173,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/reports/ui-truth-notifications-kkt-2026-09-23.md",
-      "target": "qa-project/docs/archive/use-cases-wiki/5-use-case.md",
-      "line": 19,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/retrospectives.md",
-      "target": "references/qa-task-flow.md",
-      "line": 203,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/retrospectives.md",
-      "target": "references/qa-flow.md",
-      "line": 203,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/retrospectives.md",
-      "target": ".opencode/skills/ausn-graylog/SKILL.md",
-      "line": 203,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/retrospectives.md",
-      "target": "tmp/fix_links.py",
-      "line": 216,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/user-prompts/daily-flow.md",
-      "target": "references/loop-goal-prompts.md",
-      "line": 5,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/user-prompts/pre-release-prompt.md",
-      "target": "references/qa-task-flow.md",
-      "line": 7,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/user-prompts/pre-release-prompt.md",
-      "target": "references/loop-ledger-schema.md",
-      "line": 7,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/user-prompts/pre-release-prompt.md",
-      "target": "references/loop-quality-gates.md",
-      "line": 7,
-      "severity": "warning"
-    },
-    {
-      "from": "PROJECT_STATUS.md",
-      "target": "tools/update_collection_scripts.py",
-      "line": 81,
-      "severity": "warning"
-    },
-    {
-      "from": "PROJECT_STATUS.md",
-      "target": "references/qa-task-flow.md",
-      "line": 187,
-      "severity": "warning"
-    },
-    {
-      "from": "PROJECT_STATUS.md",
-      "target": "references/loop-quality-gates.md",
-      "line": 188,
-      "severity": "warning"
-    },
-    {
-      "from": "PROJECT_STATUS.md",
-      "target": "references/socraticode.json",
-      "line": 247,
-      "severity": "warning"
-    },
-    {
-      "from": "PROJECT_STATUS.md",
-      "target": "references/socraticode.json",
-      "line": 291,
-      "severity": "warning"
-    }
-  ],
+  "unresolved": [],
   "unreachable": [
     "docs/ausn-context/review-addendum.md",
     "docs/ausn-context/scenario-map.md",
@@ -3331,7 +3240,7 @@
   "hubs": [
     {
       "id": "PROJECT_STATUS.md",
-      "degree": 41
+      "degree": 45
     },
     {
       "id": ".agents/skills/ausn-qa-loop/SKILL.md",
@@ -3362,12 +3271,16 @@
       "degree": 19
     },
     {
+      "id": ".agents/skills/ausn-qa-mcp/SKILL.md",
+      "degree": 18
+    },
+    {
       "id": "docs/socraticode.md",
       "degree": 18
     },
     {
-      "id": ".agents/skills/ausn-qa-mcp/SKILL.md",
-      "degree": 17
+      "id": "docs/ausn-context/qa-source-assessment.md",
+      "degree": 16
     },
     {
       "id": ".agents/skills/ausn-socraticode/SKILL.md",
@@ -3383,10 +3296,6 @@
     },
     {
       "id": ".opencode/command/qa-task.md",
-      "degree": 13
-    },
-    {
-      "id": "docs/ausn-context/qa-source-assessment.md",
       "degree": 13
     }
   ]

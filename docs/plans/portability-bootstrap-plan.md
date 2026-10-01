@@ -27,7 +27,7 @@
 - Create: `configs/workspace.json`
 - Create: `tools/checks/validate_manifests.py`
 - Create: `tools/checks/tests/test_validate_manifests.py`
-- Create: `tools/checks/fixtures/manifests/bad-absolute/workspace.json`
+- Create: tools/checks/fixtures/manifests/bad-absolute/workspace.json
 
 **Interfaces:**
 - Produces: `validate_manifests.validate_workspace(root: Path) -> list[str]` (список нарушений; пусто — ок);

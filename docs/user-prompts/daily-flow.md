@@ -2,7 +2,7 @@
 
 Назначение: готовые промты для ежедневной задачи ПК АУСН.
 
-Источник истины: навык `ausn-qa-loop` и его `references/loop-goal-prompts.md`; правила — корневой
+Источник истины: навык `ausn-qa-loop` и его `ausn-control-plane/.agents/skills/ausn-qa-loop/references/loop-goal-prompts.md`; правила — корневой
 `AGENTS.md`. При расхождении правим навык, а этот файл приводим в соответствие. Короткая форма запуска —
 команда `/qa-task <задача или функционал>`.
 
