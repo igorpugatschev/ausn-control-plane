@@ -1,8 +1,8 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-10-01T10:41:35+00:00",
-  "target_commit": "2416d04",
+  "generated_at": "2026-10-01T11:00:00+00:00",
+  "target_commit": "3bae2b8",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
@@ -1415,85 +1415,85 @@
       "from": "AGENTS.md",
       "to": "docs/retrospectives.md",
       "kind": "link",
-      "line": 59
+      "line": 60
     },
     {
       "from": "AGENTS.md",
       "to": "docs/qa-methodology/README.md",
       "kind": "link",
-      "line": 61
+      "line": 62
     },
     {
       "from": "AGENTS.md",
       "to": ".opencode/opencode.jsonc",
       "kind": "code-path",
-      "line": 75
+      "line": 76
     },
     {
       "from": "AGENTS.md",
       "to": "docs/ausn-context/README.md",
       "kind": "link",
-      "line": 76
+      "line": 77
     },
     {
       "from": "AGENTS.md",
       "to": "docs/ausn-context/evidence-register.md",
       "kind": "link",
-      "line": 76
+      "line": 77
     },
     {
       "from": "AGENTS.md",
       "to": "docs/mcp.md",
       "kind": "code-path",
-      "line": 82
+      "line": 83
     },
     {
       "from": "AGENTS.md",
       "to": "docs/socraticode.md",
       "kind": "code-path",
-      "line": 82
+      "line": 83
     },
     {
       "from": "AGENTS.md",
       "to": ".opencode/command/qa-task.md",
       "kind": "code-path",
-      "line": 84
+      "line": 85
     },
     {
       "from": "AGENTS.md",
       "to": ".codex/config.toml",
       "kind": "code-path",
-      "line": 101
+      "line": 102
     },
     {
       "from": "AGENTS.md",
       "to": ".vscode/mcp.json",
       "kind": "code-path",
-      "line": 101
+      "line": 102
     },
     {
       "from": "AGENTS.md",
       "to": "configs/mcp/servers.json",
       "kind": "code-path",
-      "line": 104
+      "line": 105
     },
     {
       "from": "AGENTS.md",
       "to": "qa-project:docs/reports/system-codemap.md",
       "kind": "code-path",
-      "line": 127
+      "line": 128
     },
     {
       "from": "AGENTS.md",
       "to": "tools/codemap/model/system.json",
       "kind": "code-path",
-      "line": 127
+      "line": 128
     },
     {
       "from": "AGENTS.md",
       "to": "docs/archive/README.md",
       "kind": "code-path",
-      "line": 133
+      "line": 134
     },
     {
       "from": "AGENTS.md",

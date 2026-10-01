@@ -4,7 +4,7 @@
 
 | Локальная папка | GitLab URL | Описание |
 |---|---|---|
-| `.` — `ausn-control-plane` | `https://gitlab.com/rcktsci/projects/ausn/integrator/ausn-control-plane.git` | управляющий репозиторий QA: правила, навыки, MCP, методология, отчёты; сам фреймворк не содержит. Основной remote — `origin` (GitLab, группа `integrator`); прежний личный GitHub-remote сохранён как `github` (резервная копия) |
+| `.` — `ausn-control-plane` | `https://gitlab.com/rcktsci/projects/ausn/integrator/ausn-control-plane.git` | управляющий репозиторий QA: правила, навыки, MCP, методология, отчёты; сам фреймворк не содержит. Целевой remote — личный **`github`** (`git@github.com:igorpugatschev/ausn-control-plane.git`); GitLab-remote `origin` для control plane **не используется** (GitLab — только для `ausn-qa-project`) |
 | `../ausn/ausn-ai` | `https://gitlab.com/rcktsci/projects/ausn/ausn-ai.git` | документационный контекст проекта; для QA только чтение, обновление через `git pull --ff-only` |
 | `../ausn/ausn-qa-project` | `https://gitlab.com/rcktsci/projects/ausn/integrator/ausn-qa-project.git` | **продукт работы control plane** — фреймворк и автотесты ПК АУСН («ausn-autotests»); запись разрешена, commit и push выполняются сразу |
 
