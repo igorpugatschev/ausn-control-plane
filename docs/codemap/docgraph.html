@@ -19,14 +19,14 @@ pre { background: #1b1e24; border: 1px solid #2a2f37; border-radius: 10px;
 </head>
 <body>
 <h1>docgraph: control-plane</h1>
-<p class="meta-line">ветка <code>main</code> · коммит <code>a752a78</code> (рабочая копия изменена) ·
-документов 98 · рёбер 411 · <span class="bad">битых 0</span> ·
-неразрешённых путей 43 · недостижимых 27 ·
-warnings 0 · сгенерировано 2026-10-01T10:12:49+00:00</p>
+<p class="meta-line">ветка <code>main</code> · коммит <code>bbbf106</code> (рабочая копия изменена) ·
+документов 99 · рёбер 418 · <span class="bad">битых 0</span> ·
+неразрешённых путей 42 · недостижимых 27 ·
+warnings 0 · сгенерировано 2026-10-01T10:18:01+00:00</p>
 <h2>Связи по типам</h2>
 <ul>
-<li>code-path — 224</li>
-<li>link — 55</li>
+<li>code-path — 230</li>
+<li>link — 56</li>
 <li>link-dir — 1</li>
 <li>mention-agent — 41</li>
 <li>mention-command — 8</li>
@@ -42,7 +42,6 @@ warnings 0 · сгенерировано 2026-10-01T10:12:49+00:00</p>
 <li><code>docs/ausn-context/qa-source-assessment.md</code>:25 → <code>references/postman-flow.md</code></li>
 <li><code>docs/ausn-context/qa-source-assessment.md</code>:26 → <code>references/agent-roles.md</code></li>
 <li><code>docs/plans/portability-bootstrap-plan.md</code>:30 → <code>tools/checks/fixtures/manifests/bad-absolute/workspace.json</code></li>
-<li><code>docs/plans/portability-bootstrap2-design.md</code>:51 → <code>docs/portability-clean-clone-pilot.md</code></li>
 <li><code>docs/plans/socraticode-plugin-design.md</code>:21 → <code>agents/codebase-explorer.md</code></li>
 <li><code>docs/plans/socraticode-plugin-design.md</code>:21 → <code>hooks/hooks.json</code></li>
 <li><code>docs/plans/system-codemap-design.md</code>:46 → <code>ausn-qa-project/docs/codemap/system.json</code></li>
@@ -76,11 +75,11 @@ warnings 0 · сгенерировано 2026-10-01T10:12:49+00:00</p>
 <li><code>PROJECT_STATUS.md</code>:103 → <code>ausn-qa-project/docs/reports/qa-loop-acquiring-third-party-bank-format-2026-09-22.md</code></li>
 <li><code>PROJECT_STATUS.md</code>:112 → <code>ausn-qa-project/docs/reports/qa-loop-ui-authorization-2026-09-22.md</code></li>
 <li><code>PROJECT_STATUS.md</code>:116 → <code>ausn-qa-project/docs/reports/qa-loop-ui-account-sections-2026-09-22.md</code></li>
-<li><code>PROJECT_STATUS.md</code>:180 → <code>references/qa-task-flow.md</code></li>
-<li><code>PROJECT_STATUS.md</code>:181 → <code>references/loop-quality-gates.md</code></li>
-<li><code>PROJECT_STATUS.md</code>:219 → <code>ausn-qa-project/AGENTS.md</code></li>
-<li><code>PROJECT_STATUS.md</code>:240 → <code>references/socraticode.json</code></li>
-<li><code>PROJECT_STATUS.md</code>:284 → <code>references/socraticode.json</code></li>
+<li><code>PROJECT_STATUS.md</code>:186 → <code>references/qa-task-flow.md</code></li>
+<li><code>PROJECT_STATUS.md</code>:187 → <code>references/loop-quality-gates.md</code></li>
+<li><code>PROJECT_STATUS.md</code>:225 → <code>ausn-qa-project/AGENTS.md</code></li>
+<li><code>PROJECT_STATUS.md</code>:246 → <code>references/socraticode.json</code></li>
+<li><code>PROJECT_STATUS.md</code>:290 → <code>references/socraticode.json</code></li>
 </ul>
 <h2>Warnings</h2>
 <ul>
@@ -118,7 +117,7 @@ warnings 0 · сгенерировано 2026-10-01T10:12:49+00:00</p>
 </ul>
 <h2>Хабы (входящие+исходящие)</h2>
 <ul>
-<li><code>PROJECT_STATUS.md</code> — 39</li>
+<li><code>PROJECT_STATUS.md</code> — 41</li>
 <li><code>.agents/skills/ausn-qa-loop/SKILL.md</code> — 36</li>
 <li><code>AGENTS.md</code> — 36</li>
 <li><code>.agents/skills/ausn-qa-agents/SKILL.md</code> — 28</li>
@@ -130,9 +129,9 @@ warnings 0 · сгенерировано 2026-10-01T10:12:49+00:00</p>
 <li><code>.agents/skills/ausn-qa-mcp/SKILL.md</code> — 17</li>
 <li><code>.agents/skills/ausn-socraticode/SKILL.md</code> — 15</li>
 <li><code>docs/plans/2026-09-24-control-plane-portability-fixes.md</code> — 15</li>
+<li><code>README.md</code> — 14</li>
 <li><code>.opencode/command/qa-task.md</code> — 13</li>
 <li><code>docs/ausn-context/qa-source-assessment.md</code> — 13</li>
-<li><code>.opencode/opencode.jsonc</code> — 12</li>
 </ul>
 <h2>Граф (Mermaid)</h2>
 <pre class="mermaid">graph LR
@@ -241,6 +240,7 @@ warnings 0 · сгенерировано 2026-10-01T10:12:49+00:00</p>
   "docs/plans/portability-bootstrap2-design.md" -->|code-path| ".vscode/mcp.json"
   "docs/plans/portability-bootstrap2-design.md" -->|code-path| ".codex/config.toml"
   "docs/plans/portability-bootstrap2-design.md" -->|code-path| ".opencode/opencode.jsonc"
+  "docs/plans/portability-bootstrap2-design.md" -->|code-path| "docs/portability-clean-clone-pilot.md"
   "docs/plans/socraticode-plugin-design.md" -->|code-path| ".vscode/mcp.json"
   "docs/plans/socraticode-plugin-design.md" -->|code-path| ".codex/config.toml"
   "docs/plans/socraticode-plugin-design.md" -->|code-path| ".opencode/opencode.jsonc"
@@ -254,7 +254,6 @@ warnings 0 · сгенерировано 2026-10-01T10:12:49+00:00</p>
   "docs/plans/socraticode-plugin-plan.md" -->|code-path| ".codex/config.toml"
   "docs/plans/socraticode-plugin-plan.md" -->|code-path| ".opencode/opencode.jsonc"
   "docs/plans/socraticode-plugin-plan.md" -->|code-path| ".agents/skills/ausn-socraticode/SKILL.md"
-  "docs/plans/socraticode-plugin-plan.md" -->|code-path| "docs/socraticode.md"
-  "docs/plans/socraticode-plugin-plan.md" -->|code-path| "docs/mcp.md"</pre>
+  "docs/plans/socraticode-plugin-plan.md" -->|code-path| "docs/socraticode.md"</pre>
 </body>
 </html>

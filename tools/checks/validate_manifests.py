@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 
 ABSOLUTE_MARKERS = ("c:\\", "\\\\", "/users/", "/home/", "/mnt/")
@@ -16,6 +17,9 @@ ALLOWED_GROUPS = {"mcp", "gitlab", "stands", "ai"}
 ALLOWED_CLIENTS = {"opencode", "codex", "vscode", "mcp"}
 ALLOWED_ACCESS = {"read-only", "writable"}
 WRITABLE_IDS = {"ausn-qa-project"}
+CONFIG_FILES = (".mcp.json", ".vscode/mcp.json", ".codex/config.toml", ".opencode/opencode.jsonc")
+VAR_RE = re.compile(r"\$\{([A-Za-z_][A-Za-z0-9_]*)\}")
+CLIENT_PLACEHOLDERS = {"workspaceFolder", "workspaceRoot", "userHome", "pathSeparator", "env"}
 
 
 def _load(path: Path) -> dict:
@@ -102,10 +106,30 @@ def validate_mcp_manifest(configs_dir: Path) -> list[str]:
     return issues
 
 
+def validate_env_coverage(configs_dir: Path) -> list[str]:
+    """Имена `${VAR}` из MCP-конфигов должны присутствовать в env.schema.json."""
+    schema_path = configs_dir / "env.schema.json"
+    declared: set[str] = set()
+    if schema_path.is_file():
+        declared = {item.get("name") for item in _load(schema_path).get("vars", [])}
+    root = configs_dir.parent
+    referenced: set[str] = set()
+    for rel in CONFIG_FILES:
+        path = root / rel
+        if path.is_file():
+            referenced |= set(VAR_RE.findall(path.read_text(encoding="utf-8")))
+    referenced -= CLIENT_PLACEHOLDERS
+    return [
+        f"env: {name} используется в MCP-конфигах, но отсутствует в env.schema.json"
+        for name in sorted(referenced - declared)
+    ]
+
+
 def validate_all(configs_dir: Path) -> dict[str, list[str]]:
     report = {"workspace": validate_workspace(configs_dir)}
     if (configs_dir / "env.schema.json").is_file():
         report["env"] = validate_env(configs_dir)
+        report["env_coverage"] = validate_env_coverage(configs_dir)
     if (configs_dir / "mcp" / "servers.json").is_file():
         report["mcp"] = validate_mcp_manifest(configs_dir)
     return report

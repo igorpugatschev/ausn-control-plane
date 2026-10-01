@@ -1,7 +1,12 @@
 import json
 from pathlib import Path
 
-from tools.checks.validate_manifests import validate_all, validate_mcp_manifest, validate_workspace
+from tools.checks.validate_manifests import (
+    validate_all,
+    validate_env_coverage,
+    validate_mcp_manifest,
+    validate_workspace,
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 CONFIGS = REPO_ROOT / "configs"
@@ -125,3 +130,19 @@ def test_mcp_manifest_equals_client_configs():
     configs = mcp_parity.read_configs(REPO_ROOT)
     drift = mcp_parity.compare_manifest(REPO_ROOT / "configs" / "mcp" / "servers.json", configs)
     assert drift == []
+
+
+def test_env_coverage_is_complete():
+    assert validate_env_coverage(CONFIGS) == []
+
+
+def test_env_coverage_reports_undeclared_variable(tmp_path):
+    configs = tmp_path / "configs"
+    configs.mkdir()
+    (configs / "env.schema.json").write_text(json.dumps({"vars": []}), encoding="utf-8")
+    (tmp_path / ".mcp.json").write_text(
+        json.dumps({"mcpServers": {"x": {"command": "node", "args": ["--header", "Authorization:${MCP_UNKNOWN}"]}}}),
+        encoding="utf-8",
+    )
+    issues = validate_env_coverage(configs)
+    assert any("MCP_UNKNOWN" in issue for issue in issues)

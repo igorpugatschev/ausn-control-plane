@@ -1,25 +1,25 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-10-01T10:12:49+00:00",
-  "target_commit": "a752a78",
+  "generated_at": "2026-10-01T10:18:01+00:00",
+  "target_commit": "bbbf106",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
-    "docs": 98,
-    "edges": 411,
+    "docs": 99,
+    "edges": 418,
     "broken": 0,
-    "unresolved": 43,
+    "unresolved": 42,
     "unreachable": 27,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 224,
+    "code-path": 230,
     "mention-skill": 82,
     "mention-agent": 41,
     "mention-command": 8,
-    "link": 55,
+    "link": 56,
     "link-dir": 1
   },
   "nodes": [
@@ -381,7 +381,7 @@
       "id": "docs/plans/portability-bootstrap2-design.md",
       "kind": "doc",
       "in": 0,
-      "out": 6
+      "out": 7
     },
     {
       "id": "docs/plans/socraticode-plugin-design.md",
@@ -412,6 +412,12 @@
       "kind": "doc",
       "in": 0,
       "out": 21
+    },
+    {
+      "id": "docs/portability-clean-clone-pilot.md",
+      "kind": "doc",
+      "in": 3,
+      "out": 2
     },
     {
       "id": "docs/presentations/README.md",
@@ -506,7 +512,7 @@
     {
       "id": "docs/reports/portability-pilot-wsl-2026-10-01.md",
       "kind": "doc",
-      "in": 1,
+      "in": 2,
       "out": 2
     },
     {
@@ -585,13 +591,13 @@
       "id": "PROJECT_STATUS.md",
       "kind": "doc",
       "in": 0,
-      "out": 39
+      "out": 41
     },
     {
       "id": "README.md",
       "kind": "doc",
       "in": 0,
-      "out": 12
+      "out": 14
     },
     {
       "id": "REPOSITORIES.md",
@@ -1982,6 +1988,12 @@
       "line": 38
     },
     {
+      "from": "docs/plans/portability-bootstrap2-design.md",
+      "to": "docs/portability-clean-clone-pilot.md",
+      "kind": "code-path",
+      "line": 51
+    },
+    {
       "from": "docs/plans/socraticode-plugin-design.md",
       "to": ".vscode/mcp.json",
       "kind": "code-path",
@@ -2268,6 +2280,18 @@
       "to": "tools/checks/mcp_parity.py",
       "kind": "code-path",
       "line": 1405
+    },
+    {
+      "from": "docs/portability-clean-clone-pilot.md",
+      "to": "configs/workspace.json",
+      "kind": "code-path",
+      "line": 28
+    },
+    {
+      "from": "docs/portability-clean-clone-pilot.md",
+      "to": "docs/reports/portability-pilot-wsl-2026-10-01.md",
+      "kind": "code-path",
+      "line": 52
     },
     {
       "from": "docs/presentations/README.md",
@@ -2865,111 +2889,123 @@
     },
     {
       "from": "PROJECT_STATUS.md",
+      "to": ".vscode/mcp.json",
+      "kind": "code-path",
+      "line": 165
+    },
+    {
+      "from": "PROJECT_STATUS.md",
+      "to": "docs/portability-clean-clone-pilot.md",
+      "kind": "code-path",
+      "line": 166
+    },
+    {
+      "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/ausn-socraticode/SKILL.md",
       "kind": "code-path",
-      "line": 178
+      "line": 184
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/karpathy-guidelines/SKILL.md",
       "kind": "code-path",
-      "line": 179
+      "line": 185
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/socraticode.md",
       "kind": "code-path",
-      "line": 183
+      "line": 189
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/retrospectives.md",
       "kind": "code-path",
-      "line": 183
+      "line": 189
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/ausn-context/qa-source-assessment.md",
       "kind": "code-path",
-      "line": 183
+      "line": 189
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/generate.py",
       "kind": "code-path",
-      "line": 185
+      "line": 191
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/model/control-plane.json",
       "kind": "code-path",
-      "line": 185
+      "line": 191
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/model/qa-project.json",
       "kind": "code-path",
-      "line": 186
+      "line": 192
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:src/config/paths.py",
       "kind": "code-path",
-      "line": 191
+      "line": 197
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/kafka/conftest.py",
       "kind": "code-path",
-      "line": 193
+      "line": 199
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/static/test_categorizer_json_fixtures.py",
       "kind": "code-path",
-      "line": 194
+      "line": 200
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/integration/test_permission_refresh_queue_advance.py",
       "kind": "code-path",
-      "line": 200
+      "line": 206
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/db/test_permission_refresh_order.py",
       "kind": "code-path",
-      "line": 201
+      "line": 207
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:docs/reports/qa-loop-permission-refresh-order-2026-09-18.md",
       "kind": "code-path",
-      "line": 202
+      "line": 208
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/archive/README.md",
       "kind": "code-path",
-      "line": 243
+      "line": 249
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/data/kafka_topics/README.md",
       "kind": "code-path",
-      "line": 244
+      "line": 250
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/reports/external-review-portability-2026-09-24.md",
       "kind": "link",
-      "line": 251
+      "line": 257
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": ".codex/config.toml",
       "kind": "code-path",
-      "line": 251
+      "line": 257
     },
     {
       "from": "PROJECT_STATUS.md",
@@ -3024,6 +3060,18 @@
       "to": "REPOSITORIES.md",
       "kind": "link",
       "line": 16
+    },
+    {
+      "from": "README.md",
+      "to": "docs/portability-clean-clone-pilot.md",
+      "kind": "link",
+      "line": 19
+    },
+    {
+      "from": "README.md",
+      "to": ".vscode/mcp.json",
+      "kind": "code-path",
+      "line": 19
     },
     {
       "from": "README.md",
@@ -3104,12 +3152,6 @@
       "from": "docs/plans/portability-bootstrap-plan.md",
       "target": "tools/checks/fixtures/manifests/bad-absolute/workspace.json",
       "line": 30,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap2-design.md",
-      "target": "docs/portability-clean-clone-pilot.md",
-      "line": 51,
       "severity": "warning"
     },
     {
@@ -3313,31 +3355,31 @@
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/qa-task-flow.md",
-      "line": 180,
+      "line": 186,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/loop-quality-gates.md",
-      "line": 181,
+      "line": 187,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "ausn-qa-project/AGENTS.md",
-      "line": 219,
+      "line": 225,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/socraticode.json",
-      "line": 240,
+      "line": 246,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/socraticode.json",
-      "line": 284,
+      "line": 290,
       "severity": "warning"
     }
   ],
@@ -3374,7 +3416,7 @@
   "hubs": [
     {
       "id": "PROJECT_STATUS.md",
-      "degree": 39
+      "degree": 41
     },
     {
       "id": ".agents/skills/ausn-qa-loop/SKILL.md",
@@ -3421,16 +3463,16 @@
       "degree": 15
     },
     {
+      "id": "README.md",
+      "degree": 14
+    },
+    {
       "id": ".opencode/command/qa-task.md",
       "degree": 13
     },
     {
       "id": "docs/ausn-context/qa-source-assessment.md",
       "degree": 13
-    },
-    {
-      "id": ".opencode/opencode.jsonc",
-      "degree": 12
     }
   ]
 }
