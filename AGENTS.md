@@ -92,12 +92,12 @@ Read-only относится к источникам (код и документ
 
 1. Node.js 22+, затем `npm ci --prefix tools/mcp-runtime`.
 2. Скопировать `.env.example` → `.env` и заполнить личные токены (GitLab/GitHub); остальные значения — из шаблона.
-3. `docker compose -f compose.socraticode.yaml up -d`; при отсутствии модели — `ollama pull nomic-embed-text` (Ollama на `127.0.0.1:11434`).
+3. Инфраструктура индекса поднимается автоматически плагином `.opencode/plugin/socraticode.js` (Qdrant на `127.0.0.1:17333`); при отсутствии модели — `ollama pull nomic-embed-text` (Ollama на `127.0.0.1:11434`).
 4. Открыть проект из корня и подтвердить доверие к проекту/MCP, если клиент запросит.
 
 ## Конфигурация MCP
 
-- Один и тот же набор серверов (atlassian, gitlab, mattermost, test_ssh, test_pgdb, test_graylog, test_grafana, playwright) описан в четырёх файлах: `.mcp.json`, `.codex/config.toml`, `.vscode/mcp.json`, `.opencode/opencode.jsonc`. **SocratiCode в конфигах по умолчанию отсутствует** (решение 2026-09-29): включается на время задачи по рецепту в `docs/socraticode.md` вместе с Qdrant. При добавлении или изменении сервера обновлять все четыре.
+- Один и тот же набор серверов (socraticode, atlassian, gitlab, mattermost, test_ssh, test_pgdb, test_graylog, test_grafana, playwright) описан в четырёх файлах: `.mcp.json`, `.codex/config.toml`, `.vscode/mcp.json`, `.opencode/opencode.jsonc`. **SocratiCode работает штатно** (решение 2026-10-01, отменяет «по требованию» от 2026-09-29): сервер всегда подключён, Qdrant/Ollama поднимает плагин `.opencode/plugin/socraticode.js`, контейнер Qdrant закреплён `restart: unless-stopped`. При добавлении или изменении сервера обновлять все четыре.
 - Node читает секреты из корневого `.env` через `--env-file`; вручную экспортировать переменные не нужно. Клиенты запускать из корня control plane (актуально и для opencode: в remote-серверах opencode не читать `.env`, авторизация идёт через `mcp-remote` из `tools/mcp-runtime`).
 - Кэш авторизации MCP — в `.local/mcp-auth/`. Telegram необязателен и не подключён.
 - Проверка паритета: `.\.venv\Scripts\python.exe tools\checks\mcp_parity.py` (код 1 — дрейф; при расхождении обновить все четыре файла).
@@ -106,9 +106,16 @@ Read-only относится к источникам (код и документ
 
 - Индексируются все репозитории контекста относительно control plane: сам `ausn-control-plane` и все локальные репозитории в `../ausn`, включая `ausn-qa-project`. Это исходники тестируемого приложения и стендовое окружение (`ausn-ai`, `ausn-core`, `ausn-api`, `ausn-front-gateway`, `ausn-frontend`, `ausn-front-module`, `ausn-front-module-api`, `ausn-kafka-contracts`, `ausn-admin-backend`, `ausn-admin-dashboard`, `dbo-emulator`, `test-stands`) и наш продукт `ausn-qa-project` (тесты, fixtures, сценарии — индексируется для удобного ревью и поиска). Индексация не делает репозиторий read-only: `ausn-qa-project` остаётся записываемым, правки автоиндексируются watcher'ом. Новый репозиторий в `../ausn` индексировать по мере добавления. При каждом поиске и обновлении передавать соответствующий `projectPath`; коллекции различаются по пути проекта с префиксом `ausn_qa_`.
 - Перед индексацией обновить чистую рабочую копию репозитория через `git pull --ff-only`; локальные изменения не сбрасывать. Эмбеддинги считаются локально, поэтому индексация крупного сервиса идёт десятки минут — выполнять партиями с контролем `codebase_status`.
-- **Режим «по требованию» (2026-09-29):** Qdrant/Ollama не держатся включёнными постоянно — поднимать под задачу (`docker compose -f compose.socraticode.yaml up -d`) и останавливать по её завершении (`down`); каталог `.local/socraticode/qdrant` сохраняется, переиндексация не требуется. Watcher — часть процесса MCP-сервера: активен, пока SocratiCode работает; отдельной службой не является. Инструменты `codebase_*` при остановленном Qdrant недоступны — это штатное поведение.
+- **Штатный режим (решение 2026-10-01, отменяет «по требованию» от 2026-09-29):** Qdrant и Ollama работают постоянно — их поднимает плагин `.opencode/plugin/socraticode.js` при старте opencode, контейнер Qdrant закреплён `restart: unless-stopped`. Watcher — часть процесса MCP-сервера: активен, пока SocratiCode работает; отдельной службой не является и останавливать его не нужно. Инструменты `codebase_*` доступны всегда.
 - **Границы применимости (урок 137):** семантический поиск («где/как реализовано»), impact-анализ и код-графы — через SocratiCode; поиск по **точному токену/шаблону** — быстрее через `rg`/`ast-grep` по локальному клону, без roundtrip и без расхода токенов на MCP-схему. Для своих репозиториев (control plane, `ausn-qa-project`) работа ведётся напрямую.
-- Правило выбора инструментов: работу с файлами индексированных проектов (`ausn-core`, `ausn-ai`, `ausn-control-plane`, `ausn-qa-project` и остальные в `../ausn`) вести через инструменты SocratiCode (семантический поиск, symbol, flow, graph, impact); если проект не индексирован — прямая работа с файловой системой.
+- Правило выбора инструментов: индексированные проекты (`ausn-core`, `ausn-ai`, `ausn-control-plane`, `ausn-qa-project` и остальные в `../ausn`) исследуются через SocratiCode, а не прямым обходом ФС.
+  - Разведка и незнакомый код — `codebase_search` (гибрид semantic+BM25 за один вызов); читать файлы только после сужения до 1–3 кандидатов.
+  - Перед правкой/удалением и при рефакторинге — `codebase_graph_query` / `codebase_impact` (blast radius).
+  - Связи функций — `codebase_symbol` / `codebase_symbols` / `codebase_flow`.
+  - Dot-контент (навыки, субагенты, команды) — только `codebase_context_search`.
+  - Поиск пуст → `codebase_status`, при необходимости `codebase_index`/`codebase_update`.
+  - Исключение: точная строка, идентификатор или регэксп — быстрее и точнее через `rg`/`ast-grep` (позиция вендора SocratiCode).
+  - Если проект не индексирован — прямая работа с файловой системой.
 - Dot-каталоги (`.agents`, `.opencode`) обычный индекс пропускает, поэтому навыки, субагенты и команды подключены как context artifacts (`.socraticodecontextartifacts.json`) и ищутся только через `codebase_context_search` (гибрид semantic+BM25), а не `codebase_search`. Для markdown граф зависимостей (`codebase_graph_*`) пуст — это норма, а не дефект.
 
 ## Codemap

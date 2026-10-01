@@ -70,12 +70,28 @@ context artifacts (`.socraticodecontextartifacts.json` в корне control pla
   `commands` (`.opencode/command`). Навыки и команды искать через `codebase_context_search`,
   не через `codebase_search`.
 
+## Рабочая таблица «задача → инструмент»
+
+| Задача | Инструмент |
+|---|---|
+| Понять, где живёт функционал | `codebase_search` (широкий запрос) |
+| Найти класс/функцию/тип по имени | `codebase_symbols query=…` |
+| Что ломается при изменении X | `codebase_impact target=X` |
+| Что делает точка входа | `codebase_flow entrypoint=X` |
+| Кандидаты точек входа | `codebase_flow` (без аргументов) |
+| Кто вызывает и что вызывает | `codebase_symbol name=X` |
+| Что импортирует файл / кто зависит | `codebase_graph_query` |
+| Циклические зависимости | `codebase_graph_circular` |
+| Схемы БД, API-спеки, конфиги | `codebase_context` / `codebase_context_search` |
+| Точная строка/идентификатор/регэксп | `rg` / `ast-grep` (исключение) |
+| Индекс устарел | `codebase_status` → `codebase_update` |
+
 ## Управление индексом
 
 - `codebase_health` — Docker/Qdrant/Ollama и модель эмбеддингов.
 - `codebase_index` → `codebase_status` (опрашивать ~каждые 60 с до 100%). Эмбеддинги локальные
   (Ollama), поэтому крупный сервис идёт десятки минут — индексировать партиями.
-- Watcher — часть процесса MCP-сервера: активен, пока SocratiCode работает (инфраструктура — по требованию, решение 2026-09-29).
+- Watcher — часть процесса MCP-сервера: активен, пока SocratiCode работает (Qdrant/Ollama поднимает плагин `.opencode/plugin/socraticode.js` при старте opencode — штатный режим, решение 2026-10-01).
   Не останавливать; правки автоиндексируются. Ручное обновление — `codebase_update` (обычно не нужно).
 - `codebase_stop` — пауза с сохранением прогресса (продолжить — снова `codebase_index`).
 - `codebase_remove` — удалить индекс (destructive); `codebase_list_projects` — список проектов.
