@@ -19,13 +19,13 @@ pre { background: #1b1e24; border: 1px solid #2a2f37; border-radius: 10px;
 </head>
 <body>
 <h1>docgraph: control-plane</h1>
-<p class="meta-line">ветка <code>main</code> · коммит <code>574d77b</code> (рабочая копия изменена) ·
-документов 96 · рёбер 402 · <span class="bad">битых 0</span> ·
-неразрешённых путей 42 · недостижимых 26 ·
-warnings 0 · сгенерировано 2026-10-01T09:29:35+00:00</p>
+<p class="meta-line">ветка <code>main</code> · коммит <code>d080f33</code> (рабочая копия изменена) ·
+документов 97 · рёбер 408 · <span class="bad">битых 0</span> ·
+неразрешённых путей 43 · недостижимых 27 ·
+warnings 0 · сгенерировано 2026-10-01T10:08:07+00:00</p>
 <h2>Связи по типам</h2>
 <ul>
-<li>code-path — 216</li>
+<li>code-path — 222</li>
 <li>link — 55</li>
 <li>link-dir — 1</li>
 <li>mention-agent — 41</li>
@@ -42,6 +42,7 @@ warnings 0 · сгенерировано 2026-10-01T09:29:35+00:00</p>
 <li><code>docs/ausn-context/qa-source-assessment.md</code>:25 → <code>references/postman-flow.md</code></li>
 <li><code>docs/ausn-context/qa-source-assessment.md</code>:26 → <code>references/agent-roles.md</code></li>
 <li><code>docs/plans/portability-bootstrap-plan.md</code>:30 → <code>tools/checks/fixtures/manifests/bad-absolute/workspace.json</code></li>
+<li><code>docs/plans/portability-bootstrap2-design.md</code>:51 → <code>docs/portability-clean-clone-pilot.md</code></li>
 <li><code>docs/plans/socraticode-plugin-design.md</code>:21 → <code>agents/codebase-explorer.md</code></li>
 <li><code>docs/plans/socraticode-plugin-design.md</code>:21 → <code>hooks/hooks.json</code></li>
 <li><code>docs/plans/system-codemap-design.md</code>:46 → <code>ausn-qa-project/docs/codemap/system.json</code></li>
@@ -96,6 +97,7 @@ warnings 0 · сгенерировано 2026-10-01T09:29:35+00:00</p>
 <li><code>docs/evidence/2026-09-17-full-smoke-test1.md</code></li>
 <li><code>docs/plans/2026-09-24-control-plane-portability-fixes.md</code></li>
 <li><code>docs/plans/portability-bootstrap-plan.md</code></li>
+<li><code>docs/plans/portability-bootstrap2-design.md</code></li>
 <li><code>docs/plans/socraticode-plugin-plan.md</code></li>
 <li><code>docs/plans/system-codemap-plan-c2.md</code></li>
 <li><code>docs/plans/system-codemap-plan.md</code></li>
@@ -130,7 +132,7 @@ warnings 0 · сгенерировано 2026-10-01T09:29:35+00:00</p>
 <li><code>docs/plans/2026-09-24-control-plane-portability-fixes.md</code> — 15</li>
 <li><code>.opencode/command/qa-task.md</code> — 13</li>
 <li><code>docs/ausn-context/qa-source-assessment.md</code> — 13</li>
-<li><code>README.md</code> — 12</li>
+<li><code>.opencode/opencode.jsonc</code> — 12</li>
 </ul>
 <h2>Граф (Mermaid)</h2>
 <pre class="mermaid">graph LR
@@ -233,6 +235,12 @@ warnings 0 · сгенерировано 2026-10-01T09:29:35+00:00</p>
   "docs/plans/portability-bootstrap-plan.md" -->|code-path| "configs/env.schema.json"
   "docs/plans/portability-bootstrap-plan.md" -->|code-path| "configs/mcp/servers.json"
   "docs/plans/portability-bootstrap-plan.md" -->|code-path| "tools/checks/mcp_parity.py"
+  "docs/plans/portability-bootstrap2-design.md" -->|code-path| "docs/plans/portability-bootstrap-design.md"
+  "docs/plans/portability-bootstrap2-design.md" -->|code-path| "configs/workspace.json"
+  "docs/plans/portability-bootstrap2-design.md" -->|code-path| "configs/mcp/servers.json"
+  "docs/plans/portability-bootstrap2-design.md" -->|code-path| ".vscode/mcp.json"
+  "docs/plans/portability-bootstrap2-design.md" -->|code-path| ".codex/config.toml"
+  "docs/plans/portability-bootstrap2-design.md" -->|code-path| ".opencode/opencode.jsonc"
   "docs/plans/socraticode-plugin-design.md" -->|code-path| ".vscode/mcp.json"
   "docs/plans/socraticode-plugin-design.md" -->|code-path| ".codex/config.toml"
   "docs/plans/socraticode-plugin-design.md" -->|code-path| ".opencode/opencode.jsonc"
@@ -247,12 +255,6 @@ warnings 0 · сгенерировано 2026-10-01T09:29:35+00:00</p>
   "docs/plans/socraticode-plugin-plan.md" -->|code-path| ".opencode/opencode.jsonc"
   "docs/plans/socraticode-plugin-plan.md" -->|code-path| ".agents/skills/ausn-socraticode/SKILL.md"
   "docs/plans/socraticode-plugin-plan.md" -->|code-path| "docs/socraticode.md"
-  "docs/plans/socraticode-plugin-plan.md" -->|code-path| "docs/mcp.md"
-  "docs/plans/system-codemap-design.md" -->|code-path| "tools/codemap/model/system.json"
-  "docs/plans/system-codemap-design.md" -->|code-path| "docs/ausn-context/system-map.md"
-  "docs/plans/system-codemap-plan-c2.md" -->|code-path| "tools/codemap/system_parts.py"
-  "docs/plans/system-codemap-plan-c2.md" -->|code-path| "tools/codemap/generate.py"
-  "docs/plans/system-codemap-plan-c2.md" -->|code-path| "tools/codemap/system_render.py"
-  "docs/plans/system-codemap-plan-c2.md" -->|code-path| "tools/codemap/tests/test_system_parts.py"</pre>
+  "docs/plans/socraticode-plugin-plan.md" -->|code-path| "docs/mcp.md"</pre>
 </body>
 </html>
