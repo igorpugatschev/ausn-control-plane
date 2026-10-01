@@ -9,7 +9,7 @@
 1. Прочитать [AGENTS.md](AGENTS.md) — правила, модель владения, ограничения.
 2. Инструменты пользователя (GUI/секреты): Node.js 22+, Python 3.12, Docker, Ollama с моделью `nomic-embed-text`, корпоративный VPN и корпоративный плагин opencode **`@rcktsci/rcktsci-opencode-plugin@0.17.9`** (провайдер `RcktSci-Corporate`; ставится по корпоративной инструкции).
 3. Локальное окружение и MCP-runtime:
-   - `python -m venv .venv` → `.venv\Scripts\python.exe -m pip install -r requirements.txt`;
+   - `python -m venv .venv` → `.venv\Scripts\python.exe -m pip install -r requirements.txt` (нужен только для тестов инструментов; рантайм `tools/*` — stdlib);
    - `copy .env.example .env` → заполнить личные токены (GitLab/GitHub/Jira в шаблоне не хранятся);
    - `npm ci --prefix tools/mcp-runtime`.
 4. **`ENVIRONMENT.md`** — создать из [ENVIRONMENT-example.md](ENVIRONMENT-example.md) по [ENVIRONMENT-manual.md](ENVIRONMENT-manual.md). Файл обязателен до первого запуска: `.opencode/opencode.jsonc` подключает его через `instructions` (в Git не входит).

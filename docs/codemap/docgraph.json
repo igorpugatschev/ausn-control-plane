@@ -1,22 +1,22 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-10-01T10:08:07+00:00",
-  "target_commit": "d080f33",
+  "generated_at": "2026-10-01T10:12:49+00:00",
+  "target_commit": "a752a78",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
-    "docs": 97,
-    "edges": 408,
+    "docs": 98,
+    "edges": 411,
     "broken": 0,
     "unresolved": 43,
     "unreachable": 27,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 222,
-    "mention-skill": 81,
+    "code-path": 224,
+    "mention-skill": 82,
     "mention-agent": 41,
     "mention-command": 8,
     "link": 55,
@@ -26,7 +26,7 @@
     {
       "id": ".agents/skills/ausn-api-contract-testing/SKILL.md",
       "kind": "doc",
-      "in": 5,
+      "in": 6,
       "out": 3
     },
     {
@@ -504,6 +504,12 @@
       "out": 7
     },
     {
+      "id": "docs/reports/portability-pilot-wsl-2026-10-01.md",
+      "kind": "doc",
+      "in": 1,
+      "out": 2
+    },
+    {
       "id": "docs/reports/ui-truth-notifications-kkt-2026-09-23.md",
       "kind": "doc",
       "in": 0,
@@ -579,7 +585,7 @@
       "id": "PROJECT_STATUS.md",
       "kind": "doc",
       "in": 0,
-      "out": 38
+      "out": 39
     },
     {
       "id": "README.md",
@@ -2504,6 +2510,18 @@
       "line": 0
     },
     {
+      "from": "docs/reports/portability-pilot-wsl-2026-10-01.md",
+      "to": "tools/checks/validate_manifests.py",
+      "kind": "code-path",
+      "line": 30
+    },
+    {
+      "from": "docs/reports/portability-pilot-wsl-2026-10-01.md",
+      "to": ".agents/skills/ausn-api-contract-testing/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
       "from": "docs/reports/ui-truth-notifications-kkt-2026-09-23.md",
       "to": "qa-project:tests/ui/test_kkt_detalization.py",
       "kind": "code-path",
@@ -2841,111 +2859,117 @@
     },
     {
       "from": "PROJECT_STATUS.md",
+      "to": "docs/reports/portability-pilot-wsl-2026-10-01.md",
+      "kind": "code-path",
+      "line": 162
+    },
+    {
+      "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/ausn-socraticode/SKILL.md",
       "kind": "code-path",
-      "line": 171
+      "line": 178
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/karpathy-guidelines/SKILL.md",
       "kind": "code-path",
-      "line": 172
+      "line": 179
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/socraticode.md",
       "kind": "code-path",
-      "line": 176
+      "line": 183
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/retrospectives.md",
       "kind": "code-path",
-      "line": 176
+      "line": 183
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/ausn-context/qa-source-assessment.md",
       "kind": "code-path",
-      "line": 176
+      "line": 183
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/generate.py",
       "kind": "code-path",
-      "line": 178
+      "line": 185
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/model/control-plane.json",
       "kind": "code-path",
-      "line": 178
+      "line": 185
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/model/qa-project.json",
       "kind": "code-path",
-      "line": 179
+      "line": 186
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:src/config/paths.py",
       "kind": "code-path",
-      "line": 184
+      "line": 191
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/kafka/conftest.py",
       "kind": "code-path",
-      "line": 186
+      "line": 193
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/static/test_categorizer_json_fixtures.py",
       "kind": "code-path",
-      "line": 187
+      "line": 194
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/integration/test_permission_refresh_queue_advance.py",
       "kind": "code-path",
-      "line": 193
+      "line": 200
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/db/test_permission_refresh_order.py",
       "kind": "code-path",
-      "line": 194
+      "line": 201
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:docs/reports/qa-loop-permission-refresh-order-2026-09-18.md",
       "kind": "code-path",
-      "line": 195
+      "line": 202
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/archive/README.md",
       "kind": "code-path",
-      "line": 236
+      "line": 243
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/data/kafka_topics/README.md",
       "kind": "code-path",
-      "line": 237
+      "line": 244
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/reports/external-review-portability-2026-09-24.md",
       "kind": "link",
-      "line": 244
+      "line": 251
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": ".codex/config.toml",
       "kind": "code-path",
-      "line": 244
+      "line": 251
     },
     {
       "from": "PROJECT_STATUS.md",
@@ -3289,31 +3313,31 @@
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/qa-task-flow.md",
-      "line": 173,
+      "line": 180,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/loop-quality-gates.md",
-      "line": 174,
+      "line": 181,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "ausn-qa-project/AGENTS.md",
-      "line": 212,
+      "line": 219,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/socraticode.json",
-      "line": 233,
+      "line": 240,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/socraticode.json",
-      "line": 277,
+      "line": 284,
       "severity": "warning"
     }
   ],
@@ -3350,7 +3374,7 @@
   "hubs": [
     {
       "id": "PROJECT_STATUS.md",
-      "degree": 38
+      "degree": 39
     },
     {
       "id": ".agents/skills/ausn-qa-loop/SKILL.md",
