@@ -62,3 +62,11 @@ def test_plan_doc_future_paths_are_not_unresolved(tmp_path):
     doc = build_docs(tmp_path)
     assert doc["stats"]["broken"] == 0
     assert doc["stats"]["unresolved"] == 0
+
+
+def test_workspace_paths_match_ausn_layout():
+    from tools.codemap.generate import ROOT, _workspace_paths
+
+    prefixes = _workspace_paths()
+    assert prefixes["ausn-control-plane/"] == ROOT
+    assert prefixes["ausn/"] == (ROOT / "..").resolve() / "ausn"

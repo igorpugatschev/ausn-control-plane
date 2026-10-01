@@ -167,6 +167,12 @@
   Открыто: рендер `.codex`/`.opencode`; terminal PASS пилота на целевой машине. **D5 закрыт (2026-10-01):**
   отсутствующий внешний репозиторий даёт typed gap (`OK (частично)`), генерация неполной карты пропускается;
   проверено в свежем клоне WSL без соседнего `qa-project` (exit 0).
+- **Универсальность, инкремент 1 (2026-10-01).** Ядро отделено от домена: `profiles/<id>/project.json` +
+  `configs/project.json` (активный профиль; env `PROJECT_PROFILE`), загрузчики `tools/profile.py` / `tools/profile.mjs`,
+  схема профиля и валидация в `validate_manifests` (в т.ч. сверка `contextRepos` с `workspace.json`); генератор
+  codemap берёт префиксы рабочего пространства и список моделей из профиля. Поведение профиля `ausn` неизменно
+  (golden-гейты: codemap/docgraph/render/bootstrap зелёные). Открыто: инкремент 2 (перенос домена в `profiles/ausn/`)
+  и 3 (`scripts/new-project.mjs`).
 - **Модель владения:** `ausn-qa-project` — записываемый продукт (commit и push сразу); исходники
   разработчиков и `ausn-ai` — только чтение (`git pull --ff-only`, локальные изменения не сбрасывать).
 - **Внешние публикации** (Jira/Confluence/Mattermost) выполняет пользователь; агент готовит текст.

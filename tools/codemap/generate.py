@@ -29,6 +29,18 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
+from tools.profile import load_active as _load_profile  # noqa: E402
+
+
+def _active_profile() -> dict:
+    """Активный профиль проекта; при отсутствии — пустой (поведение по умолчанию)."""
+    try:
+        return _load_profile(ROOT)
+    except FileNotFoundError:
+        return {}
+
 ROOT = Path(__file__).resolve().parents[2]
 MODEL_DIR = ROOT / "tools" / "codemap" / "model"
 SKIP_DIRS = {".git", "__pycache__", ".venv", "node_modules", ".mypy_cache", ".pytest_cache", ".ruff_cache", "tmp", ".local", "archive", ".superpowers", ".reports"}
@@ -319,15 +331,23 @@ def _workspace_paths() -> dict[str, Path]:
     global _WORKSPACE_PATHS
     if _WORKSPACE_PATHS is not None:
         return _WORKSPACE_PATHS
-    prefixes: dict[str, Path] = {"ausn-control-plane/": ROOT, "ausn/": ROOT.parent / "ausn"}
+    profile = _active_profile()
+    workspace_root = (ROOT / profile.get("workspaceRoot", "..")).resolve()
+    repo_prefix = profile.get("repoPrefix", "ausn")
+    namespace_dir = workspace_root / repo_prefix if repo_prefix else workspace_root
+    prefixes: dict[str, Path] = {
+        f"{profile.get('controlPlanePath', 'ausn-control-plane')}/": ROOT,
+        f"{repo_prefix}/": namespace_dir,
+    }
+    repo_namespace = f"{repo_prefix}/"
     workspace = ROOT / "configs" / "workspace.json"
     if workspace.is_file():
         data = json.loads(workspace.read_text(encoding="utf-8"))
         for repo in data.get("repos", []):
             raw = repo.get("path", "")
             absolute = (ROOT / raw).resolve()
-            name = raw.split("ausn/")[-1] if "ausn/" in raw else raw.lstrip("./")
-            prefixes[f"ausn/{name}/"] = absolute
+            name = raw.split(repo_namespace)[-1] if repo_namespace in raw else raw.lstrip("./")
+            prefixes[f"{repo_namespace}{name}/"] = absolute
             if repo.get("id"):
                 prefixes[f"{repo['id']}/"] = absolute
     _WORKSPACE_PATHS = prefixes
@@ -369,15 +389,9 @@ def doc_edges(target, path, files, dirs, named, warnings, others, degraded=False
         return {"from": rel_src, "target": token, "line": number, "severity": severity}
 
     workspace = _workspace_paths()
-    self_prefixes: set[str] = set()
-    try:
-        self_rel = target.resolve().relative_to(ROOT.parent).as_posix()
-        self_prefixes.add(f"{self_rel}/")
-    except ValueError:
-        pass
-    for prefix, directory in workspace.items():
-        if directory == target.resolve():
-            self_prefixes.add(prefix)
+    self_prefixes: set[str] = {
+        prefix for prefix, directory in workspace.items() if directory == target.resolve()
+    }
 
     def workspace_rewrite(raw):
         """Свой workspace-префикс — срезаем (резолв внутри репо); чужой — внешняя ссылка (None)."""
@@ -831,9 +845,12 @@ def run_system(do_check, allow_stale, target_override=None, root_override=None, 
 
 
 def modeled_targets():
+    wanted = set(_active_profile().get("models", {}).get("repos", []) or [])
     targets = []
     for path in sorted(MODEL_DIR.glob("*.json")):
         if path.stem == SYSTEM_MODEL_NAME:
+            continue
+        if wanted and path.stem not in wanted:
             continue
         model = load_model(path.stem)
         target = (ROOT / model["target"]).resolve()

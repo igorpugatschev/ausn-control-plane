@@ -3,13 +3,13 @@
   "title": "AUSN QA Control Plane",
   "summary": "Управляющий репозиторий QA-команды АУСН: правила, навыки, субагенты, MCP-конфигурация, методология и ретроспективы. Приложения и сборки нет; продукт работы — ausn-qa-project.",
   "target": ".",
-  "generated_at": "2026-10-01T06:27:18+00:00",
-  "target_commit": "17039a5",
+  "generated_at": "2026-10-01T11:11:44+00:00",
+  "target_commit": "f36954f",
   "target_branch": "main",
-  "target_dirty": false,
+  "target_dirty": true,
   "primary_count": 12,
   "primary_limit": 20,
-  "total_files": 127,
+  "total_files": 128,
   "nodes": [
     {
       "id": "agents",
@@ -136,7 +136,7 @@
         "tools/codemap"
       ],
       "note": "Курируемые модели и генератор карт репозиториев; выпускает codemap.json/html/lock в <repo>/docs/codemap.",
-      "files": 31
+      "files": 32
     },
     {
       "id": "retrospectives",

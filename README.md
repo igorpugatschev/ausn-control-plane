@@ -21,6 +21,8 @@
 
 ## Разделы
 
+- **Профиль проекта (универсальность).** Ядро управляющего слоя — нейтральное; доменные данные и артефакты живут в `profiles/<id>/` (АУСН — `profiles/ausn/`). Активный профиль: `configs/project.json` (`{"active": "<id>"}`), переопределяется env `PROJECT_PROFILE`. Проверка: `python tools/checks/validate_manifests.py` (`OK profile`).
+
 - [Методологическая база QA/SDET](docs/qa-methodology/README.md)
 - [Инструменты корпоративных MCP](docs/mcp.md)
 - [Индексация контекста](docs/socraticode.md)
