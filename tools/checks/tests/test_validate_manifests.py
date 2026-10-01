@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from tools.checks.validate_manifests import validate_all, validate_workspace
+from tools.checks.validate_manifests import validate_all, validate_mcp_manifest, validate_workspace
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 CONFIGS = REPO_ROOT / "configs"
@@ -98,3 +98,30 @@ def test_env_duplicate_name_is_rejected(tmp_path):
         encoding="utf-8",
     )
     assert any("duplicate" in v.lower() for v in validate_all(tmp_path)["env"])
+
+
+def test_mcp_manifest_matches_client_configs():
+    assert validate_mcp_manifest(CONFIGS) == []
+
+
+def test_mcp_manifest_rejects_bad_type(tmp_path):
+    (tmp_path / "mcp").mkdir()
+    (tmp_path / "mcp" / "servers.json").write_text(
+        json.dumps({"servers": [{"name": "x", "type": "bogus", "required": True, "clients": ["opencode"]}]}),
+        encoding="utf-8",
+    )
+    assert any("type" in v.lower() for v in validate_mcp_manifest(tmp_path))
+
+
+def test_mcp_parity_gate_has_no_drift():
+    from tools.checks import mcp_parity
+
+    assert mcp_parity.compare_all(mcp_parity.read_configs(REPO_ROOT)) == []
+
+
+def test_mcp_manifest_equals_client_configs():
+    from tools.checks import mcp_parity
+
+    configs = mcp_parity.read_configs(REPO_ROOT)
+    drift = mcp_parity.compare_manifest(REPO_ROOT / "configs" / "mcp" / "servers.json", configs)
+    assert drift == []

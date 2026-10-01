@@ -91,6 +91,30 @@ def compare_all(configs: dict[str, dict[str, dict[str, Any]]]) -> list[str]:
     return drift
 
 
+def compare_manifest(
+    manifest_path: Path, configs: dict[str, dict[str, dict[str, Any]]]
+) -> list[str]:
+    """Сверить набор серверов в клиентских конфигах с каноническим манифестом.
+
+    Манифест `configs/mcp/servers.json` — источник истины по составу; четыре клиентских
+    конфига обязаны содержать ровно те же имена серверов.
+    """
+    if not manifest_path.is_file():
+        return []
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    expected = [server["name"] for server in manifest.get("servers", [])]
+    expected_set = set(expected)
+    drift: list[str] = []
+    for client in sorted(configs):
+        present = set(configs[client])
+        for name in expected:
+            if name not in present:
+                drift.append(f"manifest: {client} не содержит сервер {name} из манифеста")
+        for extra in sorted(present - expected_set):
+            drift.append(f"manifest: {client} содержит сервер {extra}, которого нет в манифесте")
+    return drift
+
+
 def main(argv: list[str] | None = None) -> int:
     """Точка входа: печать отчёта и код возврата."""
     parser = argparse.ArgumentParser(description="Паритет MCP-конфигов control plane")
@@ -100,6 +124,7 @@ def main(argv: list[str] | None = None) -> int:
 
     configs = read_configs(args.root)
     drift = compare_all(configs)
+    drift += compare_manifest(args.root / "configs" / "mcp" / "servers.json", configs)
     if args.json:
         print(json.dumps(
             {"servers": {c: sorted(configs[c]) for c in configs}, "drift": drift},
