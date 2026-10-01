@@ -1,21 +1,21 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-10-01T10:37:38+00:00",
-  "target_commit": "ccaa4f7",
+  "generated_at": "2026-10-01T10:41:35+00:00",
+  "target_commit": "2416d04",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
     "docs": 99,
-    "edges": 431,
+    "edges": 432,
     "broken": 0,
     "unresolved": 0,
     "unreachable": 26,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 242,
+    "code-path": 243,
     "mention-skill": 83,
     "mention-agent": 41,
     "mention-command": 8,
@@ -531,7 +531,7 @@
       "id": "docs/retrospectives.md",
       "kind": "doc",
       "in": 5,
-      "out": 16
+      "out": 17
     },
     {
       "id": "docs/reviews/2026-09-17-qa-project-framework-review.md",
@@ -2661,6 +2661,12 @@
     },
     {
       "from": "docs/retrospectives.md",
+      "to": "configs/workspace.json",
+      "kind": "code-path",
+      "line": 425
+    },
+    {
+      "from": "docs/retrospectives.md",
       "to": ".agents/skills/ausn-qa-loop/SKILL.md",
       "kind": "mention-skill",
       "line": 0
@@ -3259,11 +3265,11 @@
       "degree": 22
     },
     {
-      "id": "docs/qa-methodology/README.md",
-      "degree": 21
+      "id": "docs/retrospectives.md",
+      "degree": 22
     },
     {
-      "id": "docs/retrospectives.md",
+      "id": "docs/qa-methodology/README.md",
       "degree": 21
     },
     {
