@@ -8,7 +8,7 @@
 2. Создать локальное окружение по [ENVIRONMENT-manual.md](ENVIRONMENT-manual.md); скопировать `.env.example` → `.env`
    и заполнить личные учётные данные (GitLab/GitHub/Jira — в шаблоне их нет), остальные значения уже в шаблоне.
 3. Установить runtime MCP: `npm ci --prefix tools/mcp-runtime` (Node.js 22+).
-4. Поднять инфраструктуру индекса: `docker compose -f compose.socraticode.yaml up -d`; при отсутствии модели — `ollama pull nomic-embed-text`.
+4. Инфраструктуру индекса (Qdrant/Ollama) поднимает плагин `.opencode/plugin/socraticode.js` при старте; при отсутствии модели — `ollama pull nomic-embed-text`.
 5. Открыть проект из корня и подтвердить доверие к проекту/MCP, если клиент запросит.
 6. Проверить готовность: `python tools/checks/mcp_parity.py` (паритет конфигов MCP), `python tools/codemap/generate.py --all --check` (актуальность карт репозиториев), `python tools/codemap/generate.py --system --check` (актуальность сводной карты системы ПК АУСН).
 7. Запустить первую задачу: промты в [docs/user-prompts/](docs/user-prompts/), источник истины процесса — навык `ausn-qa-loop`.

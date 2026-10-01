@@ -1,14 +1,14 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-10-01T06:12:35+00:00",
-  "target_commit": "3d9d82a",
+  "generated_at": "2026-10-01T06:25:26+00:00",
+  "target_commit": "5dc02fd",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
     "docs": 94,
-    "edges": 378,
+    "edges": 380,
     "broken": 0,
     "unresolved": 41,
     "unreachable": 25,
@@ -16,8 +16,8 @@
   },
   "kinds": {
     "code-path": 196,
-    "mention-skill": 80,
-    "mention-agent": 40,
+    "mention-skill": 81,
+    "mention-agent": 41,
     "mention-command": 7,
     "link": 54,
     "link-dir": 1
@@ -140,7 +140,7 @@
     {
       "id": ".agents/skills/ausn-qa-loop/SKILL.md",
       "kind": "doc",
-      "in": 19,
+      "in": 20,
       "out": 16
     },
     {
@@ -200,7 +200,7 @@
     {
       "id": ".opencode/agent/contract-research-agent.md",
       "kind": "doc",
-      "in": 7,
+      "in": 8,
       "out": 3
     },
     {
@@ -375,7 +375,7 @@
       "id": "docs/plans/socraticode-plugin-plan.md",
       "kind": "doc",
       "in": 0,
-      "out": 9
+      "out": 11
     },
     {
       "id": "docs/plans/system-codemap-design.md",
@@ -1193,19 +1193,19 @@
       "from": ".agents/skills/ausn-socraticode/SKILL.md",
       "to": "docs/socraticode.md",
       "kind": "code-path",
-      "line": 96
+      "line": 112
     },
     {
       "from": ".agents/skills/ausn-socraticode/SKILL.md",
       "to": "docs/retrospectives.md",
       "kind": "code-path",
-      "line": 106
+      "line": 122
     },
     {
       "from": ".agents/skills/ausn-socraticode/SKILL.md",
       "to": ".agents/skills/ausn-qa-mcp/references/socraticode.json",
       "kind": "code-path",
-      "line": 118
+      "line": 134
     },
     {
       "from": ".agents/skills/ausn-socraticode/SKILL.md",
@@ -1445,19 +1445,19 @@
       "from": "AGENTS.md",
       "to": "qa-project:docs/reports/system-codemap.md",
       "kind": "code-path",
-      "line": 119
+      "line": 126
     },
     {
       "from": "AGENTS.md",
       "to": "tools/codemap/model/system.json",
       "kind": "code-path",
-      "line": 119
+      "line": 126
     },
     {
       "from": "AGENTS.md",
       "to": "docs/archive/README.md",
       "kind": "code-path",
-      "line": 125
+      "line": 132
     },
     {
       "from": "AGENTS.md",
@@ -1727,7 +1727,7 @@
       "from": "docs/mcp.md",
       "to": "docs/socraticode.md",
       "kind": "code-path",
-      "line": 11
+      "line": 12
     },
     {
       "from": "docs/mcp.md",
@@ -1907,24 +1907,36 @@
       "from": "docs/plans/socraticode-plugin-plan.md",
       "to": ".agents/skills/ausn-socraticode/SKILL.md",
       "kind": "code-path",
-      "line": 508
+      "line": 501
     },
     {
       "from": "docs/plans/socraticode-plugin-plan.md",
       "to": "docs/socraticode.md",
       "kind": "code-path",
-      "line": 594
+      "line": 582
     },
     {
       "from": "docs/plans/socraticode-plugin-plan.md",
       "to": "docs/mcp.md",
       "kind": "code-path",
-      "line": 595
+      "line": 583
+    },
+    {
+      "from": "docs/plans/socraticode-plugin-plan.md",
+      "to": ".agents/skills/ausn-qa-loop/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
     },
     {
       "from": "docs/plans/socraticode-plugin-plan.md",
       "to": ".agents/skills/ausn-socraticode/SKILL.md",
       "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "docs/plans/socraticode-plugin-plan.md",
+      "to": ".opencode/agent/contract-research-agent.md",
+      "kind": "mention-agent",
       "line": 0
     },
     {
@@ -2483,13 +2495,13 @@
       "from": "docs/socraticode.md",
       "to": ".vscode/mcp.json",
       "kind": "code-path",
-      "line": 9
+      "line": 10
     },
     {
       "from": "docs/socraticode.md",
       "to": ".codex/config.toml",
       "kind": "code-path",
-      "line": 9
+      "line": 10
     },
     {
       "from": "docs/socraticode.md",
@@ -2501,13 +2513,13 @@
       "from": "docs/socraticode.md",
       "to": ".agents/skills/ausn-qa-mcp/references/socraticode.json",
       "kind": "code-path",
-      "line": 10
+      "line": 11
     },
     {
       "from": "docs/socraticode.md",
       "to": "tools/checks/mcp_parity.py",
       "kind": "code-path",
-      "line": 70
+      "line": 63
     },
     {
       "from": "docs/socraticode.md",
@@ -2663,109 +2675,109 @@
       "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/ausn-socraticode/SKILL.md",
       "kind": "code-path",
-      "line": 157
+      "line": 158
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/karpathy-guidelines/SKILL.md",
       "kind": "code-path",
-      "line": 158
+      "line": 159
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/socraticode.md",
       "kind": "code-path",
-      "line": 162
+      "line": 163
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/retrospectives.md",
       "kind": "code-path",
-      "line": 162
+      "line": 163
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/ausn-context/qa-source-assessment.md",
       "kind": "code-path",
-      "line": 162
+      "line": 163
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/generate.py",
       "kind": "code-path",
-      "line": 164
+      "line": 165
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/model/control-plane.json",
       "kind": "code-path",
-      "line": 164
+      "line": 165
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/model/qa-project.json",
       "kind": "code-path",
-      "line": 165
+      "line": 166
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:src/config/paths.py",
       "kind": "code-path",
-      "line": 170
+      "line": 171
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/kafka/conftest.py",
       "kind": "code-path",
-      "line": 172
+      "line": 173
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/static/test_categorizer_json_fixtures.py",
       "kind": "code-path",
-      "line": 173
+      "line": 174
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/integration/test_permission_refresh_queue_advance.py",
       "kind": "code-path",
-      "line": 179
+      "line": 180
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/db/test_permission_refresh_order.py",
       "kind": "code-path",
-      "line": 180
+      "line": 181
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:docs/reports/qa-loop-permission-refresh-order-2026-09-18.md",
       "kind": "code-path",
-      "line": 181
+      "line": 182
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/archive/README.md",
       "kind": "code-path",
-      "line": 222
+      "line": 223
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/data/kafka_topics/README.md",
       "kind": "code-path",
-      "line": 223
+      "line": 224
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/reports/external-review-portability-2026-09-24.md",
       "kind": "link",
-      "line": 230
+      "line": 231
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": ".codex/config.toml",
       "kind": "code-path",
-      "line": 230
+      "line": 231
     },
     {
       "from": "PROJECT_STATUS.md",
@@ -3079,31 +3091,31 @@
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/qa-task-flow.md",
-      "line": 159,
-      "severity": "warning"
-    },
-    {
-      "from": "PROJECT_STATUS.md",
-      "target": "references/loop-quality-gates.md",
       "line": 160,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
+      "target": "references/loop-quality-gates.md",
+      "line": 161,
+      "severity": "warning"
+    },
+    {
+      "from": "PROJECT_STATUS.md",
       "target": "ausn-qa-project/AGENTS.md",
-      "line": 198,
+      "line": 199,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/socraticode.json",
-      "line": 219,
+      "line": 220,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/socraticode.json",
-      "line": 263,
+      "line": 264,
       "severity": "warning"
     }
   ],
@@ -3138,7 +3150,7 @@
   "hubs": [
     {
       "id": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "degree": 35
+      "degree": 36
     },
     {
       "id": "AGENTS.md",

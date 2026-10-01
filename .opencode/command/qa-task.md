@@ -8,7 +8,7 @@ description: Запустить QA-TASK-FLOW (contract-first QA loop) по за�
 
 0. Актуализируй источники ПК АУСН (продуктовые репозитории — read-only, только `git pull --ff-only`)
    и обнови индексы SocratiCode (`ausn-control-plane`, `../ausn/ausn-ai`), если есть необходимость;
-   дождись завершения индексации. Watcher — активен, пока SocratiCode работает, останавливать не требуется: он завершается вместе с сервером.
+   дождись завершения индексации. Инфраструктуру (Qdrant/Ollama) поднимает плагин `.opencode/plugin/socraticode.js`; Watcher активен, пока SocratiCode работает, останавливать не требуется.
 1. Запроси у atlassian полную информацию по Jira (`jira_get_issue`: описание, changelog, комментарии,
    связанные ссылки). Jira — только provenance контракта, не структура тестов.
 2. Выполни QA-TASK-FLOW по каждой задаче отдельно (навык `ausn-qa-loop`,

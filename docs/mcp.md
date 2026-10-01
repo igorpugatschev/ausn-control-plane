@@ -7,9 +7,9 @@
 - `.opencode/opencode.jsonc` — opencode; серверы запускаются как `local` через тот же `mcp-remote`, потому что remote-серверы opencode не читают `.env`.
 - `.mcp.json` — другие совместимые клиенты.
 
-Включены Atlassian, GitLab, Mattermost, SSH, PostgreSQL, Graylog, Grafana и Playwright
-(SocratiCode — **по требованию**, см. `docs/socraticode.md`: сервер добавлен не в конфиги, а
-включается на время задачи, чтобы не платить за ~25 инструментов в каждой сессии; решение 2026-09-29).
+Включены девять серверов: SocratiCode, Atlassian, GitLab, Mattermost, SSH, PostgreSQL, Graylog,
+Grafana и Playwright. SocratiCode работает **штатно** (решение 2026-10-01): Qdrant/Ollama поднимает
+проектный плагин `.opencode/plugin/socraticode.js`, см. `docs/socraticode.md`.
 Telegram необязателен и не подключён. Источник истины — сами конфиги;
 расхождения проверяет гейт `tools/checks/mcp_parity.py`.
 

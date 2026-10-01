@@ -24,7 +24,7 @@ user stories → план → реализация → проверки → rete
 ## Сквозной цикл
 
 0. **Актуализация:** обновить продуктовые источники (read-only, `git pull --ff-only`) и локальный
-   `../ausn/ausn-ai`; актуализировать индексы SocratiCode (инфраструктура — по требованию: поднять Qdrant под задачу, `docker compose -f compose.socraticode.yaml up -d`; watcher активен, пока сервер работает).
+   `../ausn/ausn-ai`; актуализировать индексы SocratiCode (инфраструктура — штатный режим: Qdrant/Ollama поднимает плагин `.opencode/plugin/socraticode.js`; watcher активен, пока сервер работает).
 1. **Старт loop:** включить `ausn-qa-loop` в режиме `single-feature` для устойчивого функционала.
 2. **Ветка задачи:** перед изменениями QA-кода создать ветку в `../ausn/ausn-qa-project` от свежего `main`.
 3. **Анализ:** Jira/Confluence-контекст, изменения в GitLab, SocratiCode preflight, поиск источника контракта.
@@ -93,7 +93,7 @@ codebase_update(projectPath="<path>")
 codebase_status(projectPath="<path>")     # повторять до 100%
 # если индекс отсутствует:
 codebase_index(projectPath="<path>")
-# watcher включается автоматически и остаётся активным (по требованию, решение 2026-09-29)
+# watcher включается автоматически и остаётся активным (штатный режим, решение 2026-10-01)
 ```
 
 Проекты индексируются независимо: `ausn-control-plane` и `../ausn/ausn-ai`. Перед индексацией
