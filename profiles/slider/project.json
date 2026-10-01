@@ -1,0 +1,32 @@
+{
+  "id": "slider",
+  "name": "Slider",
+  "workspaceRoot": "..",
+  "repoPrefix": "slider-web",
+  "controlPlanePath": "ausn-control-plane",
+  "productRepo": "slider-qa-project",
+  "contextRepos": [],
+  "stands": {},
+  "mcp": {},
+  "jira": {
+    "projectKey": ""
+  },
+  "zephyr": {
+    "folders": {
+      "backend": "Backend",
+      "frontend": "Frontend",
+      "common": "Общее"
+    }
+  },
+  "taxonomy": {
+    "casePrefix": "[AUTO]",
+    "locale": "ru"
+  },
+  "models": {
+    "repos": [
+      "control-plane"
+    ],
+    "system": "models/system.json"
+  },
+  "workspace": "workspace.json"
+}

@@ -17,6 +17,14 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from tools.profile import load_active as load_profile  # noqa: E402
 from tools.profile import validate_profile as check_profile_fields  # noqa: E402
+from tools.profile import workspace_registry as _workspace_registry  # noqa: E402
+
+
+def _workspace_file(configs_dir: Path) -> Path:
+    try:
+        return _workspace_registry(configs_dir.parent)
+    except FileNotFoundError:
+        return configs_dir / "workspace.json"
 
 ABSOLUTE_MARKERS = ("c:\\", "\\\\", "/users/", "/home/", "/mnt/")
 ALLOWED_GROUPS = {"mcp", "gitlab", "stands", "ai"}
@@ -38,7 +46,7 @@ def _is_absolute(value: str) -> bool:
 
 
 def validate_workspace(configs_dir: Path) -> list[str]:
-    path = configs_dir / "workspace.json"
+    path = _workspace_file(configs_dir)
     if not path.is_file():
         return [f"workspace: файл не найден: {path}"]
     data = _load(path)
@@ -139,7 +147,7 @@ def validate_project_profile(configs_dir: Path) -> list[str]:
     except FileNotFoundError as error:
         return [f"profile: {error}"]
     issues = check_profile_fields(profile)
-    workspace_path = configs_dir / "workspace.json"
+    workspace_path = _workspace_file(configs_dir)
     if workspace_path.is_file():
         known = {repo.get("id") for repo in _load(workspace_path).get("repos", [])}
         for repo_id in profile.get("contextRepos", []):

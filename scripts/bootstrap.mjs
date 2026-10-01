@@ -10,6 +10,7 @@ import { readFile, writeFile, mkdir } from "node:fs/promises"
 import { existsSync, readFileSync } from "node:fs"
 import { spawnSync } from "node:child_process"
 import path from "node:path"
+import { workspaceRegistry } from "../tools/profile.mjs"
 
 const isAbsolute = (p) => path.isAbsolute(p) || /^[a-zA-Z]:/.test(p)
 
@@ -22,14 +23,22 @@ export function parseEnvNames(text) {
   return names
 }
 
-export function loadWorkspace(configsDir) {
-  return JSON.parse(readFileSync(path.join(configsDir, "workspace.json"), "utf8"))
+export function loadWorkspace(configsDir, rootDir) {
+  let registry = path.join(configsDir, "workspace.json")
+  if (rootDir) {
+    try {
+      registry = workspaceRegistry(rootDir)
+    } catch {
+      registry = path.join(configsDir, "workspace.json")
+    }
+  }
+  return JSON.parse(readFileSync(registry, "utf8"))
 }
 
 // --- read-only проверки ---
 
 export function checkWorkspace(configsDir, rootDir) {
-  const manifest = loadWorkspace(configsDir)
+  const manifest = loadWorkspace(configsDir, rootDir)
   const issues = []
   for (const repo of manifest.repos ?? []) {
     if (isAbsolute(repo.path)) issues.push(`workspace: absolute path: ${repo.id}`)
@@ -80,7 +89,7 @@ export async function checkMcp(configsDir, rootDir) {
 // --- планировщики --apply (чистые, без сайд-эффектов) ---
 
 export function planClones(configsDir, rootDir) {
-  const manifest = loadWorkspace(configsDir)
+  const manifest = loadWorkspace(configsDir, rootDir)
   const clones = []
   for (const repo of manifest.repos ?? []) {
     if (repo.required && !existsSync(path.resolve(rootDir, repo.path))) {
@@ -135,7 +144,7 @@ export function applyPlan(plan, run, flags = {}) {
 }
 
 export function manualIndexSteps(configsDir, rootDir) {
-  const manifest = loadWorkspace(configsDir)
+  const manifest = loadWorkspace(configsDir, rootDir)
   return (manifest.repos ?? [])
     .filter((repo) => repo.index && existsSync(path.resolve(rootDir, repo.path)))
     .map((repo) => `codebase_index(projectPath="<abs>/${repo.path}")`)

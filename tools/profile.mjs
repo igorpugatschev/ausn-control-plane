@@ -18,6 +18,16 @@ export function loadActive(root) {
   return JSON.parse(readFileSync(file, "utf8"))
 }
 
+export function workspaceRegistry(root) {
+  const profile = loadActive(root)
+  const relative = profile.workspace
+  if (relative) {
+    const candidate = path.join(root, "profiles", profile.id ?? "", relative)
+    if (existsSync(candidate)) return candidate
+  }
+  return path.join(root, "configs", "workspace.json")
+}
+
 export function validateProfile(profile) {
   const issues = []
   for (const key of ["id", "name"]) if (!profile?.[key]) issues.push(`profile: обязательное поле ${key}`)

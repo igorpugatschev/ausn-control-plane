@@ -36,12 +36,18 @@ export function scaffoldProject({ root, id, name, force = false }) {
     zephyr: { folders: { backend: "Backend", frontend: "Frontend", common: "Общее" } },
     taxonomy: { casePrefix: "[AUTO]", locale: "ru" },
     models: { repos: ["control-plane"], system: "models/system.json" },
+    workspace: "workspace.json",
   }
   const issues = validateProfile(profile)
   if (issues.length > 0) throw new Error(`Профиль невалиден: ${issues.join("; ")}`)
 
   for (const sub of ["skills", "docs", "models"]) mkdirSync(path.join(profileDir, sub), { recursive: true })
   writeFileSync(profileFile, JSON.stringify(profile, null, 2) + "\n", "utf8")
+  writeFileSync(
+    path.join(profileDir, "workspace.json"),
+    JSON.stringify({ root: "..", repos: [] }, null, 2) + "\n",
+    "utf8",
+  )
   writeFileSync(
     path.join(profileDir, "README.md"),
     `# Профиль ${id}\n\nЗаполните \`project.json\`: стенды, эндпоинты MCP, Jira, список репозиториев.\n` +

@@ -4,7 +4,7 @@ import { mkdir, mkdtemp, writeFile } from "node:fs/promises"
 import { tmpdir } from "node:os"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
-import { activeId, loadActive, validateProfile } from "../profile.mjs"
+import { activeId, loadActive, validateProfile, workspaceRegistry } from "../profile.mjs"
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 const repoRoot = path.resolve(here, "..", "..")
@@ -24,4 +24,8 @@ test("неизвестный профиль — ошибка", async () => {
 test("абсолютный путь — нарушение", () => {
   assert.ok(validateProfile({ id: "x", name: "X", workspaceRoot: "C:\\abs" }).length > 0)
   assert.deepEqual(validateProfile({ id: "x", name: "X", workspaceRoot: ".." }), [])
+})
+
+test("реестр репозиториев: по умолчанию общий configs/workspace.json", () => {
+  assert.equal(workspaceRegistry(repoRoot), path.join(repoRoot, "configs", "workspace.json"))
 })

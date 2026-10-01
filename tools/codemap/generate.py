@@ -32,6 +32,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from tools.profile import load_active as _load_profile  # noqa: E402
+from tools.profile import workspace_registry as _workspace_registry  # noqa: E402
 
 
 def _active_profile() -> dict:
@@ -363,7 +364,10 @@ def _workspace_paths() -> dict[str, Path]:
         f"{repo_prefix}/": namespace_dir,
     }
     repo_namespace = f"{repo_prefix}/"
-    workspace = ROOT / "configs" / "workspace.json"
+    try:
+        workspace = _workspace_registry(ROOT)
+    except FileNotFoundError:
+        workspace = ROOT / "configs" / "workspace.json"
     if workspace.is_file():
         data = json.loads(workspace.read_text(encoding="utf-8"))
         for repo in data.get("repos", []):

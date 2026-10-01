@@ -1,21 +1,21 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-10-01T12:06:02+00:00",
-  "target_commit": "788bbc0",
+  "generated_at": "2026-10-01T13:00:47+00:00",
+  "target_commit": "07f0257",
   "target_branch": "main",
-  "target_dirty": false,
+  "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
-    "docs": 101,
-    "edges": 492,
+    "docs": 102,
+    "edges": 493,
     "broken": 0,
     "unresolved": 0,
-    "unreachable": 27,
+    "unreachable": 28,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 263,
+    "code-path": 264,
     "mention-skill": 122,
     "mention-agent": 41,
     "mention-command": 9,
@@ -598,6 +598,12 @@
       "kind": "doc",
       "in": 4,
       "out": 5
+    },
+    {
+      "id": "profiles/slider/README.md",
+      "kind": "doc",
+      "in": 0,
+      "out": 1
     },
     {
       "id": "PROJECT_STATUS.md",
@@ -3170,6 +3176,12 @@
       "line": 0
     },
     {
+      "from": "profiles/slider/README.md",
+      "to": "configs/project.json",
+      "kind": "code-path",
+      "line": 5
+    },
+    {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:artifacts/categorizer-rules-from-db.json",
       "kind": "code-path",
@@ -3613,6 +3625,7 @@
     "profiles/ausn/docs/context/testing-scope.md",
     "profiles/ausn/docs/context/ui-entrypoint.md",
     "profiles/ausn/docs/evidence/2026-09-17-full-smoke-test1.md",
+    "profiles/slider/README.md",
     "PROJECT_STATUS.md"
   ],
   "warnings": [],

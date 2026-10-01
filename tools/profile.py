@@ -28,6 +28,17 @@ def load_active(root: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def workspace_registry(root: Path) -> Path:
+    """Реестр репозиториев активного профиля; иначе общий configs/workspace.json."""
+    profile = load_active(root)
+    relative = profile.get("workspace")
+    if relative:
+        candidate = root / "profiles" / profile.get("id", "") / relative
+        if candidate.is_file():
+            return candidate
+    return root / "configs" / "workspace.json"
+
+
 def validate_profile(profile: dict) -> list[str]:
     issues: list[str] = []
     for key in ("id", "name"):
