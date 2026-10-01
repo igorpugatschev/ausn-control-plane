@@ -49,6 +49,14 @@ def validate_workspace(configs_dir: Path) -> list[str]:
     path = _workspace_file(configs_dir)
     if not path.is_file():
         return [f"workspace: файл не найден: {path}"]
+    allowed_writable = set(WRITABLE_IDS)
+    try:
+        profile = load_profile(configs_dir.parent)
+        if profile.get("productRepo"):
+            allowed_writable.add(profile["productRepo"])
+        allowed_writable.update(profile.get("writableRepos", []))
+    except FileNotFoundError:
+        pass
     data = _load(path)
     issues: list[str] = []
     ids: set[str] = set()
@@ -70,8 +78,8 @@ def validate_workspace(configs_dir: Path) -> list[str]:
         paths[rpath] = access
         if access not in ALLOWED_ACCESS:
             issues.append(f"workspace: недопустимый access '{access}' у {rid}")
-        if access == "writable" and rid not in WRITABLE_IDS:
-            issues.append(f"workspace: writable разрешён только ausn-qa-project, а не {rid}")
+        if access == "writable" and rid not in allowed_writable:
+            issues.append(f"workspace: writable допустим только для продукта профиля, а не {rid}")
     return issues
 
 

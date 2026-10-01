@@ -1,4 +1,17 @@
 {
   "root": "..",
-  "repos": []
+  "repos": [
+    {"id": "slider-autotests", "path": "../slider-web/slider-autotests", "url": "https://gitlab.slider-ai.ru/pugachevigor/slider-autotests.git", "access": "writable", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "main"},
+    {"id": "slider-web-editor", "path": "../slider-web/slider-web-editor", "url": "https://gitlab.slider-ai.ru/web/front/slider-web-editor.git", "access": "read-only", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "stage"},
+    {"id": "slider-ai-dashboard-frontend", "path": "../slider-web/slider-ai-dashboard-frontend", "url": "https://gitlab.slider-ai.ru/web/front/slider-ai-dashboard-frontend.git", "access": "read-only", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "develop"},
+    {"id": "slider-ai-frontend-landing", "path": "../slider-web/slider-ai-frontend-landing", "url": "https://gitlab.slider-ai.ru/web/front/slider-ai-frontend-landing.git", "access": "read-only", "required": false, "index": true, "contextArtifacts": false, "defaultBranch": "integration"},
+    {"id": "flask-slider-webeditor", "path": "../slider-web/flask-slider-webeditor", "url": "https://gitlab.slider-ai.ru/web/back/flask-slider-webeditor.git", "access": "read-only", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "stable_master"},
+    {"id": "pptx-converter-service", "path": "../slider-web/pptx-converter-service", "url": "https://gitlab.slider-ai.ru/web/back/pptx-converter-service.git", "access": "read-only", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "dev"},
+    {"id": "web_search_yandex", "path": "../slider-web/web_search_yandex", "url": "https://gitlab.slider-ai.ru/web/back/web_search_yandex.git", "access": "read-only", "required": false, "index": true, "contextArtifacts": false, "defaultBranch": "main"},
+    {"id": "slider-charts-core", "path": "../slider-web/slider-charts-core", "url": "https://gitlab.slider-ai.ru/diagram/slider-charts-core.git", "access": "read-only", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "master"},
+    {"id": "slider-charts-ms-office", "path": "../slider-web/slider-charts-ms-office", "url": "https://gitlab.slider-ai.ru/diagram/slider-charts-ms-office.git", "access": "read-only", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "master"},
+    {"id": "slider-uikit", "path": "../slider-web/slider-uikit", "url": "https://gitlab.slider-ai.ru/libs/slider-uikit.git", "access": "read-only", "required": false, "index": true, "contextArtifacts": false, "defaultBranch": "main"},
+    {"id": "slider-deploy", "path": "../slider-web/slider-deploy", "url": "https://gitlab.slider-ai.ru/documentation/slider-deploy.git", "access": "read-only", "required": false, "index": false, "contextArtifacts": false, "defaultBranch": "main"},
+    {"id": "corporate-server", "path": "../slider-web/corporate-server", "url": "https://gitlab.slider-ai.ru/skeletons/corporate/server.git", "access": "read-only", "required": false, "index": true, "contextArtifacts": false, "defaultBranch": "main"}
+  ]
 }

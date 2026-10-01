@@ -4,8 +4,20 @@
   "workspaceRoot": "..",
   "repoPrefix": "slider-web",
   "controlPlanePath": "ausn-control-plane",
-  "productRepo": "slider-qa-project",
-  "contextRepos": [],
+  "productRepo": "slider-autotests",
+  "contextRepos": [
+    "slider-web-editor",
+    "slider-ai-dashboard-frontend",
+    "slider-ai-frontend-landing",
+    "flask-slider-webeditor",
+    "pptx-converter-service",
+    "web_search_yandex",
+    "slider-charts-core",
+    "slider-charts-ms-office",
+    "slider-uikit",
+    "slider-deploy",
+    "corporate-server"
+  ],
   "env": [
     "gitlab_login",
     "gitlab_password",
