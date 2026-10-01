@@ -2,7 +2,7 @@
 
 Назначение: готовые промты для ежедневной задачи ПК АУСН.
 
-Источник истины: навык `ausn-qa-loop` и его `ausn-control-plane/.agents/skills/ausn-qa-loop/references/loop-goal-prompts.md`; правила — корневой
+Источник истины: навык `qa-loop` и его `ausn-control-plane/.agents/skills/qa-loop/references/loop-goal-prompts.md`; правила — корневой
 `AGENTS.md`. При расхождении правим навык, а этот файл приводим в соответствие. Короткая форма запуска —
 команда `/qa-task <задача или функционал>`.
 
@@ -11,7 +11,7 @@
 Нужен, когда сначала надо понять состояние: контракт, покрытие, план — без изменения QA-кода.
 
 ```text
-/goal Используй $ausn-qa-loop в режиме regression-audit для <PKAUSN-XXXX или устойчивый функционал/UC>.
+/goal Используй $qa-loop в режиме regression-audit для <PKAUSN-XXXX или устойчивый функционал/UC>.
 
 Работай read-only: актуализируй источники (продуктовые репозитории — только git pull --ff-only)
 и при необходимости обнови индексы SocratiCode; получи Jira как provenance; найди контракт;
@@ -21,7 +21,7 @@
 ## Вариант B. Полный ежедневный цикл (single-feature)
 
 ```text
-/goal Используй $ausn-qa-loop в режиме single-feature для: <PKAUSN-XXXX или устойчивый функционал/UC>.
+/goal Используй $qa-loop в режиме single-feature для: <PKAUSN-XXXX или устойчивый функционал/UC>.
 
 Выполни ежедневный QA-TASK-FLOW:
 

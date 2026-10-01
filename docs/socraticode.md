@@ -8,7 +8,7 @@
 VS Code и Gemini CLI). Плагин гарантирует запись `socraticode` в конфиге и поднимает Qdrant/Ollama
 при старте. Пин версии синхронизирован во всех местах подключения: `.opencode/opencode.jsonc`,
 `.mcp.json`, `.vscode/mcp.json`, `.codex/config.toml`, `docs/socraticode.md`,
-`.agents/skills/ausn-qa-mcp/references/socraticode.json`.
+`.agents/skills/qa-mcp/references/socraticode.json`.
 
 Требуются Node.js >= 18, Docker и локальная Ollama с моделью `nomic-embed-text`.
 Qdrant и Ollama поднимаются автоматически плагином `.opencode/plugin/socraticode.js` при старте opencode

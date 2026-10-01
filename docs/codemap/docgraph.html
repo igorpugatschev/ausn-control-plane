@@ -19,10 +19,10 @@ pre { background: #1b1e24; border: 1px solid #2a2f37; border-radius: 10px;
 </head>
 <body>
 <h1>docgraph: control-plane</h1>
-<p class="meta-line">ветка <code>main</code> · коммит <code>0c25b43</code> (рабочая копия изменена) ·
-документов 101 · рёбер 455 · <span class="bad">битых 0</span> ·
+<p class="meta-line">ветка <code>main</code> · коммит <code>32a37bd</code> (рабочая копия изменена) ·
+документов 101 · рёбер 491 · <span class="bad">битых 0</span> ·
 неразрешённых путей 0 · недостижимых 27 ·
-warnings 0 · сгенерировано 2026-10-01T11:32:46+00:00</p>
+warnings 0 · сгенерировано 2026-10-01T12:02:50+00:00</p>
 <h2>Связи по типам</h2>
 <ul>
 <li>code-path — 262</li>
@@ -30,7 +30,7 @@ warnings 0 · сгенерировано 2026-10-01T11:32:46+00:00</p>
 <li>link-dir — 1</li>
 <li>mention-agent — 41</li>
 <li>mention-command — 9</li>
-<li>mention-skill — 86</li>
+<li>mention-skill — 122</li>
 </ul>
 <h2>Битые ссылки</h2>
 <ul>
@@ -46,13 +46,6 @@ warnings 0 · сгенерировано 2026-10-01T11:32:46+00:00</p>
 </ul>
 <h2>Документы без входящих рёбер</h2>
 <ul>
-<li><code>docs/ausn-context/review-addendum.md</code></li>
-<li><code>docs/ausn-context/scenario-map.md</code></li>
-<li><code>docs/ausn-context/test-stand-source.md</code></li>
-<li><code>docs/ausn-context/testing-authority.md</code></li>
-<li><code>docs/ausn-context/testing-scope.md</code></li>
-<li><code>docs/ausn-context/ui-entrypoint.md</code></li>
-<li><code>docs/evidence/2026-09-17-full-smoke-test1.md</code></li>
 <li><code>docs/plans/2026-09-24-control-plane-portability-fixes.md</code></li>
 <li><code>docs/plans/portability-bootstrap-plan.md</code></li>
 <li><code>docs/plans/portability-bootstrap2-design.md</code></li>
@@ -72,64 +65,71 @@ warnings 0 · сгенерировано 2026-10-01T11:32:46+00:00</p>
 <li><code>docs/user-prompts/start-regression-flow.md</code></li>
 <li><code>ENVIRONMENT.md</code></li>
 <li><code>OPENCODE_PORTABILITY_OPTIMIZATION_PROMPT.md</code></li>
+<li><code>profiles/ausn/docs/context/review-addendum.md</code></li>
+<li><code>profiles/ausn/docs/context/scenario-map.md</code></li>
+<li><code>profiles/ausn/docs/context/test-stand-source.md</code></li>
+<li><code>profiles/ausn/docs/context/testing-authority.md</code></li>
+<li><code>profiles/ausn/docs/context/testing-scope.md</code></li>
+<li><code>profiles/ausn/docs/context/ui-entrypoint.md</code></li>
+<li><code>profiles/ausn/docs/evidence/2026-09-17-full-smoke-test1.md</code></li>
 <li><code>PROJECT_STATUS.md</code></li>
 </ul>
 <h2>Хабы (входящие+исходящие)</h2>
 <ul>
 <li><code>PROJECT_STATUS.md</code> — 50</li>
-<li><code>.agents/skills/ausn-qa-loop/SKILL.md</code> — 36</li>
+<li><code>.agents/skills/qa-loop/SKILL.md</code> — 39</li>
 <li><code>AGENTS.md</code> — 36</li>
-<li><code>.agents/skills/ausn-qa-agents/SKILL.md</code> — 28</li>
-<li><code>docs/retrospectives.md</code> — 22</li>
+<li><code>.agents/skills/socraticode/SKILL.md</code> — 31</li>
+<li><code>.agents/skills/qa-agents/SKILL.md</code> — 30</li>
+<li><code>.agents/skills/qa-methodology/SKILL.md</code> — 30</li>
+<li><code>docs/retrospectives.md</code> — 23</li>
 <li><code>docs/plans/system-codemap-plan.md</code> — 21</li>
 <li><code>docs/qa-methodology/README.md</code> — 21</li>
-<li><code>.agents/skills/ausn-qa-methodology/SKILL.md</code> — 19</li>
-<li><code>.agents/skills/ausn-qa-mcp/SKILL.md</code> — 18</li>
-<li><code>docs/socraticode.md</code> — 18</li>
-<li><code>docs/ausn-context/qa-source-assessment.md</code> — 16</li>
-<li><code>.agents/skills/ausn-socraticode/SKILL.md</code> — 15</li>
-<li><code>README.md</code> — 15</li>
-<li><code>docs/plans/2026-09-24-control-plane-portability-fixes.md</code> — 15</li>
-<li><code>.opencode/command/qa-task.md</code> — 14</li>
+<li><code>.agents/skills/qa-mcp/SKILL.md</code> — 19</li>
+<li><code>docs/socraticode.md</code> — 19</li>
+<li><code>profiles/ausn/docs/context/qa-source-assessment.md</code> — 18</li>
+<li><code>README.md</code> — 17</li>
+<li><code>docs/plans/2026-09-24-control-plane-portability-fixes.md</code> — 17</li>
+<li><code>docs/plans/universal-control-plane-design.md</code> — 17</li>
 </ul>
 <h2>Граф (Mermaid)</h2>
 <pre class="mermaid">graph LR
-  ".agents/skills/ausn-api-contract-testing/SKILL.md" -->|code-path| "qa-project:tests/conftest.py"
-  ".agents/skills/ausn-context-engineering/SKILL.md" -->|code-path| "docs/ausn-context/README.md"
-  ".agents/skills/ausn-qa-agents/references/agent-roles.md" -->|code-path| ".agents/skills/ausn-qa-loop/references/qa-task-flow.md"
-  ".agents/skills/ausn-qa-agents/references/agent-roles.md" -->|code-path| ".agents/skills/ausn-qa-agents/references/qa-agent-feedback-loop.md"
-  ".agents/skills/ausn-qa-agents/references/qa-agent-feedback-loop.md" -->|code-path| ".agents/skills/ausn-qa-agents/references/test-data-strategy.md"
-  ".agents/skills/ausn-qa-agents/references/qa-agent-feedback-loop.md" -->|code-path| ".agents/skills/ausn-qa-agents/references/bug-report-template.md"
-  ".agents/skills/ausn-qa-agents/SKILL.md" -->|code-path| ".agents/skills/ausn-qa-agents/references/agent-roles.md"
-  ".agents/skills/ausn-qa-agents/SKILL.md" -->|code-path| ".agents/skills/ausn-qa-agents/references/agent-security-policy.md"
-  ".agents/skills/ausn-qa-agents/SKILL.md" -->|code-path| ".agents/skills/ausn-qa-agents/references/test-data-strategy.md"
-  ".agents/skills/ausn-qa-agents/SKILL.md" -->|code-path| ".agents/skills/ausn-qa-agents/references/qa-agent-feedback-loop.md"
-  ".agents/skills/ausn-qa-agents/SKILL.md" -->|code-path| ".agents/skills/ausn-qa-agents/references/qa-agent-metrics.md"
-  ".agents/skills/ausn-qa-agents/SKILL.md" -->|code-path| ".agents/skills/ausn-qa-agents/references/reporting-templates.md"
-  ".agents/skills/ausn-qa-agents/SKILL.md" -->|code-path| ".agents/skills/ausn-qa-agents/references/bug-report-template.md"
-  ".agents/skills/ausn-qa-loop/references/loop-ledger-schema.md" -->|code-path| "docs/ausn-context/qa-entry-context.md"
-  ".agents/skills/ausn-qa-loop/references/qa-task-flow.md" -->|code-path| "docs/qa-methodology/evidence.md"
-  ".agents/skills/ausn-qa-loop/references/qa-task-flow.md" -->|code-path| "docs/socraticode.md"
-  ".agents/skills/ausn-qa-loop/SKILL.md" -->|code-path| "docs/mcp.md"
-  ".agents/skills/ausn-qa-loop/SKILL.md" -->|code-path| "docs/ausn-context/runtime-access.md"
-  ".agents/skills/ausn-qa-loop/SKILL.md" -->|code-path| ".agents/skills/ausn-qa-loop/references/qa-task-flow.md"
-  ".agents/skills/ausn-qa-loop/SKILL.md" -->|code-path| ".agents/skills/ausn-qa-loop/references/loop-ledger-schema.md"
-  ".agents/skills/ausn-qa-loop/SKILL.md" -->|code-path| ".agents/skills/ausn-qa-loop/references/loop-quality-gates.md"
-  ".agents/skills/ausn-qa-loop/SKILL.md" -->|code-path| ".agents/skills/ausn-qa-loop/references/git-flow.md"
-  ".agents/skills/ausn-qa-loop/SKILL.md" -->|code-path| "qa-project:data/zephyr/import/layers.json"
-  ".agents/skills/ausn-qa-loop/SKILL.md" -->|code-path| "qa-project:docs/reports/zephyr-regression-plan.md"
-  ".agents/skills/ausn-qa-loop/SKILL.md" -->|code-path| "qa-project:docs/reports/smoke-gate.md"
-  ".agents/skills/ausn-qa-loop/SKILL.md" -->|code-path| "qa-project:docs/reports/regression-process.md"
-  ".agents/skills/ausn-qa-loop/SKILL.md" -->|code-path| ".agents/skills/ausn-qa-loop/references/loop-goal-prompts.md"
-  ".agents/skills/ausn-qa-mcp/references/project-context.md" -->|code-path| ".opencode/opencode.jsonc"
-  ".agents/skills/ausn-qa-mcp/references/project-context.md" -->|code-path| ".agents/skills/ausn-qa-mcp/references/test_graylog.json"
-  ".agents/skills/ausn-qa-mcp/SKILL.md" -->|code-path| ".codex/config.toml"
-  ".agents/skills/ausn-qa-mcp/SKILL.md" -->|code-path| ".vscode/mcp.json"
-  ".agents/skills/ausn-qa-mcp/SKILL.md" -->|code-path| "docs/mcp.md"
-  ".agents/skills/ausn-socraticode/SKILL.md" -->|code-path| "docs/socraticode.md"
-  ".agents/skills/ausn-socraticode/SKILL.md" -->|code-path| "docs/retrospectives.md"
-  ".agents/skills/ausn-socraticode/SKILL.md" -->|code-path| ".agents/skills/ausn-qa-mcp/references/socraticode.json"
-  ".opencode/command/qa-task.md" -->|code-path| ".agents/skills/ausn-qa-loop/references/qa-task-flow.md"
+  ".agents/skills/api-contract-testing/SKILL.md" -->|code-path| "qa-project:tests/conftest.py"
+  ".agents/skills/context-engineering/SKILL.md" -->|code-path| "profiles/ausn/docs/context/README.md"
+  ".agents/skills/qa-agents/references/agent-roles.md" -->|code-path| ".agents/skills/qa-loop/references/qa-task-flow.md"
+  ".agents/skills/qa-agents/references/agent-roles.md" -->|code-path| ".agents/skills/qa-agents/references/qa-agent-feedback-loop.md"
+  ".agents/skills/qa-agents/references/qa-agent-feedback-loop.md" -->|code-path| ".agents/skills/qa-agents/references/test-data-strategy.md"
+  ".agents/skills/qa-agents/references/qa-agent-feedback-loop.md" -->|code-path| ".agents/skills/qa-agents/references/bug-report-template.md"
+  ".agents/skills/qa-agents/SKILL.md" -->|code-path| ".agents/skills/qa-agents/references/agent-roles.md"
+  ".agents/skills/qa-agents/SKILL.md" -->|code-path| ".agents/skills/qa-agents/references/agent-security-policy.md"
+  ".agents/skills/qa-agents/SKILL.md" -->|code-path| ".agents/skills/qa-agents/references/test-data-strategy.md"
+  ".agents/skills/qa-agents/SKILL.md" -->|code-path| ".agents/skills/qa-agents/references/qa-agent-feedback-loop.md"
+  ".agents/skills/qa-agents/SKILL.md" -->|code-path| ".agents/skills/qa-agents/references/qa-agent-metrics.md"
+  ".agents/skills/qa-agents/SKILL.md" -->|code-path| ".agents/skills/qa-agents/references/reporting-templates.md"
+  ".agents/skills/qa-agents/SKILL.md" -->|code-path| ".agents/skills/qa-agents/references/bug-report-template.md"
+  ".agents/skills/qa-loop/references/loop-ledger-schema.md" -->|code-path| "profiles/ausn/docs/context/qa-entry-context.md"
+  ".agents/skills/qa-loop/references/qa-task-flow.md" -->|code-path| "docs/qa-methodology/evidence.md"
+  ".agents/skills/qa-loop/references/qa-task-flow.md" -->|code-path| "docs/socraticode.md"
+  ".agents/skills/qa-loop/SKILL.md" -->|code-path| "docs/mcp.md"
+  ".agents/skills/qa-loop/SKILL.md" -->|code-path| "profiles/ausn/docs/context/runtime-access.md"
+  ".agents/skills/qa-loop/SKILL.md" -->|code-path| ".agents/skills/qa-loop/references/qa-task-flow.md"
+  ".agents/skills/qa-loop/SKILL.md" -->|code-path| ".agents/skills/qa-loop/references/loop-ledger-schema.md"
+  ".agents/skills/qa-loop/SKILL.md" -->|code-path| ".agents/skills/qa-loop/references/loop-quality-gates.md"
+  ".agents/skills/qa-loop/SKILL.md" -->|code-path| ".agents/skills/qa-loop/references/git-flow.md"
+  ".agents/skills/qa-loop/SKILL.md" -->|code-path| "qa-project:data/zephyr/import/layers.json"
+  ".agents/skills/qa-loop/SKILL.md" -->|code-path| "qa-project:docs/reports/zephyr-regression-plan.md"
+  ".agents/skills/qa-loop/SKILL.md" -->|code-path| "qa-project:docs/reports/smoke-gate.md"
+  ".agents/skills/qa-loop/SKILL.md" -->|code-path| "qa-project:docs/reports/regression-process.md"
+  ".agents/skills/qa-loop/SKILL.md" -->|code-path| ".agents/skills/qa-loop/references/loop-goal-prompts.md"
+  ".agents/skills/qa-mcp/references/project-context.md" -->|code-path| ".opencode/opencode.jsonc"
+  ".agents/skills/qa-mcp/references/project-context.md" -->|code-path| ".agents/skills/qa-mcp/references/test_graylog.json"
+  ".agents/skills/qa-mcp/SKILL.md" -->|code-path| ".codex/config.toml"
+  ".agents/skills/qa-mcp/SKILL.md" -->|code-path| ".vscode/mcp.json"
+  ".agents/skills/qa-mcp/SKILL.md" -->|code-path| "docs/mcp.md"
+  ".agents/skills/socraticode/SKILL.md" -->|code-path| "docs/socraticode.md"
+  ".agents/skills/socraticode/SKILL.md" -->|code-path| "docs/retrospectives.md"
+  ".agents/skills/socraticode/SKILL.md" -->|code-path| ".agents/skills/qa-mcp/references/socraticode.json"
+  ".opencode/command/qa-task.md" -->|code-path| ".agents/skills/qa-loop/references/qa-task-flow.md"
   "AGENTS.md" -->|code-path| "qa-project:data/zephyr/import/layers.json"
   "AGENTS.md" -->|code-path| ".opencode/opencode.jsonc"
   "AGENTS.md" -->|code-path| "docs/mcp.md"
@@ -141,17 +141,6 @@ warnings 0 · сгенерировано 2026-10-01T11:32:46+00:00</p>
   "AGENTS.md" -->|code-path| "qa-project:docs/reports/system-codemap.md"
   "AGENTS.md" -->|code-path| "profiles/ausn/models/system.json"
   "AGENTS.md" -->|code-path| "docs/archive/README.md"
-  "docs/ausn-context/qa-source-assessment.md" -->|code-path| "profiles/ausn/skills/ausn-categorizer-lifecycle/references/categorizer-lifecycle.md"
-  "docs/ausn-context/qa-source-assessment.md" -->|code-path| "profiles/ausn/skills/ausn-postman-sync/references/postman-flow.md"
-  "docs/ausn-context/qa-source-assessment.md" -->|code-path| ".agents/skills/ausn-qa-agents/references/agent-roles.md"
-  "docs/ausn-context/qa-source-assessment.md" -->|code-path| ".opencode/command/lint.md"
-  "docs/ausn-context/qa-source-assessment.md" -->|code-path| ".opencode/command/test.md"
-  "docs/ausn-context/qa-source-assessment.md" -->|code-path| "docs/qa-methodology/evidence.md"
-  "docs/ausn-context/qa-source-assessment.md" -->|code-path| "docs/socraticode.md"
-  "docs/ausn-context/qa-source-assessment.md" -->|code-path| "qa-project:scripts/check_text_encoding.py"
-  "docs/evidence/2026-09-17-full-smoke-test1.md" -->|code-path| "qa-project:tests/api/test_uc12_payment.py"
-  "docs/evidence/2026-09-17-full-smoke-test1.md" -->|code-path| "qa-project:src/utils/application_cleanup.py"
-  "docs/evidence/2026-09-17-full-smoke-test1.md" -->|code-path| "qa-project:tests/api/test_admin_bank_rights.py"
   "docs/mcp.md" -->|code-path| ".codex/config.toml"
   "docs/mcp.md" -->|code-path| ".vscode/mcp.json"
   "docs/mcp.md" -->|code-path| ".opencode/opencode.jsonc"
@@ -196,7 +185,7 @@ warnings 0 · сгенерировано 2026-10-01T11:32:46+00:00</p>
   "docs/plans/socraticode-plugin-design.md" -->|code-path| ".vscode/mcp.json"
   "docs/plans/socraticode-plugin-design.md" -->|code-path| ".codex/config.toml"
   "docs/plans/socraticode-plugin-design.md" -->|code-path| ".opencode/opencode.jsonc"
-  "docs/plans/socraticode-plugin-design.md" -->|code-path| ".agents/skills/ausn-socraticode/SKILL.md"
+  "docs/plans/socraticode-plugin-design.md" -->|code-path| ".agents/skills/socraticode/SKILL.md"
   "docs/plans/socraticode-plugin-design.md" -->|code-path| "docs/socraticode.md"
   "docs/plans/socraticode-plugin-design.md" -->|code-path| "docs/mcp.md"
   "docs/plans/socraticode-plugin-design.md" -->|code-path| "tools/checks/mcp_parity.py"
@@ -205,14 +194,25 @@ warnings 0 · сгенерировано 2026-10-01T11:32:46+00:00</p>
   "docs/plans/socraticode-plugin-plan.md" -->|code-path| ".vscode/mcp.json"
   "docs/plans/socraticode-plugin-plan.md" -->|code-path| ".codex/config.toml"
   "docs/plans/socraticode-plugin-plan.md" -->|code-path| ".opencode/opencode.jsonc"
-  "docs/plans/socraticode-plugin-plan.md" -->|code-path| ".agents/skills/ausn-socraticode/SKILL.md"
+  "docs/plans/socraticode-plugin-plan.md" -->|code-path| ".agents/skills/socraticode/SKILL.md"
   "docs/plans/socraticode-plugin-plan.md" -->|code-path| "docs/socraticode.md"
   "docs/plans/socraticode-plugin-plan.md" -->|code-path| "docs/mcp.md"
-  "docs/plans/system-codemap-design.md" -->|code-path| "docs/ausn-context/system-map.md"
+  "docs/plans/system-codemap-design.md" -->|code-path| "profiles/ausn/docs/context/system-map.md"
   "docs/plans/system-codemap-plan-c2.md" -->|code-path| "docs/plans/system-codemap-design.md"
   "docs/plans/system-codemap-plan-c2.md" -->|code-path| "tools/codemap/system_parts.py"
   "docs/plans/system-codemap-plan-c2.md" -->|code-path| "tools/codemap/generate.py"
   "docs/plans/system-codemap-plan-c2.md" -->|code-path| "tools/codemap/system_render.py"
-  "docs/plans/system-codemap-plan-c2.md" -->|code-path| "tools/codemap/tests/test_system_parts.py"</pre>
+  "docs/plans/system-codemap-plan-c2.md" -->|code-path| "tools/codemap/tests/test_system_parts.py"
+  "docs/plans/system-codemap-plan-c2.md" -->|code-path| "tools/codemap/tests/test_system_render_parts.py"
+  "docs/plans/system-codemap-plan.md" -->|code-path| "tools/codemap/generate.py"
+  "docs/plans/system-codemap-plan.md" -->|code-path| "docs/plans/system-codemap-design.md"
+  "docs/plans/system-codemap-plan.md" -->|code-path| "tools/codemap/system_model.py"
+  "docs/plans/system-codemap-plan.md" -->|code-path| "tools/codemap/system_collect.py"
+  "docs/plans/system-codemap-plan.md" -->|code-path| "tools/codemap/system_edges.py"
+  "docs/plans/system-codemap-plan.md" -->|code-path| "tools/codemap/system_graph.py"
+  "docs/plans/system-codemap-plan.md" -->|code-path| "tools/codemap/system_render.py"
+  "docs/plans/system-codemap-plan.md" -->|code-path| "tools/codemap/vendor/README.md"
+  "docs/plans/system-codemap-plan.md" -->|code-path| "tools/codemap/tests/test_system_model.py"
+  "docs/plans/system-codemap-plan.md" -->|code-path| "qa-project:docs/reports/system-codemap.md"</pre>
 </body>
 </html>

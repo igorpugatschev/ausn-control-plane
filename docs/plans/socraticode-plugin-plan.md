@@ -498,7 +498,7 @@ git push origin main && git push github main
 **Files:**
 - Modify: `compose.socraticode.yaml` (сервис Qdrant)
 - Modify: `AGENTS.md` (вернуть штатный режим, добавить правило поиска)
-- Modify: `.agents/skills/ausn-socraticode/SKILL.md` (рабочая таблица)
+- Modify: `.agents/skills/socraticode/SKILL.md` (рабочая таблица)
 
 **Interfaces:**
 - Consumes: плагин (Tasks 2–3) как исполнитель авто-подъёма.
@@ -544,7 +544,7 @@ Run: `rg -n "по требованию" AGENTS.md`
 (позиция вендора SocratiCode).
 ```
 
-- [ ] **Step 4: Дополнить навык `.agents/skills/ausn-socraticode/SKILL.md`**
+- [ ] **Step 4: Дополнить навык `.agents/skills/socraticode/SKILL.md`**
 
 Добавить раздел «Рабочая таблица»:
 
@@ -569,7 +569,7 @@ Run: `rg -n "по требованию" AGENTS.md`
 - [ ] **Step 5: Коммит**
 
 ```bash
-git add compose.socraticode.yaml AGENTS.md .agents/skills/ausn-socraticode/SKILL.md
+git add compose.socraticode.yaml AGENTS.md .agents/skills/socraticode/SKILL.md
 git commit -m "docs(rules): штатный режим SocratiCode и правило поиска через него"
 git push origin main && git push github main
 ```
@@ -605,8 +605,8 @@ git push origin main && git push github main
 Найти все вхождения и заменить на штатный режим:
 
 Run: `grep -rn "по требованию" .agents .opencode AGENTS.md docs`
-Ожидаемые места (на 2026-10-01): `.agents/skills/ausn-socraticode/SKILL.md:78`,
-`.agents/skills/ausn-qa-loop/SKILL.md:45,96`, `.agents/skills/ausn-qa-loop/references/qa-task-flow.md:27,96,208,250,265`,
+Ожидаемые места (на 2026-10-01): `.agents/skills/socraticode/SKILL.md:78`,
+`.agents/skills/qa-loop/SKILL.md:45,96`, `.agents/skills/qa-loop/references/qa-task-flow.md:27,96,208,250,265`,
 `.opencode/command/qa-task.md:11`, `.opencode/agent/contract-research-agent.md:18`.
 
 Формулировку «инфраструктура — по требованию» заменить на «Qdrant и Ollama поднимаются автоматически

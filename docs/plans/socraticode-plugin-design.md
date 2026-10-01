@@ -61,7 +61,7 @@ Qdrant и сервера съедает рабочее время, а семан
 | `.mcp.json`, `.vscode/mcp.json`, `.codex/config.toml`, `.opencode/opencode.jsonc` | возврат сервера `socraticode` (external Qdrant/Ollama, версия закреплена) |
 | `compose.socraticode.yaml` | `restart: unless-stopped` — страховка на случай перезагрузки без сессии |
 | `AGENTS.md` | постоянное правило «сначала поиск через SocratiCode» |
-| `.agents/skills/ausn-socraticode/SKILL.md` | рабочая таблица «задача → инструмент» |
+| `.agents/skills/socraticode/SKILL.md` | рабочая таблица «задача → инструмент» |
 | `docs/socraticode.md`, `docs/mcp.md`, `PROJECT_STATUS.md`, вики (4 страницы) | откат политики «по требованию» |
 | `tools/checks/socraticode_plugin.test.mjs` | тест контракта плагина |
 

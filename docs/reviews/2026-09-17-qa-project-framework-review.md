@@ -37,7 +37,7 @@ no permissive 500, no secrets в Postman-окружениях.
    (без `unit/`/`static/`). `AGENTS.md` репозитория указывает на устаревший
 Устаревший управляющий проект заменён на `ausn-control-plane`.
 4. **Легаси-дефолты.** `.env.example` ссылается на прежний контур `192.168.20.18`
-   (известное ограничение из docs/ausn-context/test-automation-assets.md).
+   (известное ограничение из ausn-control-plane/profiles/ausn/docs/context/test-automation-assets.md).
 5. S106 (hardcoded-password-func-arg) в тестах — при фиксе проследить, чтобы реальные
    токены не попали в коммит; использовать синтетические значения.
 

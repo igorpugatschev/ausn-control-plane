@@ -3,12 +3,12 @@
 Назначение: пройти по задачам текущего релиза в статусе Done и определить, покрыты ли связанные
 требования актуальными автотестами; закрыть пробелы через ежедневный QA-TASK-FLOW.
 
-Источник истины: навык `ausn-qa-loop` (режимы `regression-audit` и `single-feature`) и его
-`ausn-control-plane/.agents/skills/ausn-qa-loop/references/qa-task-flow.md`, `ausn-control-plane/.agents/skills/ausn-qa-loop/references/loop-ledger-schema.md`, `ausn-control-plane/.agents/skills/ausn-qa-loop/references/loop-quality-gates.md`;
+Источник истины: навык `qa-loop` (режимы `regression-audit` и `single-feature`) и его
+`ausn-control-plane/.agents/skills/qa-loop/references/qa-task-flow.md`, `ausn-control-plane/.agents/skills/qa-loop/references/loop-ledger-schema.md`, `ausn-control-plane/.agents/skills/qa-loop/references/loop-quality-gates.md`;
 правила — корневой `AGENTS.md`. Подставьте `<VERSION>`/ссылку на релиз.
 
 ```text
-/goal Используй $ausn-qa-loop в режиме regression-audit для контроля полноты автоматизированного покрытия
+/goal Используй $qa-loop в режиме regression-audit для контроля полноты автоматизированного покрытия
 задач релиза ПК АУСН в статусе Done.
 
 Релиз: <ссылка на релиз или fixVersion, например https://jira.rocketscien.se/projects/PKAUSN/versions/<ID>>

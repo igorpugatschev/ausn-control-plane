@@ -42,7 +42,7 @@
       "paths": [
         ".agents/skills"
       ],
-      "note": "11 навыков: ausn-qa-loop, ausn-socraticode (высший приоритет), ausn-qa-mcp, ausn-qa-agents, ausn-qa-methodology, ausn-api-contract-testing, ausn-categorizer-lifecycle, ausn-source-driven-development, ausn-context-engineering, ausn-postman-sync, karpathy-guidelines.",
+      "note": "11 навыков: qa-loop, socraticode (высший приоритет), qa-mcp, qa-agents, qa-methodology, api-contract-testing, categorizer-lifecycle, source-driven-development, context-engineering, postman-sync, karpathy-guidelines.",
       "files": 33
     },
     {
@@ -62,7 +62,7 @@
       "kind": "docs",
       "role": "primary",
       "paths": [
-        "docs/ausn-context"
+        "ausn-control-plane/profiles/ausn/docs/context"
       ],
       "note": "Проверяемый снимок контекста ПК АУСН перед тестированием; вход — README, свежесть — по реестру источников.",
       "files": 14
@@ -155,7 +155,7 @@
       "kind": "docs",
       "role": "secondary",
       "paths": [
-        "docs/evidence",
+        "ausn-control-plane/profiles/ausn/docs/evidence",
         "docs/reviews"
       ],
       "note": "Артефакты доказательной базы и отчёты ревью.",

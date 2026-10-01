@@ -3,7 +3,7 @@
     {
       "name": "skills",
       "path": ".agents/skills",
-      "description": "Проектные навыки AI (SKILL.md и references): ausn-qa-loop, ausn-qa-mcp, ausn-qa-methodology, ausn-qa-agents, ausn-source-driven-development, ausn-api-contract-testing, ausn-context-engineering, ausn-categorizer-lifecycle, ausn-postman-sync."
+      "description": "Проектные навыки AI (SKILL.md и references): qa-loop, qa-mcp, qa-methodology, qa-agents, source-driven-development, api-contract-testing, context-engineering, categorizer-lifecycle, postman-sync."
     },
     {
       "name": "subagents",

@@ -34,7 +34,7 @@
 }
 ```
 
-Значения АУСН переносятся из текущих `configs/workspace.json`, `docs/ausn-context/*`, адресов MCP и справочника Zephyr.
+Значения АУСН переносятся из текущих `configs/workspace.json`, `ausn-control-plane/profiles/ausn/docs/context/*`, адресов MCP и справочника Zephyr.
 
 ## Загрузка и приоритеты
 

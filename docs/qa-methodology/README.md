@@ -14,7 +14,7 @@
 - Для готовых форм: [шаблоны](templates.md).
 - Для происхождения рекомендаций и продолжения чтения: [источники и границы изучения](sources.md), [машиночитаемый реестр](source-manifest.json).
 
-AI-точка входа: [ausn-qa-methodology](../../.agents/skills/ausn-qa-methodology/SKILL.md). Другой специалист или модель может работать непосредственно с Markdown без установки плагинов. Клонировать нужно весь control-plane: навык ссылается на документы внутри него.
+AI-точка входа: [qa-methodology](../../.agents/skills/qa-methodology/SKILL.md). Другой специалист или модель может работать непосредственно с Markdown без установки плагинов. Клонировать нужно весь control-plane: навык ссылается на документы внутри него.
 
 ## Связь с навыками проекта
 
@@ -26,12 +26,12 @@ AI-точка входа: [ausn-qa-methodology](../../.agents/skills/ausn-qa-met
 
 | Раздел базы | Где применён | Правило, выросшее отсюда |
 | --- | --- | --- |
-| `foundations.md` | `ausn-qa-loop` (Discover), `ausn-source-driven-development` | риски и неизвестные фиксируются до дизайна; отсутствие источника — вопрос, а не выдуманное ожидание |
-| `test-design.md` | `ausn-qa-loop` (Design), `ausn-qa-agents` (структура тест-плана и тестовые данные) | состав проверок по риску: positive, negative, boundary, permissions, idempotency, async |
-| `system-testing.md` | `ausn-api-contract-testing`, `ausn-categorizer-lifecycle` | проверять тело и модель, а не только статус; асинхронные эффекты подтверждаются в БД и логах |
-| `automation.md` | `ausn-api-contract-testing`, `ausn-categorizer-lifecycle`, `ausn-qa-loop` | изоляция и cleanup данных, устойчивость параллельного запуска, минимальный fix вместо ослабления assertion |
-| `evidence.md` | `ausn-qa-loop` (Triage/Retest), `ausn-source-driven-development`, `ausn-qa-agents` | цепочка «риск → условие → действие → наблюдение → оракул»; классификация падений; разделение наблюдённого, ожидаемого и непроверенного |
-| `templates.md` | `ausn-qa-loop` (ledger и отчёт), `ausn-qa-agents` (формы результата) | формы результата: карта проверки, тестовая идея, дефект, итог проверки — без обещаний и универсальных процентов |
+| `foundations.md` | `qa-loop` (Discover), `source-driven-development` | риски и неизвестные фиксируются до дизайна; отсутствие источника — вопрос, а не выдуманное ожидание |
+| `test-design.md` | `qa-loop` (Design), `qa-agents` (структура тест-плана и тестовые данные) | состав проверок по риску: positive, negative, boundary, permissions, idempotency, async |
+| `system-testing.md` | `api-contract-testing`, `categorizer-lifecycle` | проверять тело и модель, а не только статус; асинхронные эффекты подтверждаются в БД и логах |
+| `automation.md` | `api-contract-testing`, `categorizer-lifecycle`, `qa-loop` | изоляция и cleanup данных, устойчивость параллельного запуска, минимальный fix вместо ослабления assertion |
+| `evidence.md` | `qa-loop` (Triage/Retest), `source-driven-development`, `qa-agents` | цепочка «риск → условие → действие → наблюдение → оракул»; классификация падений; разделение наблюдённого, ожидаемого и непроверенного |
+| `templates.md` | `qa-loop` (ledger и отчёт), `qa-agents` (формы результата) | формы результата: карта проверки, тестовая идея, дефект, итог проверки — без обещаний и универсальных процентов |
 
 ## Что действительно изучено
 

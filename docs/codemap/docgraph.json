@@ -1,14 +1,14 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-10-01T11:32:46+00:00",
-  "target_commit": "0c25b43",
+  "generated_at": "2026-10-01T12:02:50+00:00",
+  "target_commit": "32a37bd",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
     "docs": 101,
-    "edges": 455,
+    "edges": 491,
     "broken": 0,
     "unresolved": 0,
     "unreachable": 27,
@@ -16,7 +16,7 @@
   },
   "kinds": {
     "code-path": 262,
-    "mention-skill": 86,
+    "mention-skill": 122,
     "mention-agent": 41,
     "mention-command": 9,
     "link": 56,
@@ -24,148 +24,148 @@
   },
   "nodes": [
     {
-      "id": ".agents/skills/ausn-api-contract-testing/SKILL.md",
+      "id": ".agents/skills/api-contract-testing/SKILL.md",
       "kind": "doc",
-      "in": 6,
-      "out": 3
-    },
-    {
-      "id": ".agents/skills/ausn-context-engineering/SKILL.md",
-      "kind": "doc",
-      "in": 3,
-      "out": 2
-    },
-    {
-      "id": ".agents/skills/ausn-qa-agents/references/agent-roles.md",
-      "kind": "doc",
-      "in": 2,
-      "out": 10
-    },
-    {
-      "id": ".agents/skills/ausn-qa-agents/references/agent-security-policy.md",
-      "kind": "doc",
-      "in": 1,
-      "out": 0
-    },
-    {
-      "id": ".agents/skills/ausn-qa-agents/references/bug-report-template.md",
-      "kind": "doc",
-      "in": 2,
-      "out": 0
-    },
-    {
-      "id": ".agents/skills/ausn-qa-agents/references/qa-agent-feedback-loop.md",
-      "kind": "doc",
-      "in": 2,
-      "out": 2
-    },
-    {
-      "id": ".agents/skills/ausn-qa-agents/references/qa-agent-metrics.md",
-      "kind": "doc",
-      "in": 1,
-      "out": 0
-    },
-    {
-      "id": ".agents/skills/ausn-qa-agents/references/reporting-templates.md",
-      "kind": "doc",
-      "in": 1,
-      "out": 0
-    },
-    {
-      "id": ".agents/skills/ausn-qa-agents/references/test-data-strategy.md",
-      "kind": "doc",
-      "in": 2,
-      "out": 0
-    },
-    {
-      "id": ".agents/skills/ausn-qa-agents/SKILL.md",
-      "kind": "doc",
-      "in": 11,
-      "out": 17
-    },
-    {
-      "id": ".agents/skills/ausn-qa-loop/references/git-flow.md",
-      "kind": "doc",
-      "in": 1,
-      "out": 0
-    },
-    {
-      "id": ".agents/skills/ausn-qa-loop/references/loop-goal-prompts.md",
-      "kind": "doc",
-      "in": 2,
-      "out": 2
-    },
-    {
-      "id": ".agents/skills/ausn-qa-loop/references/loop-ledger-schema.md",
-      "kind": "doc",
-      "in": 2,
-      "out": 1
-    },
-    {
-      "id": ".agents/skills/ausn-qa-loop/references/loop-quality-gates.md",
-      "kind": "doc",
-      "in": 3,
-      "out": 0
-    },
-    {
-      "id": ".agents/skills/ausn-qa-loop/references/qa-task-flow.md",
-      "kind": "doc",
-      "in": 5,
+      "in": 7,
       "out": 4
     },
     {
-      "id": ".agents/skills/ausn-qa-loop/SKILL.md",
+      "id": ".agents/skills/context-engineering/SKILL.md",
       "kind": "doc",
-      "in": 20,
-      "out": 16
-    },
-    {
-      "id": ".agents/skills/ausn-qa-mcp/references/catalog.md",
-      "kind": "doc",
-      "in": 1,
-      "out": 9
-    },
-    {
-      "id": ".agents/skills/ausn-qa-mcp/references/project-context.md",
-      "kind": "doc",
-      "in": 1,
-      "out": 3
-    },
-    {
-      "id": ".agents/skills/ausn-qa-mcp/references/workflows.md",
-      "kind": "doc",
-      "in": 1,
-      "out": 0
-    },
-    {
-      "id": ".agents/skills/ausn-qa-mcp/SKILL.md",
-      "kind": "doc",
-      "in": 10,
-      "out": 8
-    },
-    {
-      "id": ".agents/skills/ausn-qa-methodology/SKILL.md",
-      "kind": "doc",
-      "in": 9,
-      "out": 10
-    },
-    {
-      "id": ".agents/skills/ausn-socraticode/SKILL.md",
-      "kind": "doc",
-      "in": 10,
-      "out": 5
-    },
-    {
-      "id": ".agents/skills/ausn-source-driven-development/SKILL.md",
-      "kind": "doc",
-      "in": 6,
-      "out": 1
+      "in": 4,
+      "out": 2
     },
     {
       "id": ".agents/skills/karpathy-guidelines/SKILL.md",
       "kind": "doc",
       "in": 6,
       "out": 1
+    },
+    {
+      "id": ".agents/skills/qa-agents/references/agent-roles.md",
+      "kind": "doc",
+      "in": 2,
+      "out": 10
+    },
+    {
+      "id": ".agents/skills/qa-agents/references/agent-security-policy.md",
+      "kind": "doc",
+      "in": 1,
+      "out": 0
+    },
+    {
+      "id": ".agents/skills/qa-agents/references/bug-report-template.md",
+      "kind": "doc",
+      "in": 2,
+      "out": 0
+    },
+    {
+      "id": ".agents/skills/qa-agents/references/qa-agent-feedback-loop.md",
+      "kind": "doc",
+      "in": 2,
+      "out": 2
+    },
+    {
+      "id": ".agents/skills/qa-agents/references/qa-agent-metrics.md",
+      "kind": "doc",
+      "in": 1,
+      "out": 0
+    },
+    {
+      "id": ".agents/skills/qa-agents/references/reporting-templates.md",
+      "kind": "doc",
+      "in": 1,
+      "out": 0
+    },
+    {
+      "id": ".agents/skills/qa-agents/references/test-data-strategy.md",
+      "kind": "doc",
+      "in": 2,
+      "out": 0
+    },
+    {
+      "id": ".agents/skills/qa-agents/SKILL.md",
+      "kind": "doc",
+      "in": 12,
+      "out": 18
+    },
+    {
+      "id": ".agents/skills/qa-loop/references/git-flow.md",
+      "kind": "doc",
+      "in": 1,
+      "out": 0
+    },
+    {
+      "id": ".agents/skills/qa-loop/references/loop-goal-prompts.md",
+      "kind": "doc",
+      "in": 2,
+      "out": 2
+    },
+    {
+      "id": ".agents/skills/qa-loop/references/loop-ledger-schema.md",
+      "kind": "doc",
+      "in": 2,
+      "out": 3
+    },
+    {
+      "id": ".agents/skills/qa-loop/references/loop-quality-gates.md",
+      "kind": "doc",
+      "in": 3,
+      "out": 0
+    },
+    {
+      "id": ".agents/skills/qa-loop/references/qa-task-flow.md",
+      "kind": "doc",
+      "in": 5,
+      "out": 6
+    },
+    {
+      "id": ".agents/skills/qa-loop/SKILL.md",
+      "kind": "doc",
+      "in": 23,
+      "out": 16
+    },
+    {
+      "id": ".agents/skills/qa-mcp/references/catalog.md",
+      "kind": "doc",
+      "in": 1,
+      "out": 10
+    },
+    {
+      "id": ".agents/skills/qa-mcp/references/project-context.md",
+      "kind": "doc",
+      "in": 1,
+      "out": 3
+    },
+    {
+      "id": ".agents/skills/qa-mcp/references/workflows.md",
+      "kind": "doc",
+      "in": 1,
+      "out": 0
+    },
+    {
+      "id": ".agents/skills/qa-mcp/SKILL.md",
+      "kind": "doc",
+      "in": 11,
+      "out": 8
+    },
+    {
+      "id": ".agents/skills/qa-methodology/SKILL.md",
+      "kind": "doc",
+      "in": 20,
+      "out": 10
+    },
+    {
+      "id": ".agents/skills/socraticode/SKILL.md",
+      "kind": "doc",
+      "in": 26,
+      "out": 5
+    },
+    {
+      "id": ".agents/skills/source-driven-development/SKILL.md",
+      "kind": "doc",
+      "in": 8,
+      "out": 2
     },
     {
       "id": ".opencode/agent/ci-triage-agent.md",
@@ -219,7 +219,7 @@
       "id": ".opencode/command/qa-task.md",
       "kind": "doc",
       "in": 10,
-      "out": 4
+      "out": 5
     },
     {
       "id": ".opencode/command/test.md",
@@ -234,130 +234,34 @@
       "out": 34
     },
     {
-      "id": "docs/ausn-context/current-state.md",
-      "kind": "doc",
-      "in": 1,
-      "out": 0
-    },
-    {
-      "id": "docs/ausn-context/evidence-register.md",
-      "kind": "doc",
-      "in": 2,
-      "out": 0
-    },
-    {
-      "id": "docs/ausn-context/qa-entry-context.md",
-      "kind": "doc",
-      "in": 2,
-      "out": 0
-    },
-    {
-      "id": "docs/ausn-context/qa-source-assessment.md",
-      "kind": "doc",
-      "in": 1,
-      "out": 15
-    },
-    {
-      "id": "docs/ausn-context/README.md",
-      "kind": "doc",
-      "in": 4,
-      "out": 6
-    },
-    {
-      "id": "docs/ausn-context/review-addendum.md",
-      "kind": "doc",
-      "in": 0,
-      "out": 0
-    },
-    {
-      "id": "docs/ausn-context/runtime-access.md",
-      "kind": "doc",
-      "in": 2,
-      "out": 0
-    },
-    {
-      "id": "docs/ausn-context/scenario-map.md",
-      "kind": "doc",
-      "in": 0,
-      "out": 0
-    },
-    {
-      "id": "docs/ausn-context/system-map.md",
-      "kind": "doc",
-      "in": 5,
-      "out": 0
-    },
-    {
-      "id": "docs/ausn-context/test-automation-assets.md",
-      "kind": "doc",
-      "in": 1,
-      "out": 0
-    },
-    {
-      "id": "docs/ausn-context/test-stand-source.md",
-      "kind": "doc",
-      "in": 0,
-      "out": 0
-    },
-    {
-      "id": "docs/ausn-context/testing-authority.md",
-      "kind": "doc",
-      "in": 0,
-      "out": 0
-    },
-    {
-      "id": "docs/ausn-context/testing-scope.md",
-      "kind": "doc",
-      "in": 0,
-      "out": 0
-    },
-    {
-      "id": "docs/ausn-context/ui-entrypoint.md",
-      "kind": "doc",
-      "in": 0,
-      "out": 0
-    },
-    {
-      "id": "docs/evidence/2026-09-17-full-smoke-test1.md",
-      "kind": "doc",
-      "in": 0,
-      "out": 4
-    },
-    {
-      "id": "docs/evidence/2026-09-17-smoke-test1.md",
-      "kind": "doc",
-      "in": 1,
-      "out": 0
-    },
-    {
       "id": "docs/mcp.md",
       "kind": "doc",
       "in": 7,
-      "out": 5
+      "out": 6
     },
     {
       "id": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
       "kind": "doc",
       "in": 0,
-      "out": 15
+      "out": 17
     },
     {
       "id": "docs/plans/portability-bootstrap-design.md",
       "kind": "doc",
       "in": 2,
-      "out": 8
+      "out": 9
     },
     {
       "id": "docs/plans/portability-bootstrap-plan.md",
       "kind": "doc",
       "in": 0,
-      "out": 7
+      "out": 8
     },
     {
       "id": "docs/plans/portability-bootstrap2-design.md",
       "kind": "doc",
       "in": 0,
-      "out": 7
+      "out": 8
     },
     {
       "id": "docs/plans/socraticode-plugin-design.md",
@@ -393,7 +297,7 @@
       "id": "docs/plans/universal-control-plane-design.md",
       "kind": "doc",
       "in": 1,
-      "out": 8
+      "out": 16
     },
     {
       "id": "docs/plans/universal-control-plane-plan.md",
@@ -405,7 +309,7 @@
       "id": "docs/portability-clean-clone-pilot.md",
       "kind": "doc",
       "in": 3,
-      "out": 2
+      "out": 3
     },
     {
       "id": "docs/presentations/README.md",
@@ -489,7 +393,7 @@
       "id": "docs/reports/external-review-portability-2026-09-24.md",
       "kind": "doc",
       "in": 2,
-      "out": 5
+      "out": 6
     },
     {
       "id": "docs/reports/methodology-usage-audit-2026-09-23.md",
@@ -519,19 +423,19 @@
       "id": "docs/retrospectives.md",
       "kind": "doc",
       "in": 5,
-      "out": 17
+      "out": 18
     },
     {
       "id": "docs/reviews/2026-09-17-qa-project-framework-review.md",
       "kind": "doc",
       "in": 0,
-      "out": 4
+      "out": 5
     },
     {
       "id": "docs/socraticode.md",
       "kind": "doc",
       "in": 11,
-      "out": 7
+      "out": 8
     },
     {
       "id": "docs/user-prompts/daily-flow.md",
@@ -567,34 +471,130 @@
       "id": "ENVIRONMENT.md",
       "kind": "doc",
       "in": 0,
-      "out": 0
+      "out": 1
     },
     {
       "id": "OPENCODE_PORTABILITY_OPTIMIZATION_PROMPT.md",
       "kind": "doc",
       "in": 0,
-      "out": 0
-    },
-    {
-      "id": "profiles/ausn/skills/ausn-categorizer-lifecycle/references/categorizer-lifecycle.md",
-      "kind": "doc",
-      "in": 2,
       "out": 1
     },
     {
-      "id": "profiles/ausn/skills/ausn-categorizer-lifecycle/SKILL.md",
+      "id": "profiles/ausn/docs/context/current-state.md",
       "kind": "doc",
-      "in": 6,
-      "out": 5
+      "in": 1,
+      "out": 0
     },
     {
-      "id": "profiles/ausn/skills/ausn-postman-sync/references/postman-flow.md",
+      "id": "profiles/ausn/docs/context/evidence-register.md",
+      "kind": "doc",
+      "in": 2,
+      "out": 0
+    },
+    {
+      "id": "profiles/ausn/docs/context/qa-entry-context.md",
+      "kind": "doc",
+      "in": 2,
+      "out": 0
+    },
+    {
+      "id": "profiles/ausn/docs/context/qa-source-assessment.md",
+      "kind": "doc",
+      "in": 1,
+      "out": 17
+    },
+    {
+      "id": "profiles/ausn/docs/context/README.md",
+      "kind": "doc",
+      "in": 4,
+      "out": 6
+    },
+    {
+      "id": "profiles/ausn/docs/context/review-addendum.md",
+      "kind": "doc",
+      "in": 0,
+      "out": 0
+    },
+    {
+      "id": "profiles/ausn/docs/context/runtime-access.md",
+      "kind": "doc",
+      "in": 2,
+      "out": 0
+    },
+    {
+      "id": "profiles/ausn/docs/context/scenario-map.md",
+      "kind": "doc",
+      "in": 0,
+      "out": 0
+    },
+    {
+      "id": "profiles/ausn/docs/context/system-map.md",
+      "kind": "doc",
+      "in": 5,
+      "out": 0
+    },
+    {
+      "id": "profiles/ausn/docs/context/test-automation-assets.md",
+      "kind": "doc",
+      "in": 1,
+      "out": 0
+    },
+    {
+      "id": "profiles/ausn/docs/context/test-stand-source.md",
+      "kind": "doc",
+      "in": 0,
+      "out": 0
+    },
+    {
+      "id": "profiles/ausn/docs/context/testing-authority.md",
+      "kind": "doc",
+      "in": 0,
+      "out": 0
+    },
+    {
+      "id": "profiles/ausn/docs/context/testing-scope.md",
+      "kind": "doc",
+      "in": 0,
+      "out": 0
+    },
+    {
+      "id": "profiles/ausn/docs/context/ui-entrypoint.md",
+      "kind": "doc",
+      "in": 0,
+      "out": 0
+    },
+    {
+      "id": "profiles/ausn/docs/evidence/2026-09-17-full-smoke-test1.md",
+      "kind": "doc",
+      "in": 0,
+      "out": 4
+    },
+    {
+      "id": "profiles/ausn/docs/evidence/2026-09-17-smoke-test1.md",
+      "kind": "doc",
+      "in": 1,
+      "out": 0
+    },
+    {
+      "id": "profiles/ausn/skills/categorizer-lifecycle/references/categorizer-lifecycle.md",
       "kind": "doc",
       "in": 2,
       "out": 2
     },
     {
-      "id": "profiles/ausn/skills/ausn-postman-sync/SKILL.md",
+      "id": "profiles/ausn/skills/categorizer-lifecycle/SKILL.md",
+      "kind": "doc",
+      "in": 6,
+      "out": 6
+    },
+    {
+      "id": "profiles/ausn/skills/postman-sync/references/postman-flow.md",
+      "kind": "doc",
+      "in": 2,
+      "out": 2
+    },
+    {
+      "id": "profiles/ausn/skills/postman-sync/SKILL.md",
       "kind": "doc",
       "in": 4,
       "out": 5
@@ -609,7 +609,7 @@
       "id": "README.md",
       "kind": "doc",
       "in": 0,
-      "out": 15
+      "out": 17
     },
     {
       "id": "REPOSITORIES.md",
@@ -632,560 +632,38 @@
   ],
   "edges": [
     {
-      "from": ".agents/skills/ausn-api-contract-testing/SKILL.md",
+      "from": ".agents/skills/api-contract-testing/SKILL.md",
       "to": "qa-project:tests/conftest.py",
       "kind": "code-path",
       "line": 28
     },
     {
-      "from": ".agents/skills/ausn-api-contract-testing/SKILL.md",
-      "to": ".agents/skills/ausn-api-contract-testing/SKILL.md",
+      "from": ".agents/skills/api-contract-testing/SKILL.md",
+      "to": ".agents/skills/api-contract-testing/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
     {
-      "from": ".agents/skills/ausn-api-contract-testing/SKILL.md",
-      "to": ".agents/skills/ausn-source-driven-development/SKILL.md",
+      "from": ".agents/skills/api-contract-testing/SKILL.md",
+      "to": ".agents/skills/qa-methodology/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
     {
-      "from": ".agents/skills/ausn-context-engineering/SKILL.md",
-      "to": "docs/ausn-context/README.md",
+      "from": ".agents/skills/api-contract-testing/SKILL.md",
+      "to": ".agents/skills/source-driven-development/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/context-engineering/SKILL.md",
+      "to": "profiles/ausn/docs/context/README.md",
       "kind": "code-path",
       "line": 16
     },
     {
-      "from": ".agents/skills/ausn-context-engineering/SKILL.md",
-      "to": ".agents/skills/ausn-context-engineering/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/references/agent-roles.md",
-      "to": ".agents/skills/ausn-qa-loop/references/qa-task-flow.md",
-      "kind": "code-path",
-      "line": 13
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/references/agent-roles.md",
-      "to": ".agents/skills/ausn-qa-agents/references/qa-agent-feedback-loop.md",
-      "kind": "code-path",
-      "line": 213
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/references/agent-roles.md",
-      "to": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/references/agent-roles.md",
-      "to": ".agents/skills/ausn-qa-methodology/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/references/agent-roles.md",
-      "to": ".opencode/agent/ci-triage-agent.md",
-      "kind": "mention-agent",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/references/agent-roles.md",
-      "to": ".opencode/agent/contract-research-agent.md",
-      "kind": "mention-agent",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/references/agent-roles.md",
-      "to": ".opencode/agent/review-agent.md",
-      "kind": "mention-agent",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/references/agent-roles.md",
-      "to": ".opencode/agent/test-design-agent.md",
-      "kind": "mention-agent",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/references/agent-roles.md",
-      "to": ".opencode/agent/test-implementation-agent.md",
-      "kind": "mention-agent",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/references/agent-roles.md",
-      "to": ".opencode/agent/test-maintenance-agent.md",
-      "kind": "mention-agent",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/references/qa-agent-feedback-loop.md",
-      "to": ".agents/skills/ausn-qa-agents/references/test-data-strategy.md",
-      "kind": "code-path",
-      "line": 44
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/references/qa-agent-feedback-loop.md",
-      "to": ".agents/skills/ausn-qa-agents/references/bug-report-template.md",
-      "kind": "code-path",
-      "line": 46
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/SKILL.md",
-      "to": ".agents/skills/ausn-qa-agents/references/agent-roles.md",
-      "kind": "code-path",
-      "line": 29
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/SKILL.md",
-      "to": ".agents/skills/ausn-qa-agents/references/agent-security-policy.md",
-      "kind": "code-path",
-      "line": 36
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/SKILL.md",
-      "to": ".agents/skills/ausn-qa-agents/references/test-data-strategy.md",
-      "kind": "code-path",
-      "line": 45
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/SKILL.md",
-      "to": ".agents/skills/ausn-qa-agents/references/qa-agent-feedback-loop.md",
-      "kind": "code-path",
-      "line": 50
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/SKILL.md",
-      "to": ".agents/skills/ausn-qa-agents/references/qa-agent-metrics.md",
-      "kind": "code-path",
-      "line": 52
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/SKILL.md",
-      "to": ".agents/skills/ausn-qa-agents/references/reporting-templates.md",
-      "kind": "code-path",
-      "line": 56
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/SKILL.md",
-      "to": ".agents/skills/ausn-qa-agents/references/bug-report-template.md",
-      "kind": "code-path",
-      "line": 57
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/SKILL.md",
-      "to": ".agents/skills/ausn-qa-agents/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/SKILL.md",
-      "to": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/SKILL.md",
-      "to": ".opencode/agent/ci-triage-agent.md",
-      "kind": "mention-agent",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/SKILL.md",
-      "to": ".opencode/agent/contract-research-agent.md",
-      "kind": "mention-agent",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/SKILL.md",
-      "to": ".opencode/agent/docs-agent.md",
-      "kind": "mention-agent",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/SKILL.md",
-      "to": ".opencode/agent/review-agent.md",
-      "kind": "mention-agent",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/SKILL.md",
-      "to": ".opencode/agent/test-design-agent.md",
-      "kind": "mention-agent",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/SKILL.md",
-      "to": ".opencode/agent/test-implementation-agent.md",
-      "kind": "mention-agent",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/SKILL.md",
-      "to": ".opencode/agent/test-maintenance-agent.md",
-      "kind": "mention-agent",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-agents/SKILL.md",
-      "to": ".opencode/command/qa-task.md",
-      "kind": "mention-command",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/references/loop-goal-prompts.md",
-      "to": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/references/loop-goal-prompts.md",
-      "to": ".opencode/command/qa-task.md",
-      "kind": "mention-command",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/references/loop-ledger-schema.md",
-      "to": "docs/ausn-context/qa-entry-context.md",
-      "kind": "code-path",
-      "line": 36
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/references/qa-task-flow.md",
-      "to": "docs/qa-methodology/evidence.md",
-      "kind": "code-path",
-      "line": 16
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/references/qa-task-flow.md",
-      "to": "docs/socraticode.md",
-      "kind": "code-path",
-      "line": 40
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/references/qa-task-flow.md",
-      "to": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/references/qa-task-flow.md",
-      "to": ".opencode/command/qa-task.md",
-      "kind": "mention-command",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "to": "docs/mcp.md",
-      "kind": "code-path",
-      "line": 22
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "to": "docs/ausn-context/runtime-access.md",
-      "kind": "code-path",
-      "line": 22
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "to": "docs/qa-methodology/README.md",
-      "kind": "link",
-      "line": 68
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "to": ".agents/skills/ausn-qa-loop/references/qa-task-flow.md",
-      "kind": "code-path",
-      "line": 74
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "to": ".agents/skills/ausn-qa-loop/references/loop-ledger-schema.md",
-      "kind": "code-path",
-      "line": 75
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "to": ".agents/skills/ausn-qa-loop/references/loop-quality-gates.md",
-      "kind": "code-path",
-      "line": 75
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "to": ".agents/skills/ausn-qa-loop/references/git-flow.md",
-      "kind": "code-path",
-      "line": 75
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "to": "qa-project:data/zephyr/import/layers.json",
-      "kind": "code-path",
-      "line": 120
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "to": "qa-project:docs/reports/zephyr-regression-plan.md",
-      "kind": "code-path",
-      "line": 151
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "to": "qa-project:docs/reports/smoke-gate.md",
-      "kind": "code-path",
-      "line": 158
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "to": "qa-project:docs/reports/regression-process.md",
-      "kind": "code-path",
-      "line": 158
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "to": ".agents/skills/ausn-qa-loop/references/loop-goal-prompts.md",
-      "kind": "code-path",
-      "line": 220
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "to": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "to": ".agents/skills/ausn-qa-mcp/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "to": ".agents/skills/ausn-qa-methodology/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "to": ".opencode/command/qa-task.md",
-      "kind": "mention-command",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-mcp/references/catalog.md",
-      "to": ".agents/skills/ausn-qa-mcp/references/atlassian.json",
-      "kind": "link",
-      "line": 11
-    },
-    {
-      "from": ".agents/skills/ausn-qa-mcp/references/catalog.md",
-      "to": ".agents/skills/ausn-qa-mcp/references/gitlab.json",
-      "kind": "link",
-      "line": 51
-    },
-    {
-      "from": ".agents/skills/ausn-qa-mcp/references/catalog.md",
-      "to": ".agents/skills/ausn-qa-mcp/references/mattermost.json",
-      "kind": "link",
-      "line": 272
-    },
-    {
-      "from": ".agents/skills/ausn-qa-mcp/references/catalog.md",
-      "to": ".agents/skills/ausn-qa-mcp/references/playwright.json",
-      "kind": "link",
-      "line": 293
-    },
-    {
-      "from": ".agents/skills/ausn-qa-mcp/references/catalog.md",
-      "to": ".agents/skills/ausn-qa-mcp/references/socraticode.json",
-      "kind": "link",
-      "line": 354
-    },
-    {
-      "from": ".agents/skills/ausn-qa-mcp/references/catalog.md",
-      "to": ".agents/skills/ausn-qa-mcp/references/test_grafana.json",
-      "kind": "link",
-      "line": 384
-    },
-    {
-      "from": ".agents/skills/ausn-qa-mcp/references/catalog.md",
-      "to": ".agents/skills/ausn-qa-mcp/references/test_graylog.json",
-      "kind": "link",
-      "line": 414
-    },
-    {
-      "from": ".agents/skills/ausn-qa-mcp/references/catalog.md",
-      "to": ".agents/skills/ausn-qa-mcp/references/test_pgdb.json",
-      "kind": "link",
-      "line": 431
-    },
-    {
-      "from": ".agents/skills/ausn-qa-mcp/references/catalog.md",
-      "to": ".agents/skills/ausn-qa-mcp/references/test_ssh.json",
-      "kind": "link",
-      "line": 439
-    },
-    {
-      "from": ".agents/skills/ausn-qa-mcp/references/project-context.md",
-      "to": ".opencode/opencode.jsonc",
-      "kind": "code-path",
-      "line": 4
-    },
-    {
-      "from": ".agents/skills/ausn-qa-mcp/references/project-context.md",
-      "to": ".agents/skills/ausn-qa-mcp/references/test_graylog.json",
-      "kind": "code-path",
-      "line": 4
-    },
-    {
-      "from": ".agents/skills/ausn-qa-mcp/references/project-context.md",
-      "to": ".agents/skills/ausn-qa-mcp/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-mcp/SKILL.md",
-      "to": ".agents/skills/ausn-qa-mcp/references/catalog.md",
-      "kind": "link",
-      "line": 26
-    },
-    {
-      "from": ".agents/skills/ausn-qa-mcp/SKILL.md",
-      "to": ".agents/skills/ausn-qa-mcp/references/workflows.md",
-      "kind": "link",
-      "line": 42
-    },
-    {
-      "from": ".agents/skills/ausn-qa-mcp/SKILL.md",
-      "to": ".agents/skills/ausn-qa-mcp/references/project-context.md",
-      "kind": "link",
-      "line": 43
-    },
-    {
-      "from": ".agents/skills/ausn-qa-mcp/SKILL.md",
-      "to": ".codex/config.toml",
-      "kind": "code-path",
-      "line": 61
-    },
-    {
-      "from": ".agents/skills/ausn-qa-mcp/SKILL.md",
-      "to": ".vscode/mcp.json",
-      "kind": "code-path",
-      "line": 61
-    },
-    {
-      "from": ".agents/skills/ausn-qa-mcp/SKILL.md",
-      "to": "docs/mcp.md",
-      "kind": "code-path",
-      "line": 62
-    },
-    {
-      "from": ".agents/skills/ausn-qa-mcp/SKILL.md",
-      "to": ".agents/skills/ausn-qa-mcp/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-mcp/SKILL.md",
-      "to": ".agents/skills/ausn-socraticode/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-methodology/SKILL.md",
-      "to": "docs/qa-methodology/README.md",
-      "kind": "link",
-      "line": 8
-    },
-    {
-      "from": ".agents/skills/ausn-qa-methodology/SKILL.md",
-      "to": "docs/qa-methodology/foundations.md",
-      "kind": "link",
-      "line": 14
-    },
-    {
-      "from": ".agents/skills/ausn-qa-methodology/SKILL.md",
-      "to": "docs/qa-methodology/test-design.md",
-      "kind": "link",
-      "line": 15
-    },
-    {
-      "from": ".agents/skills/ausn-qa-methodology/SKILL.md",
-      "to": "docs/qa-methodology/system-testing.md",
-      "kind": "link",
-      "line": 16
-    },
-    {
-      "from": ".agents/skills/ausn-qa-methodology/SKILL.md",
-      "to": "docs/qa-methodology/automation.md",
-      "kind": "link",
-      "line": 17
-    },
-    {
-      "from": ".agents/skills/ausn-qa-methodology/SKILL.md",
-      "to": "docs/qa-methodology/evidence.md",
-      "kind": "link",
-      "line": 18
-    },
-    {
-      "from": ".agents/skills/ausn-qa-methodology/SKILL.md",
-      "to": "docs/qa-methodology/templates.md",
-      "kind": "link",
-      "line": 19
-    },
-    {
-      "from": ".agents/skills/ausn-qa-methodology/SKILL.md",
-      "to": "docs/qa-methodology/sources.md",
-      "kind": "link",
-      "line": 21
-    },
-    {
-      "from": ".agents/skills/ausn-qa-methodology/SKILL.md",
-      "to": ".agents/skills/ausn-qa-mcp/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-qa-methodology/SKILL.md",
-      "to": ".agents/skills/ausn-qa-methodology/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-socraticode/SKILL.md",
-      "to": "docs/socraticode.md",
-      "kind": "code-path",
-      "line": 119
-    },
-    {
-      "from": ".agents/skills/ausn-socraticode/SKILL.md",
-      "to": "docs/retrospectives.md",
-      "kind": "code-path",
-      "line": 129
-    },
-    {
-      "from": ".agents/skills/ausn-socraticode/SKILL.md",
-      "to": ".agents/skills/ausn-qa-mcp/references/socraticode.json",
-      "kind": "code-path",
-      "line": 141
-    },
-    {
-      "from": ".agents/skills/ausn-socraticode/SKILL.md",
-      "to": ".agents/skills/ausn-qa-mcp/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-socraticode/SKILL.md",
-      "to": ".agents/skills/ausn-socraticode/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": ".agents/skills/ausn-source-driven-development/SKILL.md",
-      "to": ".agents/skills/ausn-source-driven-development/SKILL.md",
+      "from": ".agents/skills/context-engineering/SKILL.md",
+      "to": ".agents/skills/context-engineering/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -1196,8 +674,578 @@
       "line": 0
     },
     {
+      "from": ".agents/skills/qa-agents/references/agent-roles.md",
+      "to": ".agents/skills/qa-loop/references/qa-task-flow.md",
+      "kind": "code-path",
+      "line": 13
+    },
+    {
+      "from": ".agents/skills/qa-agents/references/agent-roles.md",
+      "to": ".agents/skills/qa-agents/references/qa-agent-feedback-loop.md",
+      "kind": "code-path",
+      "line": 213
+    },
+    {
+      "from": ".agents/skills/qa-agents/references/agent-roles.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-agents/references/agent-roles.md",
+      "to": ".agents/skills/qa-methodology/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-agents/references/agent-roles.md",
+      "to": ".opencode/agent/ci-triage-agent.md",
+      "kind": "mention-agent",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-agents/references/agent-roles.md",
+      "to": ".opencode/agent/contract-research-agent.md",
+      "kind": "mention-agent",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-agents/references/agent-roles.md",
+      "to": ".opencode/agent/review-agent.md",
+      "kind": "mention-agent",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-agents/references/agent-roles.md",
+      "to": ".opencode/agent/test-design-agent.md",
+      "kind": "mention-agent",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-agents/references/agent-roles.md",
+      "to": ".opencode/agent/test-implementation-agent.md",
+      "kind": "mention-agent",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-agents/references/agent-roles.md",
+      "to": ".opencode/agent/test-maintenance-agent.md",
+      "kind": "mention-agent",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-agents/references/qa-agent-feedback-loop.md",
+      "to": ".agents/skills/qa-agents/references/test-data-strategy.md",
+      "kind": "code-path",
+      "line": 44
+    },
+    {
+      "from": ".agents/skills/qa-agents/references/qa-agent-feedback-loop.md",
+      "to": ".agents/skills/qa-agents/references/bug-report-template.md",
+      "kind": "code-path",
+      "line": 46
+    },
+    {
+      "from": ".agents/skills/qa-agents/SKILL.md",
+      "to": ".agents/skills/qa-agents/references/agent-roles.md",
+      "kind": "code-path",
+      "line": 29
+    },
+    {
+      "from": ".agents/skills/qa-agents/SKILL.md",
+      "to": ".agents/skills/qa-agents/references/agent-security-policy.md",
+      "kind": "code-path",
+      "line": 36
+    },
+    {
+      "from": ".agents/skills/qa-agents/SKILL.md",
+      "to": ".agents/skills/qa-agents/references/test-data-strategy.md",
+      "kind": "code-path",
+      "line": 45
+    },
+    {
+      "from": ".agents/skills/qa-agents/SKILL.md",
+      "to": ".agents/skills/qa-agents/references/qa-agent-feedback-loop.md",
+      "kind": "code-path",
+      "line": 50
+    },
+    {
+      "from": ".agents/skills/qa-agents/SKILL.md",
+      "to": ".agents/skills/qa-agents/references/qa-agent-metrics.md",
+      "kind": "code-path",
+      "line": 52
+    },
+    {
+      "from": ".agents/skills/qa-agents/SKILL.md",
+      "to": ".agents/skills/qa-agents/references/reporting-templates.md",
+      "kind": "code-path",
+      "line": 56
+    },
+    {
+      "from": ".agents/skills/qa-agents/SKILL.md",
+      "to": ".agents/skills/qa-agents/references/bug-report-template.md",
+      "kind": "code-path",
+      "line": 57
+    },
+    {
+      "from": ".agents/skills/qa-agents/SKILL.md",
+      "to": ".agents/skills/qa-agents/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-agents/SKILL.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-agents/SKILL.md",
+      "to": ".agents/skills/qa-methodology/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-agents/SKILL.md",
+      "to": ".opencode/agent/ci-triage-agent.md",
+      "kind": "mention-agent",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-agents/SKILL.md",
+      "to": ".opencode/agent/contract-research-agent.md",
+      "kind": "mention-agent",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-agents/SKILL.md",
+      "to": ".opencode/agent/docs-agent.md",
+      "kind": "mention-agent",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-agents/SKILL.md",
+      "to": ".opencode/agent/review-agent.md",
+      "kind": "mention-agent",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-agents/SKILL.md",
+      "to": ".opencode/agent/test-design-agent.md",
+      "kind": "mention-agent",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-agents/SKILL.md",
+      "to": ".opencode/agent/test-implementation-agent.md",
+      "kind": "mention-agent",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-agents/SKILL.md",
+      "to": ".opencode/agent/test-maintenance-agent.md",
+      "kind": "mention-agent",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-agents/SKILL.md",
+      "to": ".opencode/command/qa-task.md",
+      "kind": "mention-command",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-loop/references/loop-goal-prompts.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-loop/references/loop-goal-prompts.md",
+      "to": ".opencode/command/qa-task.md",
+      "kind": "mention-command",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-loop/references/loop-ledger-schema.md",
+      "to": "profiles/ausn/docs/context/qa-entry-context.md",
+      "kind": "code-path",
+      "line": 36
+    },
+    {
+      "from": ".agents/skills/qa-loop/references/loop-ledger-schema.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-loop/references/loop-ledger-schema.md",
+      "to": ".agents/skills/qa-methodology/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-loop/references/qa-task-flow.md",
+      "to": "docs/qa-methodology/evidence.md",
+      "kind": "code-path",
+      "line": 16
+    },
+    {
+      "from": ".agents/skills/qa-loop/references/qa-task-flow.md",
+      "to": "docs/socraticode.md",
+      "kind": "code-path",
+      "line": 40
+    },
+    {
+      "from": ".agents/skills/qa-loop/references/qa-task-flow.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-loop/references/qa-task-flow.md",
+      "to": ".agents/skills/qa-methodology/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-loop/references/qa-task-flow.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-loop/references/qa-task-flow.md",
+      "to": ".opencode/command/qa-task.md",
+      "kind": "mention-command",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-loop/SKILL.md",
+      "to": "docs/mcp.md",
+      "kind": "code-path",
+      "line": 22
+    },
+    {
+      "from": ".agents/skills/qa-loop/SKILL.md",
+      "to": "profiles/ausn/docs/context/runtime-access.md",
+      "kind": "code-path",
+      "line": 22
+    },
+    {
+      "from": ".agents/skills/qa-loop/SKILL.md",
+      "to": "docs/qa-methodology/README.md",
+      "kind": "link",
+      "line": 68
+    },
+    {
+      "from": ".agents/skills/qa-loop/SKILL.md",
+      "to": ".agents/skills/qa-loop/references/qa-task-flow.md",
+      "kind": "code-path",
+      "line": 74
+    },
+    {
+      "from": ".agents/skills/qa-loop/SKILL.md",
+      "to": ".agents/skills/qa-loop/references/loop-ledger-schema.md",
+      "kind": "code-path",
+      "line": 75
+    },
+    {
+      "from": ".agents/skills/qa-loop/SKILL.md",
+      "to": ".agents/skills/qa-loop/references/loop-quality-gates.md",
+      "kind": "code-path",
+      "line": 75
+    },
+    {
+      "from": ".agents/skills/qa-loop/SKILL.md",
+      "to": ".agents/skills/qa-loop/references/git-flow.md",
+      "kind": "code-path",
+      "line": 75
+    },
+    {
+      "from": ".agents/skills/qa-loop/SKILL.md",
+      "to": "qa-project:data/zephyr/import/layers.json",
+      "kind": "code-path",
+      "line": 120
+    },
+    {
+      "from": ".agents/skills/qa-loop/SKILL.md",
+      "to": "qa-project:docs/reports/zephyr-regression-plan.md",
+      "kind": "code-path",
+      "line": 151
+    },
+    {
+      "from": ".agents/skills/qa-loop/SKILL.md",
+      "to": "qa-project:docs/reports/smoke-gate.md",
+      "kind": "code-path",
+      "line": 158
+    },
+    {
+      "from": ".agents/skills/qa-loop/SKILL.md",
+      "to": "qa-project:docs/reports/regression-process.md",
+      "kind": "code-path",
+      "line": 158
+    },
+    {
+      "from": ".agents/skills/qa-loop/SKILL.md",
+      "to": ".agents/skills/qa-loop/references/loop-goal-prompts.md",
+      "kind": "code-path",
+      "line": 220
+    },
+    {
+      "from": ".agents/skills/qa-loop/SKILL.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-loop/SKILL.md",
+      "to": ".agents/skills/qa-mcp/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-loop/SKILL.md",
+      "to": ".agents/skills/qa-methodology/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-loop/SKILL.md",
+      "to": ".opencode/command/qa-task.md",
+      "kind": "mention-command",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-mcp/references/catalog.md",
+      "to": ".agents/skills/qa-mcp/references/atlassian.json",
+      "kind": "link",
+      "line": 11
+    },
+    {
+      "from": ".agents/skills/qa-mcp/references/catalog.md",
+      "to": ".agents/skills/qa-mcp/references/gitlab.json",
+      "kind": "link",
+      "line": 51
+    },
+    {
+      "from": ".agents/skills/qa-mcp/references/catalog.md",
+      "to": ".agents/skills/qa-mcp/references/mattermost.json",
+      "kind": "link",
+      "line": 272
+    },
+    {
+      "from": ".agents/skills/qa-mcp/references/catalog.md",
+      "to": ".agents/skills/qa-mcp/references/playwright.json",
+      "kind": "link",
+      "line": 293
+    },
+    {
+      "from": ".agents/skills/qa-mcp/references/catalog.md",
+      "to": ".agents/skills/qa-mcp/references/socraticode.json",
+      "kind": "link",
+      "line": 354
+    },
+    {
+      "from": ".agents/skills/qa-mcp/references/catalog.md",
+      "to": ".agents/skills/qa-mcp/references/test_grafana.json",
+      "kind": "link",
+      "line": 384
+    },
+    {
+      "from": ".agents/skills/qa-mcp/references/catalog.md",
+      "to": ".agents/skills/qa-mcp/references/test_graylog.json",
+      "kind": "link",
+      "line": 414
+    },
+    {
+      "from": ".agents/skills/qa-mcp/references/catalog.md",
+      "to": ".agents/skills/qa-mcp/references/test_pgdb.json",
+      "kind": "link",
+      "line": 431
+    },
+    {
+      "from": ".agents/skills/qa-mcp/references/catalog.md",
+      "to": ".agents/skills/qa-mcp/references/test_ssh.json",
+      "kind": "link",
+      "line": 439
+    },
+    {
+      "from": ".agents/skills/qa-mcp/references/catalog.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-mcp/references/project-context.md",
+      "to": ".opencode/opencode.jsonc",
+      "kind": "code-path",
+      "line": 4
+    },
+    {
+      "from": ".agents/skills/qa-mcp/references/project-context.md",
+      "to": ".agents/skills/qa-mcp/references/test_graylog.json",
+      "kind": "code-path",
+      "line": 4
+    },
+    {
+      "from": ".agents/skills/qa-mcp/references/project-context.md",
+      "to": ".agents/skills/qa-mcp/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-mcp/SKILL.md",
+      "to": ".agents/skills/qa-mcp/references/catalog.md",
+      "kind": "link",
+      "line": 26
+    },
+    {
+      "from": ".agents/skills/qa-mcp/SKILL.md",
+      "to": ".agents/skills/qa-mcp/references/workflows.md",
+      "kind": "link",
+      "line": 42
+    },
+    {
+      "from": ".agents/skills/qa-mcp/SKILL.md",
+      "to": ".agents/skills/qa-mcp/references/project-context.md",
+      "kind": "link",
+      "line": 43
+    },
+    {
+      "from": ".agents/skills/qa-mcp/SKILL.md",
+      "to": ".codex/config.toml",
+      "kind": "code-path",
+      "line": 61
+    },
+    {
+      "from": ".agents/skills/qa-mcp/SKILL.md",
+      "to": ".vscode/mcp.json",
+      "kind": "code-path",
+      "line": 61
+    },
+    {
+      "from": ".agents/skills/qa-mcp/SKILL.md",
+      "to": "docs/mcp.md",
+      "kind": "code-path",
+      "line": 62
+    },
+    {
+      "from": ".agents/skills/qa-mcp/SKILL.md",
+      "to": ".agents/skills/qa-mcp/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-mcp/SKILL.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-methodology/SKILL.md",
+      "to": "docs/qa-methodology/README.md",
+      "kind": "link",
+      "line": 8
+    },
+    {
+      "from": ".agents/skills/qa-methodology/SKILL.md",
+      "to": "docs/qa-methodology/foundations.md",
+      "kind": "link",
+      "line": 14
+    },
+    {
+      "from": ".agents/skills/qa-methodology/SKILL.md",
+      "to": "docs/qa-methodology/test-design.md",
+      "kind": "link",
+      "line": 15
+    },
+    {
+      "from": ".agents/skills/qa-methodology/SKILL.md",
+      "to": "docs/qa-methodology/system-testing.md",
+      "kind": "link",
+      "line": 16
+    },
+    {
+      "from": ".agents/skills/qa-methodology/SKILL.md",
+      "to": "docs/qa-methodology/automation.md",
+      "kind": "link",
+      "line": 17
+    },
+    {
+      "from": ".agents/skills/qa-methodology/SKILL.md",
+      "to": "docs/qa-methodology/evidence.md",
+      "kind": "link",
+      "line": 18
+    },
+    {
+      "from": ".agents/skills/qa-methodology/SKILL.md",
+      "to": "docs/qa-methodology/templates.md",
+      "kind": "link",
+      "line": 19
+    },
+    {
+      "from": ".agents/skills/qa-methodology/SKILL.md",
+      "to": "docs/qa-methodology/sources.md",
+      "kind": "link",
+      "line": 21
+    },
+    {
+      "from": ".agents/skills/qa-methodology/SKILL.md",
+      "to": ".agents/skills/qa-mcp/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/qa-methodology/SKILL.md",
+      "to": ".agents/skills/qa-methodology/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/socraticode/SKILL.md",
+      "to": "docs/socraticode.md",
+      "kind": "code-path",
+      "line": 119
+    },
+    {
+      "from": ".agents/skills/socraticode/SKILL.md",
+      "to": "docs/retrospectives.md",
+      "kind": "code-path",
+      "line": 129
+    },
+    {
+      "from": ".agents/skills/socraticode/SKILL.md",
+      "to": ".agents/skills/qa-mcp/references/socraticode.json",
+      "kind": "code-path",
+      "line": 141
+    },
+    {
+      "from": ".agents/skills/socraticode/SKILL.md",
+      "to": ".agents/skills/qa-mcp/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/socraticode/SKILL.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/source-driven-development/SKILL.md",
+      "to": ".agents/skills/qa-methodology/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".agents/skills/source-driven-development/SKILL.md",
+      "to": ".agents/skills/source-driven-development/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
       "from": ".opencode/agent/ci-triage-agent.md",
-      "to": ".agents/skills/ausn-qa-agents/SKILL.md",
+      "to": ".agents/skills/qa-agents/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -1209,7 +1257,7 @@
     },
     {
       "from": ".opencode/agent/contract-research-agent.md",
-      "to": ".agents/skills/ausn-qa-agents/SKILL.md",
+      "to": ".agents/skills/qa-agents/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -1227,7 +1275,7 @@
     },
     {
       "from": ".opencode/agent/review-agent.md",
-      "to": ".agents/skills/ausn-qa-agents/SKILL.md",
+      "to": ".agents/skills/qa-agents/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -1239,7 +1287,7 @@
     },
     {
       "from": ".opencode/agent/test-design-agent.md",
-      "to": ".agents/skills/ausn-qa-agents/SKILL.md",
+      "to": ".agents/skills/qa-agents/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -1263,7 +1311,7 @@
     },
     {
       "from": ".opencode/agent/test-implementation-agent.md",
-      "to": ".agents/skills/ausn-qa-agents/SKILL.md",
+      "to": ".agents/skills/qa-agents/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -1293,7 +1341,7 @@
     },
     {
       "from": ".opencode/agent/test-maintenance-agent.md",
-      "to": ".agents/skills/ausn-qa-agents/SKILL.md",
+      "to": ".agents/skills/qa-agents/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -1317,25 +1365,31 @@
     },
     {
       "from": ".opencode/command/qa-task.md",
-      "to": ".agents/skills/ausn-qa-loop/references/qa-task-flow.md",
+      "to": ".agents/skills/qa-loop/references/qa-task-flow.md",
       "kind": "code-path",
       "line": 15
     },
     {
       "from": ".opencode/command/qa-task.md",
-      "to": ".agents/skills/ausn-qa-loop/SKILL.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
     {
       "from": ".opencode/command/qa-task.md",
-      "to": ".agents/skills/ausn-qa-mcp/SKILL.md",
+      "to": ".agents/skills/qa-mcp/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
     {
       "from": ".opencode/command/qa-task.md",
-      "to": ".agents/skills/ausn-qa-methodology/SKILL.md",
+      "to": ".agents/skills/qa-methodology/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": ".opencode/command/qa-task.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -1365,13 +1419,13 @@
     },
     {
       "from": "AGENTS.md",
-      "to": "docs/ausn-context/README.md",
+      "to": "profiles/ausn/docs/context/README.md",
       "kind": "link",
       "line": 77
     },
     {
       "from": "AGENTS.md",
-      "to": "docs/ausn-context/evidence-register.md",
+      "to": "profiles/ausn/docs/context/evidence-register.md",
       "kind": "link",
       "line": 77
     },
@@ -1431,49 +1485,13 @@
     },
     {
       "from": "AGENTS.md",
-      "to": ".agents/skills/ausn-api-contract-testing/SKILL.md",
+      "to": ".agents/skills/api-contract-testing/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
     {
       "from": "AGENTS.md",
-      "to": ".agents/skills/ausn-context-engineering/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": "AGENTS.md",
-      "to": ".agents/skills/ausn-qa-agents/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": "AGENTS.md",
-      "to": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": "AGENTS.md",
-      "to": ".agents/skills/ausn-qa-mcp/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": "AGENTS.md",
-      "to": ".agents/skills/ausn-qa-methodology/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": "AGENTS.md",
-      "to": ".agents/skills/ausn-socraticode/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": "AGENTS.md",
-      "to": ".agents/skills/ausn-source-driven-development/SKILL.md",
+      "to": ".agents/skills/context-engineering/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -1485,13 +1503,49 @@
     },
     {
       "from": "AGENTS.md",
-      "to": "profiles/ausn/skills/ausn-categorizer-lifecycle/SKILL.md",
+      "to": ".agents/skills/qa-agents/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
     {
       "from": "AGENTS.md",
-      "to": "profiles/ausn/skills/ausn-postman-sync/SKILL.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "AGENTS.md",
+      "to": ".agents/skills/qa-mcp/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "AGENTS.md",
+      "to": ".agents/skills/qa-methodology/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "AGENTS.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "AGENTS.md",
+      "to": ".agents/skills/source-driven-development/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "AGENTS.md",
+      "to": "profiles/ausn/skills/categorizer-lifecycle/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "AGENTS.md",
+      "to": "profiles/ausn/skills/postman-sync/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -1544,156 +1598,6 @@
       "line": 0
     },
     {
-      "from": "docs/ausn-context/qa-source-assessment.md",
-      "to": "profiles/ausn/skills/ausn-categorizer-lifecycle/references/categorizer-lifecycle.md",
-      "kind": "code-path",
-      "line": 24
-    },
-    {
-      "from": "docs/ausn-context/qa-source-assessment.md",
-      "to": "profiles/ausn/skills/ausn-postman-sync/references/postman-flow.md",
-      "kind": "code-path",
-      "line": 25
-    },
-    {
-      "from": "docs/ausn-context/qa-source-assessment.md",
-      "to": ".agents/skills/ausn-qa-agents/references/agent-roles.md",
-      "kind": "code-path",
-      "line": 26
-    },
-    {
-      "from": "docs/ausn-context/qa-source-assessment.md",
-      "to": ".opencode/command/lint.md",
-      "kind": "code-path",
-      "line": 29
-    },
-    {
-      "from": "docs/ausn-context/qa-source-assessment.md",
-      "to": ".opencode/command/test.md",
-      "kind": "code-path",
-      "line": 29
-    },
-    {
-      "from": "docs/ausn-context/qa-source-assessment.md",
-      "to": "docs/qa-methodology/evidence.md",
-      "kind": "code-path",
-      "line": 35
-    },
-    {
-      "from": "docs/ausn-context/qa-source-assessment.md",
-      "to": "docs/socraticode.md",
-      "kind": "code-path",
-      "line": 37
-    },
-    {
-      "from": "docs/ausn-context/qa-source-assessment.md",
-      "to": "qa-project:scripts/check_text_encoding.py",
-      "kind": "code-path",
-      "line": 38
-    },
-    {
-      "from": "docs/ausn-context/qa-source-assessment.md",
-      "to": ".agents/skills/ausn-api-contract-testing/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": "docs/ausn-context/qa-source-assessment.md",
-      "to": ".agents/skills/ausn-context-engineering/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": "docs/ausn-context/qa-source-assessment.md",
-      "to": ".agents/skills/ausn-qa-agents/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": "docs/ausn-context/qa-source-assessment.md",
-      "to": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": "docs/ausn-context/qa-source-assessment.md",
-      "to": ".agents/skills/ausn-source-driven-development/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": "docs/ausn-context/qa-source-assessment.md",
-      "to": "profiles/ausn/skills/ausn-categorizer-lifecycle/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": "docs/ausn-context/qa-source-assessment.md",
-      "to": "profiles/ausn/skills/ausn-postman-sync/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": "docs/ausn-context/README.md",
-      "to": "docs/ausn-context/evidence-register.md",
-      "kind": "link",
-      "line": 5
-    },
-    {
-      "from": "docs/ausn-context/README.md",
-      "to": "docs/ausn-context/system-map.md",
-      "kind": "link",
-      "line": 9
-    },
-    {
-      "from": "docs/ausn-context/README.md",
-      "to": "docs/ausn-context/current-state.md",
-      "kind": "link",
-      "line": 10
-    },
-    {
-      "from": "docs/ausn-context/README.md",
-      "to": "docs/ausn-context/qa-entry-context.md",
-      "kind": "link",
-      "line": 11
-    },
-    {
-      "from": "docs/ausn-context/README.md",
-      "to": ".agents/skills/ausn-qa-mcp/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": "docs/ausn-context/README.md",
-      "to": ".agents/skills/ausn-qa-methodology/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": "docs/evidence/2026-09-17-full-smoke-test1.md",
-      "to": "docs/evidence/2026-09-17-smoke-test1.md",
-      "kind": "link",
-      "line": 4
-    },
-    {
-      "from": "docs/evidence/2026-09-17-full-smoke-test1.md",
-      "to": "qa-project:tests/api/test_uc12_payment.py",
-      "kind": "code-path",
-      "line": 76
-    },
-    {
-      "from": "docs/evidence/2026-09-17-full-smoke-test1.md",
-      "to": "qa-project:src/utils/application_cleanup.py",
-      "kind": "code-path",
-      "line": 145
-    },
-    {
-      "from": "docs/evidence/2026-09-17-full-smoke-test1.md",
-      "to": "qa-project:tests/api/test_admin_bank_rights.py",
-      "kind": "code-path",
-      "line": 177
-    },
-    {
       "from": "docs/mcp.md",
       "to": ".codex/config.toml",
       "kind": "code-path",
@@ -1722,6 +1626,12 @@
       "to": "tools/checks/mcp_parity.py",
       "kind": "code-path",
       "line": 14
+    },
+    {
+      "from": "docs/mcp.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
     },
     {
       "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
@@ -1809,7 +1719,19 @@
     },
     {
       "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
-      "to": ".agents/skills/ausn-qa-loop/SKILL.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
+      "to": ".agents/skills/qa-methodology/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -1862,6 +1784,12 @@
       "line": 61
     },
     {
+      "from": "docs/plans/portability-bootstrap-design.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
       "from": "docs/plans/portability-bootstrap-plan.md",
       "to": "tools/checks/validate_manifests.py",
       "kind": "code-path",
@@ -1902,6 +1830,12 @@
       "to": "tools/checks/mcp_parity.py",
       "kind": "code-path",
       "line": 343
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
     },
     {
       "from": "docs/plans/portability-bootstrap2-design.md",
@@ -1946,6 +1880,12 @@
       "line": 51
     },
     {
+      "from": "docs/plans/portability-bootstrap2-design.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
       "from": "docs/plans/socraticode-plugin-design.md",
       "to": ".vscode/mcp.json",
       "kind": "code-path",
@@ -1965,7 +1905,7 @@
     },
     {
       "from": "docs/plans/socraticode-plugin-design.md",
-      "to": ".agents/skills/ausn-socraticode/SKILL.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
       "kind": "code-path",
       "line": 64
     },
@@ -1989,7 +1929,7 @@
     },
     {
       "from": "docs/plans/socraticode-plugin-design.md",
-      "to": ".agents/skills/ausn-socraticode/SKILL.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -2025,7 +1965,7 @@
     },
     {
       "from": "docs/plans/socraticode-plugin-plan.md",
-      "to": ".agents/skills/ausn-socraticode/SKILL.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
       "kind": "code-path",
       "line": 501
     },
@@ -2043,13 +1983,13 @@
     },
     {
       "from": "docs/plans/socraticode-plugin-plan.md",
-      "to": ".agents/skills/ausn-qa-loop/SKILL.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
     {
       "from": "docs/plans/socraticode-plugin-plan.md",
-      "to": ".agents/skills/ausn-socraticode/SKILL.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -2061,7 +2001,7 @@
     },
     {
       "from": "docs/plans/system-codemap-design.md",
-      "to": "docs/ausn-context/system-map.md",
+      "to": "profiles/ausn/docs/context/system-map.md",
       "kind": "code-path",
       "line": 103
     },
@@ -2217,7 +2157,7 @@
     },
     {
       "from": "docs/plans/system-codemap-plan.md",
-      "to": "docs/ausn-context/system-map.md",
+      "to": "profiles/ausn/docs/context/system-map.md",
       "kind": "code-path",
       "line": 1404
     },
@@ -2265,7 +2205,55 @@
     },
     {
       "from": "docs/plans/universal-control-plane-design.md",
+      "to": ".agents/skills/api-contract-testing/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "docs/plans/universal-control-plane-design.md",
+      "to": ".agents/skills/context-engineering/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "docs/plans/universal-control-plane-design.md",
       "to": ".agents/skills/karpathy-guidelines/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "docs/plans/universal-control-plane-design.md",
+      "to": ".agents/skills/qa-agents/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "docs/plans/universal-control-plane-design.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "docs/plans/universal-control-plane-design.md",
+      "to": ".agents/skills/qa-mcp/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "docs/plans/universal-control-plane-design.md",
+      "to": ".agents/skills/qa-methodology/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "docs/plans/universal-control-plane-design.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "docs/plans/universal-control-plane-design.md",
+      "to": ".agents/skills/source-driven-development/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -2354,6 +2342,12 @@
       "line": 52
     },
     {
+      "from": "docs/portability-clean-clone-pilot.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
       "from": "docs/presentations/README.md",
       "to": "qa-project:data/zephyr/import/trace_links.json",
       "kind": "code-path",
@@ -2433,7 +2427,7 @@
     },
     {
       "from": "docs/qa-methodology/README.md",
-      "to": ".agents/skills/ausn-qa-methodology/SKILL.md",
+      "to": ".agents/skills/qa-methodology/SKILL.md",
       "kind": "link",
       "line": 17
     },
@@ -2445,37 +2439,37 @@
     },
     {
       "from": "docs/qa-methodology/README.md",
-      "to": ".agents/skills/ausn-api-contract-testing/SKILL.md",
+      "to": ".agents/skills/api-contract-testing/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
     {
       "from": "docs/qa-methodology/README.md",
-      "to": ".agents/skills/ausn-qa-agents/SKILL.md",
+      "to": ".agents/skills/qa-agents/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
     {
       "from": "docs/qa-methodology/README.md",
-      "to": ".agents/skills/ausn-qa-loop/SKILL.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
     {
       "from": "docs/qa-methodology/README.md",
-      "to": ".agents/skills/ausn-qa-methodology/SKILL.md",
+      "to": ".agents/skills/qa-methodology/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
     {
       "from": "docs/qa-methodology/README.md",
-      "to": ".agents/skills/ausn-source-driven-development/SKILL.md",
+      "to": ".agents/skills/source-driven-development/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
     {
       "from": "docs/qa-methodology/README.md",
-      "to": "profiles/ausn/skills/ausn-categorizer-lifecycle/SKILL.md",
+      "to": "profiles/ausn/skills/categorizer-lifecycle/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -2558,6 +2552,12 @@
       "line": 18
     },
     {
+      "from": "docs/reports/external-review-portability-2026-09-24.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
       "from": "docs/reports/methodology-usage-audit-2026-09-23.md",
       "to": "qa-project:docs/auto-tests/README.md",
       "kind": "code-path",
@@ -2565,37 +2565,37 @@
     },
     {
       "from": "docs/reports/methodology-usage-audit-2026-09-23.md",
-      "to": ".agents/skills/ausn-api-contract-testing/SKILL.md",
+      "to": ".agents/skills/api-contract-testing/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
     {
       "from": "docs/reports/methodology-usage-audit-2026-09-23.md",
-      "to": ".agents/skills/ausn-qa-agents/SKILL.md",
+      "to": ".agents/skills/qa-agents/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
     {
       "from": "docs/reports/methodology-usage-audit-2026-09-23.md",
-      "to": ".agents/skills/ausn-qa-loop/SKILL.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
     {
       "from": "docs/reports/methodology-usage-audit-2026-09-23.md",
-      "to": ".agents/skills/ausn-qa-methodology/SKILL.md",
+      "to": ".agents/skills/qa-methodology/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
     {
       "from": "docs/reports/methodology-usage-audit-2026-09-23.md",
-      "to": ".agents/skills/ausn-source-driven-development/SKILL.md",
+      "to": ".agents/skills/source-driven-development/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
     {
       "from": "docs/reports/methodology-usage-audit-2026-09-23.md",
-      "to": "profiles/ausn/skills/ausn-categorizer-lifecycle/SKILL.md",
+      "to": "profiles/ausn/skills/categorizer-lifecycle/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -2607,7 +2607,7 @@
     },
     {
       "from": "docs/reports/portability-pilot-wsl-2026-10-01.md",
-      "to": ".agents/skills/ausn-api-contract-testing/SKILL.md",
+      "to": ".agents/skills/api-contract-testing/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -2703,19 +2703,25 @@
     },
     {
       "from": "docs/retrospectives.md",
-      "to": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": "docs/retrospectives.md",
-      "to": ".agents/skills/ausn-socraticode/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": "docs/retrospectives.md",
       "to": ".agents/skills/karpathy-guidelines/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "docs/retrospectives.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "docs/retrospectives.md",
+      "to": ".agents/skills/qa-methodology/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "docs/retrospectives.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -2750,6 +2756,12 @@
       "line": 58
     },
     {
+      "from": "docs/reviews/2026-09-17-qa-project-framework-review.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
       "from": "docs/socraticode.md",
       "to": ".opencode/opencode.jsonc",
       "kind": "code-path",
@@ -2775,7 +2787,7 @@
     },
     {
       "from": "docs/socraticode.md",
-      "to": ".agents/skills/ausn-qa-mcp/references/socraticode.json",
+      "to": ".agents/skills/qa-mcp/references/socraticode.json",
       "kind": "code-path",
       "line": 11
     },
@@ -2787,19 +2799,25 @@
     },
     {
       "from": "docs/socraticode.md",
-      "to": ".agents/skills/ausn-qa-mcp/SKILL.md",
+      "to": ".agents/skills/qa-mcp/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "docs/socraticode.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
     {
       "from": "docs/user-prompts/daily-flow.md",
-      "to": ".agents/skills/ausn-qa-loop/references/loop-goal-prompts.md",
+      "to": ".agents/skills/qa-loop/references/loop-goal-prompts.md",
       "kind": "code-path",
       "line": 5
     },
     {
       "from": "docs/user-prompts/daily-flow.md",
-      "to": ".agents/skills/ausn-qa-loop/SKILL.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -2811,25 +2829,25 @@
     },
     {
       "from": "docs/user-prompts/pre-release-prompt.md",
-      "to": ".agents/skills/ausn-qa-loop/references/qa-task-flow.md",
+      "to": ".agents/skills/qa-loop/references/qa-task-flow.md",
       "kind": "code-path",
       "line": 7
     },
     {
       "from": "docs/user-prompts/pre-release-prompt.md",
-      "to": ".agents/skills/ausn-qa-loop/references/loop-ledger-schema.md",
+      "to": ".agents/skills/qa-loop/references/loop-ledger-schema.md",
       "kind": "code-path",
       "line": 7
     },
     {
       "from": "docs/user-prompts/pre-release-prompt.md",
-      "to": ".agents/skills/ausn-qa-loop/references/loop-quality-gates.md",
+      "to": ".agents/skills/qa-loop/references/loop-quality-gates.md",
       "kind": "code-path",
       "line": 7
     },
     {
       "from": "docs/user-prompts/pre-release-prompt.md",
-      "to": ".agents/skills/ausn-qa-loop/SKILL.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -2865,7 +2883,7 @@
     },
     {
       "from": "docs/user-prompts/start-regression-flow.md",
-      "to": ".agents/skills/ausn-qa-loop/SKILL.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -2882,80 +2900,266 @@
       "line": 5
     },
     {
-      "from": "profiles/ausn/skills/ausn-categorizer-lifecycle/references/categorizer-lifecycle.md",
-      "to": ".agents/skills/ausn-qa-loop/SKILL.md",
+      "from": "ENVIRONMENT.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
     {
-      "from": "profiles/ausn/skills/ausn-categorizer-lifecycle/SKILL.md",
-      "to": "docs/ausn-context/README.md",
+      "from": "OPENCODE_PORTABILITY_OPTIMIZATION_PROMPT.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "profiles/ausn/docs/context/qa-source-assessment.md",
+      "to": "profiles/ausn/skills/categorizer-lifecycle/references/categorizer-lifecycle.md",
+      "kind": "code-path",
+      "line": 24
+    },
+    {
+      "from": "profiles/ausn/docs/context/qa-source-assessment.md",
+      "to": "profiles/ausn/skills/postman-sync/references/postman-flow.md",
+      "kind": "code-path",
+      "line": 25
+    },
+    {
+      "from": "profiles/ausn/docs/context/qa-source-assessment.md",
+      "to": ".agents/skills/qa-agents/references/agent-roles.md",
+      "kind": "code-path",
+      "line": 26
+    },
+    {
+      "from": "profiles/ausn/docs/context/qa-source-assessment.md",
+      "to": ".opencode/command/lint.md",
+      "kind": "code-path",
+      "line": 29
+    },
+    {
+      "from": "profiles/ausn/docs/context/qa-source-assessment.md",
+      "to": ".opencode/command/test.md",
+      "kind": "code-path",
+      "line": 29
+    },
+    {
+      "from": "profiles/ausn/docs/context/qa-source-assessment.md",
+      "to": "docs/qa-methodology/evidence.md",
+      "kind": "code-path",
+      "line": 35
+    },
+    {
+      "from": "profiles/ausn/docs/context/qa-source-assessment.md",
+      "to": "docs/socraticode.md",
+      "kind": "code-path",
+      "line": 37
+    },
+    {
+      "from": "profiles/ausn/docs/context/qa-source-assessment.md",
+      "to": "qa-project:scripts/check_text_encoding.py",
+      "kind": "code-path",
+      "line": 38
+    },
+    {
+      "from": "profiles/ausn/docs/context/qa-source-assessment.md",
+      "to": ".agents/skills/api-contract-testing/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "profiles/ausn/docs/context/qa-source-assessment.md",
+      "to": ".agents/skills/context-engineering/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "profiles/ausn/docs/context/qa-source-assessment.md",
+      "to": ".agents/skills/qa-agents/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "profiles/ausn/docs/context/qa-source-assessment.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "profiles/ausn/docs/context/qa-source-assessment.md",
+      "to": ".agents/skills/qa-methodology/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "profiles/ausn/docs/context/qa-source-assessment.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "profiles/ausn/docs/context/qa-source-assessment.md",
+      "to": ".agents/skills/source-driven-development/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "profiles/ausn/docs/context/qa-source-assessment.md",
+      "to": "profiles/ausn/skills/categorizer-lifecycle/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "profiles/ausn/docs/context/qa-source-assessment.md",
+      "to": "profiles/ausn/skills/postman-sync/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "profiles/ausn/docs/context/README.md",
+      "to": "profiles/ausn/docs/context/evidence-register.md",
+      "kind": "link",
+      "line": 5
+    },
+    {
+      "from": "profiles/ausn/docs/context/README.md",
+      "to": "profiles/ausn/docs/context/system-map.md",
+      "kind": "link",
+      "line": 9
+    },
+    {
+      "from": "profiles/ausn/docs/context/README.md",
+      "to": "profiles/ausn/docs/context/current-state.md",
+      "kind": "link",
+      "line": 10
+    },
+    {
+      "from": "profiles/ausn/docs/context/README.md",
+      "to": "profiles/ausn/docs/context/qa-entry-context.md",
+      "kind": "link",
+      "line": 11
+    },
+    {
+      "from": "profiles/ausn/docs/context/README.md",
+      "to": ".agents/skills/qa-mcp/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "profiles/ausn/docs/context/README.md",
+      "to": ".agents/skills/qa-methodology/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "profiles/ausn/docs/evidence/2026-09-17-full-smoke-test1.md",
+      "to": "profiles/ausn/docs/evidence/2026-09-17-smoke-test1.md",
+      "kind": "link",
+      "line": 4
+    },
+    {
+      "from": "profiles/ausn/docs/evidence/2026-09-17-full-smoke-test1.md",
+      "to": "qa-project:tests/api/test_uc12_payment.py",
+      "kind": "code-path",
+      "line": 76
+    },
+    {
+      "from": "profiles/ausn/docs/evidence/2026-09-17-full-smoke-test1.md",
+      "to": "qa-project:src/utils/application_cleanup.py",
+      "kind": "code-path",
+      "line": 145
+    },
+    {
+      "from": "profiles/ausn/docs/evidence/2026-09-17-full-smoke-test1.md",
+      "to": "qa-project:tests/api/test_admin_bank_rights.py",
+      "kind": "code-path",
+      "line": 177
+    },
+    {
+      "from": "profiles/ausn/skills/categorizer-lifecycle/references/categorizer-lifecycle.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "profiles/ausn/skills/categorizer-lifecycle/references/categorizer-lifecycle.md",
+      "to": ".agents/skills/source-driven-development/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "profiles/ausn/skills/categorizer-lifecycle/SKILL.md",
+      "to": "profiles/ausn/docs/context/README.md",
       "kind": "code-path",
       "line": 12
     },
     {
-      "from": "profiles/ausn/skills/ausn-categorizer-lifecycle/SKILL.md",
-      "to": "docs/ausn-context/system-map.md",
+      "from": "profiles/ausn/skills/categorizer-lifecycle/SKILL.md",
+      "to": "profiles/ausn/docs/context/system-map.md",
       "kind": "code-path",
       "line": 12
     },
     {
-      "from": "profiles/ausn/skills/ausn-categorizer-lifecycle/SKILL.md",
-      "to": "docs/ausn-context/runtime-access.md",
+      "from": "profiles/ausn/skills/categorizer-lifecycle/SKILL.md",
+      "to": "profiles/ausn/docs/context/runtime-access.md",
       "kind": "code-path",
       "line": 12
     },
     {
-      "from": "profiles/ausn/skills/ausn-categorizer-lifecycle/SKILL.md",
-      "to": "profiles/ausn/skills/ausn-categorizer-lifecycle/references/categorizer-lifecycle.md",
+      "from": "profiles/ausn/skills/categorizer-lifecycle/SKILL.md",
+      "to": "profiles/ausn/skills/categorizer-lifecycle/references/categorizer-lifecycle.md",
       "kind": "code-path",
       "line": 13
     },
     {
-      "from": "profiles/ausn/skills/ausn-categorizer-lifecycle/SKILL.md",
-      "to": "profiles/ausn/skills/ausn-categorizer-lifecycle/SKILL.md",
+      "from": "profiles/ausn/skills/categorizer-lifecycle/SKILL.md",
+      "to": ".agents/skills/qa-methodology/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
     {
-      "from": "profiles/ausn/skills/ausn-postman-sync/references/postman-flow.md",
+      "from": "profiles/ausn/skills/categorizer-lifecycle/SKILL.md",
+      "to": "profiles/ausn/skills/categorizer-lifecycle/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "profiles/ausn/skills/postman-sync/references/postman-flow.md",
       "to": "qa-project:postman/environments/AUSN_Full_Test_Environment.postman_environment.json",
       "kind": "code-path",
       "line": 46
     },
     {
-      "from": "profiles/ausn/skills/ausn-postman-sync/references/postman-flow.md",
+      "from": "profiles/ausn/skills/postman-sync/references/postman-flow.md",
       "to": "qa-project:tests/tooling/test_tooling_controller.py",
       "kind": "code-path",
       "line": 128
     },
     {
-      "from": "profiles/ausn/skills/ausn-postman-sync/SKILL.md",
-      "to": "docs/ausn-context/README.md",
+      "from": "profiles/ausn/skills/postman-sync/SKILL.md",
+      "to": "profiles/ausn/docs/context/README.md",
       "kind": "code-path",
       "line": 16
     },
     {
-      "from": "profiles/ausn/skills/ausn-postman-sync/SKILL.md",
-      "to": "docs/ausn-context/test-automation-assets.md",
+      "from": "profiles/ausn/skills/postman-sync/SKILL.md",
+      "to": "profiles/ausn/docs/context/test-automation-assets.md",
       "kind": "code-path",
       "line": 16
     },
     {
-      "from": "profiles/ausn/skills/ausn-postman-sync/SKILL.md",
-      "to": "profiles/ausn/skills/ausn-postman-sync/references/postman-flow.md",
+      "from": "profiles/ausn/skills/postman-sync/SKILL.md",
+      "to": "profiles/ausn/skills/postman-sync/references/postman-flow.md",
       "kind": "code-path",
       "line": 17
     },
     {
-      "from": "profiles/ausn/skills/ausn-postman-sync/SKILL.md",
+      "from": "profiles/ausn/skills/postman-sync/SKILL.md",
       "to": "qa-project:postman/environments/AUSN_Full_Test_Environment.postman_environment.json",
       "kind": "code-path",
       "line": 27
     },
     {
-      "from": "profiles/ausn/skills/ausn-postman-sync/SKILL.md",
-      "to": "profiles/ausn/skills/ausn-postman-sync/SKILL.md",
+      "from": "profiles/ausn/skills/postman-sync/SKILL.md",
+      "to": "profiles/ausn/skills/postman-sync/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -3093,7 +3297,7 @@
     },
     {
       "from": "PROJECT_STATUS.md",
-      "to": ".agents/skills/ausn-socraticode/SKILL.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
       "kind": "code-path",
       "line": 198
     },
@@ -3105,13 +3309,13 @@
     },
     {
       "from": "PROJECT_STATUS.md",
-      "to": ".agents/skills/ausn-qa-loop/references/qa-task-flow.md",
+      "to": ".agents/skills/qa-loop/references/qa-task-flow.md",
       "kind": "code-path",
       "line": 200
     },
     {
       "from": "PROJECT_STATUS.md",
-      "to": ".agents/skills/ausn-qa-loop/references/loop-quality-gates.md",
+      "to": ".agents/skills/qa-loop/references/loop-quality-gates.md",
       "kind": "code-path",
       "line": 201
     },
@@ -3129,7 +3333,7 @@
     },
     {
       "from": "PROJECT_STATUS.md",
-      "to": "docs/ausn-context/qa-source-assessment.md",
+      "to": "profiles/ausn/docs/context/qa-source-assessment.md",
       "kind": "code-path",
       "line": 203
     },
@@ -3189,7 +3393,7 @@
     },
     {
       "from": "PROJECT_STATUS.md",
-      "to": ".agents/skills/ausn-qa-mcp/references/socraticode.json",
+      "to": ".agents/skills/qa-mcp/references/socraticode.json",
       "kind": "code-path",
       "line": 260
     },
@@ -3219,37 +3423,37 @@
     },
     {
       "from": "PROJECT_STATUS.md",
-      "to": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": "PROJECT_STATUS.md",
-      "to": ".agents/skills/ausn-qa-mcp/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": "PROJECT_STATUS.md",
-      "to": ".agents/skills/ausn-socraticode/SKILL.md",
-      "kind": "mention-skill",
-      "line": 0
-    },
-    {
-      "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/karpathy-guidelines/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
     {
       "from": "PROJECT_STATUS.md",
-      "to": "profiles/ausn/skills/ausn-categorizer-lifecycle/SKILL.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
     {
       "from": "PROJECT_STATUS.md",
-      "to": "profiles/ausn/skills/ausn-postman-sync/SKILL.md",
+      "to": ".agents/skills/qa-mcp/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "PROJECT_STATUS.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "PROJECT_STATUS.md",
+      "to": "profiles/ausn/skills/categorizer-lifecycle/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "PROJECT_STATUS.md",
+      "to": "profiles/ausn/skills/postman-sync/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -3339,7 +3543,19 @@
     },
     {
       "from": "README.md",
-      "to": ".agents/skills/ausn-qa-loop/SKILL.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "README.md",
+      "to": ".agents/skills/qa-methodology/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
+      "from": "README.md",
+      "to": ".agents/skills/socraticode/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     },
@@ -3351,13 +3567,13 @@
     },
     {
       "from": "REPOSITORIES.md",
-      "to": "docs/ausn-context/system-map.md",
+      "to": "profiles/ausn/docs/context/system-map.md",
       "kind": "link",
       "line": 73
     },
     {
       "from": "REPOSITORIES.md",
-      "to": ".agents/skills/ausn-qa-loop/SKILL.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
       "kind": "mention-skill",
       "line": 0
     }
@@ -3365,13 +3581,6 @@
   "broken": [],
   "unresolved": [],
   "unreachable": [
-    "docs/ausn-context/review-addendum.md",
-    "docs/ausn-context/scenario-map.md",
-    "docs/ausn-context/test-stand-source.md",
-    "docs/ausn-context/testing-authority.md",
-    "docs/ausn-context/testing-scope.md",
-    "docs/ausn-context/ui-entrypoint.md",
-    "docs/evidence/2026-09-17-full-smoke-test1.md",
     "docs/plans/2026-09-24-control-plane-portability-fixes.md",
     "docs/plans/portability-bootstrap-plan.md",
     "docs/plans/portability-bootstrap2-design.md",
@@ -3391,6 +3600,13 @@
     "docs/user-prompts/start-regression-flow.md",
     "ENVIRONMENT.md",
     "OPENCODE_PORTABILITY_OPTIMIZATION_PROMPT.md",
+    "profiles/ausn/docs/context/review-addendum.md",
+    "profiles/ausn/docs/context/scenario-map.md",
+    "profiles/ausn/docs/context/test-stand-source.md",
+    "profiles/ausn/docs/context/testing-authority.md",
+    "profiles/ausn/docs/context/testing-scope.md",
+    "profiles/ausn/docs/context/ui-entrypoint.md",
+    "profiles/ausn/docs/evidence/2026-09-17-full-smoke-test1.md",
     "PROJECT_STATUS.md"
   ],
   "warnings": [],
@@ -3400,20 +3616,28 @@
       "degree": 50
     },
     {
-      "id": ".agents/skills/ausn-qa-loop/SKILL.md",
-      "degree": 36
+      "id": ".agents/skills/qa-loop/SKILL.md",
+      "degree": 39
     },
     {
       "id": "AGENTS.md",
       "degree": 36
     },
     {
-      "id": ".agents/skills/ausn-qa-agents/SKILL.md",
-      "degree": 28
+      "id": ".agents/skills/socraticode/SKILL.md",
+      "degree": 31
+    },
+    {
+      "id": ".agents/skills/qa-agents/SKILL.md",
+      "degree": 30
+    },
+    {
+      "id": ".agents/skills/qa-methodology/SKILL.md",
+      "degree": 30
     },
     {
       "id": "docs/retrospectives.md",
-      "degree": 22
+      "degree": 23
     },
     {
       "id": "docs/plans/system-codemap-plan.md",
@@ -3424,36 +3648,28 @@
       "degree": 21
     },
     {
-      "id": ".agents/skills/ausn-qa-methodology/SKILL.md",
+      "id": ".agents/skills/qa-mcp/SKILL.md",
       "degree": 19
     },
     {
-      "id": ".agents/skills/ausn-qa-mcp/SKILL.md",
-      "degree": 18
-    },
-    {
       "id": "docs/socraticode.md",
+      "degree": 19
+    },
+    {
+      "id": "profiles/ausn/docs/context/qa-source-assessment.md",
       "degree": 18
-    },
-    {
-      "id": "docs/ausn-context/qa-source-assessment.md",
-      "degree": 16
-    },
-    {
-      "id": ".agents/skills/ausn-socraticode/SKILL.md",
-      "degree": 15
     },
     {
       "id": "README.md",
-      "degree": 15
+      "degree": 17
     },
     {
       "id": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
-      "degree": 15
+      "degree": 17
     },
     {
-      "id": ".opencode/command/qa-task.md",
-      "degree": 14
+      "id": "docs/plans/universal-control-plane-design.md",
+      "degree": 17
     }
   ]
 }

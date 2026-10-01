@@ -112,7 +112,7 @@ MAP_ROW = re.compile(r"^\|\s*`(?P<name>ausn-[a-z0-9-]+|dbo-emulator)`", re.M)
 
 
 def system_map_services(system_map_text: str) -> set[str]:
-    """Имена сервисов из таблицы компонентов docs/ausn-context/system-map.md."""
+    """Имена сервисов из таблицы компонентов ausn-control-plane/profiles/ausn/docs/context/system-map.md."""
     return {match.group("name") for match in MAP_ROW.finditer(system_map_text)}
 
 

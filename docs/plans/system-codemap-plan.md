@@ -1166,7 +1166,7 @@ def render_report(document: dict, contracts: set[str], system_map_text: str) -> 
     lines += ["", "## Топики в коде, отсутствующие в контрактах", ""]
     lines += [f"- `{topic}`" for topic in missing] or ["- нет"]
     if system_map_text:
-        lines += ["", "## Сверка с картой системы", "", "См. `docs/ausn-context/system-map.md`: сквозные потоки должны быть воспроизводимы рёбрами выше."]
+        lines += ["", "## Сверка с картой системы", "", "См. `ausn-control-plane/profiles/ausn/docs/context/system-map.md`: сквозные потоки должны быть воспроизводимы рёбрами выше."]
     return "\n".join(lines) + "\n"
 ```
 
@@ -1179,7 +1179,7 @@ MAP_ROW = re.compile(r"^\|\s*`(?P<name>ausn-[a-z0-9-]+|dbo-emulator)`", re.M)
 
 
 def system_map_services(system_map_text: str) -> set[str]:
-    """Имена сервисов из таблицы компонентов docs/ausn-context/system-map.md."""
+    """Имена сервисов из таблицы компонентов ausn-control-plane/profiles/ausn/docs/context/system-map.md."""
     return {match.group("name") for match in MAP_ROW.finditer(system_map_text)}
 
 
@@ -1401,7 +1401,7 @@ git commit -m "chore(codemap): артефакты сводного графа с
 - [ ] Повторный `--system` без изменений не меняет `system.json` (побайтово).
 - [ ] `system.html` открывается офлайн; узлы-сервисы, инфра, внешние системы; пунктир у `unresolved`.
 - [ ] В отчёте `system-codemap.md` перечислены неразрешённые рёбра и топики, которых нет в контрактах.
-- [ ] 5 сквозных потоков из `docs/ausn-context/system-map.md` находятся на графе по рёбрам.
+- [ ] 5 сквозных потоков из `ausn-control-plane/profiles/ausn/docs/context/system-map.md` находятся на графе по рёбрам.
 - [ ] `audit_gate --full` (qa-project) и `tools/checks/mcp_parity.py` (control plane) — без регресса.
 
 ## Что НЕ входит в этот план

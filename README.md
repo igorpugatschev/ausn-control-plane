@@ -17,7 +17,7 @@
 6. **SocratiCode**: сервер и Qdrant/Ollama поднимает плагин `.opencode/plugin/socraticode.js`; при отсутствии модели — `ollama pull nomic-embed-text`. Затем **проиндексировать проекты** (`codebase_index` по projectPath): индекс строится на каждой машине заново (десятки минут на сервис).
 7. Открыть проект из корня и подтвердить доверие к проекту/MCP; при необходимости перезапустить клиент (плагины и MCP подхватываются при старте; собственный `.opencode/plugin/socraticode.js` — без записи в конфиг).
 8. Проверки готовности control plane: `node scripts/bootstrap.mjs --check` (единая read-only проверка workspace / имён env / MCP, отчёт в `.reports/`), `node scripts/render-mcp.mjs` (совпадение `.mcp.json`/`.vscode/mcp.json` с манифестом), `python tools/checks/mcp_parity.py`, `python tools/checks/validate_manifests.py`, `python tools/codemap/generate.py --all --check`, `python tools/codemap/generate.py --system --check`. Пилот переноса на другой машине — [docs/portability-clean-clone-pilot.md](docs/portability-clean-clone-pilot.md).
-9. Первая задача: промты в [docs/user-prompts/](docs/user-prompts/), источник истины — навык `ausn-qa-loop`, команда `/qa-task`.
+9. Первая задача: промты в [docs/user-prompts/](docs/user-prompts/), источник истины — навык `qa-loop`, команда `/qa-task`.
 
 ## Разделы
 

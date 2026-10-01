@@ -471,11 +471,11 @@ const s10 = pres.addSlide();
 light(s10);
 slideTitle(s10, "Инструкции для ИИ: 11 навыков", "Каждый навык включается под свою задачу и задаёт границы работы");
 const skillRows = [
-  ["Процесс и правила", "ausn-qa-loop · ausn-qa-agents · ausn-context-engineering"],
-  ["Работа с кодом", "ausn-socraticode · ausn-source-driven-development · karpathy-guidelines"],
-  ["Контракты API", "ausn-api-contract-testing"],
-  ["Kafka и правила", "ausn-categorizer-lifecycle"],
-  ["Данные и документация", "ausn-postman-sync · ausn-qa-methodology · ausn-qa-mcp"],
+  ["Процесс и правила", "qa-loop · qa-agents · context-engineering"],
+  ["Работа с кодом", "socraticode · source-driven-development · karpathy-guidelines"],
+  ["Контракты API", "api-contract-testing"],
+  ["Kafka и правила", "categorizer-lifecycle"],
+  ["Данные и документация", "postman-sync · qa-methodology · qa-mcp"],
 ];
 skillRows.forEach(([group, list], index) => {
   const y = 1.75 + index * 0.98;
@@ -491,8 +491,8 @@ skillRows.forEach(([group, list], index) => {
 });
 pageNumber(s10, 10);
 s10.addNotes(
-  "[~2 мин] Пример: навык ausn-socraticode требует работать с индексированными проектами только через поиск по коду, " +
-  "а ausn-api-contract-testing фиксирует, что ожидания берутся из Pydantic-моделей продукта. Правило: если навык применим — он загружается до первого действия.",
+  "[~2 мин] Пример: навык socraticode требует работать с индексированными проектами только через поиск по коду, " +
+  "а api-contract-testing фиксирует, что ожидания берутся из Pydantic-моделей продукта. Правило: если навык применим — он загружается до первого действия.",
 );
 
 // 11. Диаграмма: маршрут субагентов
@@ -533,7 +533,7 @@ pageNumber(s11, 11);
 s11.addNotes(
   "[~2 мин] Роли: contract-research-agent → test-design-agent → test-implementation-agent → review-agent; " +
   "дополнительно ci-triage-agent (классификация падений CI) и test-maintenance-agent (flaky и устаревшие тесты), docs-agent (документация). " +
-  "Маршрутизация и чекпоинты описаны в навыке ausn-qa-agents; субагенты не коммитят — коммит только после одобрения ревью.",
+  "Маршрутизация и чекпоинты описаны в навыке qa-agents; субагенты не коммитят — коммит только после одобрения ревью.",
 );
 
 // 12. Sequence: цикл проверки задачи

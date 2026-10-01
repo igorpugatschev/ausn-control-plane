@@ -331,7 +331,11 @@ def _locate_any(target, path, raw, others):
 
 
 def _is_model_logic(rel_path):
-    return rel_path.startswith((".agents/", ".opencode/", "profiles/"))
+    if rel_path.startswith((".agents/", ".opencode/")):
+        return True
+    if rel_path.startswith("profiles/"):
+        return "/skills/" in rel_path or rel_path.endswith("/project.json")
+    return False
 
 
 def _is_external(raw):

@@ -2,7 +2,7 @@
 description: Запустить QA-TASK-FLOW (contract-first QA loop) по задаче или функционалу ПК АУСН
 ---
 
-Используй навык `ausn-qa-loop` в режиме `single-feature` (для списка задач — loop по каждой отдельно) для: $ARGUMENTS
+Используй навык `qa-loop` в режиме `single-feature` (для списка задач — loop по каждой отдельно) для: $ARGUMENTS
 
 Выполни ежедневный QA-TASK-FLOW:
 
@@ -11,8 +11,8 @@ description: Запустить QA-TASK-FLOW (contract-first QA loop) по за�
    дождись завершения индексации. Инфраструктуру (Qdrant/Ollama) поднимает плагин `.opencode/plugin/socraticode.js`; Watcher активен, пока SocratiCode работает, останавливать не требуется.
 1. Запроси у atlassian полную информацию по Jira (`jira_get_issue`: описание, changelog, комментарии,
    связанные ссылки). Jira — только provenance контракта, не структура тестов.
-2. Выполни QA-TASK-FLOW по каждой задаче отдельно (навык `ausn-qa-loop`,
-   `.agents/skills/ausn-qa-loop/references/qa-task-flow.md`).
+2. Выполни QA-TASK-FLOW по каждой задаче отдельно (навык `qa-loop`,
+   `.agents/skills/qa-loop/references/qa-task-flow.md`).
 3. Предоставь краткий отчёт для журнала учёта времени по каждой выполненной задаче отдельно.
 
 Ограничения:
@@ -20,7 +20,7 @@ description: Запустить QA-TASK-FLOW (contract-first QA loop) по за�
 - Expected behavior брать только из контракта: SocratiCode, Jira/Confluence, OpenAPI, GitLab, БД,
   локальные исходники read-only.
 - Ожидания, оракулы и доказательства — по методологии `docs/qa-methodology/`
-  (навык `ausn-qa-methodology`); выбор MCP-инструментов и границы действий — по навыку `ausn-qa-mcp`.
+  (навык `qa-methodology`); выбор MCP-инструментов и границы действий — по навыку `qa-mcp`.
 - QA-код менять только в `../ausn/ausn-qa-project`.
 - Продуктовые репозитории ПК АУСН использовать только для актуализации источников и read-only анализа.
 - External-write в чужие системы (MR, Jira/GitLab comments) выполняется только после отдельного approval; commit и push в свои QA-репозитории — штатно.

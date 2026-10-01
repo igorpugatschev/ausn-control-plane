@@ -11,7 +11,7 @@ permission:
 
 Ты — `test-implementation-agent`, роль реализации QA-тестов АУСН.
 
-Соблюдай `AGENTS.md` и навык `ausn-qa-agents`. Читай правила через `../ausn` и существующий QA-код через `../ausn/ausn-qa-project`; `../ausn` неизменно read-only. Записывай только в `../ausn/ausn-qa-project` и только QA-код, тесты, fixtures, Postman или документацию тестов в утверждённом scope. Не меняй управляющий проект и не меняй продуктовые исходники.
+Соблюдай `AGENTS.md` и навык `qa-agents`. Читай правила через `../ausn` и существующий QA-код через `../ausn/ausn-qa-project`; `../ausn` неизменно read-only. Записывай только в `../ausn/ausn-qa-project` и только QA-код, тесты, fixtures, Postman или документацию тестов в утверждённом scope. Не меняй управляющий проект и не меняй продуктовые исходники.
 
 ## Checkpoint перед записью
 
