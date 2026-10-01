@@ -19,18 +19,18 @@ pre { background: #1b1e24; border: 1px solid #2a2f37; border-radius: 10px;
 </head>
 <body>
 <h1>docgraph: control-plane</h1>
-<p class="meta-line">ветка <code>main</code> · коммит <code>8424b84</code> ·
-документов 92 · рёбер 361 · <span class="bad">битых 0</span> ·
-неразрешённых путей 39 · недостижимых 24 ·
-warnings 0 · сгенерировано 2026-09-29T12:05:55+00:00</p>
+<p class="meta-line">ветка <code>main</code> · коммит <code>33e3495</code> (рабочая копия изменена) ·
+документов 93 · рёбер 369 · <span class="bad">битых 0</span> ·
+неразрешённых путей 41 · недостижимых 25 ·
+warnings 0 · сгенерировано 2026-10-01T06:04:39+00:00</p>
 <h2>Связи по типам</h2>
 <ul>
-<li>code-path — 181</li>
+<li>code-path — 188</li>
 <li>link — 54</li>
 <li>link-dir — 1</li>
 <li>mention-agent — 40</li>
 <li>mention-command — 7</li>
-<li>mention-skill — 78</li>
+<li>mention-skill — 79</li>
 </ul>
 <h2>Битые ссылки</h2>
 <ul>
@@ -41,6 +41,8 @@ warnings 0 · сгенерировано 2026-09-29T12:05:55+00:00</p>
 <li><code>docs/ausn-context/qa-source-assessment.md</code>:24 → <code>references/categorizer-lifecycle.md</code></li>
 <li><code>docs/ausn-context/qa-source-assessment.md</code>:25 → <code>references/postman-flow.md</code></li>
 <li><code>docs/ausn-context/qa-source-assessment.md</code>:26 → <code>references/agent-roles.md</code></li>
+<li><code>docs/plans/socraticode-plugin-design.md</code>:21 → <code>agents/codebase-explorer.md</code></li>
+<li><code>docs/plans/socraticode-plugin-design.md</code>:21 → <code>hooks/hooks.json</code></li>
 <li><code>docs/plans/system-codemap-design.md</code>:46 → <code>ausn-qa-project/docs/codemap/system.json</code></li>
 <li><code>docs/plans/system-codemap-design.md</code>:47 → <code>ausn-qa-project/docs/codemap/system.html</code></li>
 <li><code>docs/plans/system-codemap-design.md</code>:50 → <code>ausn-qa-project/docs/reports/system-codemap.md</code></li>
@@ -92,6 +94,7 @@ warnings 0 · сгенерировано 2026-09-29T12:05:55+00:00</p>
 <li><code>docs/ausn-context/ui-entrypoint.md</code></li>
 <li><code>docs/evidence/2026-09-17-full-smoke-test1.md</code></li>
 <li><code>docs/plans/2026-09-24-control-plane-portability-fixes.md</code></li>
+<li><code>docs/plans/socraticode-plugin-design.md</code></li>
 <li><code>docs/plans/system-codemap-plan-c2.md</code></li>
 <li><code>docs/plans/system-codemap-plan.md</code></li>
 <li><code>docs/presentations/README.md</code></li>
@@ -120,12 +123,12 @@ warnings 0 · сгенерировано 2026-09-29T12:05:55+00:00</p>
 <li><code>docs/retrospectives.md</code> — 21</li>
 <li><code>.agents/skills/ausn-qa-methodology/SKILL.md</code> — 19</li>
 <li><code>.agents/skills/ausn-qa-mcp/SKILL.md</code> — 17</li>
-<li><code>docs/socraticode.md</code> — 16</li>
+<li><code>docs/socraticode.md</code> — 17</li>
 <li><code>docs/plans/2026-09-24-control-plane-portability-fixes.md</code> — 15</li>
+<li><code>.agents/skills/ausn-socraticode/SKILL.md</code> — 13</li>
 <li><code>docs/ausn-context/qa-source-assessment.md</code> — 13</li>
 <li><code>.opencode/command/qa-task.md</code> — 12</li>
 <li><code>.agents/skills/ausn-qa-agents/references/agent-roles.md</code> — 11</li>
-<li><code>.agents/skills/ausn-socraticode/SKILL.md</code> — 11</li>
 </ul>
 <h2>Граф (Mermaid)</h2>
 <pre class="mermaid">graph LR
@@ -212,6 +215,13 @@ warnings 0 · сгенерировано 2026-09-29T12:05:55+00:00</p>
   "docs/plans/2026-09-24-control-plane-portability-fixes.md" -->|code-path| "tools/checks/tests/test_mcp_parity.py"
   "docs/plans/2026-09-24-control-plane-portability-fixes.md" -->|code-path| "docs/mcp.md"
   "docs/plans/2026-09-24-control-plane-portability-fixes.md" -->|code-path| "docs/reports/external-review-portability-2026-09-24.md"
+  "docs/plans/socraticode-plugin-design.md" -->|code-path| ".vscode/mcp.json"
+  "docs/plans/socraticode-plugin-design.md" -->|code-path| ".codex/config.toml"
+  "docs/plans/socraticode-plugin-design.md" -->|code-path| ".opencode/opencode.jsonc"
+  "docs/plans/socraticode-plugin-design.md" -->|code-path| ".agents/skills/ausn-socraticode/SKILL.md"
+  "docs/plans/socraticode-plugin-design.md" -->|code-path| "docs/socraticode.md"
+  "docs/plans/socraticode-plugin-design.md" -->|code-path| "docs/mcp.md"
+  "docs/plans/socraticode-plugin-design.md" -->|code-path| "tools/checks/mcp_parity.py"
   "docs/plans/system-codemap-design.md" -->|code-path| "tools/codemap/model/system.json"
   "docs/plans/system-codemap-design.md" -->|code-path| "docs/ausn-context/system-map.md"
   "docs/plans/system-codemap-plan-c2.md" -->|code-path| "tools/codemap/system_parts.py"
@@ -241,13 +251,6 @@ warnings 0 · сгенерировано 2026-09-29T12:05:55+00:00</p>
   "docs/plans/system-codemap-plan.md" -->|code-path| "tools/codemap/tests/test_system_render.py"
   "docs/plans/system-codemap-plan.md" -->|code-path| "docs/ausn-context/system-map.md"
   "docs/plans/system-codemap-plan.md" -->|code-path| "tools/checks/mcp_parity.py"
-  "docs/presentations/README.md" -->|code-path| "qa-project:data/zephyr/import/trace_links.json"
-  "docs/presentations/README.md" -->|code-path| "qa-project:data/zephyr/import/layer_runs.json"
-  "docs/presentations/README.md" -->|code-path| "qa-project:data/zephyr/import/smoke_gate.json"
-  "docs/presentations/README.md" -->|code-path| "qa-project:data/releases/inventory.json"
-  "docs/presentations/README.md" -->|code-path| "docs/retrospectives.md"
-  "docs/reports/categorizer-numeric-logic-2026-09-22.md" -->|code-path| "qa-project:artifacts/categorizer-rules-from-db.json"
-  "docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md" -->|code-path| "qa-project:artifacts/categorizer-rules-from-db.json"
-  "docs/reports/categorizer-rules-and-operation-flow-2026-09-22.md" -->|code-path| "qa-project:scripts/tools/categorizer_condition.py"</pre>
+  "docs/presentations/README.md" -->|code-path| "qa-project:data/zephyr/import/trace_links.json"</pre>
 </body>
 </html>

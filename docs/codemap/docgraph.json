@@ -1,22 +1,22 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-09-29T12:05:55+00:00",
-  "target_commit": "8424b84",
+  "generated_at": "2026-10-01T06:04:39+00:00",
+  "target_commit": "33e3495",
   "target_branch": "main",
-  "target_dirty": false,
+  "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
-    "docs": 92,
-    "edges": 361,
+    "docs": 93,
+    "edges": 369,
     "broken": 0,
-    "unresolved": 39,
-    "unreachable": 24,
+    "unresolved": 41,
+    "unreachable": 25,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 181,
-    "mention-skill": 78,
+    "code-path": 188,
+    "mention-skill": 79,
     "mention-agent": 40,
     "mention-command": 7,
     "link": 54,
@@ -176,7 +176,7 @@
     {
       "id": ".agents/skills/ausn-socraticode/SKILL.md",
       "kind": "doc",
-      "in": 6,
+      "in": 8,
       "out": 5
     },
     {
@@ -356,7 +356,7 @@
     {
       "id": "docs/mcp.md",
       "kind": "doc",
-      "in": 5,
+      "in": 6,
       "out": 5
     },
     {
@@ -364,6 +364,12 @@
       "kind": "doc",
       "in": 0,
       "out": 15
+    },
+    {
+      "id": "docs/plans/socraticode-plugin-design.md",
+      "kind": "doc",
+      "in": 0,
+      "out": 8
     },
     {
       "id": "docs/plans/system-codemap-design.md",
@@ -500,7 +506,7 @@
     {
       "id": "docs/socraticode.md",
       "kind": "doc",
-      "in": 9,
+      "in": 10,
       "out": 7
     },
     {
@@ -1814,6 +1820,54 @@
       "line": 0
     },
     {
+      "from": "docs/plans/socraticode-plugin-design.md",
+      "to": ".vscode/mcp.json",
+      "kind": "code-path",
+      "line": 61
+    },
+    {
+      "from": "docs/plans/socraticode-plugin-design.md",
+      "to": ".codex/config.toml",
+      "kind": "code-path",
+      "line": 61
+    },
+    {
+      "from": "docs/plans/socraticode-plugin-design.md",
+      "to": ".opencode/opencode.jsonc",
+      "kind": "code-path",
+      "line": 61
+    },
+    {
+      "from": "docs/plans/socraticode-plugin-design.md",
+      "to": ".agents/skills/ausn-socraticode/SKILL.md",
+      "kind": "code-path",
+      "line": 64
+    },
+    {
+      "from": "docs/plans/socraticode-plugin-design.md",
+      "to": "docs/socraticode.md",
+      "kind": "code-path",
+      "line": 65
+    },
+    {
+      "from": "docs/plans/socraticode-plugin-design.md",
+      "to": "docs/mcp.md",
+      "kind": "code-path",
+      "line": 65
+    },
+    {
+      "from": "docs/plans/socraticode-plugin-design.md",
+      "to": "tools/checks/mcp_parity.py",
+      "kind": "code-path",
+      "line": 112
+    },
+    {
+      "from": "docs/plans/socraticode-plugin-design.md",
+      "to": ".agents/skills/ausn-socraticode/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
       "from": "docs/plans/system-codemap-design.md",
       "to": "tools/codemap/model/system.json",
       "kind": "code-path",
@@ -2765,6 +2819,18 @@
       "severity": "warning"
     },
     {
+      "from": "docs/plans/socraticode-plugin-design.md",
+      "target": "agents/codebase-explorer.md",
+      "line": 21,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/socraticode-plugin-design.md",
+      "target": "hooks/hooks.json",
+      "line": 21,
+      "severity": "warning"
+    },
+    {
       "from": "docs/plans/system-codemap-design.md",
       "target": "ausn-qa-project/docs/codemap/system.json",
       "line": 46,
@@ -2990,6 +3056,7 @@
     "docs/ausn-context/ui-entrypoint.md",
     "docs/evidence/2026-09-17-full-smoke-test1.md",
     "docs/plans/2026-09-24-control-plane-portability-fixes.md",
+    "docs/plans/socraticode-plugin-design.md",
     "docs/plans/system-codemap-plan-c2.md",
     "docs/plans/system-codemap-plan.md",
     "docs/presentations/README.md",
@@ -3047,11 +3114,15 @@
     },
     {
       "id": "docs/socraticode.md",
-      "degree": 16
+      "degree": 17
     },
     {
       "id": "docs/plans/2026-09-24-control-plane-portability-fixes.md",
       "degree": 15
+    },
+    {
+      "id": ".agents/skills/ausn-socraticode/SKILL.md",
+      "degree": 13
     },
     {
       "id": "docs/ausn-context/qa-source-assessment.md",
@@ -3063,10 +3134,6 @@
     },
     {
       "id": ".agents/skills/ausn-qa-agents/references/agent-roles.md",
-      "degree": 11
-    },
-    {
-      "id": ".agents/skills/ausn-socraticode/SKILL.md",
       "degree": 11
     }
   ]
