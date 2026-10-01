@@ -10,10 +10,13 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 from pathlib import Path
 
-from tools.profile import load_active as load_profile
-from tools.profile import validate_profile as check_profile_fields
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
+from tools.profile import load_active as load_profile  # noqa: E402
+from tools.profile import validate_profile as check_profile_fields  # noqa: E402
 
 ABSOLUTE_MARKERS = ("c:\\", "\\\\", "/users/", "/home/", "/mnt/")
 ALLOWED_GROUPS = {"mcp", "gitlab", "stands", "ai"}
