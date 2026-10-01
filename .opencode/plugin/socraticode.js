@@ -3,8 +3,11 @@
  *
  * Гарантирует штатное присутствие MCP-сервера SocratiCode в конфиге opencode,
  * если пользователь не задал свою запись (пользователь приоритетнее).
- * Health-проверка Qdrant/Ollama — задача 3 (функции ensureQdrant/ensureOllama).
+ * При инициализации проверяет и при необходимости поднимает Qdrant и Ollama.
  */
+
+import { execFile } from "node:child_process"
+import path from "node:path"
 
 const SERVICE = "socraticode-plugin"
 
@@ -38,13 +41,112 @@ export function ensureSocraticodeServer(config) {
   return true
 }
 
-export const socraticodePlugin = async ({ client }) => {
+const QDRANT_URL = "http://127.0.0.1:17333"
+const OLLAMA_URL = "http://127.0.0.1:11434"
+const QDRANT_CONTAINER = "socraticode-qdrant"
+const COMPOSE_FILE = "compose.socraticode.yaml"
+const READY_TIMEOUT_MS = 10000
+const POLL_INTERVAL_MS = 500
+
+const defaultRun = (cmd) =>
+  new Promise((resolve, reject) => {
+    execFile(cmd[0], cmd.slice(1), { windowsHide: true, timeout: 15000 }, (error, stdout) => {
+      if (error) reject(error)
+      else resolve(String(stdout))
+    })
+  })
+
+async function httpOk(url, timeoutMs = 1500) {
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), timeoutMs)
+  try {
+    const response = await fetch(url, { signal: controller.signal })
+    return response.ok
+  } catch {
+    return false
+  } finally {
+    clearTimeout(timer)
+  }
+}
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+
+export async function ensureQdrant(run, opts = {}) {
+  const {
+    url = QDRANT_URL,
+    container = QDRANT_CONTAINER,
+    composePath = COMPOSE_FILE,
+    timeoutMs = READY_TIMEOUT_MS,
+    intervalMs = POLL_INTERVAL_MS,
+    httpOkFn = httpOk,
+  } = opts
+
+  if (await httpOkFn(`${url}/readyz`)) return "running"
+
+  let started = false
+  try {
+    await run(["docker", "start", container])
+    started = true
+  } catch {
+    try {
+      await run(["docker", "compose", "-f", composePath, "up", "-d"])
+      started = true
+    } catch {
+      started = false
+    }
+  }
+
+  const deadline = Date.now() + timeoutMs
+  while (Date.now() < deadline) {
+    if (await httpOkFn(`${url}/readyz`)) return started ? "started" : "ok"
+    await sleep(intervalMs)
+  }
+  return "fail"
+}
+
+export async function ensureOllama(run, opts = {}) {
+  const {
+    url = OLLAMA_URL,
+    timeoutMs = READY_TIMEOUT_MS,
+    intervalMs = POLL_INTERVAL_MS,
+    httpOkFn = httpOk,
+  } = opts
+
+  if (await httpOkFn(`${url}/api/tags`)) return "running"
+
+  try {
+    run(["ollama", "serve"]).catch(() => {})
+  } catch {
+    // запуск — best effort
+  }
+
+  const deadline = Date.now() + timeoutMs
+  while (Date.now() < deadline) {
+    if (await httpOkFn(`${url}/api/tags`)) return "started"
+    await sleep(intervalMs)
+  }
+  return "fail"
+}
+
+export async function ensureInfra(run, opts = {}) {
+  const [qdrant, ollama] = await Promise.all([ensureQdrant(run, opts), ensureOllama(run, opts)])
+  return { qdrant, ollama }
+}
+
+export const socraticodePlugin = async ({ client, directory }) => {
   const log = async (level, message) => {
     try {
       await client?.app?.log?.({ body: { service: SERVICE, level, message } })
     } catch {
       // логирование не должно ломать плагин
     }
+  }
+
+  if (client) {
+    const composePath = directory ? path.join(directory, COMPOSE_FILE) : COMPOSE_FILE
+    ensureInfra(defaultRun, { composePath })
+      .then(({ qdrant, ollama }) => log("info", `Qdrant: ${qdrant}, Ollama: ${ollama}`))
+      .catch(() => log("warn", "health-проверка Qdrant/Ollama не удалась"))
   }
 
   return {
