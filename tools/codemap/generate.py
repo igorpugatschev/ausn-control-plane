@@ -307,7 +307,7 @@ def _is_external(raw):
     return raw.startswith("~") or (raw.startswith("../") and "/ausn/" in raw)
 
 
-def doc_edges(target, path, files, dirs, named, warnings, others):
+def doc_edges(target, path, files, dirs, named, warnings, others, degraded=False, missing_labels=()):
     rel_src = path.relative_to(target).as_posix()
     strict = _is_model_logic(rel_src)
     text = path.read_text(encoding="utf-8", errors="replace")
@@ -327,6 +327,19 @@ def doc_edges(target, path, files, dirs, named, warnings, others):
             node += "/"
         add(node, f"{base_kind}-dir" if is_dir else base_kind, line)
 
+    def unresolved_problem(token, number, always_error=False):
+        """Нерезолвнутая цель: ошибка (ссылки — всегда), но typed gap при отсутствии внешнего репозитория."""
+        if degraded:
+            return {
+                "from": rel_src,
+                "target": token,
+                "line": number,
+                "severity": "warning",
+                "message": "внешний репозиторий недоступен: " + ", ".join(missing_labels),
+            }
+        severity = "error" if (always_error or strict) else "warning"
+        return {"from": rel_src, "target": token, "line": number, "severity": severity}
+
     in_fence = False
     for number, line in enumerate(text.splitlines(), 1):
         if line.lstrip().startswith(("```", "~~~")):
@@ -344,7 +357,7 @@ def doc_edges(target, path, files, dirs, named, warnings, others):
                 continue
             label, resolved, is_dir = _locate_any(target, path, clean, others)
             if resolved is None:
-                problems.append({"from": rel_src, "target": raw, "line": number, "severity": "error"})
+                problems.append(unresolved_problem(raw, number, always_error=True))
                 continue
             add_resolved(label, resolved, is_dir, "link", number)
         for match in CODE_RE.finditer(line):
@@ -353,10 +366,7 @@ def doc_edges(target, path, files, dirs, named, warnings, others):
                 continue
             label, resolved, is_dir = _locate_any(target, path, token, others)
             if resolved is None:
-                problems.append({
-                    "from": rel_src, "target": token, "line": number,
-                    "severity": "error" if strict else "warning",
-                })
+                problems.append(unresolved_problem(token, number))
                 continue
             add_resolved(label, resolved, is_dir, "code-path", number)
 
@@ -412,13 +422,13 @@ def doc_edges(target, path, files, dirs, named, warnings, others):
     return edges, problems
 
 
-def build_docs(target, others=()):
+def build_docs(target, others=(), degraded=False, missing_labels=()):
     files, dirs = scan_tree(target)
     named = named_entry_points(target)
     warnings = []
     all_edges, problems = [], []
     for path in sorted(iter_markdown(target)):
-        edges, found = doc_edges(target, path, files, dirs, named, warnings, others)
+        edges, found = doc_edges(target, path, files, dirs, named, warnings, others, degraded, missing_labels)
         all_edges.extend(edges)
         problems.extend(found)
     broken = [p for p in problems if p["severity"] == "error"]
@@ -547,8 +557,11 @@ def check_docs(target, doc):
     return True, f"актуально (коммит в lock: {lock.get('target_commit')})"
 
 
-def run_docs(target, do_check, label, target_label=None, others=()):
-    doc = build_docs(target, others)
+def run_docs(target, do_check, label, target_label=None, others=(), degraded=False, missing_labels=()):
+    if not target.is_dir():
+        print(f"{label}: внешний репозиторий отсутствует — пропуск ({target})")
+        return 0
+    doc = build_docs(target, others, degraded, missing_labels)
     stats = doc["stats"]
     if do_check:
         ok, reason = check_docs(target, doc)
@@ -792,13 +805,18 @@ def main():
                 raise SystemExit(f"Целевой репозиторий не найден: {target}")
             others = [(item["label"], item["target"], item["named"])
                       for item in known if item["target"] != target]
-            return run_docs(target, args.check, target.name, args.target, others)
+            missing = [item["label"] for item in known if item["target"] != target and not item["target"].is_dir()]
+            return run_docs(target, args.check, target.name, args.target, others, bool(missing), missing)
         if not args.all:
             raise SystemExit("Для --docs укажите --all или --target")
         code = 0
         for item in known:
+            missing = [
+                other["label"] for other in known
+                if other["label"] != item["label"] and not other["target"].is_dir()
+            ]
             code |= run_docs(item["target"], args.check, item["label"], item["target_label"],
-                             _others_for(known, item["label"]))
+                             _others_for(known, item["label"]), bool(missing), missing)
         return code
 
     if args.model and args.all:
