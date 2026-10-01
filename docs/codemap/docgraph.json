@@ -1,8 +1,8 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-10-01T06:25:26+00:00",
-  "target_commit": "5dc02fd",
+  "generated_at": "2026-10-01T08:45:31+00:00",
+  "target_commit": "668a5ba",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
@@ -959,31 +959,31 @@
       "from": ".agents/skills/ausn-qa-loop/SKILL.md",
       "to": "qa-project:data/zephyr/import/layers.json",
       "kind": "code-path",
-      "line": 124
+      "line": 120
     },
     {
       "from": ".agents/skills/ausn-qa-loop/SKILL.md",
       "to": "qa-project:docs/reports/zephyr-regression-plan.md",
       "kind": "code-path",
-      "line": 140
+      "line": 151
     },
     {
       "from": ".agents/skills/ausn-qa-loop/SKILL.md",
       "to": "qa-project:docs/reports/smoke-gate.md",
       "kind": "code-path",
-      "line": 147
+      "line": 158
     },
     {
       "from": ".agents/skills/ausn-qa-loop/SKILL.md",
       "to": "qa-project:docs/reports/regression-process.md",
       "kind": "code-path",
-      "line": 147
+      "line": 158
     },
     {
       "from": ".agents/skills/ausn-qa-loop/SKILL.md",
       "to": ".agents/skills/ausn-qa-loop/references/loop-goal-prompts.md",
       "kind": "code-path",
-      "line": 209
+      "line": 220
     },
     {
       "from": ".agents/skills/ausn-qa-loop/SKILL.md",
