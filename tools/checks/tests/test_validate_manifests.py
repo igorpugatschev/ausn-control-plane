@@ -136,6 +136,19 @@ def test_env_coverage_is_complete():
     assert validate_env_coverage(CONFIGS) == []
 
 
+def test_project_profile_is_valid():
+    assert validate_all(CONFIGS)["profile"] == []
+
+
+def test_unknown_profile_reports_issue(tmp_path):
+    configs = tmp_path / "configs"
+    configs.mkdir()
+    (configs / "project.json").write_text(json.dumps({"active": "nope"}), encoding="utf-8")
+    from tools.checks.validate_manifests import validate_project_profile
+
+    assert validate_project_profile(configs)
+
+
 def test_env_coverage_reports_undeclared_variable(tmp_path):
     configs = tmp_path / "configs"
     configs.mkdir()

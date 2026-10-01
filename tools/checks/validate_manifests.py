@@ -12,6 +12,9 @@ import json
 import re
 from pathlib import Path
 
+from tools.profile import load_active as load_profile
+from tools.profile import validate_profile as check_profile_fields
+
 ABSOLUTE_MARKERS = ("c:\\", "\\\\", "/users/", "/home/", "/mnt/")
 ALLOWED_GROUPS = {"mcp", "gitlab", "stands", "ai"}
 ALLOWED_CLIENTS = {"opencode", "codex", "vscode", "mcp"}
@@ -125,8 +128,26 @@ def validate_env_coverage(configs_dir: Path) -> list[str]:
     ]
 
 
+def validate_project_profile(configs_dir: Path) -> list[str]:
+    """Схема/пути активного профиля + сверка contextRepos с configs/workspace.json."""
+    root = configs_dir.parent
+    try:
+        profile = load_profile(root)
+    except FileNotFoundError as error:
+        return [f"profile: {error}"]
+    issues = check_profile_fields(profile)
+    workspace_path = configs_dir / "workspace.json"
+    if workspace_path.is_file():
+        known = {repo.get("id") for repo in _load(workspace_path).get("repos", [])}
+        for repo_id in profile.get("contextRepos", []):
+            if repo_id not in known:
+                issues.append(f"profile: contextRepos содержит {repo_id}, которого нет в workspace.json")
+    return issues
+
+
 def validate_all(configs_dir: Path) -> dict[str, list[str]]:
     report = {"workspace": validate_workspace(configs_dir)}
+    report["profile"] = validate_project_profile(configs_dir)
     if (configs_dir / "env.schema.json").is_file():
         report["env"] = validate_env(configs_dir)
         report["env_coverage"] = validate_env_coverage(configs_dir)
