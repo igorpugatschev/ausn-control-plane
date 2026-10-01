@@ -1,10 +1,14 @@
 import { test } from "node:test"
 import assert from "node:assert/strict"
+import path from "node:path"
+import { mkdtemp, readFile } from "node:fs/promises"
+import { tmpdir } from "node:os"
 import {
   ensureSocraticodeServer,
   ensureQdrant,
   ensureOllama,
   ensureInfra,
+  writePluginLog,
 } from "../../.opencode/plugin/socraticode.js"
 
 test("подставляет запись mcp.socraticode, если её нет", () => {
@@ -80,4 +84,16 @@ test("ensureInfra: собирает оба статуса", async () => {
   const run = async () => ""
   const result = await ensureInfra(run, { httpOkFn: async () => true })
   assert.deepEqual(result, { qdrant: "running", ollama: "running" })
+})
+
+test("writePluginLog дописывает строку с UTC-временем", async () => {
+  const dir = await mkdtemp(path.join(tmpdir(), "soc-"))
+  const file = path.join(dir, "nested", "plugin.log")
+  await writePluginLog(file, "Qdrant: started, Ollama: running")
+  const text = await readFile(file, "utf8")
+  assert.match(text, /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z Qdrant: started, Ollama: running\n$/)
+})
+
+test("writePluginLog не бросает при недоступном пути", async () => {
+  await writePluginLog(path.join(tmpdir(), "\u0000bad", "plugin.log"), "x")
 })

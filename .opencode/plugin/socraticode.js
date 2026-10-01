@@ -7,6 +7,7 @@
  */
 
 import { execFile } from "node:child_process"
+import { appendFile, mkdir } from "node:fs/promises"
 import path from "node:path"
 
 const SERVICE = "socraticode-plugin"
@@ -126,6 +127,17 @@ export async function ensureInfra(run, opts = {}) {
   return { qdrant, ollama }
 }
 
+const PLUGIN_LOG = path.join(".local", "socraticode", "plugin.log")
+
+export async function writePluginLog(filePath, message) {
+  try {
+    await mkdir(path.dirname(filePath), { recursive: true })
+    await appendFile(filePath, `${new Date().toISOString()} ${message}\n`, "utf8")
+  } catch {
+    // журнал — best effort; плагин не должен падать из-за него
+  }
+}
+
 export const socraticodePlugin = async ({ client, directory }) => {
   const log = async (level, message) => {
     try {
@@ -137,9 +149,17 @@ export const socraticodePlugin = async ({ client, directory }) => {
 
   if (client) {
     const composePath = directory ? path.join(directory, COMPOSE_FILE) : COMPOSE_FILE
+    const logFile = directory ? path.join(directory, PLUGIN_LOG) : PLUGIN_LOG
     ensureInfra(defaultRun, { composePath })
-      .then(({ qdrant, ollama }) => log("info", `Qdrant: ${qdrant}, Ollama: ${ollama}`))
-      .catch(() => log("warn", "health-проверка Qdrant/Ollama не удалась"))
+      .then(async ({ qdrant, ollama }) => {
+        const summary = `Qdrant: ${qdrant}, Ollama: ${ollama}`
+        await log("info", summary)
+        await writePluginLog(logFile, summary)
+      })
+      .catch(async () => {
+        await log("warn", "health-проверка Qdrant/Ollama не удалась")
+        await writePluginLog(logFile, "health-проверка Qdrant/Ollama не удалась")
+      })
   }
 
   return {
