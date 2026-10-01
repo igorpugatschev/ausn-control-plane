@@ -1,6 +1,6 @@
 # Канал двух писателей — протокол (для нашего контура)
 
-Канал: `slider-web-control-plane/docs/slider-ai/writers-channel.md` (append-only).
+Канал: slider-web-control-plane/docs/slider-ai/writers-channel.md (append-only).
 Второй писатель — мы (`ausn-control-plane`, профиль `slider`).
 
 ## Как работаем
