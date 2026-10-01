@@ -1,22 +1,22 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-10-01T13:00:47+00:00",
-  "target_commit": "07f0257",
+  "generated_at": "2026-10-01T13:23:58+00:00",
+  "target_commit": "96db075",
   "target_branch": "main",
-  "target_dirty": true,
+  "target_dirty": false,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
-    "docs": 102,
-    "edges": 493,
+    "docs": 103,
+    "edges": 495,
     "broken": 0,
-    "unresolved": 0,
-    "unreachable": 28,
+    "unresolved": 1,
+    "unreachable": 29,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 264,
-    "mention-skill": 122,
+    "code-path": 265,
+    "mention-skill": 123,
     "mention-agent": 41,
     "mention-command": 9,
     "link": 56,
@@ -122,7 +122,7 @@
     {
       "id": ".agents/skills/qa-loop/SKILL.md",
       "kind": "doc",
-      "in": 23,
+      "in": 24,
       "out": 16
     },
     {
@@ -598,6 +598,12 @@
       "kind": "doc",
       "in": 4,
       "out": 5
+    },
+    {
+      "id": "profiles/slider/docs/slider-management-review.md",
+      "kind": "doc",
+      "in": 0,
+      "out": 2
     },
     {
       "id": "profiles/slider/README.md",
@@ -3176,10 +3182,22 @@
       "line": 0
     },
     {
+      "from": "profiles/slider/docs/slider-management-review.md",
+      "to": "tools/codemap/generate.py",
+      "kind": "code-path",
+      "line": 42
+    },
+    {
+      "from": "profiles/slider/docs/slider-management-review.md",
+      "to": ".agents/skills/qa-loop/SKILL.md",
+      "kind": "mention-skill",
+      "line": 0
+    },
+    {
       "from": "profiles/slider/README.md",
       "to": "configs/project.json",
       "kind": "code-path",
-      "line": 5
+      "line": 16
     },
     {
       "from": "PROJECT_STATUS.md",
@@ -3597,7 +3615,14 @@
     }
   ],
   "broken": [],
-  "unresolved": [],
+  "unresolved": [
+    {
+      "from": "profiles/slider/docs/slider-management-review.md",
+      "target": "docs/codexcli-artifact-lifecycle-policy.md",
+      "line": 12,
+      "severity": "warning"
+    }
+  ],
   "unreachable": [
     "docs/plans/2026-09-24-control-plane-portability-fixes.md",
     "docs/plans/portability-bootstrap-plan.md",
@@ -3625,6 +3650,7 @@
     "profiles/ausn/docs/context/testing-scope.md",
     "profiles/ausn/docs/context/ui-entrypoint.md",
     "profiles/ausn/docs/evidence/2026-09-17-full-smoke-test1.md",
+    "profiles/slider/docs/slider-management-review.md",
     "profiles/slider/README.md",
     "PROJECT_STATUS.md"
   ],
@@ -3636,7 +3662,7 @@
     },
     {
       "id": ".agents/skills/qa-loop/SKILL.md",
-      "degree": 39
+      "degree": 40
     },
     {
       "id": "AGENTS.md",
