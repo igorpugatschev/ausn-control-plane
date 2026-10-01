@@ -1,21 +1,21 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-10-01T09:23:39+00:00",
-  "target_commit": "c81f1c3",
+  "generated_at": "2026-10-01T09:29:35+00:00",
+  "target_commit": "574d77b",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
     "docs": 96,
-    "edges": 389,
+    "edges": 402,
     "broken": 0,
-    "unresolved": 66,
+    "unresolved": 42,
     "unreachable": 26,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 203,
+    "code-path": 216,
     "mention-skill": 81,
     "mention-agent": 41,
     "mention-command": 8,
@@ -255,7 +255,7 @@
       "id": "AGENTS.md",
       "kind": "doc",
       "in": 2,
-      "out": 33
+      "out": 34
     },
     {
       "id": "docs/ausn-context/current-state.md",
@@ -369,13 +369,13 @@
       "id": "docs/plans/portability-bootstrap-design.md",
       "kind": "doc",
       "in": 1,
-      "out": 4
+      "out": 8
     },
     {
       "id": "docs/plans/portability-bootstrap-plan.md",
       "kind": "doc",
       "in": 0,
-      "out": 2
+      "out": 7
     },
     {
       "id": "docs/plans/socraticode-plugin-design.md",
@@ -573,7 +573,7 @@
       "id": "PROJECT_STATUS.md",
       "kind": "doc",
       "in": 0,
-      "out": 35
+      "out": 38
     },
     {
       "id": "README.md",
@@ -1455,6 +1455,12 @@
     },
     {
       "from": "AGENTS.md",
+      "to": "configs/mcp/servers.json",
+      "kind": "code-path",
+      "line": 104
+    },
+    {
+      "from": "AGENTS.md",
       "to": "qa-project:docs/reports/system-codemap.md",
       "kind": "code-path",
       "line": 127
@@ -1839,6 +1845,24 @@
     },
     {
       "from": "docs/plans/portability-bootstrap-design.md",
+      "to": "configs/workspace.json",
+      "kind": "code-path",
+      "line": 18
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-design.md",
+      "to": "configs/env.schema.json",
+      "kind": "code-path",
+      "line": 26
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-design.md",
+      "to": "configs/mcp/servers.json",
+      "kind": "code-path",
+      "line": 30
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-design.md",
       "to": ".vscode/mcp.json",
       "kind": "code-path",
       "line": 34
@@ -1857,15 +1881,51 @@
     },
     {
       "from": "docs/plans/portability-bootstrap-design.md",
+      "to": "tools/checks/validate_manifests.py",
+      "kind": "code-path",
+      "line": 58
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-design.md",
       "to": "tools/checks/mcp_parity.py",
       "kind": "code-path",
       "line": 61
     },
     {
       "from": "docs/plans/portability-bootstrap-plan.md",
+      "to": "tools/checks/validate_manifests.py",
+      "kind": "code-path",
+      "line": 7
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
       "to": "docs/plans/portability-bootstrap-design.md",
       "kind": "code-path",
       "line": 11
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "to": "configs/workspace.json",
+      "kind": "code-path",
+      "line": 24
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "to": "tools/checks/tests/test_validate_manifests.py",
+      "kind": "code-path",
+      "line": 29
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "to": "configs/env.schema.json",
+      "kind": "code-path",
+      "line": 239
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "to": "configs/mcp/servers.json",
+      "kind": "code-path",
+      "line": 338
     },
     {
       "from": "docs/plans/portability-bootstrap-plan.md",
@@ -2721,111 +2781,129 @@
     },
     {
       "from": "PROJECT_STATUS.md",
+      "to": "configs/workspace.json",
+      "kind": "code-path",
+      "line": 151
+    },
+    {
+      "from": "PROJECT_STATUS.md",
+      "to": "configs/env.schema.json",
+      "kind": "code-path",
+      "line": 151
+    },
+    {
+      "from": "PROJECT_STATUS.md",
+      "to": "configs/mcp/servers.json",
+      "kind": "code-path",
+      "line": 152
+    },
+    {
+      "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/ausn-socraticode/SKILL.md",
       "kind": "code-path",
-      "line": 165
+      "line": 171
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": ".agents/skills/karpathy-guidelines/SKILL.md",
       "kind": "code-path",
-      "line": 166
+      "line": 172
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/socraticode.md",
       "kind": "code-path",
-      "line": 170
+      "line": 176
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/retrospectives.md",
       "kind": "code-path",
-      "line": 170
+      "line": 176
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/ausn-context/qa-source-assessment.md",
       "kind": "code-path",
-      "line": 170
+      "line": 176
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/generate.py",
       "kind": "code-path",
-      "line": 172
+      "line": 178
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/model/control-plane.json",
       "kind": "code-path",
-      "line": 172
+      "line": 178
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "tools/codemap/model/qa-project.json",
       "kind": "code-path",
-      "line": 173
+      "line": 179
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:src/config/paths.py",
       "kind": "code-path",
-      "line": 178
+      "line": 184
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/kafka/conftest.py",
       "kind": "code-path",
-      "line": 180
+      "line": 186
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/static/test_categorizer_json_fixtures.py",
       "kind": "code-path",
-      "line": 181
+      "line": 187
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/integration/test_permission_refresh_queue_advance.py",
       "kind": "code-path",
-      "line": 187
+      "line": 193
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/db/test_permission_refresh_order.py",
       "kind": "code-path",
-      "line": 188
+      "line": 194
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:docs/reports/qa-loop-permission-refresh-order-2026-09-18.md",
       "kind": "code-path",
-      "line": 189
+      "line": 195
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/archive/README.md",
       "kind": "code-path",
-      "line": 230
+      "line": 236
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "qa-project:tests/data/kafka_topics/README.md",
       "kind": "code-path",
-      "line": 231
+      "line": 237
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": "docs/reports/external-review-portability-2026-09-24.md",
       "kind": "link",
-      "line": 238
+      "line": 244
     },
     {
       "from": "PROJECT_STATUS.md",
       "to": ".codex/config.toml",
       "kind": "code-path",
-      "line": 238
+      "line": 244
     },
     {
       "from": "PROJECT_STATUS.md",
@@ -2957,153 +3035,9 @@
       "severity": "warning"
     },
     {
-      "from": "docs/plans/portability-bootstrap-design.md",
-      "target": "configs/workspace.json",
-      "line": 18,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-design.md",
-      "target": "configs/env.schema.json",
-      "line": 26,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-design.md",
-      "target": "configs/mcp/servers.json",
-      "line": 30,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-design.md",
-      "target": "tools/checks/validate_manifests.py",
-      "line": 58,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-design.md",
-      "target": "configs/mcp/servers.json",
-      "line": 61,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-plan.md",
-      "target": "tools/checks/validate_manifests.py",
-      "line": 7,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-plan.md",
-      "target": "configs/workspace.json",
-      "line": 24,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-plan.md",
-      "target": "configs/workspace.json",
-      "line": 27,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-plan.md",
-      "target": "tools/checks/validate_manifests.py",
-      "line": 28,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-plan.md",
-      "target": "tools/checks/tests/test_validate_manifests.py",
-      "line": 29,
-      "severity": "warning"
-    },
-    {
       "from": "docs/plans/portability-bootstrap-plan.md",
       "target": "tools/checks/fixtures/manifests/bad-absolute/workspace.json",
       "line": 30,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-plan.md",
-      "target": "tools/checks/tests/test_validate_manifests.py",
-      "line": 39,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-plan.md",
-      "target": "configs/workspace.json",
-      "line": 100,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-plan.md",
-      "target": "tools/checks/validate_manifests.py",
-      "line": 125,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-plan.md",
-      "target": "configs/env.schema.json",
-      "line": 239,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-plan.md",
-      "target": "configs/env.schema.json",
-      "line": 242,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-plan.md",
-      "target": "tools/checks/validate_manifests.py",
-      "line": 243,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-plan.md",
-      "target": "tools/checks/tests/test_validate_manifests.py",
-      "line": 244,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-plan.md",
-      "target": "configs/env.schema.json",
-      "line": 248,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-plan.md",
-      "target": "configs/env.schema.json",
-      "line": 273,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-plan.md",
-      "target": "configs/mcp/servers.json",
-      "line": 338,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-plan.md",
-      "target": "configs/mcp/servers.json",
-      "line": 341,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-plan.md",
-      "target": "tools/checks/validate_manifests.py",
-      "line": 342,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-plan.md",
-      "target": "tools/checks/tests/test_validate_manifests.py",
-      "line": 344,
-      "severity": "warning"
-    },
-    {
-      "from": "docs/plans/portability-bootstrap-plan.md",
-      "target": "configs/mcp/servers.json",
-      "line": 371,
       "severity": "warning"
     },
     {
@@ -3307,31 +3241,31 @@
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/qa-task-flow.md",
-      "line": 167,
+      "line": 173,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/loop-quality-gates.md",
-      "line": 168,
+      "line": 174,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "ausn-qa-project/AGENTS.md",
-      "line": 206,
+      "line": 212,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/socraticode.json",
-      "line": 227,
+      "line": 233,
       "severity": "warning"
     },
     {
       "from": "PROJECT_STATUS.md",
       "target": "references/socraticode.json",
-      "line": 271,
+      "line": 277,
       "severity": "warning"
     }
   ],
@@ -3366,16 +3300,16 @@
   "warnings": [],
   "hubs": [
     {
+      "id": "PROJECT_STATUS.md",
+      "degree": 38
+    },
+    {
       "id": ".agents/skills/ausn-qa-loop/SKILL.md",
       "degree": 36
     },
     {
       "id": "AGENTS.md",
-      "degree": 35
-    },
-    {
-      "id": "PROJECT_STATUS.md",
-      "degree": 35
+      "degree": 36
     },
     {
       "id": ".agents/skills/ausn-qa-agents/SKILL.md",

@@ -101,7 +101,7 @@ Read-only относится к источникам (код и документ
 - Один и тот же набор серверов (socraticode, atlassian, gitlab, mattermost, test_ssh, test_pgdb, test_graylog, test_grafana, playwright) описан в четырёх файлах: `.mcp.json`, `.codex/config.toml`, `.vscode/mcp.json`, `.opencode/opencode.jsonc`. **SocratiCode работает штатно** (решение 2026-10-01, отменяет «по требованию» от 2026-09-29): сервер всегда подключён, Qdrant/Ollama поднимает плагин `.opencode/plugin/socraticode.js`, контейнер Qdrant закреплён `restart: unless-stopped`. При добавлении или изменении сервера обновлять все четыре.
 - Node читает секреты из корневого `.env` через `--env-file`; вручную экспортировать переменные не нужно. Клиенты запускать из корня control plane (актуально и для opencode: в remote-серверах opencode не читать `.env`, авторизация идёт через `mcp-remote` из `tools/mcp-runtime`).
 - Кэш авторизации MCP — в `.local/mcp-auth/`. Telegram необязателен и не подключён.
-- Проверка паритета: `.\.venv\Scripts\python.exe tools\checks\mcp_parity.py` (код 1 — дрейф; при расхождении обновить все четыре файла).
+- Источник истины по составу серверов — `configs/mcp/servers.json`; четыре файла сверяются с ним гейтом `.\.venv\Scripts\python.exe tools\checks\mcp_parity.py` (код 1 — дрейф; при расхождении обновить манифест и все четыре). Валидация манифестов — `tools\checks\validate_manifests.py`; единая read-only проверка готовности — `node scripts/bootstrap.mjs --check`.
 
 ## Индексация SocratiCode
 
