@@ -5,7 +5,7 @@
 
 ## Как управляются автотесты и документация
 
-**slider-web-control-plane** — управляющий; клиент — Codex (межмодельное делегирование выключено).
+**slider-web-control-plane** — управляющий; клиент — **opencode (чаще) и Codex**; межмодельное делегирование выключено.
 - Agent layer `agents/slider-ai-qa/` (skills `slider-qa-loop`, `slider-test-design`); отдельный nested-контракт SliderDiagram.
 - **Три отдельно запускаемых этапа**: `context-review` → `testing` → `stage-regression`; approvals не переносятся, сборка olddev и merge в stage — только по отдельной команде пользователя; статусы Bitrix агент не меняет.
 - **Продуктовые ветки Редактора не создаются**; task-ветки/worktree — только в `slider-autotests`.
@@ -36,13 +36,21 @@
 4. Ветки: в продуктовых репозиториях Редактора не создавать; task-ветки — только в `slider-autotests`.
 5. Тройка codemap в `slider-qa-docs`/`slider-autotests` и её проверка перед коммитом.
 
-## Что у нас иначе (и требует решения)
+## Решения (зафиксированы 2026-10-01)
 
-1. **Клиент**: у нас opencode (первый писатель — Codex). Нужно решить, переносим ли их `agents/slider-ai-qa`-промпты в наш opencode-контур или адаптируем их rules/skills.
-2. **Генератор codemap**: у них общий `scripts/codemap-generate.mjs` в control plane; у нас — свой `tools/codemap/generate.py`. Для Slider-репозиториев надо выбрать один генератор, чтобы trio был совместим.
-3. **Имя продукта**: в переписке звучит `slider-web-autotests`, фактически репозиторий — `pugachevigor/slider-autotests` (в реестре так и записано).
-4. **Bitrix-интеграция**: у них read-only intake из Bitrix; у нас — Jira/AUSN-остатки; для Slider нужно решить источник задач (Bitrix?).
-5. **Два писателя**: `slider-qa-docs` отмечен writable — нужен регламент (pull перед правкой, без force-push, ветки/MR?).
+1. **Клиент**: у первого писателя opencode (чаще) и Codex; у нас opencode → их prompts/skills не переносим, **адаптируем только правила работы с репозиториями**.
+2. **Codemap**: используем **наш** генератор (`tools/codemap/generate.py`) — он полнее; trio в Slider-репозиториях строим им.
+3. **Источник задач**: **Bitrix** (креды в `.env`), канал read-only как у них.
+4. **Регламент двух писателей** — зафиксирован в профиле и внесён в `slider-web-control-plane` (см. ниже).
+5. Продуктовые репозитории доклонированы (8/8), далее — индексация.
+
+## Что у нас иначе (решения учтены)
+
+1. ~~Клиент~~ — решено: адаптируем только правила работы с репозиториями.
+2. ~~Генератор codemap~~ — решено: наш генератор.
+3. ~~Bitrix~~ — решено: Bitrix read-only intake.
+4. Имя продукта: `slider-autotests` (уточнено — опечатка пользователя).
+5. Два писателя — регламент см. `two-writers-regulation.md`.
 
 ## Ближайшие шаги
 
