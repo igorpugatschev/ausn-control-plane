@@ -96,6 +96,13 @@ context artifacts (`.socraticodecontextartifacts.json` в корне control pla
 - `codebase_stop` — пауза с сохранением прогресса (продолжить — снова `codebase_index`).
 - `codebase_remove` — удалить индекс (destructive); `codebase_list_projects` — список проектов.
 
+## Наблюдаемость и preflight
+
+- **Preflight** — `codebase_status` по нужным проектам (`ausn-control-plane` и `../ausn/ausn-ai`): один вызов на проект, без опроса в цикле. Если статус green и watcher active — индексных действий в задаче не требуется (урок 152).
+- **Инфраструктура ≠ индекс.** Health Qdrant/Ollama смотреть через `codebase_health` и лог плагина `.local/socraticode/plugin.log` (пишется при старте opencode), полноту/свежесть индекса — через `codebase_status`. Не путать и не дублировать проверки (урок 153).
+- **Кросс-репозиторный точный токен** (например, «в каких сервисах подключён X») — `rg`/`grep` по локальным read-only клонам: Сократ не объединяет индексы, поэтому N проектов = N вызовов. Семантику применять внутри одного проекта, когда токен/файл неизвестны (уроки 137, 151).
+- `codebase_status` показывает `INDEX IS INCOMPLETE` и/или `File watcher: inactive` — штатный кейс: завершить `codebase_index` (или `codebase_update`), а в отчёте зафиксировать ограничение с fallback (урок 146).
+
 ## Правила AUSN
 
 - Источники разработчиков (`ausn-core`, `ausn-api`, `ausn-frontend` и т.д.) — только чтение:
