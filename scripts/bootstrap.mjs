@@ -1,10 +1,14 @@
 #!/usr/bin/env node
 /**
- * Read-only проверка готовности рабочего места (инкремент 1 переносимости).
- * Режимы: --plan (по умолчанию) и --check. Ничего не создаёт, не клонирует и не меняет.
+ * Bootstrap control plane.
+ * Режимы: --plan (по умолчанию), --check (read-only готовность), --apply (подготовка окружения).
+ * --apply выполняется на целевой машине: клоны отсутствующих required-репозиториев, npm ci MCP-runtime,
+ * docker compose up. Идемпотентно; ничего не удаляет; клиентские конфиги не пишет. Индексация SocratiCode
+ * скриптом невозможна (нужны MCP-инструменты) и фиксируется как manual step.
  */
 import { readFile, writeFile, mkdir } from "node:fs/promises"
 import { existsSync, readFileSync } from "node:fs"
+import { spawnSync } from "node:child_process"
 import path from "node:path"
 
 const isAbsolute = (p) => path.isAbsolute(p) || /^[a-zA-Z]:/.test(p)
@@ -18,8 +22,14 @@ export function parseEnvNames(text) {
   return names
 }
 
+export function loadWorkspace(configsDir) {
+  return JSON.parse(readFileSync(path.join(configsDir, "workspace.json"), "utf8"))
+}
+
+// --- read-only проверки ---
+
 export function checkWorkspace(configsDir, rootDir) {
-  const manifest = JSON.parse(readFileSync(path.join(configsDir, "workspace.json"), "utf8"))
+  const manifest = loadWorkspace(configsDir)
   const issues = []
   for (const repo of manifest.repos ?? []) {
     if (isAbsolute(repo.path)) issues.push(`workspace: absolute path: ${repo.id}`)
@@ -67,12 +77,108 @@ export async function checkMcp(configsDir, rootDir) {
   return issues
 }
 
+// --- планировщики --apply (чистые, без сайд-эффектов) ---
+
+export function planClones(configsDir, rootDir) {
+  const manifest = loadWorkspace(configsDir)
+  const clones = []
+  for (const repo of manifest.repos ?? []) {
+    if (repo.required && !existsSync(path.resolve(rootDir, repo.path))) {
+      clones.push({
+        id: repo.id,
+        action: "clone",
+        command: ["git", "clone", repo.url, path.resolve(rootDir, repo.path)],
+      })
+    }
+  }
+  return clones
+}
+
+export function planNpm(rootDir) {
+  const modules = path.join(rootDir, "tools", "mcp-runtime", "node_modules")
+  if (existsSync(modules)) return null
+  return { id: "mcp-runtime", action: "npm", command: ["npm", "ci", "--prefix", "tools/mcp-runtime"] }
+}
+
+export function planCompose(rootDir) {
+  if (!existsSync(path.join(rootDir, "compose.socraticode.yaml"))) return null
+  return {
+    id: "qdrant",
+    action: "compose",
+    command: ["docker", "compose", "-f", "compose.socraticode.yaml", "up", "-d"],
+  }
+}
+
+export function buildPlan(configsDir, rootDir) {
+  return {
+    rootDir,
+    clones: planClones(configsDir, rootDir),
+    npm: planNpm(rootDir),
+    compose: planCompose(rootDir),
+  }
+}
+
+export function applyPlan(plan, run, flags = {}) {
+  const results = []
+  const exec = (step, skip) => {
+    if (skip) {
+      results.push({ id: step.id, action: step.action, status: "skipped" })
+      return
+    }
+    const res = run(step.command)
+    results.push({ id: step.id, action: step.action, status: res && res.status === 0 ? "done" : "failed" })
+  }
+  for (const clone of plan.clones) exec(clone, flags.skipClone)
+  if (plan.npm) exec(plan.npm, flags.skipNpm)
+  if (plan.compose) exec(plan.compose, flags.skipCompose)
+  return results
+}
+
+export function manualIndexSteps(configsDir, rootDir) {
+  const manifest = loadWorkspace(configsDir)
+  return (manifest.repos ?? [])
+    .filter((repo) => repo.index && existsSync(path.resolve(rootDir, repo.path)))
+    .map((repo) => `codebase_index(projectPath="<abs>/${repo.path}")`)
+}
+
+const defaultRun = (command) =>
+  spawnSync(command[0], command.slice(1), { stdio: "inherit", shell: process.platform === "win32" })
+
+async function writeReceipt(repoRoot, payload) {
+  const dir = path.join(repoRoot, ".reports")
+  await mkdir(dir, { recursive: true })
+  const stamp = new Date().toISOString().replace(/[:.]/g, "-")
+  await writeFile(path.join(dir, `bootstrap-${stamp}.json`), JSON.stringify(payload, null, 2) + "\n", "utf8")
+}
+
 async function main() {
   const args = process.argv.slice(2)
-  const mode = args.includes("--check") ? "check" : "plan"
   const repoRoot = process.cwd()
   const configsDir = path.join(repoRoot, "configs")
 
+  if (args.includes("--apply")) {
+    const flags = {
+      skipClone: args.includes("--skip-clone"),
+      skipNpm: args.includes("--skip-npm"),
+      skipCompose: args.includes("--skip-compose"),
+    }
+    const plan = buildPlan(configsDir, repoRoot)
+    console.log(
+      `bootstrap apply: клоны:${plan.clones.length}, npm:${plan.npm ? 1 : 0}, compose:${plan.compose ? 1 : 0}`,
+    )
+    const results = applyPlan(plan, defaultRun, flags)
+    for (const r of results) console.log(`  - ${r.action} ${r.id}: ${r.status}`)
+    const manual = manualIndexSteps(configsDir, repoRoot)
+    if (manual.length > 0) {
+      console.log("manual session step (индексация в сессии):")
+      for (const step of manual) console.log(`  - ${step}`)
+    }
+    await writeReceipt(repoRoot, { mode: "apply", results, manual })
+    if (results.some((r) => r.status === "failed")) process.exitCode = 1
+    return
+  }
+
+  const mode = args.includes("--check") ? "check" : "plan"
   const workspace = checkWorkspace(configsDir, repoRoot)
   const env = await checkEnv(configsDir, repoRoot)
   const mcp = await checkMcp(configsDir, repoRoot)
@@ -80,16 +186,8 @@ async function main() {
 
   console.log(`bootstrap ${mode}: проверено — workspace:${workspace.length}, env:${env.length}, mcp:${mcp.length}`)
   for (const issue of issues) console.log(`  - ${issue}`)
-
   if (mode === "check") {
-    const dir = path.join(repoRoot, ".reports")
-    await mkdir(dir, { recursive: true })
-    const stamp = new Date().toISOString().replace(/[:.]/g, "-")
-    await writeFile(
-      path.join(dir, `bootstrap-${stamp}.json`),
-      JSON.stringify({ mode, workspace, env, mcp }, null, 2) + "\n",
-      "utf8",
-    )
+    await writeReceipt(repoRoot, { mode, workspace, env, mcp })
   }
   if (mode === "check" && issues.length > 0) process.exitCode = 1
 }
