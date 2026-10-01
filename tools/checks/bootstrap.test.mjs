@@ -38,6 +38,23 @@ test("checkEnv с именами из схемы не находит пропу�
   assert.deepEqual(await checkEnv(configs, repoRoot, names), [])
 })
 
+test("checkEnv учитывает env-требования активного профиля", async () => {
+  const root = await mkdtemp(path.join(tmpdir(), "profenv-"))
+  const cfg = path.join(root, "configs")
+  await mkdir(path.join(root, "profiles", "slider"), { recursive: true })
+  await mkdir(cfg, { recursive: true })
+  await writeFile(path.join(cfg, "env.schema.json"), JSON.stringify({ vars: [] }), "utf8")
+  await writeFile(path.join(cfg, "project.json"), JSON.stringify({ active: "slider" }), "utf8")
+  await writeFile(
+    path.join(root, "profiles", "slider", "project.json"),
+    JSON.stringify({ id: "slider", name: "Slider", env: ["SLIDER_TOKEN"] }),
+    "utf8",
+  )
+  const issues = await checkEnv(cfg, root, new Set())
+  assert.ok(issues.some((issue) => issue.includes("SLIDER_TOKEN")))
+  assert.deepEqual(await checkEnv(cfg, root, new Set(["SLIDER_TOKEN"])), [])
+})
+
 test("buildPlan: отсутствующий required-репо попадает в клоны", async () => {
   const root = await mkdtemp(path.join(tmpdir(), "pilot-"))
   const cfg = path.join(root, "configs")

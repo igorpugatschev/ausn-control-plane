@@ -10,7 +10,7 @@ import { readFile, writeFile, mkdir } from "node:fs/promises"
 import { existsSync, readFileSync } from "node:fs"
 import { spawnSync } from "node:child_process"
 import path from "node:path"
-import { workspaceRegistry } from "../tools/profile.mjs"
+import { loadActive, workspaceRegistry } from "../tools/profile.mjs"
 
 const isAbsolute = (p) => path.isAbsolute(p) || /^[a-zA-Z]:/.test(p)
 
@@ -51,6 +51,13 @@ export function checkWorkspace(configsDir, rootDir) {
 
 export async function checkEnv(configsDir, rootDir, provided) {
   const schema = JSON.parse(await readFile(path.join(configsDir, "env.schema.json"), "utf8"))
+  let profileEnv = []
+  try {
+    const profile = loadActive(rootDir)
+    if (Array.isArray(profile.env)) profileEnv = profile.env
+  } catch {
+    profileEnv = []
+  }
   let names = provided
   if (!names) {
     const envPath = path.join(rootDir, ".env")
@@ -61,6 +68,9 @@ export async function checkEnv(configsDir, rootDir, provided) {
     if (item.required && !names.has(item.name)) {
       missing.push(`env: нет имени ${item.name} (заполни .env из .env.example)`)
     }
+  }
+  for (const name of profileEnv) {
+    if (!names.has(name)) missing.push(`env: нет имени ${name} (требуется активным профилем)`)
   }
   return missing
 }

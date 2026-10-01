@@ -37,5 +37,8 @@ export function validateProfile(profile) {
       issues.push(`profile: ${key} должен быть относительным: ${value}`)
     }
   }
+  if (profile?.env !== undefined && (!Array.isArray(profile.env) || profile.env.some((item) => typeof item !== "string"))) {
+    issues.push("profile: env должен быть списком имён переменных")
+  }
   return issues
 }

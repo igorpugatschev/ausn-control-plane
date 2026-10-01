@@ -48,4 +48,7 @@ def validate_profile(profile: dict) -> list[str]:
         value = profile.get(key, "")
         if value and (value.startswith("/") or ":" in value):
             issues.append(f"profile: {key} должен быть относительным: {value}")
+    env = profile.get("env")
+    if env is not None and (not isinstance(env, list) or any(not isinstance(item, str) for item in env)):
+        issues.append("profile: env должен быть списком имён переменных")
     return issues
