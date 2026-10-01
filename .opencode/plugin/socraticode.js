@@ -43,9 +43,8 @@ export function ensureSocraticodeServer(config) {
 
 const QDRANT_URL = "http://127.0.0.1:17333"
 const OLLAMA_URL = "http://127.0.0.1:11434"
-const QDRANT_CONTAINER = "socraticode-qdrant"
 const COMPOSE_FILE = "compose.socraticode.yaml"
-const READY_TIMEOUT_MS = 10000
+const READY_TIMEOUT_MS = 90000
 const POLL_INTERVAL_MS = 500
 
 const defaultRun = (cmd) =>
@@ -74,7 +73,6 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 export async function ensureQdrant(run, opts = {}) {
   const {
     url = QDRANT_URL,
-    container = QDRANT_CONTAINER,
     composePath = COMPOSE_FILE,
     timeoutMs = READY_TIMEOUT_MS,
     intervalMs = POLL_INTERVAL_MS,
@@ -85,15 +83,10 @@ export async function ensureQdrant(run, opts = {}) {
 
   let started = false
   try {
-    await run(["docker", "start", container])
+    await run(["docker", "compose", "-f", composePath, "up", "-d"])
     started = true
   } catch {
-    try {
-      await run(["docker", "compose", "-f", composePath, "up", "-d"])
-      started = true
-    } catch {
-      started = false
-    }
+    started = false
   }
 
   const deadline = Date.now() + timeoutMs

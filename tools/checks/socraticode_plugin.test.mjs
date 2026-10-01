@@ -49,7 +49,7 @@ test("ensureQdrant: поднимает контейнер и ждёт готов
   const httpOkFn = async () => { attempts += 1; return attempts >= 2 }
   const result = await ensureQdrant(run, { httpOkFn, timeoutMs: 2000, intervalMs: 10 })
   assert.equal(result, "started")
-  assert.deepEqual(calls[0], ["docker", "start", "socraticode-qdrant"])
+  assert.deepEqual(calls[0], ["docker", "compose", "-f", "compose.socraticode.yaml", "up", "-d"])
 })
 
 test("ensureQdrant: при полном провале возвращает fail и не бросает", async () => {

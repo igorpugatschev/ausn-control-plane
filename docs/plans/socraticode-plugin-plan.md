@@ -308,7 +308,7 @@ test("ensureQdrant: поднимает контейнер и ждёт готов
   const httpOkFn = async () => { attempts += 1; return attempts >= 2 }
   const result = await ensureQdrant(run, { httpOkFn, timeoutMs: 2000, intervalMs: 10 })
   assert.equal(result, "started")
-  assert.deepEqual(calls[0], ["docker", "start", "socraticode-qdrant"])
+  assert.deepEqual(calls[0], ["docker", "compose", "-f", "compose.socraticode.yaml", "up", "-d"])
 })
 
 test("ensureQdrant: при полном провале возвращает fail и не бросает", async () => {
@@ -361,9 +361,8 @@ import path from "node:path"
 ```js
 const QDRANT_URL = "http://127.0.0.1:17333"
 const OLLAMA_URL = "http://127.0.0.1:11434"
-const QDRANT_CONTAINER = "socraticode-qdrant"
 const COMPOSE_FILE = "compose.socraticode.yaml"
-const READY_TIMEOUT_MS = 10000
+const READY_TIMEOUT_MS = 90000
 const POLL_INTERVAL_MS = 500
 
 const defaultRun = (cmd) =>
@@ -392,7 +391,6 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 export async function ensureQdrant(run, opts = {}) {
   const {
     url = QDRANT_URL,
-    container = QDRANT_CONTAINER,
     composePath = COMPOSE_FILE,
     timeoutMs = READY_TIMEOUT_MS,
     intervalMs = POLL_INTERVAL_MS,
@@ -403,15 +401,10 @@ export async function ensureQdrant(run, opts = {}) {
 
   let started = false
   try {
-    await run(["docker", "start", container])
+    await run(["docker", "compose", "-f", composePath, "up", "-d"])
     started = true
   } catch {
-    try {
-      await run(["docker", "compose", "-f", composePath, "up", "-d"])
-      started = true
-    } catch {
-      started = false
-    }
+    started = false
   }
 
   const deadline = Date.now() + timeoutMs
@@ -511,17 +504,12 @@ git push origin main && git push github main
 - Consumes: плагин (Tasks 2–3) как исполнитель авто-подъёма.
 - Produces: постоянное правило «сначала поиск» в контексте агента; страховочная политика перезапуска контейнера.
 
-- [ ] **Step 1: Добавить политику перезапуска в `compose.socraticode.yaml`**
+- [ ] **Step 1: Политика перезапуска Qdrant**
 
-В сервисе Qdrant добавить строку `restart: unless-stopped` (рядом с `ports`/`volumes`):
+`restart: unless-stopped` уже присутствует в `compose.socraticode.yaml` (проверено 2026-10-01) — правка не нужна.
+Контейнер создаётся compose с именем `ausn-qa-index-qdrant-1` (проект `ausn-qa-index`), а не `socraticode-qdrant`.
 
-```yaml
-    restart: unless-stopped
-```
-
-Применить политику к уже существующему контейнеру:
-
-Run: `docker update --restart unless-stopped socraticode-qdrant`
+Run: `docker update --restart unless-stopped ausn-qa-index-qdrant-1`
 Expected: имя контейнера в выводе.
 
 - [ ] **Step 2: Вернуть штатный режим в `AGENTS.md`**
@@ -612,6 +600,18 @@ git push origin main && git push github main
 
 В разделе решений отменить запись от 2026-09-29 и зафиксировать новое решение 2026-10-01 (штатный режим + плагин + правило), со ссылкой на спеку и план.
 
+- [ ] **Step 3b: Вернуть штатный режим в навыках, команде и агенте**
+
+Найти все вхождения и заменить на штатный режим:
+
+Run: `grep -rn "по требованию" .agents .opencode AGENTS.md docs`
+Ожидаемые места (на 2026-10-01): `.agents/skills/ausn-socraticode/SKILL.md:78`,
+`.agents/skills/ausn-qa-loop/SKILL.md:45,96`, `.agents/skills/ausn-qa-loop/references/qa-task-flow.md:27,96,208,250,265`,
+`.opencode/command/qa-task.md:11`, `.opencode/agent/contract-research-agent.md:18`.
+
+Формулировку «инфраструктура — по требованию» заменить на «Qdrant и Ollama поднимаются автоматически
+(плагин `.opencode/plugin/socraticode.js`); watcher активен, пока работает сервер».
+
 - [ ] **Step 4: Обновить вики (4 страницы)**
 
 Для каждой страницы получить текущий текст и заменить политику:
@@ -665,11 +665,14 @@ Expected: все с кодом 0 (`OK`, `актуально`).
 - [ ] **Step 3: Живая проверка авто-подъёма**
 
 ```bash
-docker stop socraticode-qdrant
+docker stop ausn-qa-index-qdrant-1
 ```
 
-Затем запустить opencode из корня control plane и убедиться в логе плагина:
-`Qdrant: started, Ollama: running` (или `...: running`), и что `codebase_health` отвечает без ручных `docker start`.
+Запустить opencode из корня control plane и убедиться в логе плагина: `Qdrant: started, Ollama: running`.
+
+Учесть: Qdrant поднимает 60 коллекций (~21,9 ГБ), `/readyz` отвечает через минуты — плагин ждёт до 90 с
+и может записать `Qdrant: fail`, даже если контейнер уже поднимается. Окончательная проверка — опрос
+`http://127.0.0.1:17333/readyz` до 200 и затем `codebase_health` без ручных команд.
 
 - [ ] **Step 4: Проверить, что поиск идёт через SocratiCode**
 
@@ -682,3 +685,15 @@ git add -A
 git commit -m "test(plugin): финальная проверка штатного режима SocratiCode"
 git push origin main && git push github main
 ```
+
+---
+
+## Коррективы по ходу выполнения (2026-10-01)
+
+- **Имя контейнера.** Compose-проект — `ausn-qa-index` (задано `name:` в `compose.socraticode.yaml`), контейнер —
+  `ausn-qa-index-qdrant-1`. Устаревший ручной контейнер `socraticode-qdrant` удалён. Плагин больше не делает
+  `docker start <имя>` — порядок «HTTP `/readyz` → `docker compose -f <path> up -d` → опрос».
+- **Долгая готовность Qdrant.** 60 коллекций (~21,9 ГБ) восстанавливаются минутами; таймаут готовности поднят
+  с 10 с до 90 с, статус из плагина — информационный.
+- **Область отката расширена** на навыки/команду/агента (Step 3b): формулировка «по требованию» разошлась
+  по `.agents/` и `.opencode/` при прежнем решении.
