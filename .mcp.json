@@ -1,5 +1,24 @@
 {
   "mcpServers": {
+    "socraticode": {
+      "command": "node",
+      "args": [
+        "-e",
+        "process.env.TMP=process.env.TEMP=require('node:path').resolve('.local/socraticode/tmp'); const p=require('node:child_process').spawn('npx',['-y','socraticode@1.14.0'],{stdio:'inherit',shell:process.platform==='win32'}); p.on('exit',c=>process.exit(c??1));"
+      ],
+      "env": {
+        "QDRANT_MODE": "external",
+        "QDRANT_URL": "http://127.0.0.1:17333",
+        "QDRANT_COLLECTION_PREFIX": "ausn_qa_",
+        "EMBEDDING_PROVIDER": "ollama",
+        "EMBEDDING_MODEL": "nomic-embed-text",
+        "OLLAMA_MODE": "external",
+        "OLLAMA_URL": "http://127.0.0.1:11434",
+        "TMP": "./.local/socraticode/tmp",
+        "TEMP": "./.local/socraticode/tmp",
+        "SOCRATICODE_GLOBAL_CONFIG_DIR": "./.local/socraticode/context"
+      }
+    },
     "atlassian": {
       "command": "node",
       "args": [
