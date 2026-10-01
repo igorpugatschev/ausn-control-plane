@@ -3,8 +3,8 @@
   "title": "AUSN QA Control Plane",
   "summary": "Управляющий репозиторий QA-команды АУСН: правила, навыки, субагенты, MCP-конфигурация, методология и ретроспективы. Приложения и сборки нет; продукт работы — ausn-qa-project.",
   "target": ".",
-  "generated_at": "2026-10-01T11:32:06+00:00",
-  "target_commit": "0c25b43",
+  "generated_at": "2026-10-01T12:04:57+00:00",
+  "target_commit": "a40eb90",
   "target_branch": "main",
   "target_dirty": true,
   "primary_count": 12,
@@ -62,7 +62,7 @@
       "kind": "docs",
       "role": "primary",
       "paths": [
-        "ausn-control-plane/profiles/ausn/docs/context"
+        "profiles/ausn/docs/context"
       ],
       "note": "Проверяемый снимок контекста ПК АУСН перед тестированием; вход — README, свежесть — по реестру источников.",
       "files": 14
@@ -155,7 +155,7 @@
       "kind": "docs",
       "role": "secondary",
       "paths": [
-        "ausn-control-plane/profiles/ausn/docs/evidence",
+        "profiles/ausn/docs/evidence",
         "docs/reviews"
       ],
       "note": "Артефакты доказательной базы и отчёты ревью.",
@@ -231,5 +231,5 @@
     }
   ],
   "gaps": [],
-  "_model_sha256": "ba38bdbf99173e57afe68e53c3c4e41741d6ea47dc2e0cdb49107cddf376cfd0"
+  "_model_sha256": "8c773664ff3c84e6a849740e6948206fd86a81cb380f5ae2fd74b154d516d709"
 }
