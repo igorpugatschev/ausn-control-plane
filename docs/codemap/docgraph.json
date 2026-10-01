@@ -1,21 +1,21 @@
 {
   "name": "control-plane",
   "target": ".",
-  "generated_at": "2026-10-01T09:21:07+00:00",
-  "target_commit": "ed4b8c6",
+  "generated_at": "2026-10-01T09:23:39+00:00",
+  "target_commit": "c81f1c3",
   "target_branch": "main",
   "target_dirty": true,
   "rules": "link+code-path+mention;broken=link|code-path;warn=unreachable|unknown-mention",
   "stats": {
-    "docs": 95,
-    "edges": 387,
+    "docs": 96,
+    "edges": 389,
     "broken": 0,
-    "unresolved": 46,
+    "unresolved": 66,
     "unreachable": 26,
     "warnings": 0
   },
   "kinds": {
-    "code-path": 201,
+    "code-path": 203,
     "mention-skill": 81,
     "mention-agent": 41,
     "mention-command": 8,
@@ -368,8 +368,14 @@
     {
       "id": "docs/plans/portability-bootstrap-design.md",
       "kind": "doc",
-      "in": 0,
+      "in": 1,
       "out": 4
+    },
+    {
+      "id": "docs/plans/portability-bootstrap-plan.md",
+      "kind": "doc",
+      "in": 0,
+      "out": 2
     },
     {
       "id": "docs/plans/socraticode-plugin-design.md",
@@ -1856,6 +1862,18 @@
       "line": 61
     },
     {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "to": "docs/plans/portability-bootstrap-design.md",
+      "kind": "code-path",
+      "line": 11
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "to": "tools/checks/mcp_parity.py",
+      "kind": "code-path",
+      "line": 343
+    },
+    {
       "from": "docs/plans/socraticode-plugin-design.md",
       "to": ".vscode/mcp.json",
       "kind": "code-path",
@@ -2969,6 +2987,126 @@
       "severity": "warning"
     },
     {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "target": "tools/checks/validate_manifests.py",
+      "line": 7,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "target": "configs/workspace.json",
+      "line": 24,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "target": "configs/workspace.json",
+      "line": 27,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "target": "tools/checks/validate_manifests.py",
+      "line": 28,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "target": "tools/checks/tests/test_validate_manifests.py",
+      "line": 29,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "target": "tools/checks/fixtures/manifests/bad-absolute/workspace.json",
+      "line": 30,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "target": "tools/checks/tests/test_validate_manifests.py",
+      "line": 39,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "target": "configs/workspace.json",
+      "line": 100,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "target": "tools/checks/validate_manifests.py",
+      "line": 125,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "target": "configs/env.schema.json",
+      "line": 239,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "target": "configs/env.schema.json",
+      "line": 242,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "target": "tools/checks/validate_manifests.py",
+      "line": 243,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "target": "tools/checks/tests/test_validate_manifests.py",
+      "line": 244,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "target": "configs/env.schema.json",
+      "line": 248,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "target": "configs/env.schema.json",
+      "line": 273,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "target": "configs/mcp/servers.json",
+      "line": 338,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "target": "configs/mcp/servers.json",
+      "line": 341,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "target": "tools/checks/validate_manifests.py",
+      "line": 342,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "target": "tools/checks/tests/test_validate_manifests.py",
+      "line": 344,
+      "severity": "warning"
+    },
+    {
+      "from": "docs/plans/portability-bootstrap-plan.md",
+      "target": "configs/mcp/servers.json",
+      "line": 371,
+      "severity": "warning"
+    },
+    {
       "from": "docs/plans/socraticode-plugin-design.md",
       "target": "agents/codebase-explorer.md",
       "line": 21,
@@ -3206,7 +3344,7 @@
     "docs/ausn-context/ui-entrypoint.md",
     "docs/evidence/2026-09-17-full-smoke-test1.md",
     "docs/plans/2026-09-24-control-plane-portability-fixes.md",
-    "docs/plans/portability-bootstrap-design.md",
+    "docs/plans/portability-bootstrap-plan.md",
     "docs/plans/socraticode-plugin-plan.md",
     "docs/plans/system-codemap-plan-c2.md",
     "docs/plans/system-codemap-plan.md",
