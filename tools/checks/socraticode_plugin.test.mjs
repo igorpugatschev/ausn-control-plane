@@ -9,7 +9,7 @@ import {
   ensureOllama,
   ensureInfra,
   writePluginLog,
-} from "../../.opencode/plugin/socraticode.js"
+} from "../../tools/socraticode-plugin-core.mjs"
 
 test("подставляет запись mcp.socraticode, если её нет", () => {
   const cfg = {}
