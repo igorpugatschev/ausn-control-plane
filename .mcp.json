@@ -144,6 +144,31 @@
       "env": {
         "MCP_REMOTE_CONFIG_DIR": ".local/mcp-auth/playwright"
       }
+    },
+    "context7": {
+      "command": "node",
+      "args": [
+        "--env-file=.env",
+        "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js",
+        "https://mcp.context7.com/mcp",
+        "--transport",
+        "http-only",
+        "--silent"
+      ],
+      "env": {
+        "MCP_REMOTE_CONFIG_DIR": ".local/mcp-auth/context7"
+      }
+    },
+    "zai": {
+      "command": "node",
+      "args": [
+        "--env-file=.env",
+        "-e",
+        "process.env.Z_AI_MODE='ZAI'; const p=require('node:child_process').spawn('npx',['-y','@z_ai/mcp-server@0.1.5'],{stdio:'inherit',shell:process.platform==='win32'}); p.on('exit',c=>process.exit(c??1));"
+      ],
+      "env": {
+        "Z_AI_MODE": "ZAI"
+      }
     }
   }
 }

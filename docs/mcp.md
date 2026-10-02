@@ -7,9 +7,12 @@
 - `.opencode/opencode.jsonc` — opencode; серверы запускаются как `local` через тот же `mcp-remote`, потому что remote-серверы opencode не читают `.env`.
 - `.mcp.json` — другие совместимые клиенты.
 
-Включены девять серверов: SocratiCode, Atlassian, GitLab, Mattermost, SSH, PostgreSQL, Graylog,
-Grafana и Playwright. SocratiCode работает **штатно** (решение 2026-10-01): Qdrant/Ollama поднимает
-проектный плагин `.opencode/plugin/socraticode.js`, см. `docs/socraticode.md`.
+Включены одиннадцать серверов: SocratiCode, Atlassian, GitLab, Mattermost, SSH, PostgreSQL, Graylog,
+Grafana, Playwright, Context7 и zAI. SocratiCode работает **штатно** (решение 2026-10-01): Qdrant/Ollama
+поднимает проектный плагин `.opencode/plugin/socraticode.js`, см. `docs/socraticode.md`. Context7 и zAI —
+локальные серверы: Context7 ходит через `mcp-remote` на `https://mcp.context7.com/mcp` (ключ
+`CONTEXT7_API_KEY` опционален), zAI поднимается через `npx @z_ai/mcp-server` с ключом `Z_AI_API_KEY`
+и режимом `Z_AI_MODE=ZAI` из корневого `.env`.
 Telegram необязателен и не подключён. Источник истины — сами конфиги;
 расхождения проверяет гейт `tools/checks/mcp_parity.py`.
 

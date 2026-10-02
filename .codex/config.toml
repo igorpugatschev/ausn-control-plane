@@ -96,3 +96,22 @@ tool_timeout_sec = 120
 
 [mcp_servers.playwright.env]
 MCP_REMOTE_CONFIG_DIR = ".local/mcp-auth/playwright"
+
+[mcp_servers.context7]
+command = "node"
+args = ["--env-file=.env", "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js", "https://mcp.context7.com/mcp", "--transport", "http-only", "--silent"]
+enabled = true
+startup_timeout_sec = 60
+tool_timeout_sec = 120
+
+[mcp_servers.context7.env]
+MCP_REMOTE_CONFIG_DIR = ".local/mcp-auth/context7"
+
+[mcp_servers.zai]
+command = "node"
+args = ["--env-file=.env", "-e", "process.env.Z_AI_MODE='ZAI'; const p=require('node:child_process').spawn('npx',['-y','@z_ai/mcp-server@0.1.5'],{stdio:'inherit',shell:process.platform==='win32'}); p.on('exit',c=>process.exit(c??1));"]
+startup_timeout_sec = 120
+tool_timeout_sec = 600
+
+[mcp_servers.zai.env]
+Z_AI_MODE = "ZAI"
