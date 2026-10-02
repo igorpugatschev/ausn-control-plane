@@ -1,9 +1,11 @@
 {
   "$schema": "https://opencode.ai/config.json",
   // Запускать opencode из корня control plane: пути .env, tools/mcp-runtime и .local относительные.
-  "plugin": [
-    "superpowers@git+https://github.com/obra/superpowers.git#b36e0829c6d0140e93cfef2ca599b1b07d4a7797"
-  ],
+  // Отключён 2026-10-02: кэш superpowers@git+… (переустановлен 10-01 20:34) не имеет main/index.js,
+  // плагин резолвится в undefined и ронял обычный запуск opencode («plugin config hook failed» N.config).
+  // "plugin": [
+  //   "superpowers@git+https://github.com/obra/superpowers.git#b36e0829c6d0140e93cfef2ca599b1b07d4a7797"
+  // ],
   "instructions": [
     "ENVIRONMENT.md"
   ],
