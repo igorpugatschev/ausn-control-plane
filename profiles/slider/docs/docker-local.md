@@ -98,6 +98,12 @@ slider-research_logstash_data
 Поверх архива поднят **канонический стенд** — тот, что описан в `developer.md`:
 `postgres:18` + дамп базы от 2026-07-08 + поставленные архивы статики.
 
+> **2026-10-05: стенд полностью поднят и рабочий** (`:8080`, все сервисы up,
+> `GET /`, `/auth/login`, `/docs`, `/openapi.json`, `/health` → 200). Backend запущен
+> из bind-mounted исходников (mountable) — смена ветки без пересборки образа.
+> Детали, команды деплоя ветки и найденные дефекты поставки — в
+> [local-first-qa-stand.md](local-first-qa-stand.md).
+
 Расположение: `C:\rocketscience\slider-web\compose-28128` (клон
 `skeletons/corporate/server@feature/28128`, коммит `d2fa742`).
 

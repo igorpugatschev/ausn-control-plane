@@ -1,0 +1,22 @@
+# Локальный dev-override canonical-стенда (feature/28128).
+#
+# Backend запускается из bind-mounted исходников, а не из COPY-образа:
+# смена ветки = смена содержимого каталога + restart, без пересборки образа.
+# Deps-образ (slider-flask-deps:py310) собран на Python 3.10 — это рабочая
+# точка для requirements stage: fonttools==4.65.0 требует >=3.10, а
+# greenlet==1.1.2 не собирается на 3.11+.
+#
+# Запуск:
+#   docker compose -f compose/docker-compose.yml \
+#     -f compose/docker-compose.local-dev.yml --env-file compose/.env up -d slider-flask
+services:
+  slider-flask:
+    image: slider-flask-deps:py310
+    command: uwsgi --ini app_docker.ini
+    volumes:
+      - type: bind
+        source: C:/rocketscience/slider-web/flask-slider-webeditor
+        target: /app
+      - ${DATA_STATIC}:/app/static:rw
+      - ${DATA_FLASK_LOGS}:/app/logs:rw
+      - ${DATA_LICENSE}:/app/import_data/license:ro
