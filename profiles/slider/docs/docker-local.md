@@ -93,13 +93,90 @@ slider-research_logstash_data
 Если нужна полная паритетность (PG18, PPTX, ACME, air-gapped набор образов), стенд
 поднимается из `skeletons/corporate/server` через `make` в WSL2.
 
+## Canonical PG18-стенд из `feature/28128` (поднят 2026-10-05)
+
+Поверх архива поднят **канонический стенд** — тот, что описан в `developer.md`:
+`postgres:18` + дамп базы от 2026-07-08 + поставленные архивы статики.
+
+Расположение: `C:\rocketscience\slider-web\compose-28128` (клон
+`skeletons/corporate/server@feature/28128`, коммит `d2fa742`).
+
+### Что сделано
+
+1. Клонирован `skeletons/corporate/server@feature/28128`.
+2. `compose/.env` собран из `compose/.env.example` с PostgreSQL-оверрайдами.
+   **Важно:** прилагаемый `compose/.env.localhost` — это **MySQL-пресет**
+   (`DB_HOST=slider-mysql`, `FLASK_DB_DIALECT=mysql`), его использовать нельзя.
+3. В `compose/init/` положены `static.tar.gz` (2.4 ГБ) и `slider-static.tar.gz`
+   (26 МБ) из `Загрузок`; в `compose/images/` — `psql-dump-2026-07-08_19-16-34.sql.gz`.
+4. `docker pull postgres:18` (18.6), `mongo:7.0`; `redis:7-alpine` уже был.
+5. Поднята инфраструктура:
+   `docker compose -f compose/docker-compose.yml --env-file compose/.env --profile infra
+   up -d --wait slider-postgres slider-redis slider-mongo`.
+6. Дамп восстановлен в `slider-postgres/slider_web` (74 таблицы, 65 FK, схема `public`).
+7. Распакована статика: `static` → 6658 файлов / 2.5 ГБ, `slider-static` → 320 файлов / 41 МБ.
+
+### Ограничение Windows: `make` отсутствует
+
+`make` не установлен, поэтому цели выполняются эквивалентными командами `docker compose`
+напрямую. Скрипты из `compose/scripts/` частично неработоспособны: `db-restore.sh` sourcing'ает
+`compose/.env` через bash, а там есть значения с пробелами без кавычек
+(`OIDC_SCOPE=openid email profile`) — bash падает с `email: command not found`.
+Обход — восстановление дампа напрямую:
+
+```bash
+docker exec -i slider-postgres psql -U slider_user -d slider_web -v ON_ERROR_STOP=1 <<'SQL'
+DROP SCHEMA IF EXISTS public CASCADE; CREATE SCHEMA public;
+GRANT ALL ON SCHEMA public TO slider_user; GRANT ALL ON SCHEMA public TO public;
+SQL
+gunzip -c compose/images/psql-dump-2026-07-08_19-16-34.sql.gz \
+  | docker exec -i slider-postgres psql -U slider_user -d slider_web -v ON_ERROR_STOP=1
+```
+
+### Паритет схем (catalog metadata, без данных строк)
+
+| | olddev | canonical PG18 (дамп) | архив (Windows) |
+|---|---|---|---|
+| PostgreSQL | 18.4 | **18.6** | 16.14 |
+| Схема | `slider_web_test_db` | `public` | `public` |
+| Таблиц | 76 | 74 | 75 |
+| Колонок | 563 | 536 | 538 |
+| FK | 66 | 65 | 3 |
+| Индексов | 204 | 232 | 235 |
+| `bigint` id | да | нет | нет |
+| `timestamptz` | много | 7 | 7 |
+| Функций | 7 | 0 | 0 |
+| `font_families` | есть | нет | нет |
+
+Дамп от 2026-07-08 — это **пред-версия** olddev: в нём ещё нет `font_families`,
+legacy-таблицы `сategory` и 7 триггер-функций `on_update_current_timestamp_*`, а id —
+`integer`, а не `bigint`. Это ближайший к olddev из доступных снимков, но не полный паритет.
+
+### Артефакты в `Загрузках` (переданы devops вместе с `developer.md`)
+
+| Файл | Назначение |
+|---|---|
+| `developer.md` | canonical runbook развёртывания |
+| `static.tar.gz` | `compose/init/static.tar.gz` → `make init-static` → `DATA_STATIC` |
+| `slider-static.tar.gz` | `compose/init/slider-static.tar.gz` → `make init-slider-static` |
+| `fonts.tar.gz` | шрифты по числовым id (доп. в `DATA_STATIC/fonts`) |
+| `psql-dump-2026-07-08_19-16-34.sql.gz` | `compose/images/` → `make db-restore` |
+| `slider-ai_dashboard.tar.gz` | образ `slider-ai-dashboard-frontend-app:latest` |
+| `slider-ai_landing.tar.gz` | образ `slider-ai-frontend-app:latest` |
+| `slider-ai_web_auth.tar` | образ `slider_web_auth:latest-amd64` |
+
+Все три образа уже загружены в Docker (проверено: `docker image ls`).
+
 ## Не проверяется локально
 
 - Внешние AI-сервисы: `LLM_API_TOKEN`, `OAUTH_TOKEN_YANDEX_ART`, `YANDEX_ART_MODEL_URI`,
   `CONVERT_API_KEY`. Без них старт и аутентификация работают, сами AI-функции — нет.
+  **2026-10-05: ключи заполнены в `settings.env` Windows-архива, `Start.ps1` перезапущен,
+  `Check.ps1` прошёл.**
 - Продакшен-контент (`static/cloud/fonts`, шаблоны, облачные файлы) — в архиве
   подставлены заглушки `config/licensy_unavailable.html`,
-  `config/websearch_unavailable.html`.
+  `config/websearch_unavailable.html`. В canonical-стенде `static/cloud` разворачивается
+  из `static.tar.gz` (5791 файл).
 
 ## История: предыдущая попытка (backend-only, больше не актуальна)
 
