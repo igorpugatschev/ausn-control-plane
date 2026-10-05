@@ -1,3 +1,10 @@
+# Локальный override для stage-ветки flask-slider-webeditor.
+#
+# 1. Собираем backend из заранее подготовленного локального образа
+#    slider-web:local (см. app.Dockerfile): requirements.txt на stage
+#    нерезолвится, поэтому образ собирается на frozen-снимке pyth312.txt.
+# 2. Отдельный datadir для Postgres: ./db в репозитории — старый MySQL
+#    datadir, из-за него initdb падает с "directory exists but is not empty".
 services:
   app:
     build: !reset
@@ -6,3 +13,9 @@ services:
       - type: bind
         source: C:\rocketscience\slider-web\flask-slider-webeditor\database
         target: /app/database
+
+  db:
+    volumes: !reset
+      - type: bind
+        source: C:\rocketscience\ausn-control-plane\.local\slider\pgsql-data
+        target: /var/lib/postgresql/data
