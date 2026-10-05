@@ -51,17 +51,44 @@ docker restart slider-flask
 
 ### Деплой ветки задачи локально
 
+Скрипт: `profiles/slider/scripts/local-deploy.sh` — локальный аналог
+`editor-build-webhook.sh` olddev. Ветки разработчиков **не трогаются**: под каждый
+ref создаётся отдельный git worktree в `C:\rocketscience\slider-web\.worktrees\<task|ref>\`.
+
 ```bash
-git -C C:/rocketscience/slider-web/flask-slider-webeditor fetch origin
-git -C C:/rocketscience/slider-web/flask-slider-webeditor checkout <branch>   # или reset --hard <sha>
-docker restart slider-flask
+# задеплоить ветку/SHA на стенд (component: flask|landing|dashboard|pptx|pptx-nginx|nginx)
+bash profiles/slider/scripts/local-deploy.sh flask t_28764 --task 28764
+bash profiles/slider/scripts/local-deploy.sh landing <sha>
+
+# вернуть всё на stage и убрать worktree из монтажа
+bash profiles/slider/scripts/local-deploy.sh restore
+
+# что сейчас задеплоено
+bash profiles/slider/scripts/local-deploy.sh status
 ```
 
-Если ветка меняет `requirements.txt` — пересобрать deps-образ
-`slider-flask-deps:py310` (см. патч ниже) и перезапустить.
+Механика по компонентам:
+- **flask** (mountable): worktree + `FLASK_SRC_HOST_PATH` в `compose/.env` + recreate —
+  **без пересборки образа**. Если ветка меняет `requirements.txt` — пересобрать
+  deps-образ (`flask-deps.Dockerfile`) и повторить.
+- **landing / dashboard / pptx** — worktree + re-point junction `compose/src/<repo>` +
+  `build.sh <svc>` + recreate.
+- **nginx / pptx-nginx** — сборка из `compose/nginx` (worktree не нужен).
 
-Frontend-ветки (landing/dashboard) — сборка из исходников:
-`RUNTIME=docker bash compose/scripts/build.sh landing dashboard` (проверяется отдельно).
+Каждый деплой пишет receipt (`component`, `ref`, `sha`, `service`) в
+`C:\rocketscience\slider-web\.worktrees\deploy-receipts.log` — это runtime-identity
+локального деплоя (аналог `deployed_commit` в `slider-web-control-plane`).
+
+### Маппинг на флоу `slider-web-control-plane`
+
+| Этап control-plane | Локально |
+|---|---|
+| `context-review` (Bitrix, ветка+SHA) | без изменений |
+| `testing` (deploy ветки на olddev) | `local-deploy.sh <component> <ref>` + QA-прогон на `:8080` (docker exec/logs доступны) |
+| `stage-regression` (smoke после merge) | регресс на olddev — для уже принятых задач |
+
+Продуктовые репозитории остаются read-only: деплой идёт через worktree, `stage`
+не переключается. `restore` возвращает монтаж на `stage`.
 
 ## Найденные дефекты окружения/поставки
 
