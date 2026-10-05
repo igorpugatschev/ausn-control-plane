@@ -1,102 +1,121 @@
-# Slider — локальный подъём backend-стека в Docker
+# Slider — локальный стенд
 
-Runbook запуска backend `flask-slider-webeditor` на этой машине. Инфраструктура (MySQL,
-Redis, adminer, nginx) — стандартные образы; само приложение собирается из сломанного
-`requirements.txt` не может, поэтому образ собирается по `pyth312.txt` (см. ниже).
+Runbook локального стенда Slider AI на этой машине.
 
-## Окружение
+## Источник истины
 
-- `C:\rocketscience\slider-web\flask-slider-webeditor` — клон (только чтение).
-- Артефакты сборки: `profiles/slider/docker/` (этот репозиторий, control plane).
-- Docker Desktop 4.93.0. Порты host: `3306`, `5000`, `6379`, `8080`.
+Каноническая схема развёртывания — репозиторий
+`https://gitlab.slider-ai.ru/skeletons/corporate/server`, ветка **`feature/28128`**,
+документ `docs/compose/developer.md`.
 
-## Сборка образа
+> Ветка `main` этого репозитория устарела: там ещё MySQL. Актуальная ветка —
+> PostgreSQL-эра (миграция MySQL→PG через pgloader, `postgres:18`, GigaChat выпилен
+> из Flask, AI переведён на `LLM_API_TOKEN` + Yandex Art).
 
-Образ собирается из контекста клона, но по локальному Dockerfile вне репозитория:
+Ключевые требования `feature/28128` на Windows:
 
-```powershell
-docker build -t slider-web:local `
-  -f C:\rocketscience\ausn-control-plane\profiles\slider\docker\app.Dockerfile `
-  C:\rocketscience\slider-web\flask-slider-webeditor
-```
+- Docker Desktop с **WSL2 backend**; репозиторий клонируется в `~` (ext4), **не** в `/mnt/c/...`;
+- либо **Git Bash + `make`** (`winget install ezwinports.make`) — поддерживается штатно;
+- PostgreSQL 18 требует `chmod 0700` на PGDATA, поэтому **PGDATA нельзя держать на NTFS**:
+  Makefile сам подключает `compose/docker-compose.dbvolumes.yml` с named volumes
+  (`slider_postgres_data` и др.) на Windows и bind-mounts в `compose/data/` на Linux/macOS;
+- named volumes не удаляются `docker system prune -fa --volumes` — только
+  `docker volume rm` / `docker volume prune --all`.
 
-Почему не `docker compose build` и не репозиторный `Dockerfile`:
+## Что поднято сейчас: автономный архив
 
-1. `requirements.txt` в репо сломан: `gigachain==0.2.16` требует
-   `gigachain-core>=0.2.38,<0.3.0` и `langsmith`/`gigachat` с порогами, которых
-   не выдерживают пины (`gigachain-core==0.2.35.post4`, `langsmith==0.1.104`,
-   `gigachat==0.1.35`). Fresh-resolve падает.
-2. Репозиторный `Dockerfile` (python:3.9 + `requirements.txt`) при этом не собирается.
-3. Зато в репо лежит `pyth312.txt` — согласованный frozen-снимок зависимостей
-   (Python 3.12), по нему приложение собирается без конфликтов.
+Развёрнут self-contained архив `SliderAI-local-stack-20261005` в
+`C:\SliderAI\SliderAI-local-stack-20261005` (Compose project `slider-research`).
 
-`app.Dockerfile`:
+Это 11 prebuilt-образов `slider-share/*:20261005` + собственные `app/`,
+`config/00-schema.sql`, `Start.ps1` и `Check.ps1`. Сборка не требуется — в `compose.json`
+нет `build:`. Архив содержит копию backend, поэтому клоны в `C:\rocketscience\slider-web`
+для его работы не используются.
 
-- база `python:3.12-slim`;
-- зависимости из `pyth312.txt` + патч `urllib3==1.26` → `1.26.20`
-  (в `1.26.0` ломается `urllib3.packages.six.moves`, падает `import requests`);
-- добор пакетов, которые код реально импортирует, но которых нет в `pyth312.txt`:
-  `uuid6 wand markdown flask-flatpages flask-session flask-sitemap
-  flask-sqlalchemy cachelib marshmallow msgspec randstr urlfetch python-jose`.
-
-## Запуск стека
-
-Мерджим репозиторный `docker-compose.build.yml` с локальным override,
-который подставляет собранный образ и монтирует `database/`:
+Запуск:
 
 ```powershell
-cd C:\rocketscience\slider-web\flask-slider-webeditor
-docker compose `
-  -f docker-compose.build.yml `
-  -f C:\rocketscience\ausn-control-plane\profiles\slider\docker\compose.override.app-local.yml `
-  --env-file .conf_docker `
-  up -d --no-build
+cd C:\SliderAI\SliderAI-local-stack-20261005
+powershell -NoProfile -ExecutionPolicy Bypass -File .\Start.ps1
 ```
 
-Проверка:
+Проверка состояния:
 
 ```powershell
-docker compose ps
-# slider-web должен быть Up (не Restarting)
+docker compose --env-file settings.env -f compose.json ps
 ```
 
-Логи приложения (инициализация БД `initialize_database()`, сидирование `FillingDB()`,
-затем `* Serving Flask app 'app'`):
+Учётные данные локального стенда — в `settings.env` (`LOCAL_RESEARCH_EMAIL`,
+`LOCAL_RESEARCH_PASSWORD`) и в `LOCAL-LOGIN.txt`. Файлы локальные, в Git не попадают.
 
-```powershell
-docker logs --tail 40 slider-web
-```
+## Проверенное состояние (факт, 2026-10-05)
 
-## Smoke-проверки
+Все 11 сервисов `Up/healthy`: `app`, `web_auth`, `landing`, `dashboard`, `nginx`,
+`db`, `redis`, `mongodb`, `elasticsearch`, `logstash`, `kibana`.
+
+Маршруты (через nginx на `:80`):
 
 ```text
-GET  http://localhost:5000/            → 200 (главная, ~255 КБ)
-GET  http://localhost:5000/rapidoc/    → 200 (API-документация)
-GET  http://localhost:5000/redoc/      → 200
-GET  http://localhost:5000/openapi/swagger → 200 (Swagger)
-POST http://localhost:5000/api/v2/gigachat → 200 {"error": "Access closed"} (нужны токены GigaChat)
-adminer http://localhost:8080          → MySQL web-клиент
+GET  http://localhost/                 → 200   landing
+GET  http://localhost/dashboard/       → 200   dashboard
+GET  http://localhost/auth/login       → 200   web_auth
+GET  http://localhost/openapi.json     → 200   контракт app
+GET  http://localhost/health           → 200
+POST http://localhost/api/v1/auth/login         → 200, data.access_token / refresh_token
+GET  http://localhost/api/v1/auth/token/verify  → 200 c Bearer-токеном
+POST http://localhost/api/v1/auth/login (неверный пароль) → 401
 ```
 
-308-редиректы на `/openapi.json`, `/metrics/`, `/rapidoc` — штатное Flask-поведение
-(переадресация на путь со слэшем), не дефект.
+Ответы API обёрнуты в envelope `{success, error, meta, data}` — токен лежит в `data`.
+Схема БД загружена: 75 таблиц в схеме `public`.
 
-## Известные баги конфигов разработчиков
+Хранилище — named volumes (совпадает с требованием ветки `feature/28128` для Windows):
 
-1. **отсутствие `database/` в bind-mounts** `docker-compose.build.yml` /
-   `docker-compose.local.yml`: в обоих нет mount этой папки, но `wsgi_docker.py`
-   делает `from database import initialize_database` → приложение падает на старте.
-   Обходится в `compose.override.app-local.yml` (bind `database` → `/app/database`).
-2. **сломанный `requirements.txt`** (см. «Сборка образа») — свежий `pip` не резолвит
-   конфликт пинов `gigachain`/`gigachain-core`/`langsmith`/`gigachat`.
-3. `pyth312.txt` **неполон** для приложения: в нём нет `uuid6`, `wand`, `python-jose`
-   и др., которые импортируются в рантайме. `requirements.txt` содержит их пины.
+```text
+slider-research_postgres_data
+slider-research_redis_data
+slider-research_mongo_data
+slider-research_elastic_data
+slider-research_logstash_data
+```
 
-## Отличия от продакшена (что не проверяется локально)
+## Известное расхождение с `feature/28128`
 
-- GigaChat-токены и доступ к `sliderapi.artrange.ru` (AI) — вне локального контура;
-  `/api/v2/gigachat` отвечает `{"error": "Access closed"}`.
-- Стрелочно-ТОЛЬКО backend: landing / dashboard / web_auth в этом стеке не поднимаются
-  (их Docker-образы — внешние TAR из YandexCloud, см. гэп-анализ).
-- `static_docker/` (cloud-файлы, шаблоны, шрифты) монтируется, но без продакшен-контента.
-- Редактор: статика `static/react-editor-static/assets` присутствует и отдаётся.
+| Параметр | Архив (поднят) | `feature/28128` |
+|---|---|---|
+| PostgreSQL | **16.14** (`slider-share/db:20261005`) | **18** (`postgres:18`) |
+| Логирование | Elasticsearch + Logstash + Kibana | без ELK в составе сервисов |
+| PPTX-конвертер | отсутствует | сервис `pptx` / `pptx-nginx` |
+| ACME | отсутствует | сервис `acme` |
+| Механизм | `Start.ps1`, готовые образы | `make up`, сборка из репозитория |
+
+Архив — рабочий и проверенный, но это **не** каноническая схема ветки `feature/28128`.
+Если нужна полная паритетность (PG18, PPTX, ACME, air-gapped набор образов), стенд
+поднимается из `skeletons/corporate/server` через `make` в WSL2.
+
+## Не проверяется локально
+
+- Внешние AI-сервисы: `LLM_API_TOKEN`, `OAUTH_TOKEN_YANDEX_ART`, `YANDEX_ART_MODEL_URI`,
+  `CONVERT_API_KEY`. Без них старт и аутентификация работают, сами AI-функции — нет.
+- Продакшен-контент (`static/cloud/fonts`, шаблоны, облачные файлы) — в архиве
+  подставлены заглушки `config/licensy_unavailable.html`,
+  `config/websearch_unavailable.html`.
+
+## История: предыдущая попытка (backend-only, больше не актуальна)
+
+Ранее стенд собирался вручную из клона `flask-slider-webeditor` поверх MySQL.
+Этот путь **заменён** автономным архивом: он не работает на stage-контракте.
+
+Причина, если понадобится вернуться к сборке из исходников:
+
+- `requirements.txt` не резолвится (`gigachain` / `gigachain-core` / `langsmith` / `gigachat`);
+  в `feature/28128` GigaChat из Flask вообще удалён;
+- `Dockerfile.dev` — Python 3.9, но `fonttools==4.65.0` требует Python ≥ 3.10;
+- на Python 3.12 `pydantic==2.5.3` конфликтует с `langchain-core==0.3.40`
+  (нужен `pydantic>=2.7.4`);
+- `libs/dbms/db_session.py:51` передаёт `prepare_threshold`, который не понимает libmariadb.
+
+Обходной путь был — образ `slider-web:local` из
+`profiles/slider/docker/app.Dockerfile` (Python 3.12 + `pyth312.txt` + shim),
+коммит `4c8a253`. Он давал `200` на `/`, `/docs/`, `/redoc/`, но поднимал только
+backend и не нужен для автономного стенда.
