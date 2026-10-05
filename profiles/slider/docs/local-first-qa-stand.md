@@ -22,9 +22,9 @@
 - backend `slider-flask` — **из смонтированных исходников** (см. ниже);
 - `slider-web-auth`, `slider-landing`, `slider-dashboard`, `slider-nginx`,
   `slider-pptx` (×2) + `slider-pptx-lb`;
-- БД `slider_web` восстановлена из `psql-dump-2026-07-08_19-16-34.sql.gz`
-  (74 таблицы, 65 FK); при первом старте backend достраивает схему (`font_families`),
-  становится 75 таблиц;
+- БД `slider_web` — **копия olddev** (см. раздел «Данные» ниже): схема `slider_web_test_db`,
+  73 таблицы, 65 FK, 434 пользователя, 12013 презентаций, 904 шаблона, 16 команд, 9 категорий,
+  737619 файлов;
 - статика: `compose/data/static` (6658 файлов, из `static.tar.gz`) и
   `compose/data/slider-static` (320, из `slider-static.tar.gz`).
 
@@ -119,6 +119,52 @@ PG-совместимая версия — в архиве: `slider-share/web_au
 дампом + первым стартом, поэтому штатный запуск проходит; при полностью пустой БД
 нужен однократный однопроцессный init до `up`.
 
+## Данные: копия БД olddev
+
+Локальный стенд использует **копию БД olddev** (`olddev.slider-ai.ru:84`, БД
+`t_slider_web_db`, схема `slider_web_test_db`, PG 18.4, ~965 МБ). Это даёт все
+тестовые аккаунты и созданные данные (презентации, шаблоны, команды), чтобы не
+регистрировать их заново.
+
+Аккаунты доступны локально (пароли — из olddev, совпадают с `slider-autotests/.env`):
+
+| Аккаунт | id | |
+|---|---|---|
+| `business_user@account.ru` | 125 | 7387 презентаций, 108 шаблонов |
+| `free_user@account.ru` | 123 | |
+| `pro_user@account.ru` | 124 | |
+| `test_user@account.ru` | 409 | |
+| `empty_user@account.co` | 440 | |
+| `admin@slider-ai.ru` | 4 | `account_type=3` |
+
+Все логины проверены: `POST /api/v1/auth/login` → `200` + `access_token`.
+
+### Как снимается и восстанавливается копия
+
+```bash
+# снять копию (нужен .venv с psycopg)
+bash profiles/slider/scripts/olddev-db-dump.sh \
+     C:/rocketscience/slider-web/slider-autotests/.env <out-dir>
+
+# восстановить в canonical PG18
+bash profiles/slider/scripts/olddev-db-restore.sh <out-dir>
+```
+
+**Почему не обычный `pg_dump`.** PG18 `pg_dump` делает один `LOCK TABLE … IN ACCESS
+SHARE MODE` на все таблицы сразу, а QA-пользователь не имеет прав на 4 таблицы
+(`category`, `font_families`, `presentation_image_repair_status`,
+`transaction_tokens`) и ни на одну из 72 sequence — дамп падает. Поэтому:
+- **схема** — `pg_dump --schema-only` с `--exclude-table` для 4 недоступных;
+- **данные** — `COPY … TO STDOUT` через psycopg (SELECT на 72 таблицы есть),
+  с `session_replication_role=replica` на загрузке;
+- **`font_families`** — пустой stub в схеме (на неё ссылается `fonts.family_id`);
+  приложение наполняет её при старте;
+- **sequence** — `setval` по `max(id)` после загрузки (их значения недоступны);
+- **search_path** — `ALTER ROLE slider_user SET search_path TO slider_web_test_db, public`,
+  потому что `slider-web-auth` не читает `DB_SCHEMA` и ищет `users` без схемы.
+
+Дамп хранится локально (`olddev-data.sql.gz` ~316 МБ) и в Git не попадает.
+
 ## Требуемые for Windows нюансы
 
 - `make` отсутствует → цели выполняются `docker compose` напрямую; `RUNTIME=docker`
@@ -133,6 +179,6 @@ PG-совместимая версия — в архиве: `slider-share/web_au
 
 - Сборка frontend-образов из исходников (landing/dashboard) для веток — не проверена.
 - Точная адаптация флоу `slider-web-control-plane` (три этапа) под локальный деплой.
-- Полный паритет с olddev не достигнут: 75 табл. / 547 кол. / 65 FK / 0 функций / без
-  bigint против olddev 76 / 563 / 66 / 7 функций / bigint. Триггер-функции
-  `on_update_current_timestamp_*` и bigint-типы приложение при старте не создаёт.
+- Паритет схемы с olddev достигнут: стенд использует копию схемы olddev
+  (`slider_web_test_db`, bigint, 65/66 FK, триггер-функции). `font_families`
+  восстановлена как пустой stub и наполняется приложением.
