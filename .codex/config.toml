@@ -47,6 +47,16 @@ tool_timeout_sec = 120
 [mcp_servers.mattermost.env]
 MCP_REMOTE_CONFIG_DIR = ".local/mcp-auth/mattermost"
 
+[mcp_servers.slider_gitlab]
+command = "node"
+args = ["--env-file=.env", "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js", "https://mcp.slider-ai.ru/gitlab", "--transport", "http-only", "--silent", "--header", "Authorization:${MCP_SLIDER_GITLAB_AUTHORIZATION}"]
+enabled = true
+startup_timeout_sec = 60
+tool_timeout_sec = 120
+
+[mcp_servers.slider_gitlab.env]
+MCP_REMOTE_CONFIG_DIR = ".local/mcp-auth/slider_gitlab"
+
 [mcp_servers.test_ssh]
 command = "node"
 args = ["--env-file=.env", "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js", "http://192.168.100.108:3111/mcp", "--transport", "http-only", "--silent", "--allow-http", "--header", "Authorization:${MCP_SSH_AUTHORIZATION}"]

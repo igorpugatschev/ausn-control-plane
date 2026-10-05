@@ -67,6 +67,22 @@
         "MCP_REMOTE_CONFIG_DIR": ".local/mcp-auth/mattermost"
       }
     },
+    "slider_gitlab": {
+      "command": "node",
+      "args": [
+        "--env-file=.env",
+        "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js",
+        "https://mcp.slider-ai.ru/gitlab",
+        "--transport",
+        "http-only",
+        "--silent",
+        "--header",
+        "Authorization:${MCP_SLIDER_GITLAB_AUTHORIZATION}"
+      ],
+      "env": {
+        "MCP_REMOTE_CONFIG_DIR": ".local/mcp-auth/slider_gitlab"
+      }
+    },
     "test_ssh": {
       "command": "node",
       "args": [
