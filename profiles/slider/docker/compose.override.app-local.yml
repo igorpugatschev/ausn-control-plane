@@ -1,0 +1,8 @@
+services:
+  app:
+    build: !reset
+    image: slider-web:local
+    volumes:
+      - type: bind
+        source: C:\rocketscience\slider-web\flask-slider-webeditor\database
+        target: /app/database
