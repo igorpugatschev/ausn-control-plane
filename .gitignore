@@ -23,3 +23,6 @@ Thumbs.db
 __pycache__/
 *.pyc
 .reports/
+
+# Входной файл с корпоративным LLM-ключом
+.lllm.env

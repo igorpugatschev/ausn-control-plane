@@ -259,5 +259,161 @@
       }
     }
   },
+  "provider": {
+    "routerai": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "RouterAI · корпоративный",
+      "options": {
+        "baseURL": "https://routerai.ru/api/v1"
+      },
+      "models": {
+        "anthropic/claude-opus-5.5": {
+          "name": "Anthropic: Claude Opus 5.5",
+          "reasoning": true,
+          "toolcall": true,
+          "limit": {
+            "context": 1000000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "openai/gpt-6-astra-pro": {
+          "name": "OpenAI: GPT-6 Astra Pro",
+          "reasoning": true,
+          "toolcall": true,
+          "limit": {
+            "context": 1050000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": [
+              "image",
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "openai/gpt-6-astra": {
+          "name": "OpenAI: GPT-6 Astra",
+          "reasoning": true,
+          "toolcall": true,
+          "limit": {
+            "context": 1050000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": [
+              "image",
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "openai/gpt-6.1-sol": {
+          "name": "OpenAI: GPT-6.1 Sol",
+          "reasoning": true,
+          "toolcall": true,
+          "limit": {
+            "context": 1050000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": [
+              "image",
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "anthropic/claude-sonnet-5.5": {
+          "name": "Anthropic: Claude Sonnet 5.5",
+          "reasoning": true,
+          "toolcall": true,
+          "limit": {
+            "context": 1000000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "google/gemini-3.1-pro-preview": {
+          "name": "Google: Gemini 3.1 Pro Preview",
+          "reasoning": true,
+          "toolcall": true,
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "modalities": {
+            "input": [
+              "audio",
+              "image",
+              "text",
+              "video"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "deepseek/deepseek-v4-pro-0813": {
+          "name": "DeepSeek: DeepSeek V4 Pro 0813",
+          "reasoning": true,
+          "toolcall": true,
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "x-ai/grok-4.7": {
+          "name": "SpaceXAI: Grok 4.7",
+          "reasoning": true,
+          "toolcall": true,
+          "limit": {
+            "context": 500000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        }
+      }
+    }
+  },
   "autoupdate": true
 }
