@@ -9,6 +9,25 @@
   "instructions": [
     "ENVIRONMENT.md"
   ],
+  // Без этого блока opencode запрашивает подтверждение на каждый bash/скрипт и на
+  // доступ к путям вне проекта (например, рабочие копии Slider в ../slider-web).
+  // Значения — как в slider-web-control-plane/opencode.json.
+  "permission": {
+    "read": "allow",
+    "edit": "allow",
+    "bash": "allow",
+    "glob": "allow",
+    "grep": "allow",
+    "list": "allow",
+    "task": "allow",
+    "external_directory": "allow",
+    "webfetch": "allow",
+    "websearch": "allow",
+    "todowrite": "allow",
+    "question": "allow",
+    "lsp": "allow",
+    "skill": "allow"
+  },
   "mcp": {
     "socraticode": {
       "type": "local",
@@ -190,6 +209,13 @@
       "environment": {
         "MCP_REMOTE_CONFIG_DIR": ".local/mcp-auth/playwright"
       }
+    },
+    "dozzle": {
+      // real-time логи/статы контейнеров стенда Slider (read-only MCP).
+      // Поднимается отдельным compose: profiles/slider/docker/compose.observability.yml
+      "type": "remote",
+      "url": "http://127.0.0.1:8081/api/mcp",
+      "enabled": true
     },
     "context7": {
       "type": "local",

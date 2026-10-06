@@ -1,0 +1,21 @@
+# Наблюдаемость локального стенда Slider: Dozzle (real-time логи + stats + MCP).
+#
+#   docker compose -f compose/docker-compose.observability.yml up -d
+#   UI:  http://127.0.0.1:8081
+#   MCP: http://127.0.0.1:8081/api/mcp   (read-only tools: list_containers,
+#        get_container_logs, get_container_stats, list_hosts)
+#
+# Отдельный проект, чтобы не смешивать с app-compose. Логи не покидают машину.
+services:
+  dozzle:
+    image: amir20/dozzle:latest
+    container_name: slider-dozzle
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8081:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      DOZZLE_ENABLE_MCP: "true"
+      # без auth: порт слушает только 127.0.0.1, инструменты MCP read-only
+      DOZZLE_NO_ANALYTICS: "true"
