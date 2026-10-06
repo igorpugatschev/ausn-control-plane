@@ -1,6 +1,6 @@
 [mcp_servers.socraticode]
 command = "node"
-args = ["-e", "process.env.TMP=process.env.TEMP=require('node:path').resolve('.local/socraticode/tmp'); const p=require('node:child_process').spawn('npx',['-y','socraticode@1.14.0'],{stdio:'inherit',shell:process.platform==='win32'}); p.on('exit',c=>process.exit(c??1));"]
+args = ["-e", "process.env.TMP=process.env.TEMP=require('node:path').resolve('.local/socraticode/tmp'); const {spawn}=require('node:child_process'); const env={...process.env,NODE_OPTIONS:((process.env.NODE_OPTIONS||'')+' --max-old-space-size=4096').trim()}; const boot=()=>spawn('npx',['-y','socraticode@1.14.0'],{stdio:'inherit',shell:process.platform==='win32',env}).on('exit',()=>setTimeout(boot,1500)); boot();"]
 startup_timeout_sec = 120
 tool_timeout_sec = 600
 
@@ -116,6 +116,16 @@ tool_timeout_sec = 120
 
 [mcp_servers.context7.env]
 MCP_REMOTE_CONFIG_DIR = ".local/mcp-auth/context7"
+
+[mcp_servers.dozzle]
+command = "node"
+args = ["--env-file=.env", "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js", "http://127.0.0.1:8081/api/mcp", "--transport", "http-only", "--silent", "--allow-http"]
+enabled = true
+startup_timeout_sec = 60
+tool_timeout_sec = 120
+
+[mcp_servers.dozzle.env]
+MCP_REMOTE_CONFIG_DIR = ".local/mcp-auth/dozzle"
 
 [mcp_servers.zai]
 command = "node"

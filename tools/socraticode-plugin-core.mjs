@@ -16,7 +16,7 @@ export const SOCRATICODE_SERVER = {
   command: [
     "node",
     "-e",
-    "process.env.TMP=process.env.TEMP=require('node:path').resolve('.local/socraticode/tmp'); const p=require('node:child_process').spawn('npx',['-y','socraticode@1.14.0'],{stdio:'inherit',shell:process.platform==='win32'}); p.on('exit',c=>process.exit(c??1));",
+    "process.env.TMP=process.env.TEMP=require('node:path').resolve('.local/socraticode/tmp'); const {spawn}=require('node:child_process'); const env={...process.env,NODE_OPTIONS:((process.env.NODE_OPTIONS||'')+' --max-old-space-size=4096').trim()}; const boot=()=>spawn('npx',['-y','socraticode@1.14.0'],{stdio:'inherit',shell:process.platform==='win32',env}).on('exit',()=>setTimeout(boot,1500)); boot();",
   ],
   enabled: true,
   environment: {

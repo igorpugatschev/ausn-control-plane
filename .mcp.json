@@ -4,7 +4,7 @@
       "command": "node",
       "args": [
         "-e",
-        "process.env.TMP=process.env.TEMP=require('node:path').resolve('.local/socraticode/tmp'); const p=require('node:child_process').spawn('npx',['-y','socraticode@1.14.0'],{stdio:'inherit',shell:process.platform==='win32'}); p.on('exit',c=>process.exit(c??1));"
+        "process.env.TMP=process.env.TEMP=require('node:path').resolve('.local/socraticode/tmp'); const {spawn}=require('node:child_process'); const env={...process.env,NODE_OPTIONS:((process.env.NODE_OPTIONS||'')+' --max-old-space-size=4096').trim()}; const boot=()=>spawn('npx',['-y','socraticode@1.14.0'],{stdio:'inherit',shell:process.platform==='win32',env}).on('exit',()=>setTimeout(boot,1500)); boot();"
       ],
       "env": {
         "QDRANT_MODE": "external",
@@ -173,6 +173,21 @@
       ],
       "env": {
         "MCP_REMOTE_CONFIG_DIR": ".local/mcp-auth/context7"
+      }
+    },
+    "dozzle": {
+      "command": "node",
+      "args": [
+        "--env-file=.env",
+        "tools/mcp-runtime/node_modules/mcp-remote/dist/proxy.js",
+        "http://127.0.0.1:8081/api/mcp",
+        "--transport",
+        "http-only",
+        "--silent",
+        "--allow-http"
+      ],
+      "env": {
+        "MCP_REMOTE_CONFIG_DIR": ".local/mcp-auth/dozzle"
       }
     },
     "zai": {
