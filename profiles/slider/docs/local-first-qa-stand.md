@@ -4,6 +4,18 @@
 чтобы на `olddev` выносить только регресс уже принятых задач. Аналог флоу
 `slider-web-control-plane`, но с деплоем ветки в локальный Docker вместо olddev.
 
+> **Быстрый подъём (2026-10-12):** `profiles/slider/scripts/local-up.sh` — идемпотентный
+> bring-up всего стенда (data-dirs, static + slider-static + fonts из `compose/init/`,
+> infra, olddev-копия БД при пустой схеме, полный стек, health-gate flask, smoke).
+> Флаги: `--with-db` (принудительный рестор БД), `--skip-db`, `--no-smoke`.
+> ВАЖНО: на этой машине постгрес на bind-маунте; канонический `make up` на Git Bash
+> автодетектит named-тома и даст пустую БД — пользуйтесь скриптом, он вызывает compose
+> напрямую без dbvolumes-оверрайда. Самолечение: uwsgi-flask при старте воркеров требует
+> готовый postgres — воркер с неудавшимся импортом не восстанавливается сам, скрипт
+> перезапускает контейнер по мультипробе (5×200 подряд).
+> Пересборка редактора для локального AI: `slider-web-editor` (stage) с `.env.local`
+> (GigaChat-модели) → `npx yarn@1.22.22 build` → `dist/` → `flask…/frontend/editor-static/assets/`.
+
 ## Что поднято
 
 | Стенд | Адрес | PG | Роль |
