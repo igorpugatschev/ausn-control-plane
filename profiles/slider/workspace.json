@@ -1,9 +1,15 @@
 {
   "root": "..",
+  "gitPolicy": {
+    "ausn-control-plane": "full access: commit+push в main после каждого изменения; push только в личный github remote (GitLab origin не используется)",
+    "slider-autotests": "сначала всё пишем в отдельную ветку; merge в main — только после приёмки пользователем",
+    "slider-web-control-plane": "чужой проект: любые правки — только по согласованию с пользователем; сам коммиты/пуши не делаю",
+    "product-read-only": "slider-web-editor и остальные продуктовые репозитории: коммитов и пушей в remote нет; только обновление stage (fetch/pull) для актуального состояния и локальные merge/checkout для тестирования"
+  },
   "repos": [
-    {"id": "slider-autotests", "path": "../slider-web/slider-autotests", "url": "https://gitlab.slider-ai.ru/pugachevigor/slider-autotests.git", "access": "writable", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "main"},
+    {"id": "slider-autotests", "path": "../slider-web/slider-autotests", "url": "https://gitlab.slider-ai.ru/pugachevigor/slider-autotests.git", "access": "writable", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "main", "gitPolicy": "branch-first: отдельная ветка, merge в main только после приёмки"},
     {"id": "slider-qa-docs", "path": "../slider-web/slider-qa-docs", "url": "https://gitlab.slider-ai.ru/pugachevigor/slider-qa-docs.git", "access": "writable", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "main"},
-    {"id": "slider-web-editor", "path": "../slider-web/slider-web-editor", "url": "https://gitlab.slider-ai.ru/web/front/slider-web-editor.git", "access": "read-only", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "stage"},
+    {"id": "slider-web-editor", "path": "../slider-web/slider-web-editor", "url": "https://gitlab.slider-ai.ru/web/front/slider-web-editor.git", "access": "read-only", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "stage", "gitPolicy": "no commits/push: только обновление stage и локальные merge для тестирования"},
     {"id": "slider-ai-dashboard-frontend", "path": "../slider-web/slider-ai-dashboard-frontend", "url": "https://gitlab.slider-ai.ru/web/front/slider-ai-dashboard-frontend.git", "access": "read-only", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "stage"},
     {"id": "slider-ai-frontend-landing", "path": "../slider-web/slider-ai-frontend-landing", "url": "https://gitlab.slider-ai.ru/web/front/slider-ai-frontend-landing.git", "access": "read-only", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "stage"},
     {"id": "flask-slider-webeditor", "path": "../slider-web/flask-slider-webeditor", "url": "https://gitlab.slider-ai.ru/web/back/flask-slider-webeditor.git", "access": "read-only", "required": true, "index": true, "contextArtifacts": false, "defaultBranch": "stage"},
