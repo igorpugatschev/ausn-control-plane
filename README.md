@@ -32,6 +32,8 @@
 
 ## Обновление OpenCode до версии 2
 
-Для OpenCode v2 корпоративный плагин подключается командой `opencode plugin add @rcktsci/rcktsci-opencode-plugin@latest`. Проверено на OpenCode 2.0.30 и корпоративном плагине 2.4.0. Проверка из корня проекта: `opencode plugin list`, затем `opencode models`. Старый файл `~/.config/opencode/opencode.json` может не читаться, если активный каталог конфигурации — `~/.opencode`; фактический путь показывает `opencode debug paths`. Секреты в конфигурацию переносить не нужно.
+Для OpenCode v2 корпоративный плагин подключается командой `opencode plugin add @rcktsci/rcktsci-opencode-plugin@latest`. Проверено на OpenCode 2.0.30/2.1.1 и корпоративном плагине 2.4.0. Проверка из корня проекта: `opencode plugin list`, затем `opencode models`. Старый файл `~/.config/opencode/opencode.json` может не читаться, если активный каталог конфигурации — `~/.opencode`; фактический путь показывает `opencode debug paths`. Секреты в конфигурацию переносить не нужно.
 
 Проектные плагины поддерживают обе версии: V1 вызывает `server`, V2 — `setup` с постоянным `id`. Простого переименования `plugin` в `plugins` недостаточно: [руководство миграции OpenCode](https://github.com/anomalyco/opencode/blob/v2.0.32/services/www/src/docs/content/build/plugins/migrate-v1.mdx).
+
+[Проверка Windows OpenCode, моделей и консольных окон — 2026-10-20](docs/reports/opencode-windows-2026-10-20.md).
