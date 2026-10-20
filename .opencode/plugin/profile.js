@@ -3,7 +3,7 @@
  * Регистрирует `profiles/<active>/skills` в config.skills.paths (opencode auto-discovers SKILL.md).
  * Активный профиль: env PROJECT_PROFILE -> configs/project.json -> ausn. Без инъекции в системный промпт.
  */
-import { existsSync, readFileSync } from "node:fs"
+import { existsSync, readFileSync, readdirSync } from "node:fs"
 import path from "node:path"
 
 const SERVICE = "profile-plugin"
@@ -38,4 +38,32 @@ export const profilePlugin = async ({ client, directory }) => {
   }
 }
 
-export default profilePlugin
+// V2 регистрирует навыки через домен skill; V1 сохраняет прежний config-хук.
+export default {
+  id: "ausn.profile",
+  server: profilePlugin,
+  async setup(ctx) {
+    const root = ctx.location.directory
+    const skillsDir = path.join(root, "profiles", activeProfileId(root), "skills")
+    if (!existsSync(skillsDir)) return
+    const skills = readdirSync(skillsDir, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => path.join(skillsDir, entry.name, "SKILL.md"))
+      .filter((file) => existsSync(file))
+      .map((file) => {
+        const text = readFileSync(file, "utf8")
+        const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/)
+        if (!match) throw new Error(`Некорректный frontmatter: ${file}`)
+        // OpenCode работает на Bun: штатный YAML-парсер без новой зависимости.
+        const metadata = Bun.YAML.parse(match[1])
+        return { id: metadata.name, name: metadata.name, description: metadata.description,
+          path: file, content: match[2] }
+      })
+    const registration = await ctx.skill.transform((editor) => {
+      for (const skill of skills) {
+        if (!editor.get(skill.id)) editor.add(skill)
+      }
+    })
+    return () => registration.dispose()
+  },
+}

@@ -7,7 +7,7 @@
 Порядок: **clone → окружение → MCP → плагины → индексация → проверки → первая задача**.
 
 1. Прочитать [AGENTS.md](AGENTS.md) — правила, модель владения, ограничения.
-2. Инструменты пользователя (GUI/секреты): Node.js 22+, Python 3.12, Docker, Ollama с моделью `nomic-embed-text`, корпоративный VPN и корпоративный плагин opencode **`@rcktsci/rcktsci-opencode-plugin@0.17.9`** (провайдер `RcktSci-Corporate`; ставится по корпоративной инструкции).
+2. Инструменты пользователя (GUI/секреты): Node.js 22+, Python 3.12, Docker, Ollama с моделью `nomic-embed-text`, корпоративный VPN и корпоративный плагин opencode **`@rcktsci/rcktsci-opencode-plugin`** (провайдер `RcktSci-Corporate`; ставится по корпоративной инструкции).
 3. Локальное окружение и MCP-runtime:
    - `python -m venv .venv` → `.venv\Scripts\python.exe -m pip install -r requirements.txt` (нужен только для тестов инструментов; рантайм `tools/*` — stdlib);
    - `copy .env.example .env` → заполнить личные токены (GitLab/GitHub/Jira в шаблоне не хранятся);
@@ -29,3 +29,9 @@
 - [Сводная карта системы ПК АУСН](https://gitlab.com/rcktsci/projects/ausn/integrator/ausn-qa-project/-/blob/main/docs/reports/system-codemap.md) — генерируется `tools/codemap/generate.py --system`
 
 Мета-файлы репозитория: [REPOSITORIES.md](REPOSITORIES.md), [TEAM_MEMBERS.md](TEAM_MEMBERS.md). Проектные навыки для AI — в `.agents/skills/`. Секреты хранятся только в локальном `.env`.
+
+## Обновление OpenCode до версии 2
+
+Для OpenCode v2 корпоративный плагин подключается командой `opencode plugin add @rcktsci/rcktsci-opencode-plugin@latest`. Проверено на OpenCode 2.0.30 и корпоративном плагине 2.4.0. Проверка из корня проекта: `opencode plugin list`, затем `opencode models`. Старый файл `~/.config/opencode/opencode.json` может не читаться, если активный каталог конфигурации — `~/.opencode`; фактический путь показывает `opencode debug paths`. Секреты в конфигурацию переносить не нужно.
+
+Проектные плагины поддерживают обе версии: V1 вызывает `server`, V2 — `setup` с постоянным `id`. Простого переименования `plugin` в `plugins` недостаточно: [руководство миграции OpenCode](https://github.com/anomalyco/opencode/blob/v2.0.32/services/www/src/docs/content/build/plugins/migrate-v1.mdx).
